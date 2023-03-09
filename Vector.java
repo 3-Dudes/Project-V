@@ -18,6 +18,7 @@ public class Vector extends Player {
     public void reload() { }
     public void c() { }
     public void e() { }
+    public void q() { }
     public void x() {
         Greenfoot.playSound("ohyeah.wav");
         getWorld().addObject(cannon, this.getX() - 100, this.getY() + 35);

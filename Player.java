@@ -77,6 +77,7 @@ public abstract class Player extends Actor {
         
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
             qPressed = true;
+            q();
         }
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
             qPressed = false;
@@ -129,6 +130,7 @@ public abstract class Player extends Actor {
     public abstract void singleFire();
     public abstract void burstFire();
     public abstract void c();
+    public abstract void q();
     public abstract void e();
     public abstract void x();
 }
