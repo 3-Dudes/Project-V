@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Vector
+comment1.params=
+comment1.target=Vector()
+comment2.params=
+comment2.target=void\ singleFire()
+comment3.params=
+comment3.target=void\ burstFire()
+comment4.params=
+comment4.target=void\ reload()
+comment5.params=
+comment5.target=void\ c()
+comment6.params=
+comment6.target=void\ e()
+comment7.params=
+comment7.target=void\ x()
+comment8.params=
+comment8.target=void\ shootCannon()
+numComments=9

@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=CannonBlaster
+comment1.params=
+comment1.target=CannonBlaster()
+comment2.params=
+comment2.target=int\ getCharge()
+comment3.params=x
+comment3.target=void\ setCharge(int)
+numComments=4

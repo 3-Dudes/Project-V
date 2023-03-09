@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Ability
+comment1.params=cooldown\ damage
+comment1.target=Ability(int,\ int)
+comment2.params=
+comment2.target=int\ getCharge()
+comment3.params=charge
+comment3.target=void\ setCharge(int)
+comment4.params=
+comment4.target=int\ getDamage()
+comment5.params=
+comment5.target=int\ getCooldown()
+comment6.params=
+comment6.target=boolean\ abilityReady()
+numComments=7

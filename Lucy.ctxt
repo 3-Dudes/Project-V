@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Lucy
+comment1.params=
+comment1.target=Lucy()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ reload()
+comment4.params=
+comment4.target=void\ burstFire()
+comment5.params=
+comment5.target=void\ singleFire()
+comment6.params=
+comment6.target=void\ c()
+comment7.params=
+comment7.target=void\ q()
+comment8.params=
+comment8.target=void\ e()
+comment9.params=
+comment9.target=void\ x()
+numComments=10
