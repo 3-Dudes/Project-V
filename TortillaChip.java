@@ -18,9 +18,5 @@ public class TortillaChip extends Weapon {
                 player.decreaseHealth(damage);
             }
         }
-        Actor b = this.getOneIntersectingObject(BubbleGum.class);
-        if(b != null) {
-            getWorld().removeObject(b);
-        }
     }
 }

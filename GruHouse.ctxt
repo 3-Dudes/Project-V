@@ -2,6 +2,4 @@
 comment0.target=GruHouse
 comment1.params=
 comment1.target=GruHouse()
-comment2.params=
-comment2.target=void\ prepare()
-numComments=3
+numComments=2

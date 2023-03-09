@@ -7,6 +7,9 @@ public abstract class Player extends Actor {
     private boolean xPressed;
     private boolean pastHalfway;
     
+    private boolean isFacingRight;
+    private boolean isFacingLeft;
+    
     private Shield shield;
     
     protected Ability c;
@@ -22,6 +25,8 @@ public abstract class Player extends Actor {
         ePressed = false;
         xPressed = false;
         pastHalfway = false;
+        isFacingRight = true;
+        isFacingLeft = false;
         shield = new Shield();
     }
     
@@ -42,12 +47,25 @@ public abstract class Player extends Actor {
     public void act() {
         move();
         checkEdges();
-        if(this.getX() >= 600 && !pastHalfway) {
+        if(this.getX() >= 600) {
             pastHalfway = true;
         }
-        if(pastHalfway && this.getX() < 600) {
-            this.getImage().mirrorHorizontally();
+        if(this.getX() < 600) {
             pastHalfway = false;
+        }
+        if(pastHalfway) {
+            if(isFacingRight) {
+                this.getImage().mirrorHorizontally();
+                isFacingRight = false;
+                isFacingLeft = true;
+            }
+        }
+        else {
+            if(isFacingLeft) {
+                this.getImage().mirrorHorizontally();
+                isFacingLeft = false;
+                isFacingRight = true;
+            }
         }
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
