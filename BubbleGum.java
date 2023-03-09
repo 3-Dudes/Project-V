@@ -15,8 +15,12 @@ public class BubbleGum extends Ability
             crossedEdge = true;
         }
         if(crossedEdge) {
-            this.setLocation(this.getX() - 5, this.getY() + 2);
-            crossedEdge = false;
+            if(this.getX() == getWorld().getWidth() - 10) {
+                this.setLocation(this.getX() - 5, this.getY());    
+            }
+        }
+        else {
+            this.setLocation(this.getX() + 5, this.getY());
         }
     }
     public void pop() {
