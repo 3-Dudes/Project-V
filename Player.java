@@ -77,9 +77,11 @@ public abstract class Player extends Actor {
         }
         
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
-            qPressed = true;
-            System.out.println("Q");
-            q();
+           qPressed = true;
+           if(q.abilityReady()) {
+               q();
+               q.setCharge(q.getCooldown() - 1);
+           }
         }
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
             qPressed = false;

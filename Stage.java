@@ -8,7 +8,7 @@ public class Stage extends World {
             ElMacho.class, TortillaChip.class, GuacamoleTortillaChip.class);
         
         player = new Balthazar();
-        cpu = new Vector();
+        cpu = new ElMacho();
         this.addObject(player, 200, this.getHeight() - 150);
         this.addObject(cpu, 1000, this.getHeight() - 150);
     }

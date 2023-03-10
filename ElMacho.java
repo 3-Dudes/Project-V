@@ -17,12 +17,11 @@ public class ElMacho extends Player {
                
         reload();
         e = new GuacamoleTortillaChip();
-        abilities.add(e);
         this.showAmmoCounter();
     }
     
     private void showAmmoCounter() {
-            
+        
     }
     
     public void singleFire() {
@@ -52,6 +51,7 @@ public class ElMacho extends Player {
         if(e.getCharge() == 0) {
             e.setCharge(e.getCooldown());
         }
+        
         if(ammo.size() <= 0) {
             reload();
         } 

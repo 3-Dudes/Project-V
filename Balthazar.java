@@ -1,6 +1,6 @@
 import greenfoot.*;
 public class Balthazar extends Player
-{private BubbleGum q;
+{
     private boolean cPressed;
     public Balthazar() {
         GreenfootImage thisImg = this.getImage();
@@ -25,10 +25,12 @@ public class Balthazar extends Player
     public void burstFire() { }
     public void reload() { }
     public void act() {
+        super.act();
         int d = q.getCharge();
         if(d < q.getCooldown()) {
             d--;
-            e.setCharge(d);
+            q.setCharge(d);
+            System.out.println(q.getCharge());
         }
         if(q.getCharge() == 0) {
             q.setCharge(q.getCooldown());
