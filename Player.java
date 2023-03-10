@@ -54,6 +54,7 @@ public abstract class Player extends Actor {
         if(this.getX() < 600) {
             pastHalfway = false;
         }
+        
         if(pastHalfway) {
             if(isFacingRight) {
                 this.getImage().mirrorHorizontally();
@@ -66,6 +67,7 @@ public abstract class Player extends Actor {
                 isFacingRight = true;
             }
         }
+        
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
             c();
@@ -92,6 +94,7 @@ public abstract class Player extends Actor {
         if(!Greenfoot.isKeyDown("E") && ePressed) {
             ePressed = false;
         }
+        
         if(Greenfoot.isKeyDown("X") && !xPressed) {
             xPressed = true;
             x();

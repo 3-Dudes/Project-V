@@ -20,7 +20,7 @@ public class Balthazar extends Player
         
     }
     public void q() {
-        getWorld().addObject(gum, this.getX() + 10, this.getY());
+        getWorld().addObject(gum, this.getX() + 38, this.getY() - 40);
     }
     public void singleFire() { }
     public void burstFire() { }

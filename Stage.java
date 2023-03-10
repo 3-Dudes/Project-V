@@ -4,7 +4,7 @@ public class Stage extends World {
     private Player cpu;
     public Stage() {    
         super(1200, 700, 1);
-        this.setPaintOrder(Shield.class, Balthazar.class, BubbleGum.class, 
+        this.setPaintOrder(Shield.class, BubbleGum.class, Balthazar.class,
             ElMacho.class, TortillaChip.class, GuacamoleTortillaChip.class);
         
         player = new Balthazar();
