@@ -17,6 +17,7 @@ public class ElMacho extends Player {
                
         reload();
         e = new GuacamoleTortillaChip();
+        q = new BubbleGum();
         this.showAmmoCounter();
     }
     
@@ -39,10 +40,14 @@ public class ElMacho extends Player {
         for(int k = 1; k <= 15; k++) {
             ammo.push(new TortillaChip());
         }
-    }
+    }    
     
     public void act() {
         super.act();
+        if(e.abilityReady() && ePressed) {
+            e();
+            e.setCharge(e.getCooldown() - 1);
+        }
         int c = e.getCharge();
         if(c < e.getCooldown()) {
             c--;
@@ -78,6 +83,7 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("R") && rPressed) {
             rPressed = false;
         }
+        checkAbilities();
     }    
     
     public void q() {

@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.util.*;
 public abstract class Player extends Actor {
-    private boolean cPressed;
-    private boolean qPressed;
-    private boolean ePressed;
-    private boolean xPressed;
+    protected boolean cPressed;
+    protected boolean qPressed;
+    protected boolean ePressed;
+    protected boolean xPressed;
     private boolean pastHalfway;
     
     private boolean isFacingRight;
@@ -77,11 +77,8 @@ public abstract class Player extends Actor {
         }
         
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
-           qPressed = true;
-           if(q.abilityReady()) {
-               q();
-               q.setCharge(q.getCooldown() - 1);
-           }
+            qPressed = true;
+            q();
         }
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
             qPressed = false;
@@ -89,10 +86,6 @@ public abstract class Player extends Actor {
         
         if(Greenfoot.isKeyDown("E") && !ePressed) {
             ePressed = true;
-            if(e.abilityReady()) {
-                e();
-                e.setCharge(e.getCooldown() - 1);
-            }
         }
         if(!Greenfoot.isKeyDown("E") && ePressed) {
             ePressed = false;
@@ -139,4 +132,33 @@ public abstract class Player extends Actor {
     public abstract void q();
     public abstract void e();
     public abstract void x();
+    
+    protected void checkAbilities() {
+        if(q.abilityReady() && qPressed) {
+            q();
+            q.setCharge(q.getCooldown() - 1);
+        }
+        int qCharge = q.getCharge();
+        if(qCharge < q.getCooldown()) {
+            qCharge--;
+            q.setCharge(qCharge);
+        }
+        if(q.getCharge() == 0) {
+            q.setCharge(q.getCooldown());
+        }
+        System.out.println(q.getCharge());
+        
+        if(e.abilityReady() && ePressed) {
+            e();
+            e.setCharge(e.getCooldown() - 1);
+        }
+        int eCharge = e.getCharge();
+        if(eCharge < e.getCooldown()) {
+            eCharge--;
+            e.setCharge(eCharge);
+        }
+        if(e.getCharge() == 0) {
+            e.setCharge(e.getCooldown());
+        }
+    }
 }

@@ -8,6 +8,7 @@ public class Balthazar extends Player
         setImage(thisImg);
         cPressed = false;
         q = new BubbleGum();
+        e = new GuacamoleTortillaChip();
     }
     public void c() {
         
@@ -20,20 +21,13 @@ public class Balthazar extends Player
     }
     public void q() {
         getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
+        q.act();
     }
     public void singleFire() { }
     public void burstFire() { }
     public void reload() { }
     public void act() {
         super.act();
-        int d = q.getCharge();
-        if(d < q.getCooldown()) {
-            d--;
-            q.setCharge(d);
-            System.out.println(q.getCharge());
-        }
-        if(q.getCharge() == 0) {
-            q.setCharge(q.getCooldown());
-        }
+        checkAbilities();
     }
 }
