@@ -144,6 +144,7 @@ public abstract class Player extends Actor {
             q.setCharge(qCharge);
         }
         if(q.getCharge() == 0) {
+            qPressed = false;
             q.setCharge(q.getCooldown());
         }
         
@@ -157,7 +158,9 @@ public abstract class Player extends Actor {
             e.setCharge(eCharge);
         }
         if(e.getCharge() == 0) {
+            ePressed = false;
             e.setCharge(e.getCooldown());
         }
+        System.out.println(e.getCharge());
     }
 }
