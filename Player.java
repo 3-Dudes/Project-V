@@ -5,8 +5,8 @@ public abstract class Player extends Actor {
     protected boolean qPressed;
     protected boolean ePressed;
     protected boolean xPressed;
-    private boolean pastHalfway;
     
+    private boolean pastHalfway;
     private boolean isFacingRight;
     private boolean isFacingLeft;
     
