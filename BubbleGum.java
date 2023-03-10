@@ -4,7 +4,7 @@ public class BubbleGum extends Ability {
     private boolean movingRight;
     private int bounces;
     public BubbleGum() {
-        super(1000, 10);
+        super(1000, 3);
         img = this.getImage();
         bounces = 0;
         img.scale(img.getWidth() / 4, img.getHeight() / 4);
@@ -33,6 +33,11 @@ public class BubbleGum extends Ability {
         }
         if(bounces == 4) {
             this.pop();
+            return;
+        }
+        Player p = (Player) this.getOneIntersectingObject(Player.class);
+        if(p != null) {
+            p.decreaseHealth(this.getDamage());
         }
     }
     public void pop() {

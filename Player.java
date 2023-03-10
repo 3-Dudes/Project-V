@@ -19,7 +19,7 @@ public abstract class Player extends Actor {
     
     protected List<Ability> abilities;
     
-    protected int health = 0;
+    protected int health;
     
     public Player() { 
         cPressed = false;
@@ -161,6 +161,5 @@ public abstract class Player extends Actor {
             ePressed = false;
             e.setCharge(e.getCooldown());
         }
-        System.out.println(e.getCharge());
     }
 }

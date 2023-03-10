@@ -10,6 +10,7 @@ public class ElMacho extends Player {
         GreenfootImage img = this.getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
         setImage(img);
+        health = 300;
         
         vPressed = false;
         bPressed = false;
@@ -44,19 +45,6 @@ public class ElMacho extends Player {
     
     public void act() {
         super.act();
-        if(e.abilityReady() && ePressed) {
-            e();
-            e.setCharge(e.getCooldown() - 1);
-        }
-        int c = e.getCharge();
-        if(c < e.getCooldown()) {
-            c--;
-            e.setCharge(c);
-        }
-        if(e.getCharge() == 0) {
-            e.setCharge(e.getCooldown());
-        }
-        
         if(ammo.size() <= 0) {
             reload();
         } 
@@ -83,6 +71,8 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("R") && rPressed) {
             rPressed = false;
         }
+        
+        System.out.println(this.getHealth());
         checkAbilities();
     }    
     
