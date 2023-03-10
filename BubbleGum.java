@@ -1,6 +1,5 @@
 import greenfoot.*;
-public class BubbleGum extends Ability
-{
+public class BubbleGum extends Ability {
     private static GreenfootImage img;
     private boolean movingRight;
     private int bounces;
