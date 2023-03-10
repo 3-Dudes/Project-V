@@ -6,6 +6,9 @@ public class ElMacho extends Player {
     private boolean vPressed;
     private boolean bPressed;
     private boolean rPressed; 
+    
+    private ArrayList<Actor> actors;
+    private ArrayList<Integer> posX, posY, rotation;
     public ElMacho() {
         GreenfootImage img = this.getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
@@ -71,7 +74,18 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("R") && rPressed) {
             rPressed = false;
         }
-        
+        if(this.isDead()) {
+            actors = new ArrayList<Actor>(getWorld().getObjects(Actor.class));
+            posX = new ArrayList<Integer>();
+            posY = new ArrayList<Integer>();
+            rotation = new ArrayList<Integer>();
+            for(int i = 0; i < actors.size(); i++) {
+                posX.add(actors.get(i).getX());
+                posY.add(actors.get(i).getY());
+                rotation.add(actors.get(i).getRotation());
+            }
+            Greenfoot.setWorld(new KillCam(actors, posX, posY, rotation));        
+        }
         System.out.println(this.getHealth());
         checkAbilities();
     }    

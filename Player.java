@@ -21,6 +21,7 @@ public abstract class Player extends Actor {
     
     protected int health;
     
+    
     public Player() { 
         cPressed = false;
         qPressed = false;
@@ -41,7 +42,7 @@ public abstract class Player extends Actor {
         health -= damage;
     }
     
-    public boolean dead() {
+    public boolean isDead() {
         return health <= 0;
     }
     
