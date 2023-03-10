@@ -1,5 +1,5 @@
 ------------------------------------------------------------------------
-PLANNING PAGE: https://docs.google.com/document/d/1Pp3oak6fR82FZzax0KyvJDQxvDx1-a0faijcfKoSEB8/edit
+PLANNING PAGE: 
 ------------------------------------------------------------------------
 
 PROJECT TITLE:
