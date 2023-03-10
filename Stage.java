@@ -9,7 +9,7 @@ public class Stage extends World {
         
         player = new Balthazar();
         cpu = new Vector();
-        this.addObject(player, 200, this.getHeight() - 200);
-        this.addObject(cpu, 1000, this.getHeight() - 200);
+        this.addObject(player, 200, this.getHeight() - 150);
+        this.addObject(cpu, 1000, this.getHeight() - 150);
     }
 }
