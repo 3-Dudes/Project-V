@@ -22,7 +22,14 @@ public class BubbleGum extends Ability
                 this.setLocation(this.getX() - 10, this.getY() + 1);
                 movingRight = false;
             }
-            bounces++;
+            if(this.getY() == 0) {
+                if(movingRight) {
+                    this.setLocation(this.getX() + 10, this.getY() - 1);
+                }
+                else {
+                    this.setLocation(this.getX() - 10, this.getY() - 1);
+                }
+            }
         }
         else {
             if(movingRight) {
