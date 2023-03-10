@@ -4,7 +4,7 @@ public class Minion extends Ability {
     public Minion() {
         super(10, null);
         img = this.getImage();
-        img.scale(img.getWidth() / 3, img.getWidth() / 3);
+        img.scale(img.getWidth() / 4, img.getWidth() / 4);
     }
     public void act() {
         

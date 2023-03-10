@@ -17,6 +17,7 @@ public class ElMacho extends Player {
                
         reload();
         e = new GuacamoleTortillaChip();
+        abilities.add(e);
         this.showAmmoCounter();
     }
     

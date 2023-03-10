@@ -15,11 +15,9 @@ public abstract class Ability extends Actor {
     public void setCharge(int charge) {
         this.charge = charge;
     }
-    
     public int getDamage() {
         return damage;
     }
-    
     public int getCooldown() {
         return cooldown;
     }

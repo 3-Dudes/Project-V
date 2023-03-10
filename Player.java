@@ -17,6 +17,8 @@ public abstract class Player extends Actor {
     protected Ability e;
     protected Ability x;
     
+    protected List<Ability> abilities;
+    
     protected int health = 0;
     
     public Player() { 
@@ -26,7 +28,6 @@ public abstract class Player extends Actor {
         xPressed = false;
         pastHalfway = false;
         isFacingRight = true;
-        isFacingLeft = false;
         shield = new Shield();
     }
     
@@ -53,20 +54,20 @@ public abstract class Player extends Actor {
         if(this.getX() < 600) {
             pastHalfway = false;
         }
+        
         if(pastHalfway) {
             if(isFacingRight) {
                 this.getImage().mirrorHorizontally();
                 isFacingRight = false;
-                isFacingLeft = true;
             }
         }
         else {
-            if(isFacingLeft) {
+            if(!isFacingRight) {
                 this.getImage().mirrorHorizontally();
-                isFacingLeft = false;
                 isFacingRight = true;
             }
         }
+        
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
             c();
@@ -82,6 +83,7 @@ public abstract class Player extends Actor {
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
             qPressed = false;
         }        
+        
         if(Greenfoot.isKeyDown("E") && !ePressed) {
             ePressed = true;
             if(e.abilityReady()) {
@@ -92,6 +94,7 @@ public abstract class Player extends Actor {
         if(!Greenfoot.isKeyDown("E") && ePressed) {
             ePressed = false;
         }
+        
         if(Greenfoot.isKeyDown("X") && !xPressed) {
             xPressed = true;
             x();
