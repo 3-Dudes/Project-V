@@ -17,6 +17,8 @@ public abstract class Player extends Actor {
     protected Ability e;
     protected Ability x;
     
+    protected List<Ability> abilities;
+    
     protected int health = 0;
     
     public Player() { 
@@ -26,7 +28,6 @@ public abstract class Player extends Actor {
         xPressed = false;
         pastHalfway = false;
         isFacingRight = true;
-        isFacingLeft = false;
         shield = new Shield();
     }
     
@@ -57,13 +58,11 @@ public abstract class Player extends Actor {
             if(isFacingRight) {
                 this.getImage().mirrorHorizontally();
                 isFacingRight = false;
-                isFacingLeft = true;
             }
         }
         else {
-            if(isFacingLeft) {
+            if(!isFacingRight) {
                 this.getImage().mirrorHorizontally();
-                isFacingLeft = false;
                 isFacingRight = true;
             }
         }
