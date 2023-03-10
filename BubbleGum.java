@@ -22,6 +22,7 @@ public class BubbleGum extends Ability {
                 movingRight = false;
             }
             bounces++;
+            bounces += 1;
         }
         else {
             if(movingRight) {
