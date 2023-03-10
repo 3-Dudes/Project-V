@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.*;
 public class Balthazar extends Player
 {
     private boolean cPressed;
@@ -20,8 +21,12 @@ public class Balthazar extends Player
         
     }
     public void q() {
-        getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
-        q.act();
+        World w = getWorld();
+        List<BubbleGum> inWorld = w.getObjects(BubbleGum.class);
+        System.out.println(inWorld.size());
+        if(inWorld.size() == 0) {
+            w.addObject(q, this.getX() + 38, this.getY() - 40);
+        }
     }
     public void singleFire() { }
     public void burstFire() { }

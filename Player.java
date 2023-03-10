@@ -146,7 +146,6 @@ public abstract class Player extends Actor {
         if(q.getCharge() == 0) {
             q.setCharge(q.getCooldown());
         }
-        System.out.println(q.getCharge());
         
         if(e.abilityReady() && ePressed) {
             e();
