@@ -14,11 +14,11 @@ public class BubbleGum extends Ability {
     public void act() {
         if(this.isAtEdge()) {
             if(this.getX() == 0) {
-                this.setLocation(this.getX() + 10, this.getY() + 15); 
+                this.setLocation(this.getX() + 10, this.getY() + 10); 
                 movingRight = true;
             }
             else {
-                this.setLocation(this.getX() - 10, this.getY() + 15);
+                this.setLocation(this.getX() - 10, this.getY() + 10);
                 movingRight = false;
             }
             bounces++;
