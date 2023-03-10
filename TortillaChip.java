@@ -13,7 +13,7 @@ public class TortillaChip extends Weapon {
             getWorld().removeObject(this);
         }
         if(this.isTouching(BubbleGum.class)) {
-            
+            //idk
         }
         if(getWorld() != null) {
             Player player = (Player) this.getOneIntersectingObject(Player.class);
