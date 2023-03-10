@@ -1,14 +1,13 @@
 import greenfoot.*;
 public class Balthazar extends Player
-{
-    private BubbleGum gum;
+{private BubbleGum q;
     private boolean cPressed;
     public Balthazar() {
         GreenfootImage thisImg = this.getImage();
         thisImg.scale(thisImg.getWidth() / 2, thisImg.getHeight() / 2);
         setImage(thisImg);
         cPressed = false;
-        gum = new BubbleGum();
+        q = new BubbleGum();
     }
     public void c() {
         
@@ -20,9 +19,19 @@ public class Balthazar extends Player
         
     }
     public void q() {
-        getWorld().addObject(gum, this.getX() + 38, this.getY() - 40);
+        getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
     }
     public void singleFire() { }
     public void burstFire() { }
     public void reload() { }
+    public void act() {
+        int d = q.getCharge();
+        if(d < q.getCooldown()) {
+            d--;
+            e.setCharge(d);
+        }
+        if(q.getCharge() == 0) {
+            q.setCharge(q.getCooldown());
+        }
+    }
 }
