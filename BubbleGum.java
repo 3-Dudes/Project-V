@@ -15,32 +15,24 @@ public class BubbleGum extends Ability
     public void act() {
         if(this.isAtEdge()) {
             if(this.getX() == 0) {
-                this.setLocation(this.getX() + 10, this.getY() + 1); 
+                this.setLocation(this.getX() + 10, this.getY()); 
                 movingRight = true;
             }
-            else if(this.getY() == getWorld().getWidth() - 10) {
-                if(movingRight) {
-                    this.setLocation(this.getX() + 10, this.getY() - 1);
-                }
-                else {
-                    this.setLocation(this.getX() - 10, this.getY() - 1);
-                }
-            }
             else {
-                this.setLocation(this.getX() - 10, this.getY() + 1);
+                this.setLocation(this.getX() - 10, this.getY());
                 movingRight = false;
             }
             bounces++;
         }
         else {
             if(movingRight) {
-                this.setLocation(this.getX() + 10, this.getY() + 1);
+                this.setLocation(this.getX() + 10, this.getY());
             }
             else {
-                this.setLocation(this.getX() - 10, this.getY() + 1);
+                this.setLocation(this.getX() - 10, this.getY());
             }
         }
-        if(bounces == 4) {
+        if(bounces == 3) {
             this.pop();
         }
     }
