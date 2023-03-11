@@ -21,7 +21,6 @@ public abstract class Player extends Actor {
     
     protected int health;
     
-    
     public Player() { 
         cPressed = false;
         qPressed = false;
@@ -135,9 +134,13 @@ public abstract class Player extends Actor {
     public abstract void x();
     
     protected void checkAbilities() {
-        if(q.abilityReady() && qPressed) {
-            q();
-            q.setCharge(q.getCooldown() - 1);
+        if(q.abilityReady()) {
+            getWorld().getBackground().drawImage(q.getImage(), this.getX() - 50, this.getY() - 535);
+            if(qPressed) {
+                q.getImage().clear();
+                q();
+                q.setCharge(q.getCooldown() - 1);    
+            }
         }
         int qCharge = q.getCharge();
         if(qCharge < q.getCooldown()) {
@@ -149,9 +152,15 @@ public abstract class Player extends Actor {
             q.setCharge(q.getCooldown());
         }
         
-        if(e.abilityReady() && ePressed) {
-            e();
-            e.setCharge(e.getCooldown() - 1);
+        if(e.abilityReady()) {
+            getWorld().getBackground().drawImage(e.getImage(), this.getX(), this.getY() - 535);
+            if(ePressed) {
+                e();
+                e.setCharge(e.getCooldown() - 1);    
+            }
+        }
+        else {
+            
         }
         int eCharge = e.getCharge();
         if(eCharge < e.getCooldown()) {
@@ -162,5 +171,8 @@ public abstract class Player extends Actor {
             ePressed = false;
             e.setCharge(e.getCooldown());
         }
+    }
+    public static void clearAt(int x, int y) {
+        
     }
 }

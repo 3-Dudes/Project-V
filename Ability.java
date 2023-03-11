@@ -25,4 +25,11 @@ public abstract class Ability extends Actor {
     public boolean abilityReady() {
         return charge == cooldown;
     }
+    
+    public void act() {
+        Player p = (Player) this.getOneIntersectingObject(Player.class);
+        if(p != null) {
+            p.decreaseHealth(this.getDamage());
+        }
+    }
 }

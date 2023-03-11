@@ -12,6 +12,7 @@ public class BubbleGum extends Ability {
         movingRight = true;
     }
     public void act() {
+        super.act();
         if(this.isAtEdge()) {
             if(this.getX() == 0) {
                 this.setLocation(this.getX() + 15, this.getY() + 10); 
@@ -34,10 +35,6 @@ public class BubbleGum extends Ability {
         if(bounces == 4) {
             this.pop();
             return;
-        }
-        Player p = (Player) this.getOneIntersectingObject(Player.class);
-        if(p != null) {
-            p.decreaseHealth(this.getDamage());
         }
     }
     public void pop() {

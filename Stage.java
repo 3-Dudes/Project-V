@@ -11,10 +11,8 @@ public class Stage extends World {
         this.setPaintOrder(Shield.class, BubbleGum.class, Balthazar.class,
             ElMacho.class, TortillaChip.class, GuacamoleTortillaChip.class);
         
-        player = new Balthazar();
-        cpu = new ElMacho();
-        this.addObject(cpu, 200, this.getHeight() - 150);
-        this.addObject(player, 1000, this.getHeight() - 150);
-        this.addObject(cpuBar, cpu.getX(), 100);
+        player = new ElMacho();
+        this.addObject(player, 200, this.getHeight() - 150);
+        this.addObject(playerBar, player.getX(), 100);
     }
 }

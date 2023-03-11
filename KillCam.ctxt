@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=KillCam
-comment1.params=actors\ posX\ posY\ rotation
-comment1.target=KillCam(java.util.ArrayList,\ java.util.ArrayList,\ java.util.ArrayList,\ java.util.ArrayList)
-comment2.params=
-comment2.target=void\ act()
-numComments=3
