@@ -31,9 +31,11 @@ public abstract class Ability extends Actor {
     }
     
     public void detectCollision(String name) {
-        Player p = (Player) this.getOneIntersectingObject(Player.class);
-        if(p != null && !p.getClass().getName().equals(name)) {
-            p.decreaseHealth(this.getDamage());
+        if(getWorld() != null) {
+            Player p = (Player) this.getOneIntersectingObject(Player.class);
+            if(p != null && !p.getClass().getName().equals(name)) {
+                p.decreaseHealth(this.getDamage());
+            }    
         }
     }
 }
