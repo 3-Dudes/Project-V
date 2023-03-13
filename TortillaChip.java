@@ -8,7 +8,6 @@ public class TortillaChip extends Weapon {
         setImage(img);
     }    
     public void act() {
-        super.act();
         this.setLocation(this.getX() + 5, this.getY());
         detectCollision("ElMacho", damage);
     }
