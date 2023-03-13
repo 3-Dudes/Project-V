@@ -1,5 +1,9 @@
 import greenfoot.*;
 public abstract class Weapon extends Actor {
+    protected boolean intersects;
+    public Weapon() {
+        this.intersects = false;
+    }
     public void act() {
         move();
         checkEdges();
@@ -32,6 +36,18 @@ public abstract class Weapon extends Actor {
         }
         if(Greenfoot.isKeyDown("D")) {
             this.setLocation(this.getX() + 5, this.getY());
+        }
+    }
+    public void detectCollision(String name, int damage) {
+        if(this.isAtEdge()) {
+            getWorld().removeObject(this);
+        }
+        if(getWorld() != null) {
+            Player player = (Player) this.getOneIntersectingObject(Player.class);
+            if(player != null && !(player instanceof ElMacho) && !intersects) {
+                player.decreaseHealth(damage);
+                intersects = true;
+            }
         }
     }
 }
