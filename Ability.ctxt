@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Ability
 comment1.params=cooldown\ damage
-comment1.target=Ability(int,\ java.lang.Integer)
+comment1.target=Ability(int,\ int)
 comment2.params=
 comment2.target=int\ getCharge()
 comment3.params=charge
@@ -12,4 +12,6 @@ comment5.params=
 comment5.target=int\ getCooldown()
 comment6.params=
 comment6.target=boolean\ abilityReady()
-numComments=7
+comment7.params=name
+comment7.target=void\ detectCollision(java.lang.String)
+numComments=8

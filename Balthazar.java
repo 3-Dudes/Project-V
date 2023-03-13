@@ -1,14 +1,15 @@
 import greenfoot.*;
-public class Balthazar extends Player
-{
-    private BubbleGum gum;
-    private boolean cPressed;
+import java.util.*;
+public class Balthazar extends Player {
     public Balthazar() {
+        super("Balthazar");
+        health = 300;
+        hitpoints = 300;
         GreenfootImage thisImg = this.getImage();
         thisImg.scale(thisImg.getWidth() / 2, thisImg.getHeight() / 2);
         setImage(thisImg);
-        cPressed = false;
-        gum = new BubbleGum();
+        q = new BubbleGum();
+        e = new GuacamoleTortillaChip();
     }
     public void c() {
         
@@ -20,9 +21,16 @@ public class Balthazar extends Player
         
     }
     public void q() {
-        getWorld().addObject(gum, this.getX() + 10, this.getY());
+        if(q.abilityReady()) {
+            q = new BubbleGum();
+            getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
+        }
     }
     public void singleFire() { }
     public void burstFire() { }
     public void reload() { }
+    public void act() {
+        super.act();
+        checkAbilities();
+    }
 }

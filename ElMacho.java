@@ -6,22 +6,28 @@ public class ElMacho extends Player {
     private boolean vPressed;
     private boolean bPressed;
     private boolean rPressed; 
+    
+    private ArrayList<Actor> actors;
+    private ArrayList<Integer> posX, posY, rotation;
     public ElMacho() {
+        super("El Macho");
         GreenfootImage img = this.getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
         setImage(img);
+        health = 900;
+        hitpoints = 900;
         
         vPressed = false;
         bPressed = false;
         rPressed = false;
-               
+        
         reload();
         e = new GuacamoleTortillaChip();
-        this.showAmmoCounter();
+        q = new BubbleGum();
     }
     
     private void showAmmoCounter() {
-            
+        
     }
     
     public void singleFire() {
@@ -39,18 +45,10 @@ public class ElMacho extends Player {
         for(int k = 1; k <= 15; k++) {
             ammo.push(new TortillaChip());
         }
-    }
+    }    
     
     public void act() {
         super.act();
-        int c = e.getCharge();
-        if(c < e.getCooldown()) {
-            c--;
-            e.setCharge(c);
-        }
-        if(e.getCharge() == 0) {
-            e.setCharge(e.getCooldown());
-        }
         if(ammo.size() <= 0) {
             reload();
         } 
@@ -77,6 +75,7 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("R") && rPressed) {
             rPressed = false;
         }
+        checkAbilities();
     }    
     
     public void q() {
@@ -86,7 +85,7 @@ public class ElMacho extends Player {
         
     }
     public void e() {
-        getWorld().addObject(e, this.getX(), this.getY());
+        getWorld().addObject(e, this.getX(), this.getY());    
     }
     public void x() {
         

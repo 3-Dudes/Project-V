@@ -5,8 +5,8 @@ public abstract class Player extends Actor {
     private boolean qPressed;
     private boolean ePressed;
     private boolean xPressed;
-    private boolean pastHalfway;
     
+    private boolean pastHalfway;
     private boolean isFacingRight;
     private boolean isFacingLeft;
     
@@ -17,30 +17,45 @@ public abstract class Player extends Actor {
     protected Ability e;
     protected Ability x;
     
-    protected int health = 0;
+    private HealthBar hp;
     
-    public Player() { 
+    protected int health;
+    protected int hitpoints;
+    
+    private String name;
+    public Player(String name) { 
         cPressed = false;
         qPressed = false;
         ePressed = false;
         xPressed = false;
         pastHalfway = false;
         isFacingRight = true;
-        isFacingLeft = false;
+        this.name = name;
+        hp = new HealthBar(name);
         shield = new Shield();
     }
     
     public int getHealth() {
         return health;
     }
-    public void setHealth(int health) {
-        this.health = health;
-    }
     public void decreaseHealth(int damage) {
         health -= damage;
+        GreenfootImage img = hp.getImage();
+        double percentage = (double) health / hitpoints;
+        int width = (int) (percentage * img.getWidth());
+        img.setColor(Color.RED);
+        img.fillRect(0, 0, img.getWidth(), img.getHeight());
+        img.setColor(Color.GREEN);
+        img.fillRect(0, 0, width, img.getHeight());
+        hp.drawHeader();
+        hp.setImage(img);
     }
     
-    public boolean dead() {
+    public HealthBar getHealthBar() {
+        return hp;
+    }
+    
+    public boolean isDead() {
         return health <= 0;
     }
     
@@ -53,23 +68,22 @@ public abstract class Player extends Actor {
         if(this.getX() < 600) {
             pastHalfway = false;
         }
+        
         if(pastHalfway) {
             if(isFacingRight) {
                 this.getImage().mirrorHorizontally();
                 isFacingRight = false;
-                isFacingLeft = true;
             }
         }
         else {
-            if(isFacingLeft) {
+            if(!isFacingRight) {
                 this.getImage().mirrorHorizontally();
-                isFacingLeft = false;
                 isFacingRight = true;
             }
         }
+        
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
-            c();
         }
         if(!Greenfoot.isKeyDown("C") && cPressed) {
             cPressed = false;
@@ -77,21 +91,18 @@ public abstract class Player extends Actor {
         
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
             qPressed = true;
-            q();
         }
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
             qPressed = false;
         }        
+        
         if(Greenfoot.isKeyDown("E") && !ePressed) {
             ePressed = true;
-            if(e.abilityReady()) {
-                e();
-                e.setCharge(e.getCooldown() - 1);
-            }
         }
         if(!Greenfoot.isKeyDown("E") && ePressed) {
             ePressed = false;
         }
+        
         if(Greenfoot.isKeyDown("X") && !xPressed) {
             xPressed = true;
             x();
@@ -133,4 +144,38 @@ public abstract class Player extends Actor {
     public abstract void q();
     public abstract void e();
     public abstract void x();
+    
+    protected void checkAbilities() {
+        if(q.abilityReady()) {
+            if(qPressed) {
+                q();
+                q.setCharge(q.getCooldown() - 1);    
+            }
+        }
+        int qCharge = q.getCharge();
+        if(qCharge < q.getCooldown()) {
+            qCharge--;
+            q.setCharge(qCharge);
+        }
+        if(q.getCharge() == 0) {
+            qPressed = false;
+            q.setCharge(q.getCooldown());
+        }
+        
+        if(e.abilityReady()) {
+            if(ePressed) {
+                e();
+                e.setCharge(e.getCooldown() - 1);    
+            }
+        }
+        int eCharge = e.getCharge();
+        if(eCharge < e.getCooldown()) {
+            eCharge--;
+            e.setCharge(eCharge);
+        }
+        if(e.getCharge() == 0) {
+            ePressed = false;
+            e.setCharge(e.getCooldown());
+        }
+    }
 }
