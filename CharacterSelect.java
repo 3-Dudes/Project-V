@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
@@ -17,5 +18,12 @@ public class CharacterSelect extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(600, 400, 1); 
+        int i=0;
+=======
+import greenfoot.*;
+public class CharacterSelect extends World {
+    public CharacterSelect() {    
+        super(1200, 700, 1); 
+>>>>>>> Stashed changes
     }
 }
