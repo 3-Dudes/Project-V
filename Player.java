@@ -42,10 +42,11 @@ public abstract class Player extends Actor {
         health -= damage;
         int width = (int) (health / (float) hitpoints * getImage().getWidth());
         GreenfootImage img = hp.getImage();
+        
         img.setColor(Color.RED);
         img.fillRect(0, 0, img.getWidth(), img.getHeight());
         img.setColor(Color.GREEN);
-        img.fillRect(0, 0, width, getImage().getHeight());
+        img.fillRect(0, 0, width, img.getHeight());
         hp.drawHeader();
         hp.setImage(img);
     }

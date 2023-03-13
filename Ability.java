@@ -2,8 +2,8 @@ import greenfoot.*;
 public abstract class Ability extends Actor {
     private int charge;
     private int cooldown;
-    private Integer damage;
-    public Ability(int cooldown, Integer damage) {
+    private int damage;
+    public Ability(int cooldown, int damage) {
         this.charge = cooldown;
         this.cooldown = cooldown;
         this.damage = damage;
@@ -24,10 +24,6 @@ public abstract class Ability extends Actor {
     
     public boolean abilityReady() {
         return charge == cooldown;
-    }
-    
-    public void act() {
-        
     }
     
     public void detectCollision(String name) {
