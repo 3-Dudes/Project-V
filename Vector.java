@@ -5,12 +5,12 @@ public class Vector extends Player {
     private Laser laser;
     private GreenfootImage img;
     public Vector() {
+        super("Vector");
         img = this.getImage();
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
         setImage(img);
         
         this.health = 120;
-        this.setHealth(this.health);
         cannon = new CannonBlaster();
         laser = new Laser();
     }

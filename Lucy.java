@@ -2,6 +2,7 @@ import greenfoot.*;
 public class Lucy extends Player
 {
     public Lucy() {
+        super("Lucy");
         GreenfootImage img = this.getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
     }

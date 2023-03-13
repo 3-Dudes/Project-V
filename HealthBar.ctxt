@@ -1,5 +1,7 @@
 #BlueJ class context
 comment0.target=HealthBar
-comment1.params=
-comment1.target=HealthBar()
-numComments=2
+comment1.params=name
+comment1.target=HealthBar(java.lang.String)
+comment2.params=
+comment2.target=void\ drawHeader()
+numComments=3

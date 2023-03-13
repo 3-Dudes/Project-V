@@ -1,10 +1,10 @@
 import greenfoot.*;
 import java.util.*;
 public abstract class Player extends Actor {
-    protected boolean cPressed;
-    protected boolean qPressed;
-    protected boolean ePressed;
-    protected boolean xPressed;
+    private boolean cPressed;
+    private boolean qPressed;
+    private boolean ePressed;
+    private boolean xPressed;
     
     private boolean pastHalfway;
     private boolean isFacingRight;
@@ -17,28 +17,41 @@ public abstract class Player extends Actor {
     protected Ability e;
     protected Ability x;
     
-    protected List<Ability> abilities;
+    private HealthBar hp;
     
     protected int health;
+    protected int hitpoints;
     
-    public Player() { 
+    private String name;
+    public Player(String name) { 
         cPressed = false;
         qPressed = false;
         ePressed = false;
         xPressed = false;
         pastHalfway = false;
         isFacingRight = true;
+        this.name = name;
+        hp = new HealthBar(name);
         shield = new Shield();
     }
     
     public int getHealth() {
         return health;
     }
-    public void setHealth(int health) {
-        this.health = health;
-    }
     public void decreaseHealth(int damage) {
         health -= damage;
+        int width = (int) (health / (float) hitpoints * getImage().getWidth());
+        GreenfootImage img = hp.getImage();
+        img.setColor(Color.RED);
+        img.fillRect(0, 0, img.getWidth(), img.getHeight());
+        img.setColor(Color.GREEN);
+        img.fillRect(0, 0, width, getImage().getHeight());
+        hp.drawHeader();
+        hp.setImage(img);
+    }
+    
+    public HealthBar getHealthBar() {
+        return hp;
     }
     
     public boolean isDead() {
@@ -70,7 +83,6 @@ public abstract class Player extends Actor {
         
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
-            c();
         }
         if(!Greenfoot.isKeyDown("C") && cPressed) {
             cPressed = false;
@@ -78,7 +90,6 @@ public abstract class Player extends Actor {
         
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
             qPressed = true;
-            q();
         }
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
             qPressed = false;
@@ -135,9 +146,7 @@ public abstract class Player extends Actor {
     
     protected void checkAbilities() {
         if(q.abilityReady()) {
-            getWorld().getBackground().drawImage(q.getImage(), this.getX() - 50, this.getY() - 535);
             if(qPressed) {
-                q.getImage().clear();
                 q();
                 q.setCharge(q.getCooldown() - 1);    
             }
@@ -153,14 +162,10 @@ public abstract class Player extends Actor {
         }
         
         if(e.abilityReady()) {
-            getWorld().getBackground().drawImage(e.getImage(), this.getX(), this.getY() - 535);
             if(ePressed) {
                 e();
                 e.setCharge(e.getCooldown() - 1);    
             }
-        }
-        else {
-            
         }
         int eCharge = e.getCharge();
         if(eCharge < e.getCooldown()) {
@@ -171,8 +176,5 @@ public abstract class Player extends Actor {
             ePressed = false;
             e.setCharge(e.getCooldown());
         }
-    }
-    public static void clearAt(int x, int y) {
-        
     }
 }

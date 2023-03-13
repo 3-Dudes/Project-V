@@ -3,7 +3,7 @@ public class TortillaChip extends Weapon {
     public static int damage = 8;
     public TortillaChip() {
         GreenfootImage img = this.getImage();
-        img.scale(img.getWidth() / 5, img.getHeight() / 5);
+        img.scale(img.getWidth() / 7, img.getHeight() / 7);
         img.mirrorHorizontally();
         setImage(img);
     }    
@@ -14,7 +14,7 @@ public class TortillaChip extends Weapon {
         }
         if(getWorld() != null) {
             Player player = (Player) this.getOneIntersectingObject(Player.class);
-            if(player != null) {
+            if(player != null && !(player instanceof ElMacho)) {
                 player.decreaseHealth(damage);
             }
         }

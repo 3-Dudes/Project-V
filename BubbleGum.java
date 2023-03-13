@@ -36,6 +36,7 @@ public class BubbleGum extends Ability {
             this.pop();
             return;
         }
+        detectCollision("Balthazar");
     }
     public void pop() {
         getWorld().removeObject(this);

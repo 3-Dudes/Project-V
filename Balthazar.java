@@ -2,6 +2,7 @@ import greenfoot.*;
 import java.util.*;
 public class Balthazar extends Player {
     public Balthazar() {
+        super("Balthazar");
         GreenfootImage thisImg = this.getImage();
         thisImg.scale(thisImg.getWidth() / 2, thisImg.getHeight() / 2);
         setImage(thisImg);

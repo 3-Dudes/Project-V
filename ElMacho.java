@@ -10,10 +10,12 @@ public class ElMacho extends Player {
     private ArrayList<Actor> actors;
     private ArrayList<Integer> posX, posY, rotation;
     public ElMacho() {
+        super("El Macho");
         GreenfootImage img = this.getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
         setImage(img);
-        health = 300;
+        health = 900;
+        hitpoints = 900;
         
         vPressed = false;
         bPressed = false;
@@ -83,7 +85,7 @@ public class ElMacho extends Player {
         
     }
     public void e() {
-        getWorld().addObject(e, this.getX(), this.getY());
+        getWorld().addObject(e, this.getX(), this.getY());    
     }
     public void x() {
         
