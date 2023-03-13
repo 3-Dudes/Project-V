@@ -40,9 +40,12 @@ public abstract class Player extends Actor {
     }
     public void decreaseHealth(int damage) {
         health -= damage;
+        
         GreenfootImage img = hp.getImage();
+        
         double percentage = (double) health / hitpoints;
         int width = (int) (percentage * img.getWidth());
+        
         img.setColor(Color.RED);
         img.fillRect(0, 0, img.getWidth(), img.getHeight());
         img.setColor(Color.GREEN);
@@ -136,15 +139,6 @@ public abstract class Player extends Actor {
             this.setLocation(this.getX() + 5, this.getY());
         }
     }
-    
-    public abstract void reload();
-    public abstract void singleFire();
-    public abstract void burstFire();
-    public abstract void c();
-    public abstract void q();
-    public abstract void e();
-    public abstract void x();
-    
     protected void checkAbilities() {
         if(q.abilityReady()) {
             if(qPressed) {
@@ -178,4 +172,11 @@ public abstract class Player extends Actor {
             e.setCharge(e.getCooldown());
         }
     }
+    public abstract void reload();
+    public abstract void singleFire();
+    public abstract void burstFire();
+    public abstract void c();
+    public abstract void q();
+    public abstract void e();
+    public abstract void x();
 }

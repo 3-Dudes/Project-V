@@ -4,13 +4,15 @@ public class Vector extends Player {
     private CannonBlaster cannon;
     private Laser laser;
     private GreenfootImage img;
+    private PiranhaGun gun;
     public Vector() {
         super("Vector");
         img = this.getImage();
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
-        setImage(img);
+        this.setImage(img);
+        this.health = 200;
         
-        this.health = 120;
+        gun = new PiranhaGun();
         cannon = new CannonBlaster();
         laser = new Laser();
     }
@@ -29,8 +31,5 @@ public class Vector extends Player {
         Greenfoot.delay(300);
         getWorld().removeObject(laser);
         getWorld().removeObject(cannon);
-    }
-    public void shootCannon() {
-        
     }
 }

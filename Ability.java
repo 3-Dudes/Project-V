@@ -31,11 +31,14 @@ public abstract class Ability extends Actor {
     public void detectCollision(String name) {
         if(getWorld() != null) {
             Player p = (Player) this.getOneIntersectingObject(Player.class);
+            if(this.isTouching(Shield.class)) {
+                return;
+            }   
             if(p != null && !p.getClass().getName().equals(name)
-                && !intersects) {
+                    && !intersects) {
                 p.decreaseHealth(this.getDamage());
                 intersects = true;
-            }    
+            }
         }
     }
 }

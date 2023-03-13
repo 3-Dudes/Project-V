@@ -14,8 +14,8 @@ public class ElMacho extends Player {
         GreenfootImage img = this.getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
         setImage(img);
-        health = 900;
-        hitpoints = 900;
+        health = 700;
+        hitpoints = 700;
         
         vPressed = false;
         bPressed = false;

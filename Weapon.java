@@ -25,16 +25,10 @@ public abstract class Weapon extends Actor {
         }
     }
     public void move() {
-        if(Greenfoot.isKeyDown("W")) {
-            this.setLocation(this.getX(), this.getY() - 5);
-        }
-        else if(Greenfoot.isKeyDown("A")) {
+        if(Greenfoot.isKeyDown("A")) {
             this.setLocation(this.getX() - 5, this.getY());
         }
-        if(Greenfoot.isKeyDown("S")) {
-            this.setLocation(this.getX(), this.getY() + 5);
-        }
-        if(Greenfoot.isKeyDown("D")) {
+        else if(Greenfoot.isKeyDown("D")) {
             this.setLocation(this.getX() + 5, this.getY());
         }
     }
