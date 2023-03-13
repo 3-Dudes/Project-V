@@ -3,6 +3,8 @@ import java.util.*;
 public class Balthazar extends Player {
     public Balthazar() {
         super("Balthazar");
+        health = 300;
+        hitpoints = 300;
         GreenfootImage thisImg = this.getImage();
         thisImg.scale(thisImg.getWidth() / 2, thisImg.getHeight() / 2);
         setImage(thisImg);

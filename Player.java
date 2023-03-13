@@ -40,9 +40,9 @@ public abstract class Player extends Actor {
     }
     public void decreaseHealth(int damage) {
         health -= damage;
-        int width = (int) (health / (float) hitpoints * getImage().getWidth());
         GreenfootImage img = hp.getImage();
-        
+        double percentage = (double) health / hitpoints;
+        int width = (int) (percentage * img.getWidth());
         img.setColor(Color.RED);
         img.fillRect(0, 0, img.getWidth(), img.getHeight());
         img.setColor(Color.GREEN);

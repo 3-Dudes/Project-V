@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ pop()
-numComments=4
+comment4.params=name
+comment4.target=void\ detectCollision(java.lang.String)
+numComments=5
