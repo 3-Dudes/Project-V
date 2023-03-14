@@ -7,8 +7,8 @@ public class Stage extends World {
         player = new Balthazar();
         cpu = new ElMacho();
         this.addObject(player, 200, this.getHeight() - 150);
-        this.addObject(player.getHealthBar(), player.getX(), 100);
+        this.addObject(player.getHealthBar(), player.getX(), 200);
         this.addObject(cpu, 1000, this.getHeight() - 175);
-        this.addObject(cpu.getHealthBar(), cpu.getX(), 100);
+        this.addObject(cpu.getHealthBar(), cpu.getX(), 200);
     }
 }
