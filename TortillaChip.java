@@ -1,8 +1,9 @@
 import greenfoot.*;
 public class TortillaChip extends Weapon {
     private static int damage = 10;
+    private GreenfootImage img;
     public TortillaChip() {
-        GreenfootImage img = this.getImage();
+        img = this.getImage();
         img.scale(img.getWidth() / 7, img.getHeight() / 7);
         img.mirrorHorizontally();
         setImage(img);
