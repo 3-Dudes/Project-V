@@ -9,6 +9,7 @@ comment11.target=void\ singleFire()
 comment12.params=
 comment12.target=void\ burstFire()
 comment13.params=
+<<<<<<< Updated upstream
 comment13.target=void\ c()
 comment14.params=
 comment14.target=void\ q()
@@ -16,6 +17,13 @@ comment15.params=
 comment15.target=void\ e()
 comment16.params=
 comment16.target=void\ x()
+=======
+comment13.target=void\ q()
+comment14.params=
+comment14.target=void\ e()
+comment15.params=
+comment15.target=void\ x()
+>>>>>>> Stashed changes
 comment2.params=
 comment2.target=int\ getHealth()
 comment3.params=damage
@@ -31,5 +39,10 @@ comment7.target=void\ checkEdges()
 comment8.params=
 comment8.target=void\ move()
 comment9.params=
+<<<<<<< Updated upstream
 comment9.target=void\ checkAbilities()
 numComments=17
+=======
+comment9.target=void\ reload()
+numComments=16
+>>>>>>> Stashed changes

@@ -2,7 +2,7 @@
 class.Balthazar.image=balthazar.png
 class.BankOfEvil.image=bankofevil.png
 class.BubbleGum.image=bubblegum.png
-class.CannonBlaster.image=cannonblaster.png
+class.CannonBlaster.image=sr-6.png
 class.ElMacho.image=elmacho.png
 class.ElMachoLair.image=elmacholair.png
 class.GruHouse.image=gruhouse.png
@@ -19,10 +19,17 @@ dependency1.from=Stage
 dependency1.to=Player
 dependency1.type=UsesDependency
 dependency10.from=Player
+<<<<<<< Updated upstream
 dependency10.to=Ability
 dependency10.type=UsesDependency
 dependency11.from=Player
 dependency11.to=HealthBar
+=======
+dependency10.to=Shield
+dependency10.type=UsesDependency
+dependency11.from=Player
+dependency11.to=Ability
+>>>>>>> Stashed changes
 dependency11.type=UsesDependency
 dependency12.from=ElMacho
 dependency12.to=TortillaChip
@@ -30,6 +37,7 @@ dependency12.type=UsesDependency
 dependency13.from=ElMacho
 dependency13.to=GuacamoleTortillaChip
 dependency13.type=UsesDependency
+<<<<<<< Updated upstream
 dependency14.from=ElMacho
 dependency14.to=BubbleGum
 dependency14.type=UsesDependency
@@ -48,6 +56,17 @@ dependency18.type=UsesDependency
 dependency19.from=Balthazar
 dependency19.to=GuacamoleTortillaChip
 dependency19.type=UsesDependency
+=======
+dependency14.from=Vector
+dependency14.to=CannonBlaster
+dependency14.type=UsesDependency
+dependency15.from=Vector
+dependency15.to=Laser
+dependency15.type=UsesDependency
+dependency16.from=Balthazar
+dependency16.to=BubbleGum
+dependency16.type=UsesDependency
+>>>>>>> Stashed changes
 dependency2.from=Stage
 dependency2.to=Balthazar
 dependency2.type=UsesDependency
@@ -60,6 +79,7 @@ dependency4.type=UsesDependency
 dependency5.from=Weapon
 dependency5.to=ElMacho
 dependency5.type=UsesDependency
+<<<<<<< Updated upstream
 dependency6.from=CannonBlaster
 dependency6.to=Laser
 dependency6.type=UsesDependency
@@ -79,6 +99,27 @@ editor.fx.0.y=60
 height=830
 package.numDependencies=19
 package.numTargets=25
+=======
+dependency6.from=Shield
+dependency6.to=Weapon
+dependency6.type=UsesDependency
+dependency7.from=Shield
+dependency7.to=Ability
+dependency7.type=UsesDependency
+dependency8.from=CannonBlaster
+dependency8.to=Laser
+dependency8.type=UsesDependency
+dependency9.from=TortillaChip
+dependency9.to=Player
+dependency9.type=UsesDependency
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
+height=830
+package.numDependencies=16
+package.numTargets=28
+>>>>>>> Stashed changes
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -143,6 +184,7 @@ target15.type=ClassTarget
 target15.width=90
 target15.x=0
 target15.y=0
+<<<<<<< Updated upstream
 target16.height=70
 target16.name=Player
 target16.showInterface=false
@@ -171,6 +213,35 @@ target19.naviview.expanded=true
 target19.showInterface=false
 target19.type=ClassTarget
 target19.width=80
+=======
+target16.height=50
+target16.name=BankOfEvil
+target16.showInterface=false
+target16.type=ClassTarget
+target16.width=90
+target16.x=0
+target16.y=0
+target17.height=70
+target17.name=Player
+target17.showInterface=false
+target17.type=AbstractTarget
+target17.width=120
+target17.x=0
+target17.y=0
+target18.height=50
+target18.name=TortillaChipStatic
+target18.showInterface=false
+target18.type=ClassTarget
+target18.width=140
+target18.x=0
+target18.y=0
+target19.height=50
+target19.name=StartScreen
+target19.naviview.expanded=true
+target19.showInterface=false
+target19.type=ClassTarget
+target19.width=100
+>>>>>>> Stashed changes
 target19.x=0
 target19.y=0
 target2.height=50
@@ -181,6 +252,7 @@ target2.width=80
 target2.x=0
 target2.y=0
 target20.height=50
+<<<<<<< Updated upstream
 target20.name=Balthazar
 target20.showInterface=false
 target20.type=ClassTarget
@@ -190,40 +262,94 @@ target20.y=0
 target21.height=50
 target21.name=Lucy
 target21.naviview.expanded=true
+=======
+target20.name=GuacamoleTortillaChipStatic
+target20.showInterface=false
+target20.type=ClassTarget
+target20.width=210
+target20.x=0
+target20.y=0
+target21.height=50
+target21.name=Minion
+>>>>>>> Stashed changes
 target21.showInterface=false
 target21.type=ClassTarget
 target21.width=80
 target21.x=0
 target21.y=0
 target22.height=50
+<<<<<<< Updated upstream
 target22.name=CharacterSelect
+=======
+target22.name=Laser
+target22.naviview.expanded=true
+>>>>>>> Stashed changes
 target22.showInterface=false
 target22.type=ClassTarget
 target22.width=130
 target22.x=0
 target22.y=0
 target23.height=50
+<<<<<<< Updated upstream
 target23.name=GruHouse
 target23.naviview.expanded=true
+=======
+target23.name=Balthazar
+>>>>>>> Stashed changes
 target23.showInterface=false
 target23.type=ClassTarget
 target23.width=90
 target23.x=0
 target23.y=0
+<<<<<<< Updated upstream
 target24.height=70
 target24.name=BubbleGum
+=======
+target24.height=50
+target24.name=Lucy
+target24.naviview.expanded=true
+>>>>>>> Stashed changes
 target24.showInterface=false
 target24.type=ClassTarget
 target24.width=120
 target24.x=0
 target24.y=0
 target25.height=50
+<<<<<<< Updated upstream
 target25.name=GruLair
+=======
+target25.name=CharacterSelect
+>>>>>>> Stashed changes
 target25.showInterface=false
 target25.type=ClassTarget
-target25.width=80
+target25.width=130
 target25.x=0
 target25.y=0
+<<<<<<< Updated upstream
+=======
+target26.height=50
+target26.name=GruHouse
+target26.naviview.expanded=true
+target26.showInterface=false
+target26.type=ClassTarget
+target26.width=90
+target26.x=0
+target26.y=0
+target27.height=70
+target27.name=BubbleGum
+target27.showInterface=false
+target27.type=ClassTarget
+target27.width=120
+target27.x=0
+target27.y=0
+target28.height=50
+target28.name=GruLair
+target28.showInterface=false
+target28.type=ClassTarget
+target28.width=80
+target28.x=0
+target28.y=0
+>>>>>>> Stashed changes
 target3.height=50
 target3.name=ElMachoLair
 target3.showInterface=false
@@ -277,6 +403,10 @@ target9.x=0
 target9.y=0
 version=3.0.0
 width=1550
+<<<<<<< Updated upstream
 world.lastInstantiated=GruHouse
+=======
+world.lastInstantiated=BankOfEvil
+>>>>>>> Stashed changes
 xPosition=0
 yPosition=0
