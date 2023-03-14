@@ -133,10 +133,10 @@ public abstract class Player extends Actor {
     }
     public void move() {
         if(Greenfoot.isKeyDown("A")) {
-            this.setLocation(this.getX() - 4, this.getY());
+            this.setLocation(this.getX() - 5, this.getY());
         }
         if(Greenfoot.isKeyDown("D")) {
-            this.setLocation(this.getX() + 4, this.getY());
+            this.setLocation(this.getX() + 5, this.getY());
         }
     }
     protected void checkAbilities() {
