@@ -42,7 +42,7 @@ public class ElMacho extends Player {
     }
     public void reload() {
         ammo = new Stack<TortillaChip>();
-        for(int k = 1; k <= 15; k++) {
+        for(int k = 1; k <= 6; k++) {
             ammo.push(new TortillaChip());
         }
     }    
