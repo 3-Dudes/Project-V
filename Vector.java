@@ -8,7 +8,6 @@ public class Vector extends Player {
     public Vector() {
         super("Vector");
         img = this.getImage();
-        img.scale(img.getWidth() / 3, img.getHeight() / 3);
         this.setImage(img);
         this.health = 200;
         
