@@ -5,8 +5,8 @@ public abstract class Player extends Actor {
     private boolean qPressed;
     private boolean ePressed;
     private boolean xPressed;
-    private boolean pastHalfway;
     
+    protected boolean pastHalfway;
     private boolean isFacingRight;
     private boolean isFacingLeft;
     
@@ -26,7 +26,7 @@ public abstract class Player extends Actor {
         qPressed = false;
         ePressed = false;
         xPressed = false;
-        pastHalfway = false;
+      
         isFacingRight = true;
         shield = new Shield();
     }
@@ -48,25 +48,7 @@ public abstract class Player extends Actor {
     public void act() {
         move();
         checkEdges();
-        if(this.getX() >= 600) {
-            pastHalfway = true;
-        }
-        if(this.getX() < 600) {
-            pastHalfway = false;
-        }
-        
-        if(pastHalfway) {
-            if(isFacingRight) {
-                this.getImage().mirrorHorizontally();
-                isFacingRight = false;
-            }
-        }
-        else {
-            if(!isFacingRight) {
-                this.getImage().mirrorHorizontally();
-                isFacingRight = true;
-            }
-        }
+        checkPastHalfway();
         
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
@@ -108,6 +90,27 @@ public abstract class Player extends Actor {
         }
         else {
             getWorld().removeObject(shield);
+        }
+    }
+    public void checkPastHalfway() {
+        if(this.getX() >= 600) {
+            pastHalfway = true;
+        }
+        if(this.getX() < 600) {
+            pastHalfway = false;
+        }
+        
+        if(pastHalfway) {
+            if(isFacingRight) {
+                this.getImage().mirrorHorizontally();
+                isFacingRight = false;
+            }
+        }
+        else {
+            if(!isFacingRight) {
+                this.getImage().mirrorHorizontally();
+                isFacingRight = true;
+            }
         }
     }
     public void checkEdges() {
