@@ -4,6 +4,9 @@ public class Stage extends World {
     private Player cpu;
     public Stage() {
         super(1200, 700, 1);
+        prepareLevel();
+    }
+    private void prepareLevel() {
         player = new Balthazar();
         cpu = new ElMacho();
         this.addObject(player, 200, this.getHeight() - 150);

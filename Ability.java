@@ -4,12 +4,14 @@ public abstract class Ability extends Actor {
     private int cooldown;
     private int damage;
     protected boolean intersects;
+    protected boolean right;
     
     public Ability(int cooldown, int damage) {
         this.charge = cooldown;
         this.cooldown = cooldown;
         this.damage = damage;
         this.intersects = false;
+        this.right = right;
     }
     
     public int getCharge() {
