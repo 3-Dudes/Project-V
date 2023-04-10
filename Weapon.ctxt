@@ -1,9 +1,13 @@
 #BlueJ class context
 comment0.target=Weapon
 comment1.params=
-comment1.target=void\ act()
+comment1.target=Weapon()
 comment2.params=
-comment2.target=void\ checkEdges()
+comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ move()
-numComments=4
+comment3.target=void\ checkEdges()
+comment4.params=
+comment4.target=void\ move()
+comment5.params=name\ damage
+comment5.target=void\ detectCollision(java.lang.String,\ int)
+numComments=6
