@@ -3,6 +3,7 @@ public class BubbleGum extends Ability {
     private static GreenfootImage img;
     private boolean movingRight;
     private int bounces;
+    
     public BubbleGum() {
         super(1000, 20);
         img = this.getImage();
@@ -11,6 +12,8 @@ public class BubbleGum extends Ability {
         this.setImage(img);
         movingRight = true;
     }
+    
+    @Override
     public void act() {
         super.act();
         if(this.isAtEdge()) {
@@ -41,16 +44,5 @@ public class BubbleGum extends Ability {
     }
     public void pop() {
         getWorld().removeObject(this);
-    }
-    @Override
-    public void detectCollision(String name) {
-        if(getWorld() != null) {
-            Player p = (Player) this.getOneIntersectingObject(Player.class);
-            if(p != null && !p.getClass().getName().equals(name)
-                && !intersects) {
-                p.decreaseHealth(this.getDamage());
-                intersects = true;
-            }    
-        }
     }
 }

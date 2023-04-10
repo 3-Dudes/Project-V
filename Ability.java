@@ -3,13 +3,15 @@ public abstract class Ability extends Actor {
     private int charge;
     private int cooldown;
     private int damage;
-    
     protected boolean intersects;
+    protected boolean right;
+    
     public Ability(int cooldown, int damage) {
         this.charge = cooldown;
         this.cooldown = cooldown;
         this.damage = damage;
         this.intersects = false;
+        this.right = right;
     }
     
     public int getCharge() {
@@ -24,11 +26,9 @@ public abstract class Ability extends Actor {
     public int getCooldown() {
         return cooldown;
     }
-    
     public boolean abilityReady() {
         return charge == cooldown;
     }
-    
     public void detectCollision(String name) {
         if(getWorld() != null) {
             Player p = (Player) this.getOneIntersectingObject(Player.class);   
