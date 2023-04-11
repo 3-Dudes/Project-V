@@ -19,7 +19,7 @@ public class ElMacho extends Player {
         bPressed = false;
         rPressed = false;
         
-        ammoGui = new AmmoGUI(6, 6, new GreenfootImage("tortilla_chip.png"));
+        ammoGui = new AmmoGUI(5, 5, new GreenfootImage("tortilla_chip.png"));
         reload();
         e = new GuacamoleTortillaChip();
         q = new BubbleGum();
