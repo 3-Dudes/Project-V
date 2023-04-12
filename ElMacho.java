@@ -9,7 +9,7 @@ public class ElMacho extends Player {
     private boolean bPressed;
     private boolean rPressed;
     public ElMacho() {
-        super("El Macho", 3);
+        super("El Macho", 2);
         health = 700;
         hitpoints = 700;
         ammoCount = 5;
@@ -18,9 +18,6 @@ public class ElMacho extends Player {
         bPressed = false;
         rPressed = false;
         
-        ammoGui = new AmmoGUI(ammoCount, ammoCount, 
-            new GreenfootImage("tortilla_chip.png"), pastHalfway);
-        reload();
         e = new GuacamoleTortillaChip();
         q = new BubbleGum();
     }
@@ -33,10 +30,17 @@ public class ElMacho extends Player {
         if(this.getX() < 600) {
             pastHalfway = false;
         }
+        ammoGui = new AmmoGUI(ammoCount, ammoCount, 
+            new TortillaChip().getImage(), pastHalfway);
         if(pastHalfway) {
             this.setImage(left);
+            getWorld().addObject(ammoGui, 1100, 400);
         }
-        getWorld().addObject(ammoGui, 5, 400);
+        else {
+            this.setImage(right);
+            getWorld().addObject(ammoGui, 5, 400);
+        }
+        reload();
     }
     
     public void singleFire() {

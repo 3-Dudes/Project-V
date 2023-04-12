@@ -13,5 +13,6 @@ public class Stage extends World {
         this.addObject(player.getHealthBar(), player.getX(), 200);
         this.addObject(cpu, 1000, this.getHeight() - 175);
         this.addObject(cpu.getHealthBar(), cpu.getX(), 200);
+        this.setPaintOrder(Ability.class, Weapon.class, Player.class);
     }
 }
