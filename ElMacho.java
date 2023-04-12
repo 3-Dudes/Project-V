@@ -2,24 +2,24 @@ import greenfoot.*;
 import java.util.*;
 public class ElMacho extends Player {
     private Stack<TortillaChip> ammo;   
+    private int ammoCount;
     private AmmoGUI ammoGui;
     
     private boolean vPressed;
     private boolean bPressed;
     private boolean rPressed;
     public ElMacho() {
-        super("El Macho");
-        GreenfootImage img = this.getImage();
-        img.scale(img.getWidth() / 2, img.getHeight() / 2);
-        setImage(img);
+        super("El Macho", 3);
         health = 700;
         hitpoints = 700;
+        ammoCount = 5;
         
         vPressed = false;
         bPressed = false;
         rPressed = false;
         
-        ammoGui = new AmmoGUI(5, 5, new GreenfootImage("tortilla_chip.png"));
+        ammoGui = new AmmoGUI(ammoCount, ammoCount, 
+            new GreenfootImage("tortilla_chip.png"), pastHalfway);
         reload();
         e = new GuacamoleTortillaChip();
         q = new BubbleGum();
@@ -27,6 +27,15 @@ public class ElMacho extends Player {
     
     @Override
     public void addedToWorld(World world) {
+        if(this.getX() >= 600) {
+            pastHalfway = true;
+        }
+        if(this.getX() < 600) {
+            pastHalfway = false;
+        }
+        if(pastHalfway) {
+            this.setImage(left);
+        }
         getWorld().addObject(ammoGui, 5, 400);
     }
     
@@ -46,7 +55,7 @@ public class ElMacho extends Player {
     }
     public void reload() {
         ammo = new Stack<TortillaChip>();
-        for(int k = 1; k <= 6; k++) {
+        for(int k = 1; k <= ammoCount; k++) {
             ammo.push(new TortillaChip());
         }
         ammoGui.refill();

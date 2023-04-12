@@ -6,9 +6,7 @@ public class Vector extends Player {
     private GreenfootImage img;
     private PiranhaGun gun;
     public Vector() {
-        super("Vector");
-        img = this.getImage();
-        this.setImage(img);
+        super("Vector", 1);
         this.health = 200;
         
         gun = new PiranhaGun();

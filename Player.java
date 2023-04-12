@@ -6,7 +6,6 @@ public abstract class Player extends Actor {
     private boolean ePressed;
     private boolean xPressed;
     
-    private boolean pastHalfway;
     private boolean isFacingRight;
     private boolean isFacingLeft;
     
@@ -17,22 +16,32 @@ public abstract class Player extends Actor {
     protected Ability e;
     protected Ability x;
     
+    protected boolean pastHalfway;
+    
     private HealthBar hp;
     
     protected int health;
     protected int hitpoints;
     
+    protected GreenfootImage right;
+    protected GreenfootImage left;
+    
     private String name;
-    public Player(String name) { 
+    public Player(String name, int factor) { 
         cPressed = false;
         qPressed = false;
         ePressed = false;
         xPressed = false;
-        pastHalfway = false;
         isFacingRight = true;
         this.name = name;
         hp = new HealthBar(name);
         shield = new Shield();
+        
+        right = this.getImage();
+        left = new GreenfootImage(right);
+        left.mirrorHorizontally();
+        right.scale(right.getWidth() / factor, right.getHeight() / factor);
+        left.scale(left.getWidth() / factor, left.getHeight() / factor);
     }
     
     public int getHealth() {
@@ -68,19 +77,19 @@ public abstract class Player extends Actor {
         if(this.getX() >= 600) {
             pastHalfway = true;
         }
-        if(this.getX() < 600) {
+        else {
             pastHalfway = false;
         }
         
         if(pastHalfway) {
             if(isFacingRight) {
-                this.getImage().mirrorHorizontally();
+                this.setImage(left);
                 isFacingRight = false;
             }
         }
         else {
             if(!isFacingRight) {
-                this.getImage().mirrorHorizontally();
+                this.setImage(right);
                 isFacingRight = true;
             }
         }

@@ -1,7 +1,7 @@
 import greenfoot.*;
 public class Gru extends Player {
     public Gru() {
-        super("Gru");
+        super("Gru", 2);
     }
     public void reload() {
             
