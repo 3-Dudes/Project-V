@@ -3,15 +3,17 @@ public abstract class Ability extends Actor {
     private int charge;
     private int cooldown;
     private int damage;
+    private boolean pastHalfway;
     protected boolean intersects;
     protected boolean right;
     
-    public Ability(int cooldown, int damage) {
+    public Ability(int cooldown, int damage, boolean pastHalfway) {
         this.charge = cooldown;
         this.cooldown = cooldown;
         this.damage = damage;
         this.intersects = false;
         this.right = right;
+        this.pastHalfway = pastHalfway;
     }
     
     public int getCharge() {

@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Ability
-comment1.params=cooldown\ damage
-comment1.target=Ability(int,\ int)
+comment1.params=cooldown\ damage\ pastHalfway
+comment1.target=Ability(int,\ int,\ boolean)
 comment2.params=
 comment2.target=int\ getCharge()
 comment3.params=charge

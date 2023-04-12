@@ -8,7 +8,7 @@ public class BubbleGum extends Ability {
         super(1000, 20);
         img = this.getImage();
         bounces = 0;
-        img.scale(img.getWidth() / 4, img.getHeight() / 4);
+        img.scale(img.getWidth() / 3, img.getHeight() / 3);
         this.setImage(img);
         movingRight = true;
     }
