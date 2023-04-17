@@ -3,7 +3,7 @@ public class HealthBar extends Actor {
     private GreenfootImage bar;
     private GreenfootImage header;
     public HealthBar(String name) {
-        bar = new GreenfootImage(200, 50);
+        bar = new GreenfootImage(300, 25);
         bar.drawRect(500, 500, bar.getWidth(), bar.getHeight());
         bar.setColor(Color.GREEN);
         bar.fill();
@@ -13,6 +13,6 @@ public class HealthBar extends Actor {
         setImage(bar);
     }
     public void drawHeader() {
-        bar.drawImage(header, bar.getWidth() / 2 - 45, 15);
+        bar.drawImage(header, bar.getWidth() / 2 - 45, 2);
     }
 }
