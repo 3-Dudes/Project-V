@@ -30,7 +30,7 @@ public class ElMacho extends Player {
     public void addedToWorld(World world) {
         super.addedToWorld(world);
         ammoGui = new AmmoGUI(ammoCount, ammoCount, 
-            new TortillaChip().getImage(), pastHalfway);
+            new TortillaChip(facingRight()).getImage(), pastHalfway);
         if(pastHalfway) {
             this.setImage(left);
             getWorld().addObject(ammoGui, 1100, 400);
@@ -63,7 +63,7 @@ public class ElMacho extends Player {
     public void reload() {
         ammo = new Stack<TortillaChip>();
         for(int k = 1; k <= ammoCount; k++) {
-            ammo.push(new TortillaChip());
+            ammo.push(new TortillaChip(facingRight()));
         }
         ammoGui.refill();
     }    

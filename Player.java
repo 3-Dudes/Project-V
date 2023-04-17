@@ -7,7 +7,6 @@ public abstract class Player extends Actor {
     private boolean xPressed;
     
     private boolean isFacingRight;
-    private boolean isFacingLeft;
     
     private Shield shield;
     
@@ -73,6 +72,7 @@ public abstract class Player extends Actor {
     @Override
     public void addedToWorld(World world) {
         checkPosition();
+        world.addObject(this.getHealthBar(), this.getX(), 50);
     }
     
     public HealthBar getHealthBar() {
@@ -193,6 +193,9 @@ public abstract class Player extends Actor {
             this.setImage(right);
             isFacingRight = true;
         }
+    }
+    public boolean facingRight() {
+        return isFacingRight;
     }
     public abstract void reload();
     public abstract void singleFire();

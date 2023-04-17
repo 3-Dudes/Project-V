@@ -1,8 +1,10 @@
 import greenfoot.*;
 public abstract class Weapon extends Actor {
     protected boolean intersects;
-    public Weapon() {
+    protected Player p;
+    public Weapon(Player p) {
         this.intersects = false;
+        this.p = p;
     }
     public void act() {
         move();
