@@ -68,13 +68,19 @@ public class ElMacho extends Player {
     
     public void act() {
         super.act();
-        if(ammo.size() <= 0) {
-            if(timeToReload == 500) {
+        if(ammo.size() <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
+            if(Greenfoot.isKeyDown("R") && !rPressed) {
+                rPressed = true;
+            }
+            if(timeToReload == 3000) {
                 reload();
                 timeToReload = 0;
             }
             timeToReload++;
         } 
+        if(!Greenfoot.isKeyDown("R") && rPressed) {
+            rPressed = false;
+        }
         
         if(Greenfoot.isKeyDown("B") && !bPressed) {
             bPressed = true;
@@ -90,14 +96,6 @@ public class ElMacho extends Player {
         }
         if(!Greenfoot.isKeyDown("V") && vPressed) {
             vPressed = false;
-        }
-        
-        if(Greenfoot.isKeyDown("R") && !rPressed){
-            rPressed = true;
-            reload();
-        }
-        if(!Greenfoot.isKeyDown("R") && rPressed) {
-            rPressed = false;
         }
         checkAbilities();
     }    
