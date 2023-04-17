@@ -63,6 +63,22 @@ public abstract class Player extends Actor {
         hp.setImage(img);
     }
     
+    @Override
+    public void addedToWorld(World world) {
+        if(this.getX() >= 600) {
+            pastHalfway = true;
+        }
+        else {
+            pastHalfway = false;
+        }
+        if(pastHalfway) {
+            this.setImage(left);
+        }
+        else {
+            this.setImage(right);
+        }
+    }
+    
     public HealthBar getHealthBar() {
         return hp;
     }

@@ -24,12 +24,7 @@ public class ElMacho extends Player {
     
     @Override
     public void addedToWorld(World world) {
-        if(this.getX() >= 600) {
-            pastHalfway = true;
-        }
-        if(this.getX() < 600) {
-            pastHalfway = false;
-        }
+        super.addedToWorld(world);
         ammoGui = new AmmoGUI(ammoCount, ammoCount, 
             new TortillaChip().getImage(), pastHalfway);
         if(pastHalfway) {
