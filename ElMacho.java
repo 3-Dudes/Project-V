@@ -4,6 +4,7 @@ public class ElMacho extends Player {
     private Stack<TortillaChip> ammo;   
     private int ammoCount;
     private AmmoGUI ammoGui;
+    private int timeToReload;
     
     private boolean vPressed;
     private boolean bPressed;
@@ -13,6 +14,7 @@ public class ElMacho extends Player {
         health = 700;
         hitpoints = 700;
         ammoCount = 5;
+        timeToReload = 0;
         
         vPressed = false;
         bPressed = false;
@@ -39,17 +41,21 @@ public class ElMacho extends Player {
     }
     
     public void singleFire() {
-        getWorld().addObject(ammo.pop(), getX(), getY());
-        ammoGui.loseChip();
+        if(ammo.size() > 0) {
+            getWorld().addObject(ammo.pop(), getX(), getY());
+            ammoGui.loseChip();
+        }
     }
     public void burstFire() {
-        int a = 0;
-        for(int k = 1; k <= 3; k++) {
-            getWorld().addObject(ammo.pop(), getX() + a, getY());
-            a += 60;
-        }
-        for(int k = 1; k <= 3; k++) {
-            ammoGui.loseChip();
+        if(ammo.size() >= 3) {
+            int a = 0;
+            for(int k = 1; k <= 3; k++) {
+                getWorld().addObject(ammo.pop(), getX() + a, getY());
+                a += 60;
+            }
+            for(int k = 1; k <= 3; k++) {
+                ammoGui.loseChip();
+            }   
         }
     }
     public void reload() {
@@ -63,9 +69,14 @@ public class ElMacho extends Player {
     public void act() {
         super.act();
         if(ammo.size() <= 0) {
-            reload();
+            if(timeToReload == 500) {
+                reload();
+                timeToReload = 0;
+            }
+            timeToReload++;
         } 
-        if(ammo.size() >= 3 && Greenfoot.isKeyDown("B") && !bPressed) {
+        
+        if(Greenfoot.isKeyDown("B") && !bPressed) {
             bPressed = true;
             burstFire();
         }

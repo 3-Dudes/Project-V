@@ -72,10 +72,16 @@ public abstract class Player extends Actor {
             pastHalfway = false;
         }
         if(pastHalfway) {
-            this.setImage(left);
+            if(isFacingRight) {
+                this.setImage(left);
+                isFacingRight = false;
+            }
         }
         else {
-            this.setImage(right);
+            if(!isFacingRight) {
+                this.setImage(right);
+                isFacingRight = true;
+            }
         }
     }
     

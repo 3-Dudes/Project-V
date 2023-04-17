@@ -27,7 +27,7 @@ public class AmmoGUI extends Actor {
     }
 
     public void updateImage() {
-        GreenfootImage image = new GreenfootImage(100,600);
+        GreenfootImage image = new GreenfootImage(110,600);
         for(int i = 0; i < cur; i++) {
             image.drawImage(chip, 55, 500-i*50);
         }
