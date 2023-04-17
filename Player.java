@@ -15,6 +15,7 @@ public abstract class Player extends Actor {
     protected Ability q;
     protected Ability e;
     protected Ability x;
+    protected List<Ability> abilities;
     
     protected boolean pastHalfway;
     
@@ -36,6 +37,11 @@ public abstract class Player extends Actor {
         this.name = name;
         hp = new HealthBar(name);
         shield = new Shield();
+        abilities = new ArrayList<Ability>();
+        abilities.add(c);
+        abilities.add(q);
+        abilities.add(e);
+        
         
         right = this.getImage();
         left = new GreenfootImage(right);
@@ -65,24 +71,7 @@ public abstract class Player extends Actor {
     
     @Override
     public void addedToWorld(World world) {
-        if(this.getX() >= 600) {
-            pastHalfway = true;
-        }
-        else {
-            pastHalfway = false;
-        }
-        if(pastHalfway) {
-            if(isFacingRight) {
-                this.setImage(left);
-                isFacingRight = false;
-            }
-        }
-        else {
-            if(!isFacingRight) {
-                this.setImage(right);
-                isFacingRight = true;
-            }
-        }
+        checkPosition();
     }
     
     public HealthBar getHealthBar() {
@@ -96,25 +85,7 @@ public abstract class Player extends Actor {
     public void act() {
         move();
         checkEdges();
-        if(this.getX() >= 600) {
-            pastHalfway = true;
-        }
-        else {
-            pastHalfway = false;
-        }
-        
-        if(pastHalfway) {
-            if(isFacingRight) {
-                this.setImage(left);
-                isFacingRight = false;
-            }
-        }
-        else {
-            if(!isFacingRight) {
-                this.setImage(right);
-                isFacingRight = true;
-            }
-        }
+        checkPosition();
         
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
@@ -152,7 +123,7 @@ public abstract class Player extends Actor {
             getWorld().removeObject(shield);
         }
     }
-    public void checkEdges() {
+    private void checkEdges() {
         if(this.isAtEdge()) {
             if(this.getX() == 0) {
                 this.setLocation(getWorld().getWidth() - 1, getY());
@@ -201,6 +172,26 @@ public abstract class Player extends Actor {
         if(e.getCharge() == 0) {
             ePressed = false;
             e.setCharge(e.getCooldown());
+        }
+    }
+    private void checkPosition() {
+        if(this.getX() >= 600) {
+            pastHalfway = true;
+        }
+        else {
+            pastHalfway = false;
+        }
+        if(pastHalfway) {
+            if(isFacingRight) {
+                this.setImage(left);
+                isFacingRight = false;
+            }
+        }
+        else {
+            if(!isFacingRight) {
+                this.setImage(right);
+                isFacingRight = true;
+            }
         }
     }
     public abstract void reload();
