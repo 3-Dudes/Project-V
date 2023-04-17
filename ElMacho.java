@@ -5,6 +5,7 @@ public class ElMacho extends Player {
     private int ammoCount;
     private AmmoGUI ammoGui;
     private int timeToReload;
+    private boolean needToReload;
     
     private boolean vPressed;
     private boolean bPressed;
@@ -16,6 +17,7 @@ public class ElMacho extends Player {
         ammoCount = 5;
         timeToReload = 0;
         
+        needToReload = false;
         vPressed = false;
         bPressed = false;
         rPressed = false;
@@ -66,20 +68,27 @@ public class ElMacho extends Player {
         ammoGui.refill();
     }    
     
+    public void reloadCD() {
+        if(timeToReload == 200) {
+            reload();
+            timeToReload = 0;
+        }
+        timeToReload++;
+    }
+    
     public void act() {
         super.act();
         if(ammo.size() <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
             if(Greenfoot.isKeyDown("R") && !rPressed) {
                 rPressed = true;
             }
-            if(timeToReload == 3000) {
-                reload();
-                timeToReload = 0;
-            }
-            timeToReload++;
-        } 
+            needToReload = true;
+        }
         if(!Greenfoot.isKeyDown("R") && rPressed) {
             rPressed = false;
+        }
+        if(needToReload) {
+            reloadCD();
         }
         
         if(Greenfoot.isKeyDown("B") && !bPressed) {

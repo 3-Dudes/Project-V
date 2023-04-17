@@ -17,12 +17,12 @@ public abstract class Player extends Actor {
     protected Ability x;
     protected List<Ability> abilities;
     
-    protected boolean pastHalfway;
-    
     private HealthBar hp;
     
     protected int health;
     protected int hitpoints;
+    
+    protected boolean pastHalfway;
     
     protected GreenfootImage right;
     protected GreenfootImage left;
@@ -34,6 +34,7 @@ public abstract class Player extends Actor {
         ePressed = false;
         xPressed = false;
         isFacingRight = true;
+        pastHalfway = false;
         this.name = name;
         hp = new HealthBar(name);
         shield = new Shield();
@@ -85,7 +86,6 @@ public abstract class Player extends Actor {
     public void act() {
         move();
         checkEdges();
-        checkPosition();
         
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
@@ -136,9 +136,13 @@ public abstract class Player extends Actor {
     public void move() {
         if(Greenfoot.isKeyDown("A")) {
             this.setLocation(this.getX() - 5, this.getY());
+            this.setImage(left);
+            isFacingRight = false;
         }
         if(Greenfoot.isKeyDown("D")) {
             this.setLocation(this.getX() + 5, this.getY());
+            this.setImage(right);
+            isFacingRight = true;
         }
     }
     protected void checkAbilities() {
@@ -182,16 +186,12 @@ public abstract class Player extends Actor {
             pastHalfway = false;
         }
         if(pastHalfway) {
-            if(isFacingRight) {
-                this.setImage(left);
-                isFacingRight = false;
-            }
-        }
+            this.setImage(left);
+            isFacingRight = false;
+        }    
         else {
-            if(!isFacingRight) {
-                this.setImage(right);
-                isFacingRight = true;
-            }
+            this.setImage(right);
+            isFacingRight = true;
         }
     }
     public abstract void reload();
