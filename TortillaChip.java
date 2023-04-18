@@ -16,7 +16,7 @@ public class TortillaChip extends Weapon {
             this.setLocation(this.getX() + 5, this.getY());
         }
         else {
-            getImage().mirrorHorizontally();
+            //getImage().mirrorHorizontally();
             this.setLocation(this.getX() - 5, this.getY());    
         }
         detectCollision("ElMacho", damage);
