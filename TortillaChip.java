@@ -13,11 +13,11 @@ public class TortillaChip extends Weapon {
     }    
     public void act() {
         if(right) {
-            this.setLocation(this.getX() + 5, this.getY());
+            this.setLocation(this.getX() + 8, this.getY());
         }
         else {
             //getImage().mirrorHorizontally();
-            this.setLocation(this.getX() - 5, this.getY());    
+            this.setLocation(this.getX() - 8, this.getY());    
         }
         detectCollision("ElMacho", damage);
     }
