@@ -2,6 +2,6 @@
 comment0.target=Score
 comment1.params=playerScore\ cpuScore
 comment1.target=Score(int,\ int)
-comment2.params=score
+comment2.params=cover
 comment2.target=void\ setScore(greenfoot.GreenfootImage)
 numComments=3
