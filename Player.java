@@ -6,6 +6,8 @@ public abstract class Player extends Actor {
     private boolean ePressed;
     private boolean xPressed;
     
+    private int playerScore;
+    
     private boolean isFacingRight;
     
     private Shield shield;
@@ -35,6 +37,7 @@ public abstract class Player extends Actor {
         isFacingRight = true;
         pastHalfway = false;
         this.name = name;
+        this.playerScore = 0;
         hp = new HealthBar(name);
         shield = new Shield();
         abilities = new ArrayList<Ability>();
@@ -84,43 +87,53 @@ public abstract class Player extends Actor {
     }
     
     public void act() {
-        move();
-        checkEdges();
-        
-        if(Greenfoot.isKeyDown("C") && !cPressed) {
-            cPressed = true;
-        }
-        if(!Greenfoot.isKeyDown("C") && cPressed) {
-            cPressed = false;
-        }
-        
-        if(Greenfoot.isKeyDown("Q") && !qPressed) {
-            qPressed = true;
-        }
-        if(!Greenfoot.isKeyDown("Q") && qPressed) {
-            qPressed = false;
-        }        
-        
-        if(Greenfoot.isKeyDown("E") && !ePressed) {
-            ePressed = true;
-        }
-        if(!Greenfoot.isKeyDown("E") && ePressed) {
-            ePressed = false;
-        }
-        
-        if(Greenfoot.isKeyDown("X") && !xPressed) {
-            xPressed = true;
-            x();
-        }
-        if(!Greenfoot.isKeyDown("X") && xPressed) {
-            xPressed = false;
-        }
-        
-        if(Greenfoot.isKeyDown("M")) {
-            getWorld().addObject(shield, this.getX(), this.getY());
+        if(!this.isDead()) {
+            move();
+            checkEdges();
+            
+            if(Greenfoot.isKeyDown("C") && !cPressed) {
+                cPressed = true;
+            }
+            if(!Greenfoot.isKeyDown("C") && cPressed) {
+                cPressed = false;
+            }
+            
+            if(Greenfoot.isKeyDown("Q") && !qPressed) {
+                qPressed = true;
+            }
+            if(!Greenfoot.isKeyDown("Q") && qPressed) {
+                qPressed = false;
+            }        
+            
+            if(Greenfoot.isKeyDown("E") && !ePressed) {
+                ePressed = true;
+            }
+            if(!Greenfoot.isKeyDown("E") && ePressed) {
+                ePressed = false;
+            }
+            
+            if(Greenfoot.isKeyDown("X") && !xPressed) {
+                xPressed = true;
+                x();
+            }
+            if(!Greenfoot.isKeyDown("X") && xPressed) {
+                xPressed = false;
+            }
+            
+            if(Greenfoot.isKeyDown("M")) {
+                getWorld().addObject(shield, this.getX(), this.getY());
+            }
+            else {
+                getWorld().removeObject(shield);
+            }    
         }
         else {
-            getWorld().removeObject(shield);
+            if(facingRight()) {
+                this.setRotation(270);    
+            }
+            else {
+                this.setRotation(90);
+            }
         }
     }
     private void checkEdges() {
@@ -193,6 +206,9 @@ public abstract class Player extends Actor {
             this.setImage(right);
             isFacingRight = true;
         }
+    }
+    public int getPlayerScore() {
+        return playerScore;
     }
     public boolean facingRight() {
         return isFacingRight;
