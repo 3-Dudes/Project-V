@@ -9,7 +9,7 @@ public class GuacamoleTortillaChip extends Ability {
     }
     public void act() {
         super.act();
-        this.setLocation(this.getX() + 5, this.getY());
+        this.setLocation(this.getX() + 8, this.getY());
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
         }
