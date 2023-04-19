@@ -30,7 +30,7 @@ public class ElMacho extends Player {
     public void addedToWorld(World world) {
         super.addedToWorld(world);
         ammoGui = new AmmoGUI(ammoCount, ammoCount, 
-            new TortillaChip(facingRight()).getImage(), pastHalfway);
+            new TortillaChip().getImage(), pastHalfway);
         if(pastHalfway) {
             this.setImage(left);
             getWorld().addObject(ammoGui, 1100, 400);
@@ -63,9 +63,10 @@ public class ElMacho extends Player {
     public void reload() {
         ammo = new Stack<TortillaChip>();
         for(int k = 1; k <= ammoCount; k++) {
-            ammo.push(new TortillaChip(facingRight()));
+            ammo.push(new TortillaChip());
         }
         ammoGui.refill();
+        needToReload = false;
     }    
     
     public void reloadCD() {
@@ -93,6 +94,9 @@ public class ElMacho extends Player {
         
         if(Greenfoot.isKeyDown("B") && !bPressed) {
             bPressed = true;
+            if(needToReload) {
+                needToReload = false;
+            }
             burstFire();
         }
         if(!Greenfoot.isKeyDown("B") && bPressed) {
@@ -101,6 +105,9 @@ public class ElMacho extends Player {
         
         if(Greenfoot.isKeyDown("V") && !vPressed) {
             vPressed = true;
+            if(needToReload) {
+                needToReload = false;
+            }
             singleFire();
         }
         if(!Greenfoot.isKeyDown("V") && vPressed) {
