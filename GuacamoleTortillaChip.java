@@ -5,7 +5,7 @@ public class GuacamoleTortillaChip extends Ability {
         GreenfootImage img = this.getImage();
         img.scale(img.getWidth() / 7, img.getHeight() / 7);
         img.mirrorHorizontally();
-        setImage(img);
+        this.setImage(img);
     }
     public void act() {
         super.act();
