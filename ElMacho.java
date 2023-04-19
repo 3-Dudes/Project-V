@@ -1,12 +1,11 @@
 import greenfoot.*;
 import java.util.*;
 public class ElMacho extends Player {
-    private Stack<TortillaChip> ammo;   
-    private int ammoCount;
+    //private Stack<TortillaChip> ammo;   
+    //private int ammoCount;
     private AmmoGUI ammoGui;
     private int timeToReload;
     private boolean needToReload;
-    
     private boolean vPressed;
     private boolean bPressed;
     private boolean rPressed;
@@ -14,7 +13,7 @@ public class ElMacho extends Player {
         super("El Macho", 2);
         health = 700;
         hitpoints = 700;
-        ammoCount = 5;
+        //ammoCount = 5;
         timeToReload = 0;
         
         needToReload = false;
@@ -29,7 +28,7 @@ public class ElMacho extends Player {
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
-        ammoGui = new AmmoGUI(ammoCount, ammoCount, 
+        ammoGui = new AmmoGUI(5, 5, 
             new TortillaChip().getImage(), pastHalfway);
         if(pastHalfway) {
             this.setImage(left);
@@ -43,16 +42,16 @@ public class ElMacho extends Player {
     }
     
     public void singleFire() {
-        if(ammo.size() > 0) {
-            getWorld().addObject(ammo.pop(), getX(), getY());
+        if(ammoGui.cur > 0) {
+            getWorld().addObject(new TortillaChip(facingRight()), getX(), getY());
             ammoGui.loseChip();
         }
     }
     public void burstFire() {
-        if(ammo.size() >= 3) {
+        if(ammoGui.cur >= 3) {
             int a = 0;
             for(int k = 1; k <= 3; k++) {
-                getWorld().addObject(ammo.pop(), getX() + a, getY());
+                getWorld().addObject(new TortillaChip(facingRight()), getX() + a, getY());
                 a += 60;
             }
             for(int k = 1; k <= 3; k++) {
@@ -61,10 +60,6 @@ public class ElMacho extends Player {
         }
     }
     public void reload() {
-        ammo = new Stack<TortillaChip>();
-        for(int k = 1; k <= ammoCount; k++) {
-            ammo.push(new TortillaChip());
-        }
         ammoGui.refill();
         needToReload = false;
     }    
@@ -79,7 +74,7 @@ public class ElMacho extends Player {
     
     public void act() {
         super.act();
-        if(ammo.size() <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
+        if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
             if(Greenfoot.isKeyDown("R") && !rPressed) {
                 rPressed = true;
             }
