@@ -10,8 +10,11 @@ public class TortillaChip extends Weapon {
         img = this.getImage();
         img.scale(img.getWidth() / 7, img.getHeight() / 7);
         img.mirrorHorizontally();
+        left = new GreenfootImage(img);
+        left.mirrorHorizontally();
         setImage(img);
     }
+
     public TortillaChip() {
         super(new ElMacho());
         img = this.getImage();
@@ -19,8 +22,17 @@ public class TortillaChip extends Weapon {
         img.mirrorHorizontally();
         setImage(img);
     }
+
     public void act() {
+        //    if(this.pasthalfway()){
         this.setLocation(this.getX() + 8, this.getY());
+        //}
+
+        /*
+        else{
+        this.setLocation(this.getX() - 8, this.getY());
+        }
+         */
         detectCollision("ElMacho", damage);
     }
 }
