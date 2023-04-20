@@ -13,7 +13,7 @@ public class TortillaChip extends Weapon {
         left = new GreenfootImage(img);
         left.mirrorHorizontally();
         setImage(img);
-        if(!right){
+        if(!right) {
             getImage().mirrorHorizontally();
         }
     }
