@@ -120,7 +120,10 @@ public class ElMacho extends Player {
     public void e() {
         getWorld().addObject(e, this.getX(), this.getY());    
     }
-    public void x() {
-        
+    public void x() {//make it rain(macho ult)
+        reloadCD();
+        /*idea is to make several big chips in the sky that flash before they 
+        * fall down in random orders 
+        */
     }
 }
