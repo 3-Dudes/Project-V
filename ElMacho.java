@@ -69,7 +69,7 @@ public class ElMacho extends Player {
         needToReload = false;
     }    
 
-    public void reloadCD() {
+    public void timedReload() {
         if(timeToReload == 200) {
             reload();
             timeToReload = 0;
@@ -89,7 +89,7 @@ public class ElMacho extends Player {
             rPressed = false;
         }
         if(needToReload) {
-            reloadCD();
+            timedReload();
         }
 
         if(Greenfoot.isKeyDown("B") && !bPressed) {
@@ -112,9 +112,6 @@ public class ElMacho extends Player {
         }
         if(!Greenfoot.isKeyDown("V") && vPressed) {
             vPressed = false;
-        }
-        if(!Greenfoot.isKeyDown("X")) {
-            xActivated = false;
         }
         checkAbilities();
     }    
@@ -148,8 +145,11 @@ public class ElMacho extends Player {
         for(int k = 1; k <= 50; k++) {
             TortillaChip tc = new TortillaChip(this);
             chips.add(tc);
-            getWorld().addObject(tc, randX, randY);
         }
+        for(TortillaChip c : chips) {
+            getWorld().addObject(c, randX, randY);
+        }
+        xActivated = false;
     }
     private void bufferMovement() {
         //cease ability usage temporarily
