@@ -4,8 +4,10 @@ public class TortillaChip extends Weapon {
     public static GreenfootImage img;
     public static GreenfootImage left;
     private boolean right;
-    public TortillaChip(boolean right) {
-        super(new ElMacho());
+    private ElMacho e;
+    public TortillaChip(boolean right, ElMacho e) {
+        super(e);
+        this.e = e;
         this.right = right;
         img = this.getImage();
         img.scale(img.getWidth() / 7, img.getHeight() / 7);
@@ -18,8 +20,9 @@ public class TortillaChip extends Weapon {
         }
     }
 
-    public TortillaChip() {
-        super(new ElMacho());
+    public TortillaChip(ElMacho e) {
+        super(e);
+        this.e = e;
         img = this.getImage();
         img.scale(img.getWidth() / 7, img.getHeight() / 7);
         img.mirrorHorizontally();
@@ -27,12 +30,23 @@ public class TortillaChip extends Weapon {
     }
 
     public void act() {
-        if(right) {
-            this.setLocation(this.getX() + 8, this.getY());
-        }
-        else{
-            this.setLocation(this.getX() - 8, this.getY());
-        }
+        moveChip();
         detectCollision("ElMacho", damage);
+    }
+    
+    private void moveChip() {
+        if(e.xActivated) {
+            this.setRotation(90);
+            this.setLocation(this.getX(), this.getY() + 8); 
+        }
+        else {
+            this.setRotation(0);
+            if(right) {
+                this.setLocation(this.getX() + 8, this.getY());
+            }
+            else {
+                this.setLocation(this.getX() + 8, this.getY());
+            }    
+        }
     }
 }

@@ -9,6 +9,9 @@ public class ElMacho extends Player {
     private boolean vPressed;
     private boolean bPressed;
     private boolean rPressed;
+    public boolean xActivated;
+    
+    private Random rand;
     public ElMacho() {
         super("El Macho", 2);
         health = 700;
@@ -20,7 +23,7 @@ public class ElMacho extends Player {
         vPressed = false;
         bPressed = false;
         rPressed = false;
-
+        rand = new Random();
         e = new GuacamoleTortillaChip();
         q = new BubbleGum();
     }
@@ -29,7 +32,7 @@ public class ElMacho extends Player {
     public void addedToWorld(World world) {
         super.addedToWorld(world);
         ammoGui = new AmmoGUI(5, 5, 
-            new TortillaChip().getImage(), pastHalfway);
+            new TortillaChip(this).getImage(), pastHalfway);
         if(pastHalfway) {
             this.setImage(left);
             getWorld().addObject(ammoGui, 1100, 400);
@@ -43,7 +46,7 @@ public class ElMacho extends Player {
 
     public void singleFire() {
         if(ammoGui.cur > 0) {
-            getWorld().addObject(new TortillaChip(facingRight()), getX(), getY());
+            getWorld().addObject(new TortillaChip(facingRight(), this), getX(), getY());
             ammoGui.loseChip();
         }
     }
@@ -52,7 +55,7 @@ public class ElMacho extends Player {
         if(ammoGui.cur >= 3) {
             int a = 0;
             for(int k = 1; k <= 3; k++) {
-                getWorld().addObject(new TortillaChip(facingRight()), getX() + a, getY());
+                getWorld().addObject(new TortillaChip(facingRight(), this), getX() + a, getY());
                 a += 60;
             }
             for(int k = 1; k <= 3; k++) {
@@ -110,6 +113,9 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("V") && vPressed) {
             vPressed = false;
         }
+        if(!Greenfoot.isKeyDown("X")) {
+            xActivated = false;
+        }
         checkAbilities();
     }    
 
@@ -124,16 +130,28 @@ public class ElMacho extends Player {
     public void e() {
         getWorld().addObject(e, this.getX(), this.getY());    
     }
-
+    
     public void x() {//make it rain(macho ult)
-        if(timeToReload == 500) {
-            reload();
-            timeToReload = 0;
-        }
-        timeToReload++;
         /*idea is to make several big chips in the sky that flash before they 
          * fall down in random orders (disable firing so not too OP)
          */
-
+        
+        
+        //Anirudh
+        //my approach to el macho's ult
+        World curWorld = getWorld();
+        xActivated = true;
+        
+        int randX = rand.nextInt(curWorld.getWidth());
+        int randY = rand.nextInt(curWorld.getHeight());
+        List<TortillaChip> chips = new ArrayList<TortillaChip>();
+        for(int k = 1; k <= 50; k++) {
+            TortillaChip tc = new TortillaChip(this);
+            chips.add(tc);
+            getWorld().addObject(tc, randX, randY);
+        }
+    }
+    private void bufferMovement() {
+        //cease ability usage temporarily
     }
 }
