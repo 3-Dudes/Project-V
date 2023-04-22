@@ -15,16 +15,16 @@ public class ElMacho extends Player {
         hitpoints = 700;
         //ammoCount = 5;
         timeToReload = 0;
-        
+
         needToReload = false;
         vPressed = false;
         bPressed = false;
         rPressed = false;
-        
+
         e = new GuacamoleTortillaChip();
         q = new BubbleGum();
     }
-    
+
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
@@ -40,13 +40,14 @@ public class ElMacho extends Player {
         }
         reload();
     }
-    
+
     public void singleFire() {
         if(ammoGui.cur > 0) {
             getWorld().addObject(new TortillaChip(facingRight()), getX(), getY());
             ammoGui.loseChip();
         }
     }
+
     public void burstFire() {
         if(ammoGui.cur >= 3) {
             int a = 0;
@@ -59,11 +60,12 @@ public class ElMacho extends Player {
             }   
         }
     }
+
     public void reload() {
         ammoGui.refill();
         needToReload = false;
     }    
-    
+
     public void reloadCD() {
         if(timeToReload == 200) {
             reload();
@@ -71,7 +73,7 @@ public class ElMacho extends Player {
         }
         timeToReload++;
     }
-    
+
     public void act() {
         super.act();
         if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
@@ -86,7 +88,7 @@ public class ElMacho extends Player {
         if(needToReload) {
             reloadCD();
         }
-        
+
         if(Greenfoot.isKeyDown("B") && !bPressed) {
             bPressed = true;
             if(needToReload) {
@@ -97,7 +99,7 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("B") && bPressed) {
             bPressed = false;
         } 
-        
+
         if(Greenfoot.isKeyDown("V") && !vPressed) {
             vPressed = true;
             if(needToReload) {
@@ -110,20 +112,28 @@ public class ElMacho extends Player {
         }
         checkAbilities();
     }    
-    
+
     public void q() {
-        
+
     }
+
     public void c() {
-        
+
     }
+
     public void e() {
         getWorld().addObject(e, this.getX(), this.getY());    
     }
+
     public void x() {//make it rain(macho ult)
-        reloadCD();
+        if(timeToReload == 500) {
+            reload();
+            timeToReload = 0;
+        }
+        timeToReload++;
         /*idea is to make several big chips in the sky that flash before they 
-        * fall down in random orders 
-        */
+         * fall down in random orders (disable firing so not too OP)
+         */
+
     }
 }
