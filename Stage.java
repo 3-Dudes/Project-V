@@ -8,9 +8,9 @@ public class Stage extends World {
     }
     private void prepareLevel() {
         player = new ElMacho();
-        cpu = new Balthazar();
+        //cpu = new Balthazar();
         this.addObject(player, 200, this.getHeight() - 150);
-        this.addObject(cpu, 1000, this.getHeight() - 175);
+        //this.addObject(cpu, 1000, this.getHeight() - 175);
         this.setPaintOrder(Ability.class, Weapon.class, Player.class);
     }
 }

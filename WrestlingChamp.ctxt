@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=WrestlingChamp
+comment1.params=movingRight
+comment1.target=WrestlingChamp(boolean)
+comment2.params=
+comment2.target=void\ act()
+numComments=3
