@@ -2,7 +2,6 @@ import greenfoot.*;
 public class WrestlingChamp extends Ability  {
     // instance variables - replace the example below with your own
     private boolean movingRight;
-    private boolean removedFromWorld;
     private static GreenfootImage flyRight;
     private static GreenfootImage flyLeft;
     private ElMacho macho;
@@ -12,7 +11,6 @@ public class WrestlingChamp extends Ability  {
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
         this.movingRight = movingRight;
-        this.removedFromWorld = false;
         this.macho = macho;
         makeSprites();
     }
@@ -44,15 +42,9 @@ public class WrestlingChamp extends Ability  {
             if(p != null && !p.getClass().getName().equals(name)) {
                 p.decreaseHealth(this.getDamage());
                 this.setRotation(0);
-                removedFromWorld = true;
-            }
-            else {
-                if(this.isAtEdge()) {
-                    removedFromWorld = true;
-                }
             }
         }
-        if(removedFromWorld) {
+        if(this.isAtEdge()) {
             getWorld().removeObject(this);
             macho.setImage(macho.getRightImage());
         }
