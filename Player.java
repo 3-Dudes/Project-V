@@ -27,6 +27,7 @@ public abstract class Player extends Actor {
     
     private GreenfootImage right;
     private GreenfootImage left;
+    private int factor;
     
     private String name;
     public Player(String name, int factor) { 
@@ -44,13 +45,12 @@ public abstract class Player extends Actor {
         abilities.add(c);
         abilities.add(q);
         abilities.add(e);
-        
+        this.factor = factor;
         
         right = this.getImage();
+        scaleImage(right);
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
-        right.scale(right.getWidth() / factor, right.getHeight() / factor);
-        left.scale(left.getWidth() / factor, left.getHeight() / factor);
     }
     
     public int getHealth() {
@@ -136,6 +136,11 @@ public abstract class Player extends Actor {
             }
         }
     }
+    
+    public void scaleImage(GreenfootImage img) {
+        img.scale(img.getWidth() / factor, img.getHeight() / factor);
+    }
+    
     private void checkEdges() {
         if(this.isAtEdge()) {
             if(this.getX() == 0) {

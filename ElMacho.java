@@ -28,6 +28,7 @@ public class ElMacho extends Player {
         ultDur = 0;
         rand = new Random();
         e = new GuacamoleTortillaChip();
+        q = new WrestlingChamp(facingRight(), this);
     }
 
     @Override
@@ -120,8 +121,8 @@ public class ElMacho extends Player {
     }    
 
     public void q() {
+        getWorld().addObject(q, this.getX(), this.getY());
         this.setImage((GreenfootImage) null);
-        new WrestlingChamp(true);
     }
 
     public void c() {
