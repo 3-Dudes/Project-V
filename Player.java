@@ -56,7 +56,7 @@ public abstract class Player extends Actor {
     public int getHealth() {
         return health;
     }
-    public void decreaseHealth(int damage) {
+    public final void decreaseHealth(int damage) {
         health -= damage;
         
         GreenfootImage img = hp.getImage();
@@ -74,7 +74,7 @@ public abstract class Player extends Actor {
     
     @Override
     public void addedToWorld(World world) {
-        checkPosition();
+        updatePosition();
         world.addObject(this.getHealthBar(), this.getX(), 50);
     }
     
@@ -146,7 +146,7 @@ public abstract class Player extends Actor {
             }
         }
     }
-    public void move() {
+    public final void move() {
         if(Greenfoot.isKeyDown("A")) {
             this.setLocation(this.getX() - 5, this.getY());
             this.setImage(left);
@@ -158,7 +158,7 @@ public abstract class Player extends Actor {
             isFacingRight = true;
         }
     }
-    protected void checkAbilities() {
+    protected final void checkAbilities() {
         if(q.abilityReady()) {
             if(qPressed) {
                 q();
@@ -191,7 +191,7 @@ public abstract class Player extends Actor {
             e.setCharge(e.getCooldown());
         }
     }
-    private void checkPosition() {
+    private void updatePosition() {
         if(this.getX() >= 600) {
             pastHalfway = true;
         }
