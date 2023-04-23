@@ -9,7 +9,8 @@ public class ElMacho extends Player {
     private boolean vPressed;
     private boolean bPressed;
     private boolean rPressed;
-    public boolean xActivated;
+    public boolean usedUlt;
+    public int ultDur;
     
     private Random rand;
     public ElMacho() {
@@ -23,6 +24,8 @@ public class ElMacho extends Player {
         vPressed = false;
         bPressed = false;
         rPressed = false;
+        usedUlt = false;
+        ultDur = 0;
         rand = new Random();
         e = new GuacamoleTortillaChip();
         q = new BubbleGum();
@@ -113,6 +116,7 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("V") && vPressed) {
             vPressed = false;
         }
+        
         checkAbilities();
     }    
 
@@ -137,21 +141,14 @@ public class ElMacho extends Player {
         //Anirudh
         //my approach to el macho's ult
         World curWorld = getWorld();
-        xActivated = true;
+        usedUlt = true;
         
-        int randX = rand.nextInt(curWorld.getWidth());
-        int randY = rand.nextInt(curWorld.getHeight());
         List<TortillaChip> chips = new ArrayList<TortillaChip>();
         for(int k = 1; k <= 50; k++) {
             TortillaChip tc = new TortillaChip(this);
-            chips.add(tc);
+            int randX = rand.nextInt(curWorld.getWidth());
+            int randY = rand.nextInt(curWorld.getHeight());
+            getWorld().addObject(tc, randX, randY);
         }
-        for(TortillaChip c : chips) {
-            getWorld().addObject(c, randX, randY);
-        }
-        xActivated = false;
-    }
-    private void bufferMovement() {
-        //cease ability usage temporarily
     }
 }

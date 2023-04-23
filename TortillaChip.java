@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.*;
 public class TortillaChip extends Weapon {
     private static int damage = 10;
     public static GreenfootImage img;
@@ -35,9 +36,26 @@ public class TortillaChip extends Weapon {
     }
     
     private void moveChip() {
-        if(e.xActivated) {
+        if(e.usedUlt) {
             this.setRotation(90);
-            this.setLocation(this.getX(), this.getY() + 8); 
+            this.setLocation(this.getX(), this.getY() + 8);
+            clear();
+            e.ultDur++;
+            if(e.ultDur == 6000) {
+                World curWorld = getWorld();
+                List<TortillaChip> chips = curWorld.getObjects(TortillaChip.class);
+                List<TortillaChip> chipsToRemove = new ArrayList<>();
+                for(TortillaChip c : chips) {
+                    if(c.getRotation() == 90) {
+                        chipsToRemove.add(c);
+                    }
+                }
+                for(TortillaChip c : chipsToRemove) {
+                    curWorld.removeObject(c);
+                }
+                e.usedUlt = false;
+                e.ultDur = 0;
+            }
         }
         else {
             this.setRotation(0);
@@ -45,8 +63,16 @@ public class TortillaChip extends Weapon {
                 this.setLocation(this.getX() + 8, this.getY());
             }
             else {
-                this.setLocation(this.getX() + 8, this.getY());
-            }    
+                this.setLocation(this.getX() - 8, this.getY());
+            }
+            super.clear();
+        }
+    }
+
+    @Override
+    protected void clear() {
+        if(this.isAtEdge()) {
+            this.setLocation(this.getX(), 0);
         }
     }
 }

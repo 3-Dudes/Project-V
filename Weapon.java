@@ -35,15 +35,17 @@ public abstract class Weapon extends Actor {
         }
     }
     public void detectCollision(String name, int damage) {
-        if(this.isAtEdge()) {
-            getWorld().removeObject(this);
-        }
         if(getWorld() != null) {
             Player player = (Player) this.getOneIntersectingObject(Player.class);
             if(player != null && !(player instanceof ElMacho) && !intersects) {
                 player.decreaseHealth(damage);
                 intersects = true;
             }
+        }
+    }
+    protected void clear() {
+        if(this.isAtEdge()) {
+            getWorld().removeObject(this);
         }
     }
 }
