@@ -120,7 +120,8 @@ public class ElMacho extends Player {
     }    
 
     public void q() {
-        
+        this.setImage((GreenfootImage) null);
+        new WrestlingChamp(true);
     }
 
     public void c() {
