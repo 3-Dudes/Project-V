@@ -43,9 +43,4 @@ public abstract class Weapon extends Actor {
             }
         }
     }
-    protected void clear() {
-        if(this.isAtEdge()) {
-            getWorld().removeObject(this);
-        }
-    }
 }

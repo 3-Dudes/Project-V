@@ -8,6 +8,4 @@ comment3.params=
 comment3.target=void\ act()
 comment4.params=
 comment4.target=void\ moveChip()
-comment5.params=
-comment5.target=void\ clear()
-numComments=6
+numComments=5

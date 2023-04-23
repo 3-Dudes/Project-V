@@ -6,6 +6,7 @@ public class TortillaChip extends Weapon {
     public static GreenfootImage leftImg;
     private boolean right;
     private ElMacho e;
+    private boolean shouldRemove;
     
     public TortillaChip(ElMacho e) {
         this(false, e);
@@ -15,6 +16,7 @@ public class TortillaChip extends Weapon {
         super(e);
         this.e = e;
         this.right = right;
+        this.shouldRemove = false;
         rightImg = this.getImage();
         rightImg.scale(rightImg.getWidth() / 7, rightImg.getHeight() / 7);
         rightImg.mirrorHorizontally();
@@ -27,18 +29,25 @@ public class TortillaChip extends Weapon {
 
     public void act() {
         moveChip();
-        if(this.isTouching(BubbleGum.class)) {
-            this.removeTouching(BubbleGum.class);
+        BubbleGum bg = (BubbleGum) this.getOneIntersectingObject(BubbleGum.class);
+        if(bg != null) {
+            bg.pop();
+            shouldRemove = true;
         }
         detectCollision("ElMacho", damage);
+        if(shouldRemove) {
+            getWorld().removeObject(this);   
+        }
     }
     
     private void moveChip() {
         if(e.usedUlt) {
             this.setRotation(90);
             this.setLocation(this.getX(), this.getY() + 8);
-            clear();
             e.ultDur++;
+            if(this.isAtEdge()) {
+                this.setLocation(this.getX(), 0);
+            }
             if(e.ultDur == 6000) {
                 World curWorld = getWorld();
                 List<TortillaChip> chips = curWorld.getObjects(TortillaChip.class);
@@ -57,22 +66,15 @@ public class TortillaChip extends Weapon {
         }
         else {
             this.setRotation(0);
+            if(this.isAtEdge()) {
+                shouldRemove = true;
+            }
             if(right) {
                 this.setLocation(this.getX() + 8, this.getY());
             }
             else {
                 this.setLocation(this.getX() - 8, this.getY());
             }
-            if(this != null) {
-                super.clear();   
-            }
-        }
-    }
-
-    @Override
-    protected void clear() {
-        if(this.isAtEdge()) {
-            this.setLocation(this.getX(), 0);
         }
     }
 }
