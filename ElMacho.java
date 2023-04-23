@@ -35,7 +35,7 @@ public class ElMacho extends Player {
     public void addedToWorld(World world) {
         super.addedToWorld(world);
         ammoGui = new AmmoGUI(5, 5, 
-            new TortillaChip(this).getImage(), pastHalfway);
+            new TortillaChip(facingRight(), this).getImage(), pastHalfway);
         if(pastHalfway) {
             this.setImage(left);
             getWorld().addObject(ammoGui, 1100, 400);
@@ -121,7 +121,7 @@ public class ElMacho extends Player {
     }    
 
     public void q() {
-
+        
     }
 
     public void c() {
@@ -132,7 +132,7 @@ public class ElMacho extends Player {
         getWorld().addObject(e, this.getX(), this.getY());    
     }
     
-    public void x() {//make it rain(macho ult)
+    public void x() { //make it rain(macho ult)
         /*idea is to make several big chips in the sky that flash before they 
          * fall down in random orders (disable firing so not too OP)
          */

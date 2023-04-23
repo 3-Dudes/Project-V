@@ -2,36 +2,34 @@ import greenfoot.*;
 import java.util.*;
 public class TortillaChip extends Weapon {
     private static int damage = 10;
-    public static GreenfootImage img;
-    public static GreenfootImage left;
+    public static GreenfootImage rightImg;
+    public static GreenfootImage leftImg;
     private boolean right;
     private ElMacho e;
+    
+    public TortillaChip(ElMacho e) {
+        this(false, e);
+    }
+    
     public TortillaChip(boolean right, ElMacho e) {
         super(e);
         this.e = e;
         this.right = right;
-        img = this.getImage();
-        img.scale(img.getWidth() / 7, img.getHeight() / 7);
-        img.mirrorHorizontally();
-        left = new GreenfootImage(img);
-        left.mirrorHorizontally();
-        setImage(img);
+        rightImg = this.getImage();
+        rightImg.scale(rightImg.getWidth() / 7, rightImg.getHeight() / 7);
+        rightImg.mirrorHorizontally();
+        leftImg = new GreenfootImage(rightImg);
+        leftImg.mirrorHorizontally();
         if(!right) {
-            getImage().mirrorHorizontally();
+            this.setImage(leftImg);
         }
-    }
-
-    public TortillaChip(ElMacho e) {
-        super(e);
-        this.e = e;
-        img = this.getImage();
-        img.scale(img.getWidth() / 7, img.getHeight() / 7);
-        img.mirrorHorizontally();
-        setImage(img);
     }
 
     public void act() {
         moveChip();
+        if(this.isTouching(BubbleGum.class)) {
+            this.removeTouching(BubbleGum.class);
+        }
         detectCollision("ElMacho", damage);
     }
     
@@ -65,7 +63,9 @@ public class TortillaChip extends Weapon {
             else {
                 this.setLocation(this.getX() - 8, this.getY());
             }
-            super.clear();
+            if(this != null) {
+                super.clear();   
+            }
         }
     }
 
