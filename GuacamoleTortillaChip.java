@@ -16,7 +16,6 @@ public class GuacamoleTortillaChip extends Ability {
         }
         else{
             this.setLocation(this.getX() - 8, this.getY());
-
         }
         if(this.isAtEdge()) {
             getWorld().removeObject(this);

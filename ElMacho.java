@@ -28,7 +28,6 @@ public class ElMacho extends Player {
         ultDur = 0;
         rand = new Random();
         e = new GuacamoleTortillaChip();
-        q = new BubbleGum();
     }
 
     @Override
@@ -37,11 +36,11 @@ public class ElMacho extends Player {
         ammoGui = new AmmoGUI(5, 5, 
             new TortillaChip(facingRight(), this).getImage(), pastHalfway);
         if(pastHalfway) {
-            this.setImage(left);
+            this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1100, 400);
         }
         else {
-            this.setImage(right);
+            this.setImage(getRightImage());
             getWorld().addObject(ammoGui, 5, 400);
         }
         reload();
@@ -49,7 +48,8 @@ public class ElMacho extends Player {
 
     public void singleFire() {
         if(ammoGui.cur > 0) {
-            getWorld().addObject(new TortillaChip(facingRight(), this), getX(), getY());
+            getWorld().addObject(
+                new TortillaChip(facingRight(), this), getX(), getY());
             ammoGui.loseChip();
         }
     }
@@ -116,7 +116,6 @@ public class ElMacho extends Player {
         if(!Greenfoot.isKeyDown("V") && vPressed) {
             vPressed = false;
         }
-        
         checkAbilities();
     }    
 
@@ -125,8 +124,8 @@ public class ElMacho extends Player {
     }
 
     public void c() {
-
-    }
+        
+    }   
 
     public void e() {
         getWorld().addObject(e, this.getX(), this.getY());    

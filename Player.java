@@ -25,8 +25,8 @@ public abstract class Player extends Actor {
     
     protected boolean pastHalfway;
     
-    protected GreenfootImage right;
-    protected GreenfootImage left;
+    private GreenfootImage right;
+    private GreenfootImage left;
     
     private String name;
     public Player(String name, int factor) { 
@@ -212,6 +212,12 @@ public abstract class Player extends Actor {
     }
     public boolean facingRight() {
         return isFacingRight;
+    }
+    public GreenfootImage getRightImage() {
+        return right;
+    }
+    public GreenfootImage getLeftImage() {
+        return left;
     }
     public abstract void reload();
     public abstract void singleFire();
