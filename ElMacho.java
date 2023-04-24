@@ -11,9 +11,9 @@ public class ElMacho extends Player {
     private boolean rPressed;
     public boolean usedUlt;
     public int ultDur;
-    public GreenfootImage eduardo;
+    public static GreenfootImage eduardo;
     public boolean isEduardo;
-    private GreenfootImage elMacho;
+    public static GreenfootImage elMacho;
 
     private Random rand;
     public ElMacho() {
@@ -90,30 +90,27 @@ public class ElMacho extends Player {
     }
 
     private void changePersona() {
-        GreenfootImage tempLeft = null;
-        GreenfootImage tempRight = null;
+        GreenfootImage tempRight = new GreenfootImage(elMacho);
+        GreenfootImage tempLeft = new GreenfootImage(tempRight);
+        tempLeft.mirrorHorizontally();
         if(getImage() != null) {
             if(isEduardo) {
                 tempLeft = new GreenfootImage(eduardo);
                 tempRight = new GreenfootImage(tempLeft);
                 tempRight.mirrorHorizontally();
             }
-            else {
-                tempRight = new GreenfootImage(elMacho);
-                tempLeft = new GreenfootImage(tempRight);
-                tempLeft.mirrorHorizontally();
+            setRightImage(tempRight);
+            setLeftImage(tempLeft);
+            if(facingRight()) {
+                this.setImage(tempRight);
             }
-        }
-        setRightImage(tempRight);
-        setLeftImage(tempLeft);
-        if(facingRight()) {
-            this.setImage(tempRight);
-        }
-        else {
-            this.setImage(tempLeft);
+            else {
+                this.setImage(tempLeft);
+            }
         }
     }
 
+    @Override
     public void act() {
         super.act();
         if(canCast) {
@@ -157,10 +154,12 @@ public class ElMacho extends Player {
     }    
 
     public void q() {
-        getWorld().addObject(q, this.getX(), this.getY());
-        this.setImage((GreenfootImage) null);
-        this.canMove = false;
-        this.canCast = false;
+        if(!isEduardo) {
+            getWorld().addObject(q, this.getX(), this.getY());
+            this.setImage((GreenfootImage) null);
+            this.canMove = false;
+            this.canCast = false;    
+        }
     }
 
     public void c() {

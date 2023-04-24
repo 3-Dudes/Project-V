@@ -46,7 +46,7 @@ public class WrestlingChamp extends Ability  {
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
             macho.setRotation(0);
-            macho.setImage(macho.getRightImage());
+            macho.setImage(ElMacho.elMacho);
             macho.canMove = true;
             isFinished = true;
         }

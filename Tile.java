@@ -17,7 +17,7 @@ public class Tile extends Ability {
     
     public Tile(ElMacho macho) {
         super(4500, 0);
-        yellowTile = getImage();
+        yellowTile = new GreenfootImage("yellowtile.png");
         blueTile = new GreenfootImage("bluetile.png");
         redTile = new GreenfootImage("redtile.png");
         greenTile = new GreenfootImage("greentile.png");
@@ -45,22 +45,22 @@ public class Tile extends Ability {
     public void act() {
         changeTileColor();
         this.setLocation(macho.getX(), this.getY());
-        stopPoint = rand.nextInt(21) * 2 + 18;
+        stopPoint = rand.nextInt(21) * 2 + 2;
         if(tileSelectDuration == stopPoint) {
             hasSelected = true;
             changeTileColor();
             if(getImage() == redTile) {
-                macho.isEduardo = true;
+                
             }
             else if(getImage() == blueTile) {
-                macho.isEduardo = true;
+                
             }
             else if(getImage() == greenTile) {
-                detectCollision("ElMacho");
-                macho.isEduardo = true;
+                
             }
             else if(getImage() == yellowTile) {
-                
+                detectCollision("ElMacho");
+                macho.isEduardo = true;
             }
             moveDuration++;
         }
@@ -80,6 +80,9 @@ public class Tile extends Ability {
         return hasSelected;
     }
     private void changeTileColor() {
+        if(tileSelectDuration == 0) {
+            this.setImage(yellowTile);
+        }
         if(tileSelectDuration == 10) {
             this.setImage(redTile);    
         }
@@ -90,7 +93,6 @@ public class Tile extends Ability {
             this.setImage(greenTile);
         }
         if(tileSelectDuration == 40) {
-            this.setImage(yellowTile);
             tileSelectDuration = 0;
         }
     }
