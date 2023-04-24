@@ -123,6 +123,7 @@ public class ElMacho extends Player {
     public void q() {
         getWorld().addObject(q, this.getX(), this.getY());
         this.setImage((GreenfootImage) null);
+        this.canMove = false;
     }
 
     public void c() {
