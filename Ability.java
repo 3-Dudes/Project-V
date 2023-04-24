@@ -5,12 +5,14 @@ public abstract class Ability extends Actor {
     private int damage;
     private boolean pastHalfway;
     protected boolean right;
+    protected boolean intersects;
     
     public Ability(int cooldown, int damage) {
         this.charge = cooldown;
         this.cooldown = cooldown;
         this.damage = damage;
         this.right = right;
+        this.intersects = false;
         this.pastHalfway = pastHalfway;
     }
     
@@ -32,8 +34,10 @@ public abstract class Ability extends Actor {
     public void detectCollision(String name) {
         if(getWorld() != null) {
             Player p = (Player) this.getOneIntersectingObject(Player.class);   
-            if(p != null && !p.getClass().getName().equals(name)) {
+            if(p != null && !p.getClass().getName().equals(name)
+                    && !intersects) {
                 p.decreaseHealth(this.getDamage());
+                intersects = true;
             }
         }
     }
