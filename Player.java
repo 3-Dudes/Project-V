@@ -9,6 +9,7 @@ public abstract class Player extends Actor {
     private int playerScore;
     
     private boolean isFacingRight;
+    protected boolean canMove;
     
     private Shield shield;
     
@@ -29,6 +30,8 @@ public abstract class Player extends Actor {
     private GreenfootImage left;
     private int factor;
     
+    private int timeDisabled;
+    
     private String name;
     public Player(String name, int factor) { 
         cPressed = false;
@@ -46,6 +49,8 @@ public abstract class Player extends Actor {
         abilities.add(q);
         abilities.add(e);
         this.factor = factor;
+        this.canMove = true;
+        timeDisabled = 0;
         
         right = this.getImage();
         scaleImage(right);
@@ -86,14 +91,17 @@ public abstract class Player extends Actor {
     }
     
     public boolean isDead() {
-        return health <= 0;
+        if(health <= 0) {
+            canMove = false;
+            return true;
+        }
+        return false;
     }
     
     public void act() {
-        if(!this.isDead()) {
+        if(!this.isDead() && canMove) {
             move();
             checkEdges();
-            
             if(Greenfoot.isKeyDown("C") && !cPressed) {
                 cPressed = true;
             }
@@ -130,18 +138,24 @@ public abstract class Player extends Actor {
                 getWorld().removeObject(shield);
             }    
         }
-        else {
-            if(facingRight()) {
-                this.setRotation(270);    
-            }
-            else {
-                this.setRotation(90);
-            }
+        if(!canMove) {
+            timeDisabled += 1;
+        }
+        if(getTimeDisabled() == 100 && !canMove && this.getRotation() == 90) {
+            this.setRotation(0);
+            canMove = true;
+            setTimeDisabled(0);
         }
     }
     
     public void scaleImage(GreenfootImage img) {
         img.scale(img.getWidth() / factor, img.getHeight() / factor);
+    }
+    public int getTimeDisabled() {
+        return timeDisabled;
+    }
+    public void setTimeDisabled(int timeDisabled) {
+        this.timeDisabled = timeDisabled;
     }
     
     private void checkEdges() {

@@ -18,6 +18,7 @@ public class WrestlingChamp extends Ability  {
         flyLeft = new GreenfootImage(flyRight);
         flyLeft.mirrorVertically();
     }
+    
     @Override
     public void act() {
         if(macho.facingRight()) {
@@ -32,10 +33,21 @@ public class WrestlingChamp extends Ability  {
     }
     @Override
     public void detectCollision(String name) {
-        super.detectCollision(name);
+        if(getWorld() != null) {
+            hitPlayer = (Player) this.getOneIntersectingObject(Player.class);
+            if(hitPlayer != null && !hitPlayer.getClass().getName().equals(name)
+                && !intersects) {
+                hitPlayer.decreaseHealth(this.getDamage());
+                intersects = true;
+                hitPlayer.canMove = false;
+                hitPlayer.setRotation(90);
+            } 
+        }
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
+            macho.setRotation(0);
             macho.setImage(macho.getRightImage());
+            macho.canMove = true;
         }
     }
 }
