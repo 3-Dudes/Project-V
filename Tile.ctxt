@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Tile
+comment1.params=macho
+comment1.target=Tile(ElMacho)
+comment2.params=
+comment2.target=void\ addTiles()
+comment3.params=img
+comment3.target=void\ scale(greenfoot.GreenfootImage)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ changeTileColor()
+numComments=6
