@@ -53,6 +53,9 @@ public abstract class Player extends Actor {
         left.mirrorHorizontally();
     }
     
+    public boolean facingRight() {
+        return isFacingRight;
+    }
     public int getHealth() {
         return health;
     }
@@ -214,9 +217,6 @@ public abstract class Player extends Actor {
     }
     public int getPlayerScore() {
         return playerScore;
-    }
-    public boolean facingRight() {
-        return isFacingRight;
     }
     public GreenfootImage getRightImage() {
         return right;
