@@ -12,7 +12,9 @@ public class ElMacho extends Player {
     public boolean usedUlt;
     public int ultDur;
     public GreenfootImage eduardo;
-    
+    public boolean isEduardo;
+    private GreenfootImage elMacho;
+
     private Random rand;
     public ElMacho() {
         super("El Macho", 2);
@@ -26,11 +28,13 @@ public class ElMacho extends Player {
         bPressed = false;
         rPressed = false;
         usedUlt = false;
+        isEduardo = false;
         ultDur = 0;
         rand = new Random();
         e = new GuacamoleTortillaChip(facingRight());
         q = new WrestlingChamp(this);
         c = new Tile(this);
+        elMacho = getImage();
         eduardo = new GreenfootImage("eduardo_perez.png");
         eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
     }
@@ -85,6 +89,31 @@ public class ElMacho extends Player {
         timeToReload++;
     }
 
+    private void changePersona() {
+        GreenfootImage tempLeft = null;
+        GreenfootImage tempRight = null;
+        if(getImage() != null) {
+            if(isEduardo) {
+                tempLeft = new GreenfootImage(eduardo);
+                tempRight = new GreenfootImage(tempLeft);
+                tempRight.mirrorHorizontally();
+            }
+            else {
+                tempRight = new GreenfootImage(elMacho);
+                tempLeft = new GreenfootImage(tempRight);
+                tempLeft.mirrorHorizontally();
+            }
+        }
+        setRightImage(tempRight);
+        setLeftImage(tempLeft);
+        if(facingRight()) {
+            this.setImage(tempRight);
+        }
+        else {
+            this.setImage(tempLeft);
+        }
+    }
+
     public void act() {
         super.act();
         if(canCast) {
@@ -100,7 +129,7 @@ public class ElMacho extends Player {
             if(needToReload) {
                 timedReload();
             }
-    
+
             if(Greenfoot.isKeyDown("B") && !bPressed) {
                 bPressed = true;
                 if(needToReload) {
@@ -111,7 +140,7 @@ public class ElMacho extends Player {
             if(!Greenfoot.isKeyDown("B") && bPressed) {
                 bPressed = false;
             } 
-    
+
             if(Greenfoot.isKeyDown("V") && !vPressed) {
                 vPressed = true;
                 if(needToReload) {
@@ -123,6 +152,7 @@ public class ElMacho extends Player {
                 vPressed = false;
             }    
         }
+        //changePersona();
         checkAbilities();
     }    
 
@@ -141,13 +171,12 @@ public class ElMacho extends Player {
         getWorld().addObject(e, this.getX(), this.getY());
         this.canCast = false;
     }
-    
+
     public void x() { //make it rain(macho ult)
         /*idea is to make several big chips in the sky that flash before they 
          * fall down in random orders (disable firing so not too OP)
          */
-        
-        
+
         //Anirudh
         //my approach to el macho's ult
         World curWorld = getWorld();

@@ -92,6 +92,13 @@ public abstract class Player extends Actor {
         return hp;
     }
     
+    public void setRightImage(GreenfootImage right) {
+        this.right = right;
+    }
+    public void setLeftImage(GreenfootImage left) {
+        this.left = left;
+    }
+    
     public boolean isDead() {
         if(health <= 0) {
             canMove = false;

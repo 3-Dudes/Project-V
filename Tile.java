@@ -50,14 +50,14 @@ public class Tile extends Ability {
             hasSelected = true;
             changeTileColor();
             if(getImage() == redTile) {
-                
+                macho.isEduardo = true;
             }
             else if(getImage() == blueTile) {
-                
+                macho.isEduardo = true;
             }
             else if(getImage() == greenTile) {
                 detectCollision("ElMacho");
-                macho.setImage(macho.eduardo);
+                macho.isEduardo = true;
             }
             else if(getImage() == yellowTile) {
                 
@@ -71,6 +71,9 @@ public class Tile extends Ability {
             getWorld().removeObject(this);
             moveDuration = 0;
             isFinished = true;
+            if(macho.isEduardo) {
+                macho.isEduardo = false;
+            }
         }
     }
     public boolean hasSelected() {
