@@ -8,15 +8,17 @@ public class GuacamoleTortillaChip extends Ability {
     }
     public GuacamoleTortillaChip(boolean right) {
         super(800, 20);
-        rightImg = this.getImage();
-        leftImg = new GreenfootImage(rightImg);
-        leftImg.mirrorHorizontally();
-        this.right = right;
-        rightImg.scale(rightImg.getWidth() / 7, rightImg.getHeight() / 7);
+        leftImg = this.getImage();
         leftImg.scale(leftImg.getWidth() / 7, leftImg.getHeight() / 7);
-        this.setImage(rightImg);
+        rightImg = new GreenfootImage(leftImg);
+        rightImg.mirrorHorizontally();
+        this.right = right;
+        if(right) {
+            this.setImage(rightImg);
+        }
     }
 
+    @Override
     public void act() {
         super.act();
         if(right) {
