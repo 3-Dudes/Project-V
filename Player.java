@@ -33,7 +33,7 @@ public abstract class Player extends Actor {
     
     private int timeDisabled;
     
-    private String name;
+    private String name;    
     public Player(String name, int factor) { 
         cPressed = false;
         qPressed = false;
@@ -100,8 +100,26 @@ public abstract class Player extends Actor {
         return false;
     }
     
+    public Ability getCAbility() {
+        return c;
+    }
+    public Ability getQAbility() {
+        return q;
+    }
+    public Ability getEAbility() {
+        return e;
+    }
+    public Ability getUltimateAbility() {
+        return x;
+    }
+    
     public void act() {
         if(!this.isDead()) {
+            if(getTimeDisabled() == 100 && !canMove && this.getRotation() == 90) {
+                this.setRotation(0);
+                canMove = true;
+                setTimeDisabled(0);
+            }
             if(canMove) {
                 move();
                 checkEdges();    
@@ -149,11 +167,6 @@ public abstract class Player extends Actor {
         }
         if(!canMove) {
             timeDisabled += 1;
-        }
-        if(getTimeDisabled() == 100 && !canMove && this.getRotation() == 90) {
-            this.setRotation(0);
-            canMove = true;
-            setTimeDisabled(0);
         }
     }
     
