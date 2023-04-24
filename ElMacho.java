@@ -152,7 +152,7 @@ public class ElMacho extends Player {
                 vPressed = false;
             }    
         }
-        //changePersona();
+        changePersona();
         checkAbilities();
     }    
 
