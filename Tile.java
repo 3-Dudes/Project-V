@@ -6,12 +6,15 @@ public class Tile extends Ability {
     private static GreenfootImage blueTile;
     private static GreenfootImage greenTile;
     private static GreenfootImage yellowTile;
+    
     private int tileSelectDuration;
     private int moveDuration;
     private ElMacho macho;
     private boolean hasSelected;
     private Random rand;
     private int stopPoint;
+    private int effectDuration;
+    
     public Tile(ElMacho macho) {
         super(4500, 0);
         yellowTile = getImage();
@@ -21,6 +24,7 @@ public class Tile extends Ability {
         tiles = new ArrayList<GreenfootImage>();
         this.setImage(yellowTile);
         tileSelectDuration = 0;
+        effectDuration = 0;
         this.macho = macho;
         hasSelected = false;
         rand = new Random();
@@ -45,16 +49,32 @@ public class Tile extends Ability {
         if(tileSelectDuration == stopPoint) {
             hasSelected = true;
             changeTileColor();
+            if(getImage() == redTile) {
+                
+            }
+            else if(getImage() == blueTile) {
+                
+            }
+            else if(getImage() == greenTile) {
+                detectCollision("ElMacho");
+                macho.setImage(macho.eduardo);
+            }
+            else if(getImage() == yellowTile) {
+                
+            }
             moveDuration++;
         }
         if(!hasSelected) {
             tileSelectDuration += 2;   
         }
-        System.out.println(moveDuration);
         if(moveDuration == 35) {
             getWorld().removeObject(this);
             moveDuration = 0;
+            isFinished = true;
         }
+    }
+    public boolean hasSelected() {
+        return hasSelected;
     }
     private void changeTileColor() {
         if(tileSelectDuration == 10) {
@@ -69,6 +89,27 @@ public class Tile extends Ability {
         if(tileSelectDuration == 40) {
             this.setImage(yellowTile);
             tileSelectDuration = 0;
+        }
+    }
+    @Override
+    public void detectCollision(String name) {
+        if(getWorld() != null) {
+            hitPlayer = (Player) this.getOneIntersectingObject(Player.class);   
+            if(hitPlayer != null && !hitPlayer.getClass().getName().equals(name)
+                    && !intersects) {
+                hitPlayer.decreaseHealth(this.getDamage());
+                intersects = true;
+                performAfterEffect();
+            }
+        }
+    }
+    private void performAfterEffect() {
+        effectDuration++;
+        if(effectDuration >= 1 && effectDuration < 50) {
+            hitPlayer.decreaseHealth(1);
+        }
+        if(effectDuration == 50) {
+            effectDuration = 0;
         }
     }
 }

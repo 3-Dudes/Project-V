@@ -11,6 +11,7 @@ public class ElMacho extends Player {
     private boolean rPressed;
     public boolean usedUlt;
     public int ultDur;
+    public GreenfootImage eduardo;
     
     private Random rand;
     public ElMacho() {
@@ -27,9 +28,11 @@ public class ElMacho extends Player {
         usedUlt = false;
         ultDur = 0;
         rand = new Random();
-        e = new GuacamoleTortillaChip();
+        e = new GuacamoleTortillaChip(facingRight());
         q = new WrestlingChamp(this);
         c = new Tile(this);
+        eduardo = new GreenfootImage("eduardo_perez.png");
+        eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
     }
 
     @Override
@@ -132,7 +135,6 @@ public class ElMacho extends Player {
 
     public void c() {
         getWorld().addObject(c, this.getX(), this.getY() - 150);
-        
     }   
 
     public void e() {
