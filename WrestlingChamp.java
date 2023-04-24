@@ -48,6 +48,7 @@ public class WrestlingChamp extends Ability  {
             macho.setRotation(0);
             macho.setImage(macho.getRightImage());
             macho.canMove = true;
+            isFinished = true;
         }
     }
 }

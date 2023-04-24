@@ -29,6 +29,7 @@ public class ElMacho extends Player {
         rand = new Random();
         e = new GuacamoleTortillaChip();
         q = new WrestlingChamp(this);
+        c = new Tile(this);
     }
 
     @Override
@@ -83,39 +84,41 @@ public class ElMacho extends Player {
 
     public void act() {
         super.act();
-        if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
-            if(Greenfoot.isKeyDown("R") && !rPressed) {
-                rPressed = true;
+        if(canCast) {
+            if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
+                if(Greenfoot.isKeyDown("R") && !rPressed) {
+                    rPressed = true;
+                }
+                needToReload = true;
             }
-            needToReload = true;
-        }
-        if(!Greenfoot.isKeyDown("R") && rPressed) {
-            rPressed = false;
-        }
-        if(needToReload) {
-            timedReload();
-        }
-
-        if(Greenfoot.isKeyDown("B") && !bPressed) {
-            bPressed = true;
+            if(!Greenfoot.isKeyDown("R") && rPressed) {
+                rPressed = false;
+            }
             if(needToReload) {
-                needToReload = false;
+                timedReload();
             }
-            burstFire();
-        }
-        if(!Greenfoot.isKeyDown("B") && bPressed) {
-            bPressed = false;
-        } 
-
-        if(Greenfoot.isKeyDown("V") && !vPressed) {
-            vPressed = true;
-            if(needToReload) {
-                needToReload = false;
+    
+            if(Greenfoot.isKeyDown("B") && !bPressed) {
+                bPressed = true;
+                if(needToReload) {
+                    needToReload = false;
+                }
+                burstFire();
             }
-            singleFire();
-        }
-        if(!Greenfoot.isKeyDown("V") && vPressed) {
-            vPressed = false;
+            if(!Greenfoot.isKeyDown("B") && bPressed) {
+                bPressed = false;
+            } 
+    
+            if(Greenfoot.isKeyDown("V") && !vPressed) {
+                vPressed = true;
+                if(needToReload) {
+                    needToReload = false;
+                }
+                singleFire();
+            }
+            if(!Greenfoot.isKeyDown("V") && vPressed) {
+                vPressed = false;
+            }    
         }
         checkAbilities();
     }    
@@ -124,14 +127,17 @@ public class ElMacho extends Player {
         getWorld().addObject(q, this.getX(), this.getY());
         this.setImage((GreenfootImage) null);
         this.canMove = false;
+        this.canCast = false;
     }
 
     public void c() {
+        getWorld().addObject(c, this.getX(), this.getY() - 150);
         
     }   
 
     public void e() {
-        getWorld().addObject(e, this.getX(), this.getY());    
+        getWorld().addObject(e, this.getX(), this.getY());
+        this.canCast = false;
     }
     
     public void x() { //make it rain(macho ult)
@@ -144,7 +150,7 @@ public class ElMacho extends Player {
         //my approach to el macho's ult
         World curWorld = getWorld();
         usedUlt = true;
-        
+        canCast = false;
         List<TortillaChip> chips = new ArrayList<TortillaChip>();
         for(int k = 1; k <= 50; k++) {
             TortillaChip tc = new TortillaChip(this);

@@ -10,6 +10,7 @@ public abstract class Player extends Actor {
     
     private boolean isFacingRight;
     protected boolean canMove;
+    protected boolean canCast;
     
     private Shield shield;
     
@@ -50,6 +51,7 @@ public abstract class Player extends Actor {
         abilities.add(e);
         this.factor = factor;
         this.canMove = true;
+        this.canCast = true;
         timeDisabled = 0;
         
         right = this.getImage();
@@ -99,44 +101,51 @@ public abstract class Player extends Actor {
     }
     
     public void act() {
-        if(!this.isDead() && canMove) {
-            move();
-            checkEdges();
-            if(Greenfoot.isKeyDown("C") && !cPressed) {
-                cPressed = true;
+        if(!this.isDead()) {
+            if(canMove) {
+                move();
+                checkEdges();    
             }
-            if(!Greenfoot.isKeyDown("C") && cPressed) {
-                cPressed = false;
-            }
-            
-            if(Greenfoot.isKeyDown("Q") && !qPressed) {
-                qPressed = true;
-            }
-            if(!Greenfoot.isKeyDown("Q") && qPressed) {
-                qPressed = false;
-            }        
-            
-            if(Greenfoot.isKeyDown("E") && !ePressed) {
-                ePressed = true;
-            }
-            if(!Greenfoot.isKeyDown("E") && ePressed) {
-                ePressed = false;
-            }
-            
-            if(Greenfoot.isKeyDown("X") && !xPressed) {
-                xPressed = true;
-                x();
-            }
-            if(!Greenfoot.isKeyDown("X") && xPressed) {
-                xPressed = false;
-            }
-            
-            if(Greenfoot.isKeyDown("M")) {
-                getWorld().addObject(shield, this.getX(), this.getY());
-            }
-            else {
-                getWorld().removeObject(shield);
-            }    
+            if(canCast) {
+                if(Greenfoot.isKeyDown("C") && !cPressed) {
+                    cPressed = true;
+                }
+                if(!Greenfoot.isKeyDown("C") && cPressed) {
+                    cPressed = false;
+                }
+                
+                if(Greenfoot.isKeyDown("Q") && !qPressed) {
+                    qPressed = true;
+                }
+                if(!Greenfoot.isKeyDown("Q") && qPressed) {
+                    qPressed = false;
+                }        
+                
+                if(Greenfoot.isKeyDown("E") && !ePressed) {
+                    ePressed = true;
+                }
+                if(!Greenfoot.isKeyDown("E") && ePressed) {
+                    ePressed = false;
+                }
+                
+                if(Greenfoot.isKeyDown("X") && !xPressed) {
+                    xPressed = true;
+                    x();
+                }
+                if(!Greenfoot.isKeyDown("X") && xPressed) {
+                    xPressed = false;
+                }
+                
+                if(Greenfoot.isKeyDown("M")) {
+                    getWorld().addObject(shield, this.getX(), this.getY());
+                }
+                else {
+                    getWorld().removeObject(shield);
+                }
+            }   
+            if(this instanceof ElMacho) updateCast(c);
+            updateCast(q);
+            updateCast(e);
         }
         if(!canMove) {
             timeDisabled += 1;
@@ -212,6 +221,22 @@ public abstract class Player extends Actor {
             ePressed = false;
             e.setCharge(e.getCooldown());
         }
+        
+        if(c.abilityReady()) {
+            if(cPressed) {
+                c();
+                c.setCharge(c.getCooldown() - 1);    
+            }
+        }
+        int cCharge = c.getCharge();
+        if(cCharge < c.getCooldown()) {
+            cCharge--;
+            c.setCharge(cCharge);
+        }
+        if(c.getCharge() == 0) {
+            cPressed = false;
+            c.setCharge(c.getCooldown());
+        }
     }
     private void updatePosition() {
         if(this.getX() >= 600) {
@@ -237,6 +262,11 @@ public abstract class Player extends Actor {
     }
     public GreenfootImage getLeftImage() {
         return left;
+    }
+    private void updateCast(Ability ab) {
+        if(ab.isFinished()) {
+            canCast = true;
+        }
     }
     public abstract void reload();
     public abstract void singleFire();

@@ -7,6 +7,7 @@ public abstract class Ability extends Actor {
     protected boolean right;
     protected boolean intersects;
     protected Player hitPlayer;
+    protected boolean isFinished;
     
     public Ability(int cooldown, int damage) {
         this.charge = cooldown;
@@ -14,6 +15,7 @@ public abstract class Ability extends Actor {
         this.damage = damage;
         this.right = right;
         this.intersects = false;
+        this.isFinished = false;
         this.pastHalfway = pastHalfway;
     }
     
@@ -31,6 +33,9 @@ public abstract class Ability extends Actor {
     }
     public boolean abilityReady() {
         return charge == cooldown;
+    }
+    public boolean isFinished() {
+        return isFinished;
     }
     public void detectCollision(String name) {
         if(getWorld() != null) {

@@ -39,6 +39,7 @@ public class BubbleGum extends Ability {
         }
         if(bounces == 4) {
             this.pop();
+            isFinished = true;
             return;
         }
         detectCollision("Balthazar");
