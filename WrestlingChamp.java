@@ -1,16 +1,13 @@
 import greenfoot.*;
 public class WrestlingChamp extends Ability  {
-    // instance variables - replace the example below with your own
-    private boolean movingRight;
     private static GreenfootImage flyRight;
     private static GreenfootImage flyLeft;
     private ElMacho macho;
     
-    public WrestlingChamp(boolean movingRight, ElMacho macho) {
+    public WrestlingChamp(ElMacho macho) {
         super(1000, 40);
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
-        this.movingRight = movingRight;
         this.macho = macho;
         makeSprites();
     }
@@ -21,11 +18,9 @@ public class WrestlingChamp extends Ability  {
         flyLeft = new GreenfootImage(flyRight);
         flyLeft.mirrorVertically();
     }
-
     @Override
     public void act() {
-        super.act();
-        if(movingRight) {
+        if(macho.facingRight()) {
             this.setImage(flyRight);
             this.setLocation(this.getX() + 20, this.getY());
         }
@@ -37,13 +32,7 @@ public class WrestlingChamp extends Ability  {
     }
     @Override
     public void detectCollision(String name) {
-        if(getWorld() != null) {
-            Player p = (Player) this.getOneIntersectingObject(Player.class);   
-            if(p != null && !p.getClass().getName().equals(name)) {
-                p.decreaseHealth(this.getDamage());
-                this.setRotation(0);
-            }
-        }
+        super.detectCollision(name);
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
             macho.setImage(macho.getRightImage());

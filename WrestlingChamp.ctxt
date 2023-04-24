@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=WrestlingChamp
-comment1.params=movingRight\ macho
-comment1.target=WrestlingChamp(boolean,\ ElMacho)
+comment1.params=macho
+comment1.target=WrestlingChamp(ElMacho)
 comment2.params=
 comment2.target=void\ makeSprites()
 comment3.params=

@@ -28,7 +28,7 @@ public class ElMacho extends Player {
         ultDur = 0;
         rand = new Random();
         e = new GuacamoleTortillaChip();
-        q = new WrestlingChamp(facingRight(), this);
+        q = new WrestlingChamp(this);
     }
 
     @Override
