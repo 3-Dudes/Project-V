@@ -81,21 +81,6 @@ public abstract class Player extends Actor {
         hp.drawHeader();
         hp.setImage(img);
     }
-    public final void increaseHealth(int damage) {
-        health -= damage;
-        
-        GreenfootImage img = hp.getImage();
-        
-        double percentage = (double) health / hitpoints;
-        int width = (int) (percentage * img.getWidth());
-        
-        img.setColor(Color.RED);
-        img.fillRect(0, 0, img.getWidth(), img.getHeight());
-        img.setColor(Color.GREEN);
-        img.fillRect(0, 0, width, img.getHeight());
-        hp.drawHeader();
-        hp.setImage(img);
-    }
     
     @Override
     public void addedToWorld(World world) {
@@ -149,6 +134,7 @@ public abstract class Player extends Actor {
             if(canCast) {
                 if(Greenfoot.isKeyDown("C") && !cPressed) {
                     cPressed = true;
+                    c();
                 }
                 if(!Greenfoot.isKeyDown("C") && cPressed) {
                     cPressed = false;
@@ -182,14 +168,14 @@ public abstract class Player extends Actor {
                 else {
                     getWorld().removeObject(shield);
                 }
-            }   
-            if(this instanceof ElMacho) updateCast(c);
-            updateCast(q);
-            updateCast(e);
+            }
         }
         if(!canMove) {
             timeDisabled += 1;
         }
+        updateAbility(c);
+        updateAbility(q);
+        updateAbility(e);
     }
     
     public void scaleImage(GreenfootImage img) {
@@ -224,6 +210,11 @@ public abstract class Player extends Actor {
             isFacingRight = true;
         }
     }
+    private void updateAbility(Ability ab) {
+        if(ab != null && ab.isFinished()) {
+            canCast = true;
+        }
+    }
     protected final void checkAbilities() {
         if(q.abilityReady()) {
             if(qPressed) {
@@ -256,21 +247,22 @@ public abstract class Player extends Actor {
             ePressed = false;
             e.setCharge(e.getCooldown());
         }
-        
-        if(c.abilityReady()) {
-            if(cPressed) {
-                c();
-                c.setCharge(c.getCooldown() - 1);    
+        if(c != null) {
+            if(c.abilityReady()) {
+                if(cPressed) {
+                    c();
+                    c.setCharge(c.getCooldown() - 1);    
+                }
             }
-        }
-        int cCharge = c.getCharge();
-        if(cCharge < c.getCooldown()) {
-            cCharge--;
-            c.setCharge(cCharge);
-        }
-        if(c.getCharge() == 0) {
-            cPressed = false;
-            c.setCharge(c.getCooldown());
+            int cCharge = c.getCharge();
+            if(cCharge < c.getCooldown()) {
+                cCharge--;
+                c.setCharge(cCharge);
+            }
+            if(c.getCharge() == 0) {
+                cPressed = false;
+                c.setCharge(c.getCooldown());
+            }
         }
     }
     private void updatePosition() {
@@ -297,11 +289,6 @@ public abstract class Player extends Actor {
     }
     public GreenfootImage getLeftImage() {
         return left;
-    }
-    private void updateCast(Ability ab) {
-        if(ab.isFinished()) {
-            canCast = true;
-        }
     }
     public abstract void reload();
     public abstract void singleFire();

@@ -33,7 +33,6 @@ public class ElMacho extends Player {
         rand = new Random();
         e = new GuacamoleTortillaChip(facingRight());
         q = new WrestlingChamp(this);
-        c = new Tile(this);
         elMacho = getImage();
         eduardo = new GreenfootImage("eduardo_perez.png");
         eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
@@ -93,20 +92,18 @@ public class ElMacho extends Player {
         GreenfootImage tempRight = new GreenfootImage(elMacho);
         GreenfootImage tempLeft = new GreenfootImage(tempRight);
         tempLeft.mirrorHorizontally();
-        if(getImage() != null) {
-            if(isEduardo) {
-                tempLeft = new GreenfootImage(eduardo);
-                tempRight = new GreenfootImage(tempLeft);
-                tempRight.mirrorHorizontally();
-            }
-            setRightImage(tempRight);
-            setLeftImage(tempLeft);
-            if(facingRight()) {
-                this.setImage(tempRight);
-            }
-            else {
-                this.setImage(tempLeft);
-            }
+        if(isEduardo) {
+            tempLeft = new GreenfootImage(eduardo);
+            tempRight = new GreenfootImage(tempLeft);
+            tempRight.mirrorHorizontally();
+        }
+        setRightImage(tempRight);
+        setLeftImage(tempLeft);
+        if(facingRight()) {
+            this.setImage(tempRight);
+        }
+        else {
+            this.setImage(tempLeft);
         }
     }
 
@@ -149,7 +146,6 @@ public class ElMacho extends Player {
                 vPressed = false;
             }    
         }
-        changePersona();
         checkAbilities();
     }    
 
@@ -167,11 +163,22 @@ public class ElMacho extends Player {
     }
 
     public void c() {
-        getWorld().addObject(c, this.getX(), this.getY() - 150);
+        if(isEduardo) {
+            isEduardo = false;
+        }
+        else {
+            isEduardo = true;
+        }
+        changePersona();
     }   
 
     public void e() {
-        getWorld().addObject(e, this.getX(), this.getY());
+        if(!isEduardo) {
+            getWorld().addObject(e, this.getX(), this.getY());
+        }
+        else {
+            
+        }
         this.canCast = false;
     }
 
