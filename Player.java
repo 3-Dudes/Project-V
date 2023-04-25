@@ -81,6 +81,21 @@ public abstract class Player extends Actor {
         hp.drawHeader();
         hp.setImage(img);
     }
+    public final void increaseHealth(int damage) {
+        health -= damage;
+        
+        GreenfootImage img = hp.getImage();
+        
+        double percentage = (double) health / hitpoints;
+        int width = (int) (percentage * img.getWidth());
+        
+        img.setColor(Color.RED);
+        img.fillRect(0, 0, img.getWidth(), img.getHeight());
+        img.setColor(Color.GREEN);
+        img.fillRect(0, 0, width, img.getHeight());
+        hp.drawHeader();
+        hp.setImage(img);
+    }
     
     @Override
     public void addedToWorld(World world) {
