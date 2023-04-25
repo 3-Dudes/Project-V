@@ -23,11 +23,11 @@ public class WrestlingChamp extends Ability  {
     public void act() {
         if(macho.facingRight()) {
             this.setImage(flyRight);
-            this.setLocation(this.getX() + 20, this.getY());
+            this.setLocation(this.getX() + 30, this.getY());
         }
         else {
             this.setImage(flyLeft);
-            this.setLocation(this.getX() - 20, this.getY());    
+            this.setLocation(this.getX() - 30, this.getY());    
         }
         detectCollision("ElMacho");
     }

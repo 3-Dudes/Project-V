@@ -6,6 +6,9 @@ public abstract class Weapon extends Actor {
         this.intersects = false;
         this.p = p;
     }
+    public Weapon() {
+        this.intersects = false;
+    }
     public void act() {
         move();
         checkEdges();

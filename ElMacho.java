@@ -160,6 +160,10 @@ public class ElMacho extends Player {
             this.canMove = false;
             this.canCast = false;    
         }
+        else {
+            Waffle w = new Waffle();
+            getWorld().addObject(w, this.getX(), this.getY());
+        }
     }
 
     public void c() {

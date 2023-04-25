@@ -5,16 +5,17 @@ public class TortillaChip extends Weapon {
     public static GreenfootImage rightImg;
     public static GreenfootImage leftImg;
     private boolean right;
-    private ElMacho e;
+    private ElMacho macho;
+    private int bounces;
     private boolean shouldRemove;
     
-    public TortillaChip(ElMacho e) {
-        this(false, e);
+    public TortillaChip(ElMacho macho) {
+        this(false, macho);
     }
     
-    public TortillaChip(boolean right, ElMacho e) {
-        super(e);
-        this.e = e;
+    public TortillaChip(boolean right, ElMacho macho) {
+        super(macho);
+        this.macho = macho;
         this.right = right;
         this.shouldRemove = false;
         rightImg = this.getImage();
@@ -22,6 +23,7 @@ public class TortillaChip extends Weapon {
         rightImg.mirrorHorizontally();
         leftImg = new GreenfootImage(rightImg);
         leftImg.mirrorHorizontally();
+        bounces = 0;
         if(!right) {
             this.setImage(leftImg);
         }
@@ -34,21 +36,23 @@ public class TortillaChip extends Weapon {
             bg.pop();
             shouldRemove = true;
         }
-        detectCollision("ElMacho", damage);
+        if(!macho.isEduardo) {
+            detectCollision("ElMacho", damage);    
+        }
         if(shouldRemove) {
             getWorld().removeObject(this);   
         }
     }
     
     private void moveChip() {
-        if(e.usedUlt) {
+        if(macho.usedUlt) {
             this.setRotation(90);
             this.setLocation(this.getX(), this.getY() + 8);
-            e.ultDur++;
+            macho.ultDur++;
             if(this.isAtEdge()) {
                 this.setLocation(this.getX(), 0);
             }
-            if(e.ultDur == 6000) {
+            if(macho.ultDur == 6000) {
                 World curWorld = getWorld();
                 List<TortillaChip> chips = curWorld.getObjects(TortillaChip.class);
                 List<TortillaChip> chipsToRemove = new ArrayList<>();
@@ -60,14 +64,24 @@ public class TortillaChip extends Weapon {
                 for(TortillaChip c : chipsToRemove) {
                     curWorld.removeObject(c);
                 }
-                e.usedUlt = false;
-                e.ultDur = 0;
+                macho.usedUlt = false;
+                macho.ultDur = 0;
             }
         }
         else {
             this.setRotation(0);
             if(this.isAtEdge()) {
-                shouldRemove = true;
+                if(!macho.isEduardo) {
+                    shouldRemove = true;    
+                }
+                /* else {
+                    getImage().mirrorHorizontally();
+                    right = !right;
+                    bounces++;
+                    if(this.intersects(macho)) {
+                        macho.increaseHealth(damage);                                   
+                    }
+                } */
             }
             if(right) {
                 this.setLocation(this.getX() + 8, this.getY());

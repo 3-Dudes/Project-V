@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=TortillaChip
-comment1.params=e
+comment1.params=macho
 comment1.target=TortillaChip(ElMacho)
-comment2.params=right\ e
+comment2.params=right\ macho
 comment2.target=TortillaChip(boolean,\ ElMacho)
 comment3.params=
 comment3.target=void\ act()

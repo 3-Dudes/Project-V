@@ -45,7 +45,7 @@ public class Tile extends Ability {
     public void act() {
         changeTileColor();
         this.setLocation(macho.getX(), this.getY());
-        stopPoint = rand.nextInt(21) * 2 + 2;
+        stopPoint = rand.nextInt(21) * 2;
         if(tileSelectDuration == stopPoint) {
             hasSelected = true;
             changeTileColor();
@@ -80,9 +80,6 @@ public class Tile extends Ability {
         return hasSelected;
     }
     private void changeTileColor() {
-        if(tileSelectDuration == 0) {
-            this.setImage(yellowTile);
-        }
         if(tileSelectDuration == 10) {
             this.setImage(redTile);    
         }
@@ -93,19 +90,8 @@ public class Tile extends Ability {
             this.setImage(greenTile);
         }
         if(tileSelectDuration == 40) {
+            this.setImage(yellowTile);
             tileSelectDuration = 0;
-        }
-    }
-    @Override
-    public void detectCollision(String name) {
-        if(getWorld() != null) {
-            hitPlayer = (Player) this.getOneIntersectingObject(Player.class);   
-            if(hitPlayer != null && !hitPlayer.getClass().getName().equals(name)
-                    && !intersects) {
-                hitPlayer.decreaseHealth(this.getDamage());
-                intersects = true;
-                performAfterEffect();
-            }
         }
     }
     private void performAfterEffect() {
