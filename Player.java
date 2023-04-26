@@ -214,11 +214,11 @@ public abstract class Player extends Actor {
             canCast = true;
         }
     }
-    protected final void checkAbilities() {
+    protected void checkAbilities() {
         if(q != null) {
             if(q.isReady()) {
                 if(qPressed) {
-                    q();
+                    if(this instanceof Balthazar) q();
                     q.setCharge(q.getCooldown() - 1);    
                 }
             }

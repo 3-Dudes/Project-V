@@ -5,7 +5,7 @@ public class WrestlingChamp extends Ability  {
     private ElMacho macho;
     
     public WrestlingChamp(ElMacho macho) {
-        super(1000, 40);
+        super(1100, 40);
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
         this.macho = macho;

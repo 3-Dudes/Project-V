@@ -31,11 +31,10 @@ public class ElMacho extends Player {
         isEduardo = false;
         ultDur = 0;
         rand = new Random();
-        e = new GuacamoleTortillaChip(facingRight());
-        q = new WrestlingChamp(this);
         elMacho = getImage();
         eduardo = new GreenfootImage("eduardo_perez.png");
         eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
+        q = new WrestlingChamp(this);
     }
     
     @Override
@@ -97,14 +96,6 @@ public class ElMacho extends Player {
             tempLeft = new GreenfootImage(eduardo);
             tempRight = new GreenfootImage(tempLeft);
             tempRight.mirrorHorizontally();
-            if(q.isReady()) {
-                q = new Waffle(facingRight()); 
-            }
-        }
-        else {
-            if(q.isReady()) {
-                q = new WrestlingChamp(this); 
-            }
         }
         setRightImage(tempRight);
         setLeftImage(tempLeft);
@@ -157,6 +148,19 @@ public class ElMacho extends Player {
         }
         checkAbilities();
     }    
+    
+    @Override
+    protected void checkAbilities() {
+        super.checkAbilities();
+        if(q.isReady()) {
+            if(isEduardo) {
+                q = new Waffle(facingRight());
+            }
+            else {
+                q = new WrestlingChamp(this);
+            }
+        }
+    }
 
     public void q() {
         getWorld().addObject(q, this.getX(), this.getY());
