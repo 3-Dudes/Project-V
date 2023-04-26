@@ -4,4 +4,6 @@ comment1.params=
 comment1.target=Sombrero()
 comment2.params=
 comment2.target=int\ getHealth()
-numComments=3
+comment3.params=
+comment3.target=void\ act()
+numComments=4
