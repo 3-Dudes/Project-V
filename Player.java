@@ -18,7 +18,6 @@ public abstract class Player extends Actor {
     protected Ability q;
     protected Ability e;
     protected Ability x;
-    protected List<Ability> abilities;
     
     private HealthBar hp;
     
@@ -45,10 +44,6 @@ public abstract class Player extends Actor {
         this.playerScore = 0;
         hp = new HealthBar(name);
         shield = new Shield();
-        abilities = new ArrayList<Ability>();
-        abilities.add(c);
-        abilities.add(q);
-        abilities.add(e);
         this.factor = factor;
         this.canMove = true;
         this.canCast = true;
@@ -134,7 +129,9 @@ public abstract class Player extends Actor {
             if(canCast) {
                 if(Greenfoot.isKeyDown("C") && !cPressed) {
                     cPressed = true;
-                    c();
+                    if(c == null) {
+                        c();
+                    }
                 }
                 if(!Greenfoot.isKeyDown("C") && cPressed) {
                     cPressed = false;
@@ -156,7 +153,9 @@ public abstract class Player extends Actor {
                 
                 if(Greenfoot.isKeyDown("X") && !xPressed) {
                     xPressed = true;
-                    x();
+                    if(x == null) {
+                        x();    
+                    }
                 }
                 if(!Greenfoot.isKeyDown("X") && xPressed) {
                     xPressed = false;
@@ -216,39 +215,42 @@ public abstract class Player extends Actor {
         }
     }
     protected final void checkAbilities() {
-        if(q.abilityReady()) {
-            if(qPressed) {
-                q();
-                q.setCharge(q.getCooldown() - 1);    
+        if(q != null) {
+            if(q.isReady()) {
+                if(qPressed) {
+                    q();
+                    q.setCharge(q.getCooldown() - 1);    
+                }
             }
-        }
-        int qCharge = q.getCharge();
-        if(qCharge < q.getCooldown()) {
-            qCharge--;
-            q.setCharge(qCharge);
-        }
-        if(q.getCharge() == 0) {
-            qPressed = false;
-            q.setCharge(q.getCooldown());
-        }
-        
-        if(e.abilityReady()) {
-            if(ePressed) {
-                e();
-                e.setCharge(e.getCooldown() - 1);    
+            int qCharge = q.getCharge();
+            if(qCharge < q.getCooldown()) {
+                qCharge--;
+                q.setCharge(qCharge);
             }
+            if(q.getCharge() == 0) {
+                qPressed = false;
+                q.setCharge(q.getCooldown());
+            }    
         }
-        int eCharge = e.getCharge();
-        if(eCharge < e.getCooldown()) {
-            eCharge--;
-            e.setCharge(eCharge);
-        }
-        if(e.getCharge() == 0) {
-            ePressed = false;
-            e.setCharge(e.getCooldown());
+        if(e != null) {
+            if(e.isReady()) {
+                if(ePressed) {
+                    e();
+                    e.setCharge(e.getCooldown() - 1);    
+                }
+            }
+            int eCharge = e.getCharge();
+            if(eCharge < e.getCooldown()) {
+                eCharge--;
+                e.setCharge(eCharge);
+            }
+            if(e.getCharge() == 0) {
+                ePressed = false;
+                e.setCharge(e.getCooldown());
+            }
         }
         if(c != null) {
-            if(c.abilityReady()) {
+            if(c.isReady()) {
                 if(cPressed) {
                     c();
                     c.setCharge(c.getCooldown() - 1);    

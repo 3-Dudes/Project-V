@@ -31,7 +31,7 @@ public abstract class Ability extends Actor {
     public int getCooldown() {
         return cooldown;
     }
-    public boolean abilityReady() {
+    public boolean isReady() {
         return charge == cooldown;
     }
     public boolean isFinished() {

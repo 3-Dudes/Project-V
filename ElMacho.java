@@ -37,12 +37,13 @@ public class ElMacho extends Player {
         eduardo = new GreenfootImage("eduardo_perez.png");
         eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
     }
-
+    
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
         ammoGui = new AmmoGUI(5, 5, 
             new TortillaChip(facingRight(), this).getImage(), pastHalfway);
+        changePersona();
         if(pastHalfway) {
             this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1100, 400);
@@ -96,6 +97,14 @@ public class ElMacho extends Player {
             tempLeft = new GreenfootImage(eduardo);
             tempRight = new GreenfootImage(tempLeft);
             tempRight.mirrorHorizontally();
+            if(q.isReady()) {
+                q = new Waffle(facingRight()); 
+            }
+        }
+        else {
+            if(q.isReady()) {
+                q = new WrestlingChamp(this); 
+            }
         }
         setRightImage(tempRight);
         setLeftImage(tempLeft);
@@ -150,15 +159,11 @@ public class ElMacho extends Player {
     }    
 
     public void q() {
+        getWorld().addObject(q, this.getX(), this.getY());
         if(!isEduardo) {
-            getWorld().addObject(q, this.getX(), this.getY());
             this.setImage((GreenfootImage) null);
             this.canMove = false;
             this.canCast = false;    
-        }
-        else {
-            Waffle w = new Waffle();
-            getWorld().addObject(w, this.getX(), this.getY());
         }
     }
 
@@ -173,12 +178,7 @@ public class ElMacho extends Player {
     }   
 
     public void e() {
-        if(!isEduardo) {
-            getWorld().addObject(e, this.getX(), this.getY());
-        }
-        else {
-            
-        }
+        getWorld().addObject(e, this.getX(), this.getY());
         this.canCast = false;
     }
 

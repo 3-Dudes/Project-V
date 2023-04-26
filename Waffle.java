@@ -1,13 +1,21 @@
 import greenfoot.*;
-public class Waffle extends Weapon {
+public class Waffle extends Ability {
     private int duration;
-    public Waffle() {
+    private boolean right;
+    public Waffle(boolean right) {
+        super(800, 10);
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
         duration = 0;
+        this.right = right;
     }
     public void act() {
-        this.setLocation(this.getX() + 15, this.getY());
+        if(right) {
+            this.setLocation(this.getX() + 15, this.getY());    
+        }
+        else {
+            this.setLocation(this.getX() - 15, this.getY());
+        }
         switch(duration) {
             case 2:
                 this.setRotation(90);
@@ -23,12 +31,13 @@ public class Waffle extends Weapon {
                 break;
             case 10:
                 duration = 0;
+                this.setRotation(0);
                 break;
         }
         duration += 2;
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
         }
-        detectCollision("ElMacho", 20);
+        detectCollision("ElMacho");
     }
 }
