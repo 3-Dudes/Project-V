@@ -187,12 +187,7 @@ public class ElMacho extends Player {
     }
 
     public void x() { //make it rain(macho ult)
-        /*idea is to make several big chips in the sky that flash before they 
-         * fall down in random orders (disable firing so not too OP)
-         */
-
-        //Anirudh
-        //my approach to el macho's ult
+        
         World curWorld = getWorld();
         usedUlt = true;
         canCast = false;
