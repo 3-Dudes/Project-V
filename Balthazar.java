@@ -17,8 +17,8 @@ public class Balthazar extends Player {
         
     }
     public void q() {
-        getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
-        canCast = false;
+        //q = new BubbleGum();
+        //getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
     }
     public void singleFire() { }
     public void burstFire() { }
