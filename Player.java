@@ -187,7 +187,7 @@ public abstract class Player extends Actor {
         this.timeDisabled = timeDisabled;
     }
     
-    private void checkEdges() {
+    public final void checkEdges() {
         if(this.isAtEdge()) {
             if(this.getX() == 0) {
                 this.setLocation(getWorld().getWidth() - 1, getY());
@@ -218,7 +218,7 @@ public abstract class Player extends Actor {
         if(q != null) {
             if(q.isReady()) {
                 if(qPressed) {
-                    if(this instanceof Balthazar) q();
+                    q();
                     q.setCharge(q.getCooldown() - 1);    
                 }
             }
