@@ -31,22 +31,15 @@ public class TortillaChip extends Weapon {
 
     public void act() {
         moveChip();
-        BubbleGum bg = (BubbleGum) this.getOneIntersectingObject(BubbleGum.class);
-        if(bg != null) {
-            bg.pop();
-            shouldRemove = true;
-        }
-        if(!macho.isEduardo) {
-            detectCollision("ElMacho", damage);    
-        }
         if(shouldRemove) {
             getWorld().removeObject(this);   
         }
+        detectCollision("ElMacho", damage);
     }
     
     private void moveChip() {
         if(macho.usedUlt) {
-            this.setRotation(90);
+            this.setRotation(270);
             this.setLocation(this.getX(), this.getY() + 8);
             macho.ultDur++;
             if(this.isAtEdge()) {
@@ -57,7 +50,7 @@ public class TortillaChip extends Weapon {
                 List<TortillaChip> chips = curWorld.getObjects(TortillaChip.class);
                 List<TortillaChip> chipsToRemove = new ArrayList<>();
                 for(TortillaChip c : chips) {
-                    if(c.getRotation() == 90) {
+                    if(c.getRotation() == 270) {
                         chipsToRemove.add(c);
                     }
                 }
@@ -71,23 +64,18 @@ public class TortillaChip extends Weapon {
         else {
             this.setRotation(0);
             if(this.isAtEdge()) {
-                if(!macho.isEduardo) {
-                    shouldRemove = true;    
-                }
-                /* else {
-                    getImage().mirrorHorizontally();
-                    right = !right;
-                    bounces++;
-                    if(this.intersects(macho)) {
-                        macho.increaseHealth(damage);                                   
-                    }
-                } */
+                shouldRemove = true;
             }
             if(right) {
                 this.setLocation(this.getX() + 8, this.getY());
             }
             else {
                 this.setLocation(this.getX() - 8, this.getY());
+            }
+            BubbleGum bg = (BubbleGum) this.getOneIntersectingObject(BubbleGum.class);
+            if(bg != null) {
+                bg.pop();
+                shouldRemove = true;
             }
         }
     }
