@@ -10,8 +10,9 @@ public abstract class Weapon extends Actor {
         this.intersects = false;
     }
     public void act() {
-        move();
-        checkEdges();
+        if(p != null) {
+            this.setLocation(p.getX(), p.getY());    
+        }
     }
     public void checkEdges() {
         if(this.isAtEdge()) {
@@ -27,14 +28,6 @@ public abstract class Weapon extends Actor {
             else if(this.getY() == getWorld().getHeight() - 1) {
                 this.setLocation(this.getX(), 0);
             }
-        }
-    }
-    public void move() {
-        if(Greenfoot.isKeyDown("A")) {
-            this.setLocation(this.getX() - 5, this.getY());
-        }
-        else if(Greenfoot.isKeyDown("D")) {
-            this.setLocation(this.getX() + 5, this.getY());
         }
     }
     public void detectCollision(String name, int damage) {
