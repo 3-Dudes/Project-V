@@ -1,6 +1,5 @@
 import greenfoot.*;
-public class CannonBlaster extends Weapon
-{
+public class CannonBlaster extends Weapon {
     private int charge = 0;
     private Laser laser;
     public CannonBlaster() {

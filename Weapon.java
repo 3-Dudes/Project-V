@@ -6,9 +6,13 @@ public abstract class Weapon extends Actor {
         this.intersects = false;
         this.p = p;
     }
+    public Weapon() {
+        this.intersects = false;
+    }
     public void act() {
-        move();
-        checkEdges();
+        if(p != null) {
+            this.setLocation(p.getX(), p.getY());    
+        }
     }
     public void checkEdges() {
         if(this.isAtEdge()) {
@@ -26,18 +30,7 @@ public abstract class Weapon extends Actor {
             }
         }
     }
-    public void move() {
-        if(Greenfoot.isKeyDown("A")) {
-            this.setLocation(this.getX() - 5, this.getY());
-        }
-        else if(Greenfoot.isKeyDown("D")) {
-            this.setLocation(this.getX() + 5, this.getY());
-        }
-    }
     public void detectCollision(String name, int damage) {
-        if(this.isAtEdge()) {
-            getWorld().removeObject(this);
-        }
         if(getWorld() != null) {
             Player player = (Player) this.getOneIntersectingObject(Player.class);
             if(player != null && !(player instanceof ElMacho) && !intersects) {

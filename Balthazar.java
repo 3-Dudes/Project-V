@@ -6,7 +6,6 @@ public class Balthazar extends Player {
         health = 300;
         hitpoints = 300;
         q = new BubbleGum();
-        e = new GuacamoleTortillaChip();
     }
     public void c() {
         
@@ -18,10 +17,8 @@ public class Balthazar extends Player {
         
     }
     public void q() {
-        if(q.abilityReady()) {
-            q = new BubbleGum();
-            getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
-        }
+        //q = new BubbleGum();
+        //getWorld().addObject(q, this.getX() + 38, this.getY() - 40);
     }
     public void singleFire() { }
     public void burstFire() { }

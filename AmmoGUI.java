@@ -1,6 +1,6 @@
 import greenfoot.*;
 public class AmmoGUI extends Actor {
-    private int cur, max;
+    public int cur, max;
     private GreenfootImage chip;
     public AmmoGUI(int cur, int max, GreenfootImage chip, boolean pastHalfway) {
         this.max = max;
@@ -15,12 +15,12 @@ public class AmmoGUI extends Actor {
     public void addedToWorld(World world) {
         updateImage();
     }
-    
+
     public void loseChip() {
         cur--;
         updateImage();
     }
-    
+
     public void refill() {
         this.cur = this.max;
         updateImage();

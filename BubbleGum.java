@@ -10,7 +10,8 @@ public class BubbleGum extends Ability {
         bounces = 0;
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
         this.setImage(img);
-        movingRight = true;
+        this.movingRight = true;
+        this.intersects = false;
     }
     
     @Override
@@ -38,6 +39,7 @@ public class BubbleGum extends Ability {
         }
         if(bounces == 4) {
             this.pop();
+            isFinished = true;
             return;
         }
         detectCollision("Balthazar");
