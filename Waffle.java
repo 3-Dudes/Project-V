@@ -37,6 +37,7 @@ public class Waffle extends Ability {
         duration += 2;
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
+            isFinished = true;
         }
         detectCollision("ElMacho");
     }
