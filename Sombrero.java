@@ -23,6 +23,5 @@ public class Sombrero extends Ability {
             time = 0;
         }
         time++;
-        System.out.println(getCharge());
     }
 }
