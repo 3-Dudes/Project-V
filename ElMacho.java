@@ -34,7 +34,6 @@ public class ElMacho extends Player {
         elMacho = getImage();
         eduardo = new GreenfootImage("eduardo_perez.png");
         eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
-        q = new WrestlingChamp(this);
     }
     
     @Override
@@ -43,6 +42,8 @@ public class ElMacho extends Player {
         ammoGui = new AmmoGUI(5, 5, 
             new TortillaChip(facingRight(), this).getImage(), pastHalfway);
         changePersona();
+        q = new WrestlingChamp(this);
+        e = new GuacamoleTortillaChip(facingRight());
         if(pastHalfway) {
             this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1100, 400);
@@ -160,6 +161,14 @@ public class ElMacho extends Player {
                 q = new WrestlingChamp(this);
             }
         }
+        if(e.isReady()) {
+            if(isEduardo) {
+                e = new Sombrero();
+            }
+            else {
+                e = new GuacamoleTortillaChip(facingRight());
+            }    
+        }
     }
 
     public void q() {
@@ -182,12 +191,15 @@ public class ElMacho extends Player {
     }   
 
     public void e() {
-        getWorld().addObject(e, this.getX(), this.getY());
-        this.canCast = false;
+        int x = this.getX();
+        int y = this.getY();
+        if(isEduardo) {
+            x += 125;
+        }
+        getWorld().addObject(e, x, y);
     }
 
-    public void x() { //make it rain(macho ult)
-        
+    public void x() {
         World curWorld = getWorld();
         usedUlt = true;
         canCast = false;

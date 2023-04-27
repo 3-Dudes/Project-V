@@ -31,6 +31,7 @@ public class GuacamoleTortillaChip extends Ability {
         }
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
+            isFinished = true;
         }
         detectCollision("ElMacho");
     }
