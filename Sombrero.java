@@ -1,25 +1,28 @@
 import greenfoot.*;
 public class Sombrero extends Ability {
     private int health;
-    private boolean intersects;
+    private int time;
     public Sombrero() {
         super(800, 20);
         health = 100;
-        intersects = false;
-        this.setRotation(15);
+        time = 0;
+        this.setRotation(105);
     }
     public int getHealth() {
         return health;
     }
     public void act() {
-        Ability a = (Ability) this.getOneIntersectingObject(null);
-        if(a != null && !intersects) {
+        Ability a = (Ability) this.getOneIntersectingObject(Ability.class);
+        if(a != null) {
             health -= a.getDamage();
-            intersects = true;
             getWorld().removeObject(a);
         }     
-        if(health <= 0) {
+        if(health <= 0 || time == 800) {
             getWorld().removeObject(this);
+            isFinished = true;
+            time = 0;
         }
+        time++;
+        System.out.println(getCharge());
     }
 }
