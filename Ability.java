@@ -28,15 +28,19 @@ public abstract class Ability extends Actor {
     public int getDamage() {
         return damage;
     }
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
     public int getCooldown() {
         return cooldown;
     }
     public boolean isReady() {
         return charge == cooldown;
-    }
+    } 
     public boolean isFinished() {
         return isFinished;
     }
+    
     public void detectCollision(String name) {
         if(getWorld() != null) {
             hitPlayer = (Player) this.getOneIntersectingObject(Player.class);   
