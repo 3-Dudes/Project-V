@@ -6,7 +6,7 @@ public class Waffle extends Ability {
         super(1100, 20);
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
-        duration = 0;
+        duration = 0;//
         this.right = right;
     }
     public void act() {
