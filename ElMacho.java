@@ -109,26 +109,24 @@ public class ElMacho extends Player {
         super.act();
         if(canCast) {
             castMoves();    
+            if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
+                if(Greenfoot.isKeyDown("R") && !rPressed) {
+                    rPressed = true;
+                }
+                needToReload = true;
+            }
+            if(!Greenfoot.isKeyDown("R") && rPressed) {
+                rPressed = false;
+            }
+            if(needToReload) {
+                timedReload();
+            }
         }
         checkAbilities();
     }    
     
     @Override
-    protected void castMoves() {
-        super.castMoves();
-        if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
-            if(Greenfoot.isKeyDown("R") && !rPressed) {
-                rPressed = true;
-            }
-            needToReload = true;
-        }
-        if(!Greenfoot.isKeyDown("R") && rPressed) {
-            rPressed = false;
-        }
-        if(needToReload) {
-            timedReload();
-        }
-            
+    protected void castB() {
         if(Greenfoot.isKeyDown("B") && !bPressed) {
             bPressed = true;
             if(needToReload) {
@@ -138,8 +136,11 @@ public class ElMacho extends Player {
         }
         if(!Greenfoot.isKeyDown("B") && bPressed) {
             bPressed = false;
-        } 
-
+        }
+    }
+    
+    @Override
+    protected void castV() {
         if(Greenfoot.isKeyDown("V") && !vPressed) {
             vPressed = true;
             if(needToReload) {

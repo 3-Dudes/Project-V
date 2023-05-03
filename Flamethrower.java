@@ -4,10 +4,18 @@ public class Flamethrower extends Weapon {
     private Lucy l;
     public Flamethrower(Lucy l, int spaceX, int spaceY) {
         super(l, spaceX, spaceY, 3);
+        this.l = l;
         GreenfootImage img = getImage();
     }
     public boolean isFiring() {
-        Fire fire = (Fire) getOneObjectAtOffset(30, 0, Fire.class);
-        return fire != null && fire.getX() >= this.getX();
+        int offsetX = 30;
+        if(!l.facingRight()) {
+            offsetX = -offsetX;
+        }
+        if(l.hasFlamethrower()) {
+            Fire fire = (Fire) getOneObjectAtOffset(offsetX, 0, Fire.class);
+            return fire != null && fire.getX() >= this.getX();
+        }
+        return false;
     }
 }

@@ -140,7 +140,16 @@ public abstract class Player extends Actor {
         updateAbility(e);
     }
     
-    protected void castMoves() {
+    public final void castMoves() {
+        castC();
+        castQ();
+        castE();
+        castX();
+        castB();
+        castV();
+    }
+    
+    protected void castC() {
         if(Greenfoot.isKeyDown("C") && !cPressed) {
             cPressed = true;
             if(c == null) {
@@ -150,21 +159,24 @@ public abstract class Player extends Actor {
         if(!Greenfoot.isKeyDown("C") && cPressed) {
             cPressed = false;
         }
-        
+    }
+    protected void castQ() {
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
             qPressed = true;
         }
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
             qPressed = false;
-        }     
-        
+        }
+    }
+    protected void castE() {
         if(Greenfoot.isKeyDown("E") && !ePressed) {        
             ePressed = true;
         }
         if(!Greenfoot.isKeyDown("E") && ePressed) {
             ePressed = false;
-        }       
-                
+        }
+    }
+    protected void castX() {
         if(Greenfoot.isKeyDown("X") && !xPressed) {
             xPressed = true;
             if(x == null) {
@@ -174,22 +186,24 @@ public abstract class Player extends Actor {
         if(!Greenfoot.isKeyDown("X") && xPressed) {
             xPressed = false;
         }
-                
+    }
+    protected void castB() {
         if(Greenfoot.isKeyDown("B") && !bPressed) {
             bPressed = true;
             burstFire();
         }
         if(!Greenfoot.isKeyDown("B") && bPressed) {
             bPressed = false;
-        } 
-
-        if(Greenfoot.isKeyDown("V") && !vPressed) {
+        }
+    }
+    protected void castV() {
+       if(Greenfoot.isKeyDown("V") && !vPressed) {
             vPressed = true;
             singleFire();
-        }
-        if(!Greenfoot.isKeyDown("V") && vPressed) {
+       }
+       if(!Greenfoot.isKeyDown("V") && vPressed) {
             vPressed = false;
-        }
+       } 
     }
     
     public void scaleImage(GreenfootImage img) {
