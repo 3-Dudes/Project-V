@@ -1,7 +1,5 @@
 #BlueJ class context
 comment0.target=Mode
-comment1.params=p\ cpu
-comment1.target=Mode(Player,\ Player)
-comment2.params=p
-comment2.target=void\ playWinAnimation(Player)
-numComments=3
+comment1.params=
+comment1.target=Mode()
+numComments=2

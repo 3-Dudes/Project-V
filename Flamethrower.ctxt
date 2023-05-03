@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Flamethrower
+comment1.params=l\ spaceX\ spaceY
+comment1.target=Flamethrower(Lucy,\ int,\ int)
+comment2.params=
+comment2.target=boolean\ isFiring()
+numComments=3

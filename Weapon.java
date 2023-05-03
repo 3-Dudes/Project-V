@@ -2,31 +2,42 @@ import greenfoot.*;
 public abstract class Weapon extends Actor {
     protected boolean intersects;
     protected Player p;
-    public Weapon(Player p) {
+    private int spaceX;
+    private int spaceY;
+    private static GreenfootImage left;
+    private static GreenfootImage right;
+    public Weapon(Player p, int spaceX, int spaceY, Integer factor) {
         this.intersects = false;
         this.p = p;
+        this.spaceX = spaceX;
+        this.spaceY = spaceY;
+        right = getImage();
+        if(factor != null) {
+            right.scale(right.getWidth() / factor, right.getWidth() / factor);    
+        }
+        left = new GreenfootImage(right);
+        left.mirrorHorizontally();
     }
     public Weapon() {
         this.intersects = false;
     }
     public void act() {
         if(p != null) {
-            this.setLocation(p.getX(), p.getY());    
-        }
-    }
-    public void checkEdges() {
-        if(this.isAtEdge()) {
-            if(this.getX() == 0) {
-                this.setLocation(getWorld().getWidth() - 1, this.getY());
+            if(!p.facingRight()) {
+                this.setLocation(p.getX() - spaceX, p.getY() - spaceY);
+                this.setImage(left);
+            }   
+            else {
+                this.setLocation(p.getX() + spaceX, p.getY() - spaceY);
+                this.setImage(right);
             }
-            else if(this.getX() == getWorld().getWidth() - 1) {
-                this.setLocation(0, this.getY());
-            }
-            else if(this.getY() == 0) {
-                this.setLocation(this.getX(), getWorld().getHeight() - 1);
-            }
-            else if(this.getY() == getWorld().getHeight() - 1) {
-                this.setLocation(this.getX(), 0);
+            if(this.isAtEdge()) {
+                if(this.getX() == 0) {
+                    p.setLocation(getWorld().getWidth() - 1, p.getY());
+                }
+                else if(this.getX() == getWorld().getWidth() - 1) {
+                    p.setLocation(0, p.getY());
+                }
             }
         }
     }

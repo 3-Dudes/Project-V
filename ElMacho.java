@@ -6,8 +6,6 @@ public class ElMacho extends Player {
     private AmmoGUI ammoGui;
     private int timeToReload;
     private boolean needToReload;
-    private boolean vPressed;
-    private boolean bPressed;
     private boolean rPressed;
     public boolean usedUlt;
     public int ultDur;
@@ -24,8 +22,6 @@ public class ElMacho extends Player {
         timeToReload = 0;
 
         needToReload = false;
-        vPressed = false;
-        bPressed = false;
         rPressed = false;
         usedUlt = false;
         isEduardo = false;
@@ -112,43 +108,49 @@ public class ElMacho extends Player {
     public void act() {
         super.act();
         if(canCast) {
-            if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
-                if(Greenfoot.isKeyDown("R") && !rPressed) {
-                    rPressed = true;
-                }
-                needToReload = true;
-            }
-            if(!Greenfoot.isKeyDown("R") && rPressed) {
-                rPressed = false;
-            }
-            if(needToReload) {
-                timedReload();
-            }
-
-            if(Greenfoot.isKeyDown("B") && !bPressed) {
-                bPressed = true;
-                if(needToReload) {
-                    needToReload = false;
-                }
-                burstFire();
-            }
-            if(!Greenfoot.isKeyDown("B") && bPressed) {
-                bPressed = false;
-            } 
-
-            if(Greenfoot.isKeyDown("V") && !vPressed) {
-                vPressed = true;
-                if(needToReload) {
-                    needToReload = false;
-                }
-                singleFire();
-            }
-            if(!Greenfoot.isKeyDown("V") && vPressed) {
-                vPressed = false;
-            }    
+            castMoves();    
         }
         checkAbilities();
     }    
+    
+    @Override
+    protected void castMoves() {
+        super.castMoves();
+        if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
+            if(Greenfoot.isKeyDown("R") && !rPressed) {
+                rPressed = true;
+            }
+            needToReload = true;
+        }
+        if(!Greenfoot.isKeyDown("R") && rPressed) {
+            rPressed = false;
+        }
+        if(needToReload) {
+            timedReload();
+        }
+            
+        if(Greenfoot.isKeyDown("B") && !bPressed) {
+            bPressed = true;
+            if(needToReload) {
+                needToReload = false;
+            }
+            burstFire();
+        }
+        if(!Greenfoot.isKeyDown("B") && bPressed) {
+            bPressed = false;
+        } 
+
+        if(Greenfoot.isKeyDown("V") && !vPressed) {
+            vPressed = true;
+            if(needToReload) {
+                needToReload = false;
+            }
+            singleFire();
+        }
+        if(!Greenfoot.isKeyDown("V") && vPressed) {
+            vPressed = false;
+        }
+    }
     
     @Override
     protected void checkAbilities() {

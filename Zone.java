@@ -18,12 +18,12 @@ public class Zone extends Actor {
         }
     }
     public boolean isCaptured() {
-        GreenfootImage tempRect = new GreenfootImage(30, 30);
+        /* GreenfootImage tempRect = new GreenfootImage(30, 30);
         tempRect.setColor(captureColor);
         tempRect.fillRect(tempRect.getWidth()
         captureBar.drawImage(tempRect, 
-            captureBar.getWidth(), captureBar.getHeight());
-        
+            captureBar.getWidth(), captureBar.getHeight()); */
+        return false;
     }
     public void capture() {
         captureBar.setColor(captureColor);

@@ -1,5 +1,15 @@
 #BlueJ class context
 comment0.target=Zone
-comment1.params=
-comment1.target=void\ act()
-numComments=2
+comment1.params=captureColor
+comment1.target=Zone(greenfoot.Color)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=boolean\ isCaptured()
+comment4.params=
+comment4.target=void\ capture()
+comment5.params=
+comment5.target=greenfoot.GreenfootImage\ getCaptureBar()
+comment6.params=
+comment6.target=greenfoot.GreenfootImage\ getMarker()
+numComments=7

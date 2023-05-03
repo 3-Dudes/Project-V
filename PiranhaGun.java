@@ -1,9 +1,8 @@
 import greenfoot.*;
 public class PiranhaGun extends Weapon {
     public PiranhaGun() {
-        super(new Vector());
+        super(new Vector(), 0, 0, 4);
         GreenfootImage img = this.getImage();
-        img.scale(img.getWidth() / 4, img.getHeight() / 4);
         setImage(img);
     }
 }
