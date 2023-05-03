@@ -20,7 +20,7 @@ public class Zone extends Actor {
     public boolean isCaptured() {
         GreenfootImage tempRect = new GreenfootImage(30, 30);
         tempRect.setColor(captureColor);
-        tempRect.fillRect(tempRect.getWidth()
+        tempRect.fillRect(tempRect.getWidth());
         captureBar.drawImage(tempRect, 
             captureBar.getWidth(), captureBar.getHeight());
         
