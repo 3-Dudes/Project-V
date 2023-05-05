@@ -19,14 +19,14 @@ public class Lucy extends Player {
         weaponCycle = new ArrayList<Weapon>();
         weaponCycle.add(new Unicorn(facingRight()));
         weaponCycle.add(new LipGloss(facingRight()));
-        GreenfootImage defaultImg = getCurrentWeapon().getRightUnscaledImage();
-        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 2, 2);
+        GreenfootImage defaultImg 
+            = getCurrentWeapon().getRightUnscaledImage();
+        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
     }
         
     public Weapon getCurrentWeapon() {
         return weaponCycle.get(weaponIndex);
     }
-    
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
@@ -39,7 +39,6 @@ public class Lucy extends Player {
             getWorld().addObject(ammoGui, 44, 425);
         }
     }
-    
     public boolean hasFlamethrower() {
         int offsetX = 30;
         if(!facingRight()) {
@@ -50,11 +49,10 @@ public class Lucy extends Player {
             Flamethrower.class);
         return f != null;
     }
-    
     public void act() {
         super.act();
         if(ammoGui.cur <= 0) {
-            reload();
+            switchWeapon();
         }
         if(this.hasFlamethrower()) {
             ultTimer++;
@@ -66,17 +64,18 @@ public class Lucy extends Player {
             }
         }
     }
-    public void reload() {
+    private void switchWeapon() {
         weaponIndex++;
         if(weaponIndex == 2) {
             weaponIndex = 0;
         }
         getWorld().removeObject(ammoGui);
-        GreenfootImage defaultImg = getCurrentWeapon().getRightUnscaledImage();
+        GreenfootImage defaultImg 
+            = getCurrentWeapon().getRightUnscaledImage();
         switch(weaponIndex) {
             case 0:
                 ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway,
-                45, 2, 2);
+                45, 4, 4);
                 break;
             case 1:
                 ammoGui = new AmmoGUI(4, 4, defaultImg, pastHalfway,
