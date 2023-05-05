@@ -1,8 +1,6 @@
 import greenfoot.*;
 import java.util.*;
 public class ElMacho extends Player {
-    //private Stack<TortillaChip> ammo;   
-    //private int ammoCount;
     private AmmoGUI ammoGui;
     private int timeToReload;
     private boolean needToReload;
@@ -35,14 +33,14 @@ public class ElMacho extends Player {
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
-        ammoGui = new AmmoGUI(5, 5, 
-            new TortillaChip(facingRight(), this).getImage(), pastHalfway);
+        ammoGui = new AmmoGUI(5, 5, new TortillaChip(facingRight(), this).getImage(), 
+            pastHalfway, 50, 2, 2);
         changePersona();
         q = new WrestlingChamp(this);
         e = new GuacamoleTortillaChip(facingRight());
         if(pastHalfway) {
             this.setImage(getLeftImage());
-            getWorld().addObject(ammoGui, 1100, 400);
+            getWorld().addObject(ammoGui, 1150, 400);
         }
         else {
             this.setImage(getRightImage());

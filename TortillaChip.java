@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.util.*;
 public class TortillaChip extends Weapon {
-    private static int damage = 10;
+    private static int damage = 4;
     public static GreenfootImage rightImg;
     public static GreenfootImage leftImg;
     private boolean right;
@@ -67,10 +67,10 @@ public class TortillaChip extends Weapon {
                 shouldRemove = true;
             }
             if(right) {
-                this.setLocation(this.getX() + 8, this.getY());
+                this.setLocation(this.getX() + 10, this.getY());
             }
             else {
-                this.setLocation(this.getX() - 8, this.getY());
+                this.setLocation(this.getX() - 10, this.getY());
             }
             BubbleGum bg = (BubbleGum) this.getOneIntersectingObject(BubbleGum.class);
             if(bg != null) {
