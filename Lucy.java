@@ -2,12 +2,15 @@ import greenfoot.*;
 import java.util.*;
 public class Lucy extends Player {
     private Flamethrower weapon;
-    private Fire ammo;
+    private static final int spaceX = 50;
+    private static final int spaceY = 20;
+    private int ultTimer = 0;
     public Lucy() {
         super("Lucy", 2);
         GreenfootImage img = this.getImage();
         health = 300;
         hitpoints = 300;
+        weapon = new Flamethrower(this, spaceX, spaceY);
         //img.scale(img.getWidth() / 2, img.getHeight() / 2);
     }
     
@@ -21,17 +24,17 @@ public class Lucy extends Player {
         return f != null;
     }
     
+    
     public void act() {
         super.act();
-    }
-    @Override
-    protected void castX() {
-        if(Greenfoot.isKeyDown("X")) {
-            x();
-        }
-        else {
-            getWorld().removeObject(weapon);
-            getWorld().removeObject(ammo);
+        if(this.hasFlamethrower()) {
+            ultTimer++;
+            if(ultTimer == 500) {
+                getWorld().removeObject(weapon.getAmmo());
+                getWorld().removeObject(weapon);
+                ultTimer = 0;
+                canCast = true;
+            }
         }
     }
     
@@ -54,10 +57,7 @@ public class Lucy extends Player {
         
     }
     public void x() {
-        int spaceX = 50;
-        int spaceY = 20;
-        weapon = new Flamethrower(this, spaceX, spaceY);
-        ammo = new Fire(weapon, this);
+        canCast = false;
         if(!this.hasFlamethrower()) {
             if(facingRight()) {
                 getWorld().addObject(weapon, this.getX() + spaceX, this.getY() - spaceY);
@@ -65,15 +65,6 @@ public class Lucy extends Player {
             else {
                 weapon.getImage().mirrorHorizontally();
                 getWorld().addObject(weapon, this.getX() - spaceX, this.getY() - spaceY);
-            }
-            if(!weapon.isFiring()) {
-                if(facingRight()) {
-                    getWorld().addObject(ammo, weapon.getX() + 95, weapon.getY());
-                }
-                else {
-                    ammo.getImage().mirrorHorizontally();
-                    getWorld().addObject(ammo, weapon.getX() - 95, weapon.getY());
-                }
             }
         }
     }

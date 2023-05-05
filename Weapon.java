@@ -1,9 +1,10 @@
 import greenfoot.*;
 public abstract class Weapon extends Actor {
-    protected boolean intersects;
+    private boolean intersects;
     protected Player p;
     private int spaceX;
     private int spaceY;
+    private int damage;
     private static GreenfootImage left;
     private static GreenfootImage right;
     public Weapon(Player p, int spaceX, int spaceY, Integer factor) {
@@ -11,6 +12,7 @@ public abstract class Weapon extends Actor {
         this.p = p;
         this.spaceX = spaceX;
         this.spaceY = spaceY;
+        this.damage = 0;
         right = getImage();
         if(factor != null) {
             right.scale(right.getWidth() / factor, right.getWidth() / factor);    
@@ -20,6 +22,12 @@ public abstract class Weapon extends Actor {
     }
     public Weapon() {
         this.intersects = false;
+    }
+    public int getDamage() {
+        return damage;
+    }
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
     public void act() {
         if(p != null) {
@@ -44,7 +52,7 @@ public abstract class Weapon extends Actor {
     public void detectCollision(String name, int damage) {
         if(getWorld() != null) {
             Player player = (Player) this.getOneIntersectingObject(Player.class);
-            if(player != null && !(player instanceof ElMacho) && !intersects) {
+            if(player != null && !(player.getClass().getName().equals(name)) && !intersects) {
                 player.decreaseHealth(damage);
                 intersects = true;
             }
