@@ -17,6 +17,9 @@ public class LipGloss extends Weapon {
     }
     public void act() {
         move();
+        if(this.isAtEdge()) {
+            getWorld().removeObject(this);
+        }
         detectCollision("Lucy", 3);
     }
     public void move() {
@@ -53,7 +56,7 @@ public class LipGloss extends Weapon {
             Player player = (Player) 
                 getOneIntersectingObject(Player.class);
             if(player != null && !(player.getClass().getName().equals(name))) {
-                if(Math.abs(player.getX() - this.getX()) == 10) {
+                if(Math.abs(player.getX() - this.getX()) <= 20) {
                     getWorld().removeObject(this);
                 }
             }
