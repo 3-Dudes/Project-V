@@ -6,7 +6,7 @@ public class LipGloss extends Weapon {
     public static GreenfootImage right;
     private boolean isRight;
     public LipGloss(boolean isRight) {
-        super(null);
+        super(null, null);
         tracker = 0;
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 3);
@@ -17,9 +17,6 @@ public class LipGloss extends Weapon {
     }
     public void act() {
         move();
-        if(this.isAtEdge()) {
-            getWorld().removeObject(this);
-        }
         detectCollision("Lucy", 3);
     }
     public void move() {
@@ -47,6 +44,19 @@ public class LipGloss extends Weapon {
         }
         else {
             this.setLocation(this.getX() - 10, this.getY());
+        }
+    }
+    @Override
+    public void detectCollision(String name, int damage) {
+        super.detectCollision(name, damage);
+        if(getWorld() != null) {
+            Player player = (Player) 
+                getOneIntersectingObject(Player.class);
+            if(player != null && !(player.getClass().getName().equals(name))) {
+                if(Math.abs(player.getX() - this.getX()) == 10) {
+                    getWorld().removeObject(this);
+                }
+            }
         }
     }
 }
