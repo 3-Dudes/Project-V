@@ -1,12 +1,15 @@
 import greenfoot.*;
+import java.util.*;
 public abstract class Weapon extends Actor {
     private boolean intersects;
     protected Player p;
     private int spaceX;
     private int spaceY;
     private int damage;
-    private static GreenfootImage left;
-    private static GreenfootImage right;
+    private GreenfootImage left;
+    private GreenfootImage right;
+    private GreenfootImage leftUnscaled;
+    private GreenfootImage rightUnscaled;
     public Weapon(Player p, int spaceX, int spaceY, Integer factor) {
         this.intersects = false;
         this.p = p;
@@ -14,14 +17,29 @@ public abstract class Weapon extends Actor {
         this.spaceY = spaceY;
         this.damage = 0;
         right = getImage();
+        rightUnscaled = new GreenfootImage(right);
+        leftUnscaled = new GreenfootImage(rightUnscaled);
+        leftUnscaled.mirrorHorizontally();
         if(factor != null) {
             right.scale(right.getWidth() / factor, right.getWidth() / factor);    
         }
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
     }
-    public Weapon() {
+    public Weapon(Integer factor) {
         this.intersects = false;
+        this.spaceX = spaceX;
+        this.spaceY = spaceY;
+        this.damage = 0;
+        right = getImage();
+        rightUnscaled = new GreenfootImage(right);
+        leftUnscaled = new GreenfootImage(rightUnscaled);
+        leftUnscaled.mirrorHorizontally();
+        if(factor != null) {
+            right.scale(right.getWidth() / factor, right.getWidth() / factor);    
+        }
+        left = new GreenfootImage(right);
+        left.mirrorHorizontally();
     }
     public int getDamage() {
         return damage;
@@ -48,6 +66,18 @@ public abstract class Weapon extends Actor {
                 }
             }
         }
+    }
+    public GreenfootImage getLeftUnscaledImage() {
+        return leftUnscaled;
+    }
+    public GreenfootImage getRightUnscaledImage() {
+        return rightUnscaled;
+    }
+    public GreenfootImage getLeftImage() {
+        return left;
+    }
+    public GreenfootImage getRightImage() {
+        return right;
     }
     public void detectCollision(String name, int damage) {
         if(getWorld() != null) {

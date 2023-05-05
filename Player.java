@@ -323,7 +323,9 @@ public abstract class Player extends Actor {
     public GreenfootImage getLeftImage() {
         return left;
     }
-    public abstract void reload();
+    public void reload() {
+        //empty method body, but not every class needs to override it
+    }
     public abstract void singleFire();
     public abstract void burstFire();
     public abstract void c();

@@ -1,13 +1,13 @@
 #BlueJ class context
 comment0.target=AmmoGUI
-comment1.params=cur\ max\ chip\ pastHalfway
-comment1.target=AmmoGUI(int,\ int,\ greenfoot.GreenfootImage,\ boolean)
+comment1.params=cur\ max\ chip\ pastHalfway\ spaceX\ widthFactor\ heightFactor
+comment1.target=AmmoGUI(int,\ int,\ greenfoot.GreenfootImage,\ boolean,\ int,\ int,\ int)
 comment2.params=world
 comment2.target=void\ addedToWorld(greenfoot.World)
 comment3.params=
 comment3.target=void\ loseChip()
 comment4.params=
 comment4.target=void\ refill()
-comment5.params=
-comment5.target=void\ updateImage()
+comment5.params=spaceX
+comment5.target=void\ updateImage(int)
 numComments=6
