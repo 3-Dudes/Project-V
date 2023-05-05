@@ -34,7 +34,7 @@ public class ElMacho extends Player {
     public void addedToWorld(World world) {
         super.addedToWorld(world);
         ammoGui = new AmmoGUI(5, 5, new TortillaChip(facingRight(), this).getImage(), 
-            pastHalfway, 50, 2, 2);
+            pastHalfway, 50, 1, 1);
         changePersona();
         q = new WrestlingChamp(this);
         e = new GuacamoleTortillaChip(facingRight());
@@ -44,7 +44,7 @@ public class ElMacho extends Player {
         }
         else {
             this.setImage(getRightImage());
-            getWorld().addObject(ammoGui, 5, 400);
+            getWorld().addObject(ammoGui, 45, 400);
         }
         reload();
     }

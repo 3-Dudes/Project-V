@@ -4,7 +4,7 @@ public class Flamethrower extends Weapon {
     private Lucy l;
     private Fire ammo;
     public Flamethrower(Lucy l, int spaceX, int spaceY) {
-        super(l, spaceX, spaceY, 3);
+        super(l, spaceX, spaceY, 3, 3);
         this.l = l;
         ammo = new Fire(this, l);
         GreenfootImage img = getImage();
@@ -18,7 +18,7 @@ public class Flamethrower extends Weapon {
         detectCollision("Lucy", getDamage());
     }
     public boolean isFiring() {
-        int offsetX = 30;
+        int offsetX = 50;
         if(!l.facingRight()) {
             offsetX = -offsetX;
         }
@@ -31,7 +31,7 @@ public class Flamethrower extends Weapon {
     @Override
     public void detectCollision(String name, int damage) {
         if (getWorld() != null && l.hasFlamethrower()) {
-            int offsetX = 30;
+            int offsetX = 50;
             if (!l.facingRight()) {
                 offsetX = -offsetX;
             }

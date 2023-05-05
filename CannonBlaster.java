@@ -3,7 +3,7 @@ public class CannonBlaster extends Weapon {
     private int charge = 0;
     private Laser laser;
     public CannonBlaster() {
-        super(new Vector(), 0, 0, 3);
+        super(new Vector(), 0, 0, 3, 3);
         GreenfootImage img = this.getImage();
         setImage(img);
     }

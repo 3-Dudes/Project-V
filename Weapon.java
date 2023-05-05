@@ -10,7 +10,8 @@ public abstract class Weapon extends Actor {
     private GreenfootImage right;
     private GreenfootImage leftUnscaled;
     private GreenfootImage rightUnscaled;
-    public Weapon(Player p, int spaceX, int spaceY, Integer factor) {
+    public Weapon(Player p, int spaceX, int spaceY, 
+        Integer widthFactor, Integer lengthFactor) {
         this.intersects = false;
         this.p = p;
         this.spaceX = spaceX;
@@ -20,13 +21,14 @@ public abstract class Weapon extends Actor {
         rightUnscaled = new GreenfootImage(right);
         leftUnscaled = new GreenfootImage(rightUnscaled);
         leftUnscaled.mirrorHorizontally();
-        if(factor != null) {
-            right.scale(right.getWidth() / factor, right.getWidth() / factor);    
+        if(widthFactor != null && lengthFactor != null) {
+            right.scale(right.getWidth() / widthFactor, 
+                right.getWidth() / lengthFactor);    
         }
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
     }
-    public Weapon(Integer factor) {
+    public Weapon(Integer widthFactor, Integer lengthFactor) {
         this.intersects = false;
         this.spaceX = spaceX;
         this.spaceY = spaceY;
@@ -35,8 +37,9 @@ public abstract class Weapon extends Actor {
         rightUnscaled = new GreenfootImage(right);
         leftUnscaled = new GreenfootImage(rightUnscaled);
         leftUnscaled.mirrorHorizontally();
-        if(factor != null) {
-            right.scale(right.getWidth() / factor, right.getWidth() / factor);    
+        if(widthFactor != null && lengthFactor != null) {
+            right.scale(right.getWidth() / widthFactor, 
+                right.getWidth() / lengthFactor);    
         }
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
@@ -81,8 +84,10 @@ public abstract class Weapon extends Actor {
     }
     public void detectCollision(String name, int damage) {
         if(getWorld() != null) {
-            Player player = (Player) this.getOneIntersectingObject(Player.class);
-            if(player != null && !(player.getClass().getName().equals(name)) && !intersects) {
+            Player player = (Player) 
+                getOneIntersectingObject(Player.class);
+            if(player != null && !(player.getClass().getName().equals(name)) 
+                && !intersects) {
                 player.decreaseHealth(damage);
                 intersects = true;
             }

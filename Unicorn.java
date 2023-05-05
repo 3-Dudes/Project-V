@@ -6,7 +6,7 @@ public class Unicorn extends Weapon {
     public static GreenfootImage right;
     private boolean isRight;
     public Unicorn(boolean isRight) {
-        super(2);
+        super(2, 2);
         tracker = 0;
         this.isRight = isRight;
     }
