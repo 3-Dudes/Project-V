@@ -79,7 +79,7 @@ public class Lucy extends Player {
                 break;
             case 1:
                 ammoGui = new AmmoGUI(4, 4, defaultImg, pastHalfway,
-                95, 3, 4);
+                75, 4, 5);
                 break;
         }
         if(pastHalfway) {
