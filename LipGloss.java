@@ -1,13 +1,14 @@
 import greenfoot.*;
 public class LipGloss extends Weapon {
-    private int tracker = 0;
-    private int ammo = 7;
+    private int tracker;
+    private int ammo;
     public static GreenfootImage left;
     public static GreenfootImage right;
     private boolean isRight;
     public LipGloss(boolean isRight) {
         super(null, null);
         tracker = 0;
+        ammo = 7;
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 3);
         this.isRight = isRight;
@@ -53,10 +54,9 @@ public class LipGloss extends Weapon {
     public void detectCollision(String name, int damage) {
         super.detectCollision(name, damage);
         if(getWorld() != null) {
-            Player player = (Player) 
-                getOneIntersectingObject(Player.class);
+            Player player = (Player) getOneIntersectingObject(Player.class);
             if(player != null && !(player.getClass().getName().equals(name))) {
-                if(Math.abs(player.getX() - this.getX()) <= 20) {
+                if(Math.abs(player.getX() - this.getX()) <= 10) {
                     getWorld().removeObject(this);
                 }
             }
