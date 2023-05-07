@@ -22,7 +22,11 @@ public class Stage extends World {
         List<Integer> sequence = new ArrayList<Integer>();
         sequence.add(4);
         sequence.add(3);
+        List<Integer> sequence2 = new ArrayList<Integer>();
+        sequence2.add(1); sequence2.add(3); sequence2.add(2); sequence2.add(4);
         topPlatform = new Platform(true, true, sequence);
+        leftPlatform = new Platform(true, false, sequence2);
         this.addObject(topPlatform, 600, 200);
+        this.addObject(leftPlatform, 300, 500);
     }
 }

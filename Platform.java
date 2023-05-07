@@ -25,7 +25,7 @@ public class Platform extends Actor {
     public void act() {
         if(shouldMove) {
             bounce();
-            changeDirection(50);
+            changeDirection(100, 60);
             if(movingRight) {
                 setLocation(getX() + 5, getY());
             }  
@@ -49,7 +49,7 @@ public class Platform extends Actor {
             }
         }
     }
-    private void changeDirection(int bound) {
+    private void changeDirection(int xBound, int yBound) {
         int startX = getX();
         int startY = getY();
         if(sequenceIndex >= sequence.size()) {
@@ -78,8 +78,11 @@ public class Platform extends Actor {
                 break;
         }
         if(!shouldBounce) {
-            if(Math.abs(startX - getX()) == bound) {
+            if(Math.abs(startX - getX()) == xBound 
+                || Math.abs(startY - getY()) == yBound) {
                 sequenceIndex++;
+                startX = getX();
+                startY = getY();
             }    
         }
     }
