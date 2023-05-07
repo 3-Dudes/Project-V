@@ -24,7 +24,7 @@ public class Balthazar extends Player {
     public void burstFire() { }
     public void reload() { }
     public void act() {
-        super.act();
+        //super.act();
         checkAbilities();
     }
 }
