@@ -1,10 +1,2 @@
-------------------------------------------------------------------------
-PLANNING PAGE: 
-------------------------------------------------------------------------
-
-PROJECT TITLE:
-PURPOSE OF PROJECT:
-VERSION or DATE:
-HOW TO START THIS PROJECT:
-AUTHORS:
-USER INSTRUCTIONS:
+Project-V
+Done by: Anirudh Konidala, Krishna Trivedi, Noah Patterson, Alikhan Kanash
