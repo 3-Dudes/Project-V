@@ -19,7 +19,7 @@ public class ElMacho extends Player {
     private boolean isMoving;
     private Random rand;
     public ElMacho() {
-        super("El Macho", 2);
+        super("El Macho", 2, "macho");
         health = 700;
         hitpoints = 700;
         //ammoCount = 5;
@@ -37,17 +37,7 @@ public class ElMacho extends Player {
         eduardo = new GreenfootImage("eduardo_perez.png");
         eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
         
-        rightMachoFrames = new GreenfootImage[21];
-        for(int i = 0; i < rightMachoFrames.length; i++) {
-            rightMachoFrames[i] = new GreenfootImage("macho" + (i + 1) + ".png");
-            rightMachoFrames[i].scale(rightMachoFrames[i].getWidth() / 2, 
-                rightMachoFrames[i].getHeight() / 2);
-        }
-        leftMachoFrames = new GreenfootImage[21];
-        for(int i = 0; i < leftMachoFrames.length; i++) {
-            leftMachoFrames[i] = new GreenfootImage(rightMachoFrames[i]);
-            leftMachoFrames[i].mirrorHorizontally();
-        }
+        
         currentFrame = 0;
         frameDelay = 6;
         isMoving = false;
@@ -124,22 +114,6 @@ public class ElMacho extends Player {
             this.setImage(tempLeft);
         }
     }
-    
-    @Override
-    public void move() {
-        super.move();
-        if(Greenfoot.isKeyDown("D")) {
-            animate();
-            isMoving = true;
-        }
-        else if(Greenfoot.isKeyDown("A")) {
-            animate();
-            isMoving = true;
-        }
-        else {
-            isMoving = false;
-        }
-    }
 
     @Override
     public void act() {
@@ -180,33 +154,8 @@ public class ElMacho extends Player {
                 vPressed = false;
             }    
         }
-        if(!isMoving) {
-            if(facingRight()) {
-                setImage(rightMachoFrames[0]);
-            }
-            else {
-                setImage(leftMachoFrames[0]);
-            }
-        }
         checkAbilities();
     }    
-    
-    private void animate() {
-        if(facingRight()) {
-            setImage(rightMachoFrames[currentFrame]);   
-        }
-        else {
-            setImage(leftMachoFrames[currentFrame]);
-        }
-        if(frameDelay == 0) {
-            currentFrame++;    
-            frameDelay = 6;
-        }
-        frameDelay--;
-        if(currentFrame == 21) {
-            currentFrame = 0;
-        }
-    }
     
     @Override
     protected void checkAbilities() {

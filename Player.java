@@ -12,8 +12,6 @@ public abstract class Player extends Actor {
     protected boolean canMove;
     protected boolean canCast;
     
-    private Shield shield;
-    
     protected Ability c;
     protected Ability q;
     protected Ability e;
@@ -26,13 +24,18 @@ public abstract class Player extends Actor {
     
     protected boolean pastHalfway;
     
+    private GreenfootImage[] rightFrames;
+    private GreenfootImage[] leftFrames;
     private GreenfootImage right;
     private GreenfootImage left;
     private int factor;
-    
+    private int currentFrame;
+    private int frameDelay;
+    private boolean isMoving;
     private int timeDisabled;
     
     private String name;    
+    private String nickname;
     public Player(String name, int factor) { 
         cPressed = false;
         qPressed = false;
@@ -41,18 +44,48 @@ public abstract class Player extends Actor {
         isFacingRight = true;
         pastHalfway = false;
         this.name = name;
+        this.nickname = nickname;
         this.playerScore = 0;
         hp = new HealthBar(name);
-        shield = new Shield();
         this.factor = factor;
         this.canMove = true;
         this.canCast = true;
         timeDisabled = 0;
-        
-        right = this.getImage();
-        scaleImage(right);
+        right = getImage();
+        right.scale(right.getWidth() / factor, right.getHeight() / factor);
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
+        if(facingRight()) {
+            setImage(right);
+        }
+        else {
+            setImage(left);
+        }
+    }
+    public Player(String name, int factor, String nickname) {
+        this(name, factor);
+        this.rightFrames = new GreenfootImage[21];
+        this.leftFrames = new GreenfootImage[21];
+        for(int i = 0; i < rightFrames.length; i++) {
+            rightFrames[i] = new GreenfootImage(nickname + (i + 1) + ".png");
+            rightFrames[i].scale(rightFrames[i].getWidth() / factor, 
+                rightFrames[i].getHeight() / factor);
+        }
+        for(int i = 0; i < leftFrames.length; i++) {
+            leftFrames[i] = new GreenfootImage(rightFrames[i]);
+            leftFrames[i].mirrorHorizontally();
+        }
+        frameDelay = 5;
+        currentFrame = 0;
+        isMoving = false;
+        right = new GreenfootImage(rightFrames[0]);
+        left = new GreenfootImage(leftFrames[0]);
+        if(facingRight()) {
+            setImage(right);
+        }
+        else {
+            setImage(left);
+        }
     }
     
     public boolean facingRight() {
@@ -160,13 +193,6 @@ public abstract class Player extends Actor {
                 if(!Greenfoot.isKeyDown("X") && xPressed) {
                     xPressed = false;
                 }
-                
-                if(Greenfoot.isKeyDown("M")) {
-                    getWorld().addObject(shield, this.getX(), this.getY());
-                }
-                else {
-                    getWorld().removeObject(shield);
-                }
             }
         }
         if(!canMove) {
@@ -197,16 +223,46 @@ public abstract class Player extends Actor {
             }
         }
     }
-    public void move() {
+    public final void move() {
         if(Greenfoot.isKeyDown("A")) {
             this.setLocation(this.getX() - 5, this.getY());
-            this.setImage(left);
             isFacingRight = false;
+            isMoving = true;
         }
         if(Greenfoot.isKeyDown("D")) {
             this.setLocation(this.getX() + 5, this.getY());
-            this.setImage(right);
             isFacingRight = true;
+            isMoving = true;
+        }
+        if(!Greenfoot.isKeyDown("A") && !Greenfoot.isKeyDown("D")) {
+            isMoving = false;
+        }
+        if(isMoving) {
+            animate();
+        }
+        else {
+            if(facingRight()) {
+                setImage(right);
+            }
+            else {
+                setImage(left);
+            }
+        }
+    }
+    public final void animate() {
+        if(isFacingRight) {
+            this.setImage(rightFrames[currentFrame]);   
+        }
+        else {
+            this.setImage(leftFrames[currentFrame]);
+        }
+        if(frameDelay == 0) {
+            currentFrame++;    
+            frameDelay = 5;
+        }
+        frameDelay--;
+        if(currentFrame == 21) {
+            currentFrame = 0;
         }
     }
     private void updateAbility(Ability ab) {

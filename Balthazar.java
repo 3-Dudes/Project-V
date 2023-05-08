@@ -5,6 +5,8 @@ public class Balthazar extends Player {
         super("Balthazar", 2);
         health = 300;
         hitpoints = 300;
+        GreenfootImage img = new GreenfootImage("balthazar.png");
+        setImage(img);
         q = new BubbleGum();
     }
     public void c() {
