@@ -13,15 +13,6 @@ public class Lucy extends Player {
         GreenfootImage img = this.getImage();
         health = 400;
         hitpoints = 400;
-        weapon = new Flamethrower(this, spaceX, spaceY);
-        weaponIndex = 0;
-        //img.scale(img.getWidth() / 2, img.getHeight() / 2);
-        weaponCycle = new ArrayList<Weapon>();
-        weaponCycle.add(new Unicorn(facingRight()));
-        weaponCycle.add(new LipGloss(facingRight()));
-        GreenfootImage defaultImg 
-            = getCurrentWeapon().getRightUnscaledImage();
-        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
     }
         
     public Weapon getCurrentWeapon() {
@@ -30,6 +21,15 @@ public class Lucy extends Player {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
+        weapon = new Flamethrower(this, spaceX, spaceY);
+        weaponIndex = 0;
+        b = new PlayingCard(facingRight());
+        weaponCycle = new ArrayList<Weapon>();
+        weaponCycle.add(new Unicorn(facingRight()));
+        weaponCycle.add(new LipGloss(facingRight()));
+        GreenfootImage defaultImg 
+            = getCurrentWeapon().getRightUnscaledImage();
+        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
         if(pastHalfway) {
             this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1200, 425);
@@ -57,8 +57,7 @@ public class Lucy extends Player {
         if(this.hasFlamethrower()) {
             ultTimer++;
             if(ultTimer == 500) {
-                getWorld().removeObject(weapon.getAmmo());
-                getWorld().removeObject(weapon);
+                cancelX();
                 ultTimer = 0;
                 canCast = true;
             }
@@ -90,7 +89,8 @@ public class Lucy extends Player {
         }
     }
     public void burstFire() {
-        
+        b = new PlayingCard(facingRight());
+        getWorld().addObject(b, getX(), getY());
     }
     public void singleFire() {
         if(ammoGui.cur > 0) {
@@ -114,7 +114,7 @@ public class Lucy extends Player {
         
     }
     public void e() {
-        
+     
     }
     public void x() {
         canCast = false;
@@ -129,5 +129,13 @@ public class Lucy extends Player {
                     this.getY() - spaceY);
             }
         }
+    }
+    @Override
+    protected void castX() {
+        super.castX();
+    }
+    private void cancelX() {
+        getWorld().removeObject(weapon);
+        getWorld().removeObject(weapon.getAmmo());
     }
 }
