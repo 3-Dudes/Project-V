@@ -10,4 +10,6 @@ comment4.params=
 comment4.target=void\ move()
 comment5.params=name\ damage
 comment5.target=void\ detectCollision(java.lang.String,\ int)
-numComments=6
+comment6.params=p
+comment6.target=boolean\ isHittingCenter(Player)
+numComments=7
