@@ -5,6 +5,7 @@ public class ElMachoAnimated extends Actor {
     private int currentFrame;
     private boolean facingRight;
     private int frameDelay;
+    private boolean isMoving;
     public ElMachoAnimated() {
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
@@ -22,17 +23,31 @@ public class ElMachoAnimated extends Actor {
         currentFrame = 0;
         frameDelay = 0;
         facingRight = true;
+        isMoving = false;
     }
     public void act() {
         if(Greenfoot.isKeyDown("D")) {
             setLocation(getX() + 5, getY());
             animate();
+            isMoving = true;
             facingRight = true;
         }
         else if(Greenfoot.isKeyDown("A")) {
             setLocation(getX() - 5, getY());
             animate();
+            isMoving = true;
             facingRight = false;
+        }
+        else {
+            isMoving = false;
+        }
+        if(!isMoving) {
+            if(facingRight) {
+                setImage(rightMachoFrames[0]);
+            }
+            else {
+                setImage(leftMachoFrames[0]);
+            }
         }
     }
     private void animate() {
