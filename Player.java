@@ -75,7 +75,7 @@ public abstract class Player extends Actor {
             leftFrames[i] = new GreenfootImage(rightFrames[i]);
             leftFrames[i].mirrorHorizontally();
         }
-        frameDelay = 5;
+        frameDelay = 8;
         currentFrame = 0;
         isMoving = false;
         right = new GreenfootImage(rightFrames[0]);
@@ -258,7 +258,7 @@ public abstract class Player extends Actor {
         }
         if(frameDelay == 0) {
             currentFrame++;    
-            frameDelay = 5;
+            frameDelay = 8;
         }
         frameDelay--;
         if(currentFrame == 21) {
