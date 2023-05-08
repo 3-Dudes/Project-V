@@ -20,6 +20,7 @@ public abstract class Player extends Actor {
     protected Ability q;
     protected Ability e;
     protected Ability x;
+    protected Ability b;
     
     private HealthBar hp;
     
@@ -63,6 +64,7 @@ public abstract class Player extends Actor {
     public int getHealth() {
         return health;
     }
+    
     public final void decreaseHealth(int damage) {
         health -= damage;
         
@@ -138,6 +140,8 @@ public abstract class Player extends Actor {
         updateAbility(c);
         updateAbility(q);
         updateAbility(e);
+        updateAbility(b);
+        checkAbilities();
     }
     
     public final void castMoves() {
@@ -190,20 +194,22 @@ public abstract class Player extends Actor {
     protected void castB() {
         if(Greenfoot.isKeyDown("B") && !bPressed) {
             bPressed = true;
-            burstFire();
+            if(b == null) {
+                burstFire();    
+            }
         }
         if(!Greenfoot.isKeyDown("B") && bPressed) {
             bPressed = false;
         }
     }
     protected void castV() {
-       if(Greenfoot.isKeyDown("V") && !vPressed) {
-            vPressed = true;
-            singleFire();
-       }
-       if(!Greenfoot.isKeyDown("V") && vPressed) {
-            vPressed = false;
-       } 
+        if(Greenfoot.isKeyDown("V") && !vPressed) {
+             vPressed = true;
+             singleFire();
+        }
+        if(!Greenfoot.isKeyDown("V") && vPressed) {
+             vPressed = false;
+        } 
     }
     
     public void scaleImage(GreenfootImage img) {
@@ -226,7 +232,6 @@ public abstract class Player extends Actor {
             }
         }
     }
-    
     
     public final void move() {
         if(Greenfoot.isKeyDown("A")) {
@@ -295,6 +300,23 @@ public abstract class Player extends Actor {
             if(c.getCharge() == 0) {
                 cPressed = false;
                 c.setCharge(c.getCooldown());
+            }
+        }
+        if(b != null) {
+            if(b.isReady()) {
+                if(bPressed) {
+                    burstFire();
+                    b.setCharge(b.getCooldown() - 1);    
+                }
+            }
+            int bCharge = b.getCharge();
+            if(bCharge < b.getCooldown()) {
+                bCharge--;
+                b.setCharge(bCharge);
+            }
+            if(b.getCharge() == 0) {
+                bPressed = false;
+                b.setCharge(b.getCooldown());
             }
         }
     }
