@@ -1,21 +1,25 @@
 import greenfoot.*;
-public class PlayingCard extends Weapon {
+public class PlayingCard extends Ability {
     private int tracker = 0;
-    private int ammo = 7;
     public static GreenfootImage left;
     public static GreenfootImage right;
+    private static int damage = 10;
     private boolean isRight;
+    private boolean recast;
     public PlayingCard(boolean isRight) {
-        super(2, 2);
+        super(1200, damage);
         tracker = 0;
+        GreenfootImage img = getImage();
+        img.scale(img.getWidth() / 9, img.getHeight() / 9);
         this.isRight = isRight;
+        recast = false;
     }
     public void act() {
         move();
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
         }
-        detectCollision("Lucy", 5);
+        detectCollision("Lucy");
     }
     public void move() {
         switch(tracker) {
@@ -43,5 +47,5 @@ public class PlayingCard extends Weapon {
         else {
             this.setLocation(this.getX() - 10, this.getY());
         }
-    } 
+    }
 }
