@@ -197,7 +197,7 @@ public abstract class Player extends Actor {
             }
         }
     }
-    public final void move() {
+    public void move() {
         if(Greenfoot.isKeyDown("A")) {
             this.setLocation(this.getX() - 5, this.getY());
             this.setImage(left);
