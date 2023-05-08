@@ -1,8 +1,6 @@
 import greenfoot.*;
 import java.util.*;
 public class ElMacho extends Player {
-    //private Stack<TortillaChip> ammo;   
-    //private int ammoCount;
     private AmmoGUI ammoGui;
     private int timeToReload;
     private boolean needToReload;
@@ -14,7 +12,12 @@ public class ElMacho extends Player {
     public static GreenfootImage eduardo;
     public boolean isEduardo;
     public static GreenfootImage elMacho;
-
+    private GreenfootImage[] rightMachoFrames;
+    private GreenfootImage[] leftMachoFrames;
+    private int currentFrame;
+    private boolean facingRight;
+    private int frameDelay;
+    private boolean isMoving;
     private Random rand;
     public ElMacho() {
         super("El Macho", 2);
@@ -34,6 +37,21 @@ public class ElMacho extends Player {
         elMacho = getImage();
         eduardo = new GreenfootImage("eduardo_perez.png");
         eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
+        
+        rightMachoFrames = new GreenfootImage[21];
+        for(int i = 0; i < rightMachoFrames.length; i++) {
+            rightMachoFrames[i] = new GreenfootImage("macho" + (i + 1) + ".png");
+            rightMachoFrames[i].scale(rightMachoFrames[i].getWidth() / 2, 
+                rightMachoFrames[i].getHeight() / 2);
+        }
+        leftMachoFrames = new GreenfootImage[21];
+        for(int i = 0; i < leftMachoFrames.length; i++) {
+            leftMachoFrames[i] = new GreenfootImage(rightMachoFrames[i]);
+            leftMachoFrames[i].mirrorHorizontally();
+        }
+        currentFrame = 0;
+        frameDelay = 6;
+        isMoving = false;
     }
     
     @Override
@@ -107,6 +125,25 @@ public class ElMacho extends Player {
             this.setImage(tempLeft);
         }
     }
+    
+    @Override
+    public void move() {
+        if(Greenfoot.isKeyDown("D")) {
+            setLocation(getX() + 5, getY());
+            animate();
+            isMoving = true;
+            facingRight = true;
+        }
+        else if(Greenfoot.isKeyDown("A")) {
+            setLocation(getX() - 5, getY());
+            animate();
+            isMoving = true;
+            facingRight = false;
+        }
+        else {
+            isMoving = false;
+        }
+    }
 
     @Override
     public void act() {
@@ -147,8 +184,33 @@ public class ElMacho extends Player {
                 vPressed = false;
             }    
         }
+        if(!isMoving) {
+            if(facingRight) {
+                setImage(rightMachoFrames[0]);
+            }
+            else {
+                setImage(leftMachoFrames[0]);
+            }
+        }
         checkAbilities();
     }    
+    
+    private void animate() {
+        if(facingRight) {
+            setImage(rightMachoFrames[currentFrame]);   
+        }
+        else {
+            setImage(leftMachoFrames[currentFrame]);
+        }
+        if(frameDelay == 0) {
+            currentFrame++;    
+            frameDelay = 6;
+        }
+        frameDelay--;
+        if(currentFrame == 21) {
+            currentFrame = 0;
+        }
+    }
     
     @Override
     protected void checkAbilities() {
