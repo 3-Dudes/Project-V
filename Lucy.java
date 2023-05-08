@@ -13,6 +13,16 @@ public class Lucy extends Player {
         GreenfootImage img = this.getImage();
         health = 400;
         hitpoints = 400;
+        weapon = new Flamethrower(this, spaceX, spaceY);
+        weaponIndex = 0;
+        b = new PlayingCard(facingRight());
+        e = new LipStick(this);
+        weaponCycle = new ArrayList<Weapon>();
+        weaponCycle.add(new Unicorn(facingRight()));
+        weaponCycle.add(new LipGloss(facingRight()));
+        GreenfootImage defaultImg 
+            = getCurrentWeapon().getRightUnscaledImage();
+        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
     }
         
     public Weapon getCurrentWeapon() {
@@ -21,15 +31,6 @@ public class Lucy extends Player {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        weapon = new Flamethrower(this, spaceX, spaceY);
-        weaponIndex = 0;
-        b = new PlayingCard(facingRight());
-        weaponCycle = new ArrayList<Weapon>();
-        weaponCycle.add(new Unicorn(facingRight()));
-        weaponCycle.add(new LipGloss(facingRight()));
-        GreenfootImage defaultImg 
-            = getCurrentWeapon().getRightUnscaledImage();
-        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
         if(pastHalfway) {
             this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1200, 425);
@@ -114,7 +115,15 @@ public class Lucy extends Player {
         
     }
     public void e() {
-     
+        canCast = false;
+        canMove = false;
+        e = new LipStick(this);
+        if(facingRight()) {
+            getWorld().addObject(e, this.getX() + 70, this.getY() + 16);
+        }
+        else {
+            getWorld().addObject(e, this.getX() - 70, this.getY() + 16);
+        }
     }
     public void x() {
         canCast = false;
