@@ -15,7 +15,6 @@ public class ElMacho extends Player {
     private GreenfootImage[] rightMachoFrames;
     private GreenfootImage[] leftMachoFrames;
     private int currentFrame;
-    private boolean facingRight;
     private int frameDelay;
     private boolean isMoving;
     private Random rand;
@@ -128,17 +127,14 @@ public class ElMacho extends Player {
     
     @Override
     public void move() {
+        super.move();
         if(Greenfoot.isKeyDown("D")) {
-            setLocation(getX() + 5, getY());
             animate();
             isMoving = true;
-            facingRight = true;
         }
         else if(Greenfoot.isKeyDown("A")) {
-            setLocation(getX() - 5, getY());
             animate();
             isMoving = true;
-            facingRight = false;
         }
         else {
             isMoving = false;
@@ -185,7 +181,7 @@ public class ElMacho extends Player {
             }    
         }
         if(!isMoving) {
-            if(facingRight) {
+            if(facingRight()) {
                 setImage(rightMachoFrames[0]);
             }
             else {
@@ -196,7 +192,7 @@ public class ElMacho extends Player {
     }    
     
     private void animate() {
-        if(facingRight) {
+        if(facingRight()) {
             setImage(rightMachoFrames[currentFrame]);   
         }
         else {
