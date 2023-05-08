@@ -16,7 +16,7 @@
     Project-Vector, shortened to Project-V, is a ranged fighting game where 
     two players have the chance to show their true fighting style by utilizing ranged combat 
     in colorful and chaotic arenas, with a cast from Universal's beloved franchise: <strong> Despicable Me </strong>. Each player will have
-    their own moveset consisting of a primary fire, an alt fire, three abilities, and an ultimate ability. Mastery of this moveset will guarantee 
-    victory on the battlefield. Utilize the moveset for your player to your opponent's health down to zero and you will be guaranteed victorious!
+    their own moveset consisting of a primary fire, an alt fire, three abilities, and an ultimate ability. Utilize this moveset for your player 
+    in order to your knock your opponent's health down to zero and be considered victorious!
   </body>
 </html>
