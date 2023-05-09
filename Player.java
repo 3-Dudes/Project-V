@@ -248,7 +248,8 @@ public abstract class Player extends Actor {
             isFacingRight = true;
             isMoving = true;
         }
-        if(!Greenfoot.isKeyDown("A") && !Greenfoot.isKeyDown("D")) {
+        if(!Greenfoot.isKeyDown("A") && !Greenfoot.isKeyDown("D") ||
+            Greenfoot.isKeyDown("A") && Greenfoot.isKeyDown("D")) {
             isMoving = false;
         }
         if(isMoving) {
