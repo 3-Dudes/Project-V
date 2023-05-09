@@ -10,12 +10,9 @@ public class ElMacho extends Player {
     public boolean usedUlt;
     public int ultDur;
     public boolean isEduardo;
-    private int currentFrame;
-    private int frameDelay;
-    private boolean isMoving;
     private Random rand;
     public ElMacho() {
-        super("El Macho", 2, "macho");
+        super("El Macho", 2, "macho", 6);
         health = 700;
         hitpoints = 700;
         //ammoCount = 5;
@@ -28,11 +25,7 @@ public class ElMacho extends Player {
         usedUlt = false;
         isEduardo = false;
         ultDur = 0;
-        rand = new Random(); 
-        
-        currentFrame = 0;
-        frameDelay = 6;
-        isMoving = false;
+        rand = new Random();
     }
     
     @Override
@@ -102,6 +95,7 @@ public class ElMacho extends Player {
                 tempLeftFrames[i] = new GreenfootImage(tempRightFrames[i]);
                 tempLeftFrames[i].mirrorHorizontally();
             }
+            setFrameDelay(5);
         }
         else {
             for(int i = 0; i < tempRightFrames.length; i++) {
@@ -112,11 +106,12 @@ public class ElMacho extends Player {
                 tempLeftFrames[i] = new GreenfootImage(tempRightFrames[i]);
                 tempLeftFrames[i].mirrorHorizontally();
             }
+            setFrameDelay(5);
         }
         setRightFrames(tempRightFrames);
         setLeftFrames(tempLeftFrames);
-        setRightImage(tempRightFrames[0]);
-        setLeftImage(tempLeftFrames[0]);
+        setRightImage(tempRightFrames[1]);
+        setLeftImage(tempLeftFrames[1]);
         if(facingRight()) {
             this.setImage(getRightImage());
         }

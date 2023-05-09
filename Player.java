@@ -62,7 +62,7 @@ public abstract class Player extends Actor {
             setImage(left);
         }
     }
-    public Player(String name, int factor, String nickname) {
+    public Player(String name, int factor, String nickname, int frameDelay) {
         this(name, factor);
         this.rightFrames = new GreenfootImage[21];
         this.leftFrames = new GreenfootImage[21];
@@ -75,11 +75,11 @@ public abstract class Player extends Actor {
             leftFrames[i] = new GreenfootImage(rightFrames[i]);
             leftFrames[i].mirrorHorizontally();
         }
-        frameDelay = 6;
+        this.frameDelay = frameDelay;
         currentFrame = 0;
         isMoving = false;
-        right = new GreenfootImage(rightFrames[0]);
-        left = new GreenfootImage(leftFrames[0]);
+        right = new GreenfootImage(rightFrames[1]);
+        left = new GreenfootImage(leftFrames[1]);
         if(facingRight()) {
             setImage(right);
         }
@@ -87,7 +87,9 @@ public abstract class Player extends Actor {
             setImage(left);
         }
     }
-    
+    public void setFrameDelay(int frameDelay) {
+        this.frameDelay = frameDelay;
+    }
     public boolean facingRight() {
         return isFacingRight;
     }
