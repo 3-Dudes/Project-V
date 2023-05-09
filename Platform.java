@@ -8,6 +8,8 @@ public class Platform extends Actor {
     private boolean movingUp;
     private List<Integer> sequence;
     private int sequenceIndex = 0;
+    private int xBound;
+    private int yBound;
     public Platform(boolean shouldMove, boolean shouldBounce, List<Integer> sequence) {
         this.shouldMove = shouldMove;
         this.shouldBounce = shouldBounce;
@@ -19,9 +21,17 @@ public class Platform extends Actor {
         this.sequence = sequence;
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
     }
+
+    public Platform(int xBound, int yBound, boolean shouldMove, boolean shouldBounce, List<Integer> sequence) {
+            this(shouldMove, shouldBounce, sequence);
+            this.xBound=xBound;
+            this.yBound=yBound;
+    }
+
     public Platform() {
         this(false, false, null);
     }
+
     public void act() {
         if(shouldMove) {
             bounce();
@@ -42,6 +52,7 @@ public class Platform extends Actor {
             }
         }
     }
+
     private void bounce() {
         if(shouldBounce) {
             if(isAtEdge()) {
@@ -49,6 +60,7 @@ public class Platform extends Actor {
             }
         }
     }
+
     private void changeDirection(int xBound, int yBound) {
         int startX = getX();
         int startY = getY();
@@ -78,12 +90,12 @@ public class Platform extends Actor {
                 break;
         }
         if(!shouldBounce) {
-            if(Math.abs(startX - getX()) == xBound 
-                || Math.abs(startY - getY()) == yBound) {
+            if(Math.abs(startX - getX()) == xBound //must set xbound and ybound
+            || Math.abs(startY - getY()) == yBound) {
                 sequenceIndex++;
                 startX = getX();
                 startY = getY();
-            }    
+            }
         }
     }
 }
