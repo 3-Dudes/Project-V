@@ -1,10 +1,5 @@
-/**
- * Write a description of class Zone here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class Zone  
+import greenfoot.*;
+public class Zone extends Actor
 {
     // instance variables - replace the example below with your own
     private int x;
