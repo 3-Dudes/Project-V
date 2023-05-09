@@ -9,11 +9,7 @@ public class ElMacho extends Player {
     private boolean rPressed;
     public boolean usedUlt;
     public int ultDur;
-    public static GreenfootImage eduardo;
     public boolean isEduardo;
-    public static GreenfootImage elMacho;
-    private GreenfootImage[] rightMachoFrames;
-    private GreenfootImage[] leftMachoFrames;
     private int currentFrame;
     private int frameDelay;
     private boolean isMoving;
@@ -32,11 +28,7 @@ public class ElMacho extends Player {
         usedUlt = false;
         isEduardo = false;
         ultDur = 0;
-        rand = new Random();
-        elMacho = getImage();
-        eduardo = new GreenfootImage("eduardo_perez.png");
-        eduardo.scale(eduardo.getWidth() / 2, eduardo.getHeight() / 2);
-        
+        rand = new Random(); 
         
         currentFrame = 0;
         frameDelay = 6;
@@ -97,21 +89,39 @@ public class ElMacho extends Player {
     }
 
     private void changePersona() {
-        GreenfootImage tempRight = new GreenfootImage(elMacho);
-        GreenfootImage tempLeft = new GreenfootImage(tempRight);
-        tempLeft.mirrorHorizontally();
+        GreenfootImage[] tempRightFrames = new GreenfootImage[21];
+        GreenfootImage[] tempLeftFrames = new GreenfootImage[21];
+        GreenfootImage rightImage = new GreenfootImage(getRightImage());
+        GreenfootImage leftImage = new GreenfootImage(getLeftImage());
         if(isEduardo) {
-            tempLeft = new GreenfootImage(eduardo);
-            tempRight = new GreenfootImage(tempLeft);
-            tempRight.mirrorHorizontally();
-        }
-        setRightImage(tempRight);
-        setLeftImage(tempLeft);
-        if(facingRight()) {
-            this.setImage(tempRight);
+            for(int i = 0; i < tempRightFrames.length; i++) {
+                tempRightFrames[i] = new GreenfootImage("eduardo" + (i + 1) + ".png");
+                tempRightFrames[i].scale(tempRightFrames[i].getWidth() / 3, tempRightFrames[i].getHeight() / 3);
+            }
+            for(int i = 0; i < tempLeftFrames.length; i++) {
+                tempLeftFrames[i] = new GreenfootImage(tempRightFrames[i]);
+                tempLeftFrames[i].mirrorHorizontally();
+            }
         }
         else {
-            this.setImage(tempLeft);
+            for(int i = 0; i < tempRightFrames.length; i++) {
+                tempRightFrames[i] = new GreenfootImage("macho" + (i + 1) + ".png");
+                tempRightFrames[i].scale(tempRightFrames[i].getWidth() / 2, tempRightFrames[i].getHeight() / 2);
+            }
+            for(int i = 0; i < tempLeftFrames.length; i++) {
+                tempLeftFrames[i] = new GreenfootImage(tempRightFrames[i]);
+                tempLeftFrames[i].mirrorHorizontally();
+            }
+        }
+        setRightFrames(tempRightFrames);
+        setLeftFrames(tempLeftFrames);
+        setRightImage(tempRightFrames[0]);
+        setLeftImage(tempLeftFrames[0]);
+        if(facingRight()) {
+            this.setImage(getRightImage());
+        }
+        else {
+            this.setImage(getLeftImage());
         }
     }
 

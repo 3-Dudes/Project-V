@@ -75,7 +75,7 @@ public abstract class Player extends Actor {
             leftFrames[i] = new GreenfootImage(rightFrames[i]);
             leftFrames[i].mirrorHorizontally();
         }
-        frameDelay = 4;
+        frameDelay = 6;
         currentFrame = 0;
         isMoving = false;
         right = new GreenfootImage(rightFrames[0]);
@@ -93,6 +93,12 @@ public abstract class Player extends Actor {
     }
     public int getHealth() {
         return health;
+    }
+    public void setRightFrames(GreenfootImage[] rightFrames) {
+        this.rightFrames = rightFrames;
+    }
+    public void setLeftFrames(GreenfootImage[] leftFrames) {
+        this.leftFrames = leftFrames;
     }
     public final void decreaseHealth(int damage) {
         health -= damage;
@@ -258,7 +264,7 @@ public abstract class Player extends Actor {
         }
         if(frameDelay == 0) {
             currentFrame++;    
-            frameDelay = 4;
+            frameDelay = 6;
         }
         frameDelay--;
         if(currentFrame == 21) {
