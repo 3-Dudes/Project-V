@@ -118,6 +118,7 @@ public class ElMacho extends Player {
         else {
             this.setImage(getLeftImage());
         }
+        canCast = true;
     }
 
     @Override
@@ -199,6 +200,7 @@ public class ElMacho extends Player {
         else {
             isEduardo = true;
         }
+        canCast = false;
         changePersona();
     }   
 
