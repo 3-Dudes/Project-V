@@ -1,40 +1,25 @@
 import greenfoot.*;
-public class Zone extends Actor {
-    private GreenfootImage captureBar;
-    private GreenfootImage marker;
-    private Color captureColor;
-    public Zone(Color captureColor) {
-        captureBar = new GreenfootImage(50, 200);
-        marker = new GreenfootImage(50, 50);
-        marker.setColor(Color.WHITE);
-        marker.fill();
-        captureBar.setColor(Color.WHITE);
-        captureBar.fill();
-        this.captureColor = captureColor;
+public class Zone extends Actor
+{
+    // instance variables - replace the example below with your own
+    private int x;
+
+    /**
+     * Constructor for objects of class Zone
+     */
+    public Zone()
+    {
     }
-    public void act() {
-        if(isCaptured()) {
-            
-        }
-    }
-    public boolean isCaptured() {
-        GreenfootImage tempRect = new GreenfootImage(30, 30);
-        tempRect.setColor(captureColor);
-        //tempRect.fillRect(tempRect.getWidth());
-        captureBar.drawImage(tempRect, 
-            captureBar.getWidth(), captureBar.getHeight());
-        return true;
-    }
-    public void capture() {
-        captureBar.setColor(captureColor);
-        if(!isCaptured()) {
-            
-        }
-    }
-    public GreenfootImage getCaptureBar() {
-        return captureBar;
-    }
-    public GreenfootImage getMarker() {
-        return marker;
+
+    /**
+     * An example of a method - replace this comment with your own
+     * 
+     * @param  y   a sample parameter for a method
+     * @return     the sum of x and y 
+     */
+    public int sampleMethod(int y)
+    {
+        // put your code here
+        return x + y;
     }
 }
