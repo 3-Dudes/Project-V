@@ -135,23 +135,13 @@ dependency8.type=UsesDependency
 dependency9.from=Stock
 dependency9.to=Player
 dependency9.type=UsesDependency
-<<<<<<< Updated upstream
-editor.fx.0.height=626
-editor.fx.0.width=816
-editor.fx.0.x=189
-editor.fx.0.y=10
-height=684
+editor.fx.0.height=739
+editor.fx.0.width=814
+editor.fx.0.x=418
+editor.fx.0.y=11
+height=828
 package.numDependencies=39
 package.numTargets=34
-=======
-editor.fx.0.height=0
-editor.fx.0.width=0
-editor.fx.0.x=0
-editor.fx.0.y=0
-height=828
-package.numDependencies=34
-package.numTargets=30
->>>>>>> Stashed changes
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -412,11 +402,7 @@ target9.width=170
 target9.x=0
 target9.y=0
 version=3.0.0
-<<<<<<< Updated upstream
-width=1292
-=======
 width=1548
->>>>>>> Stashed changes
 world.lastInstantiated=GruHouse
 xPosition=0
 yPosition=0
