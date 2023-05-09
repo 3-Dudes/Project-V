@@ -102,6 +102,12 @@ public abstract class Player extends Actor {
     public void setLeftFrames(GreenfootImage[] leftFrames) {
         this.leftFrames = leftFrames;
     }
+    public GreenfootImage[] getLeftFrames() {
+        return leftFrames;
+    }
+    public GreenfootImage[] getRightFrames() {
+        return rightFrames;
+    }
     public final void decreaseHealth(int damage) {
         health -= damage;
         

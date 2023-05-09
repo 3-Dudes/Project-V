@@ -11,6 +11,10 @@ public class ElMacho extends Player {
     public int ultDur;
     public boolean isEduardo;
     private Random rand;
+    private static GreenfootImage[] machoLeftFrames;
+    private static GreenfootImage[] machoRightFrames;
+    private static GreenfootImage[] eduardoLeftFrames;
+    private static GreenfootImage[] eduardoRightFrames;
     public ElMacho() {
         super("El Macho", 2, "macho", 6);
         health = 700;
@@ -26,6 +30,20 @@ public class ElMacho extends Player {
         isEduardo = false;
         ultDur = 0;
         rand = new Random();
+        machoLeftFrames = getLeftFrames();
+        machoRightFrames = getRightFrames();
+        eduardoLeftFrames = new GreenfootImage[21];
+        eduardoRightFrames = new GreenfootImage[21];
+        for(int i = 0; i < eduardoLeftFrames.length; i++) {
+            eduardoRightFrames[i] 
+                = new GreenfootImage("eduardo" + (i + 1) + ".png");
+            eduardoRightFrames[i].scale(eduardoRightFrames[i].getWidth() / 3, 
+                eduardoRightFrames[i].getHeight() / 3);
+        }
+        for(int i = 0; i < eduardoLeftFrames.length; i++) {
+            eduardoLeftFrames[i] = new GreenfootImage(eduardoRightFrames[i]);
+            eduardoLeftFrames[i].mirrorHorizontally();
+        }
     }
     
     @Override
@@ -82,43 +100,26 @@ public class ElMacho extends Player {
     }
 
     private void changePersona() {
-        GreenfootImage[] tempRightFrames = new GreenfootImage[21];
-        GreenfootImage[] tempLeftFrames = new GreenfootImage[21];
-        GreenfootImage rightImage = new GreenfootImage(getRightImage());
-        GreenfootImage leftImage = new GreenfootImage(getLeftImage());
         if(isEduardo) {
-            for(int i = 0; i < tempRightFrames.length; i++) {
-                tempRightFrames[i] = new GreenfootImage("eduardo" + (i + 1) + ".png");
-                tempRightFrames[i].scale(tempRightFrames[i].getWidth() / 3, tempRightFrames[i].getHeight() / 3);
-            }
-            for(int i = 0; i < tempLeftFrames.length; i++) {
-                tempLeftFrames[i] = new GreenfootImage(tempRightFrames[i]);
-                tempLeftFrames[i].mirrorHorizontally();
-            }
+            setLeftFrames(eduardoLeftFrames);
+            setRightFrames(eduardoRightFrames);
+            setLeftImage(eduardoLeftFrames[1]);
+            setRightImage(eduardoRightFrames[1]);
             setFrameDelay(5);
         }
         else {
-            for(int i = 0; i < tempRightFrames.length; i++) {
-                tempRightFrames[i] = new GreenfootImage("macho" + (i + 1) + ".png");
-                tempRightFrames[i].scale(tempRightFrames[i].getWidth() / 2, tempRightFrames[i].getHeight() / 2);
-            }
-            for(int i = 0; i < tempLeftFrames.length; i++) {
-                tempLeftFrames[i] = new GreenfootImage(tempRightFrames[i]);
-                tempLeftFrames[i].mirrorHorizontally();
-            }
+            setLeftFrames(machoLeftFrames);
+            setRightFrames(machoRightFrames);
+            setLeftImage(machoLeftFrames[1]);
+            setRightImage(machoRightFrames[1]);
             setFrameDelay(5);
         }
-        setRightFrames(tempRightFrames);
-        setLeftFrames(tempLeftFrames);
-        setRightImage(tempRightFrames[1]);
-        setLeftImage(tempLeftFrames[1]);
         if(facingRight()) {
             this.setImage(getRightImage());
         }
         else {
             this.setImage(getLeftImage());
         }
-        canCast = true;
     }
 
     @Override
@@ -202,6 +203,7 @@ public class ElMacho extends Player {
         }
         canCast = false;
         changePersona();
+        canCast = true;
     }   
 
     public void e() {
