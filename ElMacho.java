@@ -51,7 +51,7 @@ public class ElMacho extends Player {
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
-        ammoGui = new AmmoGUI(5, 5, 
+        ammoGui = new AmmoGUI(5, 5,
             new TortillaChip(facingRight(), this).getImage(), pastHalfway);
         changePersona();
         q = new WrestlingChamp(this);
