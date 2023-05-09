@@ -8,9 +8,9 @@ public class Stock extends Mode
     private String n2;
     private int factor1;
     private int factor2;
-
-    private Character p1=new Player(n1, factor1);
-    private Character p2=new Player(n2, factor2);
+    
+    private Player p1;
+    private Player p2;
     public Stock(Player p1, Player p2) {
         
     }
