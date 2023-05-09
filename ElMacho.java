@@ -1,20 +1,22 @@
 import greenfoot.*;
 import java.util.*;
 public class ElMacho extends Player {
-    private AmmoGUI ammoGui;
-    private int timeToReload;
-    private boolean needToReload;
-    private boolean vPressed;
-    private boolean bPressed;
-    private boolean rPressed;
-    public boolean usedUlt;
-    public int ultDur;
-    public boolean isEduardo;
-    private Random rand;
     private static GreenfootImage[] machoLeftFrames;
     private static GreenfootImage[] machoRightFrames;
     private static GreenfootImage[] eduardoLeftFrames;
     private static GreenfootImage[] eduardoRightFrames;
+    
+    private boolean vPressed;
+    private boolean bPressed;
+    private boolean rPressed;
+    private int timeToReload;
+    private boolean needToReload;
+    private AmmoGUI ammoGui;
+    public boolean usedUlt;
+    public int ultDur;
+    public boolean isEduardo;
+    private Random rand;
+    
     public ElMacho() {
         super("El Macho", 2, "macho", 6);
         health = 700;
@@ -162,30 +164,15 @@ public class ElMacho extends Player {
             }    
         }
         checkAbilities();
-    }    
-    
-    @Override
-    protected void checkAbilities() {
-        super.checkAbilities();
-        if(q.isReady()) {
-            if(isEduardo) {
-                q = new Waffle(facingRight());
-            }
-            else {
-                q = new WrestlingChamp(this);
-            }
-        }
-        if(e.isReady()) {
-            if(isEduardo) {
-                e = new Sombrero();
-            }
-            else {
-                e = new GuacamoleTortillaChip(facingRight());
-            }    
-        }
-    }
+    }   
 
     public void q() {
+        if(isEduardo) {
+            q = new Waffle(facingRight());
+        }
+        else {
+            q = new WrestlingChamp(this);
+        }
         getWorld().addObject(q, this.getX(), this.getY());
         if(!isEduardo) {
             this.setImage((GreenfootImage) null);
@@ -207,10 +194,23 @@ public class ElMacho extends Player {
     }   
 
     public void e() {
+        if(isEduardo) {
+            e = new Sombrero(this);
+        }
+        else {
+            e = new GuacamoleTortillaChip(facingRight());
+        }
         int x = this.getX();
         int y = this.getY();
         if(isEduardo) {
-            x += 125;
+            if(facingRight()) {
+                x += 75;
+                y += 5;
+            }
+            else {
+                x -= 75;
+                y -= 15;
+            }
         }
         getWorld().addObject(e, x, y);
     }
