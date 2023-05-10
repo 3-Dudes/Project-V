@@ -70,13 +70,20 @@ public abstract class Player extends Actor {
         this.rightFrames = new GreenfootImage[21];
         this.leftFrames = new GreenfootImage[21];
         for(int i = 0; i < rightFrames.length; i++) {
-            rightFrames[i] = new GreenfootImage(nickname + (i + 1) + ".png");
-            rightFrames[i].scale(rightFrames[i].getWidth() / factor, 
-                rightFrames[i].getHeight() / factor);
-        }
-        for(int i = 0; i < leftFrames.length; i++) {
-            leftFrames[i] = new GreenfootImage(rightFrames[i]);
-            leftFrames[i].mirrorHorizontally();
+            if(facingRight()) {
+                rightFrames[i] = new GreenfootImage(nickname + (i + 1) + ".png");
+                rightFrames[i].scale(rightFrames[i].getWidth() / factor, 
+                    rightFrames[i].getHeight() / factor); 
+                leftFrames[i] = new GreenfootImage(rightFrames[i]);
+                leftFrames[i].mirrorHorizontally();
+            }
+            else {
+                leftFrames[i] = new GreenfootImage(nickname + (i + 1) + ".png");
+                leftFrames[i].scale(leftFrames[i].getWidth() / factor, 
+                    leftFrames[i].getHeight() / factor); 
+                rightFrames[i] = new GreenfootImage(leftFrames[i]);
+                rightFrames[i].mirrorHorizontally();
+            }
         }
         this.frameDelay = frameDelay;
         currentFrame = 0;
