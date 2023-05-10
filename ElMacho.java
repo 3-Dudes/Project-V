@@ -166,29 +166,14 @@ public class ElMacho extends Player {
             vPressed = false;
         }
     }
-    
-    @Override
-    protected void checkAbilities() {
-        super.checkAbilities();
-        if(q.isReady()) {
-            if(isEduardo) {
-                q = new Waffle(facingRight());
-            }
-            else {
-                q = new WrestlingChamp(this);
-            }
-        }
-        if(e.isReady()) {
-            if(isEduardo) {
-                e = new Sombrero();
-            }
-            else {
-                e = new GuacamoleTortillaChip(facingRight());
-            }    
-        }
-    }
 
     public void q() {
+        if(isEduardo) {
+            q = new Waffle(facingRight());
+        }
+        else {
+            q = new WrestlingChamp(this);
+        }
         getWorld().addObject(q, this.getX(), this.getY());
         if(!isEduardo) {
             this.setImage((GreenfootImage) null);
@@ -213,7 +198,18 @@ public class ElMacho extends Player {
         int x = this.getX();
         int y = this.getY();
         if(isEduardo) {
-            x += 125;
+            e = new Sombrero(this);
+            if(!facingRight()) {
+                x -= 75;
+                y += 5;
+            }
+            else {
+                x += 75;
+                y += 5;
+            }
+        }
+        else {
+            e = new GuacamoleTortillaChip(facingRight());
         }
         getWorld().addObject(e, x, y);
     }
