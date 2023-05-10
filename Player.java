@@ -138,11 +138,9 @@ public abstract class Player extends Actor {
         updatePosition();
         world.addObject(this.getHealthBar(), this.getX(), 50);
     }
-    
     public HealthBar getHealthBar() {
         return hp;
     }
-    
     public void setRightImage(GreenfootImage right) {
         this.right = right;
     }
