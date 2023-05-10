@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Fire
+comment1.params=f\ l
+comment1.target=Fire(Flamethrower,\ Lucy)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=cls
+comment3.target=greenfoot.Actor\ getOneIntersectingObject(java.lang.Class)
+numComments=4

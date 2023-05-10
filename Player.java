@@ -1,10 +1,12 @@
 import greenfoot.*;
 import java.util.*;
 public abstract class Player extends Actor {
-    private boolean cPressed;
-    private boolean qPressed;
-    private boolean ePressed;
-    private boolean xPressed;
+    protected boolean cPressed;
+    protected boolean qPressed;
+    protected boolean ePressed;
+    protected boolean xPressed;
+    protected boolean vPressed;
+    protected boolean bPressed;
     
     private int playerScore;
     
@@ -16,6 +18,7 @@ public abstract class Player extends Actor {
     protected Ability q;
     protected Ability e;
     protected Ability x;
+    protected Ability b;
     
     private HealthBar hp;
     
@@ -174,39 +177,7 @@ public abstract class Player extends Actor {
                 checkEdges();    
             }
             if(canCast) {
-                if(Greenfoot.isKeyDown("C") && !cPressed) {
-                    cPressed = true;
-                    if(c == null) {
-                        c();
-                    }
-                }
-                if(!Greenfoot.isKeyDown("C") && cPressed) {
-                    cPressed = false;
-                }
-                
-                if(Greenfoot.isKeyDown("Q") && !qPressed) {
-                    qPressed = true;
-                }
-                if(!Greenfoot.isKeyDown("Q") && qPressed) {
-                    qPressed = false;
-                }        
-                
-                if(Greenfoot.isKeyDown("E") && !ePressed) {
-                    ePressed = true;
-                }
-                if(!Greenfoot.isKeyDown("E") && ePressed) {
-                    ePressed = false;
-                }
-                
-                if(Greenfoot.isKeyDown("X") && !xPressed) {
-                    xPressed = true;
-                    if(x == null) {
-                        x();    
-                    }
-                }
-                if(!Greenfoot.isKeyDown("X") && xPressed) {
-                    xPressed = false;
-                }
+                castMoves();
             }
         }
         if(!canMove) {
@@ -215,6 +186,76 @@ public abstract class Player extends Actor {
         updateAbility(c);
         updateAbility(q);
         updateAbility(e);
+        updateAbility(b);
+        checkAbilities();
+    }
+    
+    public final void castMoves() {
+        castC();
+        castQ();
+        castE();
+        castX();
+        castB();
+        castV();
+    }
+    
+    protected void castC() {
+        if(Greenfoot.isKeyDown("C") && !cPressed) {
+            cPressed = true;
+            if(c == null) {
+                c();
+            }
+        }
+        if(!Greenfoot.isKeyDown("C") && cPressed) {
+            cPressed = false;
+        }
+    }
+    protected void castQ() {
+        if(Greenfoot.isKeyDown("Q") && !qPressed) {
+            qPressed = true;
+        }
+        if(!Greenfoot.isKeyDown("Q") && qPressed) {
+            qPressed = false;
+        }
+    }
+    protected void castE() {
+        if(Greenfoot.isKeyDown("E") && !ePressed) {        
+            ePressed = true;
+        }
+        if(!Greenfoot.isKeyDown("E") && ePressed) {
+            ePressed = false;
+        }
+    }
+    protected void castX() {
+        if(Greenfoot.isKeyDown("X") && !xPressed) {
+            xPressed = true;
+            if(x == null) {
+                x();    
+            }
+        }
+        if(!Greenfoot.isKeyDown("X") && xPressed) {
+            xPressed = false;
+        }
+    }
+    protected void castB() {
+        if(Greenfoot.isKeyDown("B") && !bPressed) {
+            bPressed = true;
+            if(b == null) {
+                burstFire();    
+            }
+        }
+        if(!Greenfoot.isKeyDown("B") && bPressed) {
+            bPressed = false;
+        }
+    }
+    protected void castV() {
+        if(Greenfoot.isKeyDown("V") && !vPressed) {
+             vPressed = true;
+             singleFire();
+        }
+        if(!Greenfoot.isKeyDown("V") && vPressed) {
+             vPressed = false;
+        } 
     }
     
     public void scaleImage(GreenfootImage img) {
@@ -237,6 +278,7 @@ public abstract class Player extends Actor {
             }
         }
     }
+    
     public final void move() {
         if(Greenfoot.isKeyDown("A")) {
             this.setLocation(this.getX() - 5, this.getY());
@@ -337,6 +379,23 @@ public abstract class Player extends Actor {
                 c.setCharge(c.getCooldown());
             }
         }
+        if(b != null) {
+            if(b.isReady()) {
+                if(bPressed) {
+                    burstFire();
+                    b.setCharge(b.getCooldown() - 1);    
+                }
+            }
+            int bCharge = b.getCharge();
+            if(bCharge < b.getCooldown()) {
+                bCharge--;
+                b.setCharge(bCharge);
+            }
+            if(b.getCharge() == 0) {
+                bPressed = false;
+                b.setCharge(b.getCooldown());
+            }
+        }
     }
     private void updatePosition() {
         if(this.getX() >= 600) {
@@ -363,7 +422,9 @@ public abstract class Player extends Actor {
     public GreenfootImage getLeftImage() {
         return left;
     }
-    public abstract void reload();
+    public void reload() {
+        //empty method body, but not every class needs to override it
+    }
     public abstract void singleFire();
     public abstract void burstFire();
     public abstract void c();

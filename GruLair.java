@@ -15,5 +15,6 @@ public class GruLair extends Stage
      */
     public GruLair()
     {
+        //test for .gitignore
     }
 }

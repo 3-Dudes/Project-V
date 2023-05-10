@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=LipGloss
+comment1.params=isRight
+comment1.target=LipGloss(boolean)
+comment2.params=
+comment2.target=LipGloss()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ move()
+comment5.params=name\ damage
+comment5.target=void\ detectCollision(java.lang.String,\ int)
+comment6.params=p
+comment6.target=boolean\ isHittingCenter(Player)
+numComments=7

@@ -1,35 +1,38 @@
 import greenfoot.*;
+import java.util.*;
 public class AmmoGUI extends Actor {
     public int cur, max;
     private GreenfootImage chip;
-    public AmmoGUI(int cur, int max, GreenfootImage chip, boolean pastHalfway) {
+    private int spaceX;
+    public AmmoGUI(int cur, int max, GreenfootImage chip, 
+        boolean pastHalfway, int spaceX, int widthFactor, int heightFactor) {
         this.max = max;
         this.cur = cur;
         this.chip = chip;
-        if(pastHalfway) {
-            this.chip.mirrorHorizontally();
-        }
+        this.spaceX = spaceX;
+        chip.scale(chip.getWidth() / widthFactor, 
+            chip.getHeight() / heightFactor);
     }
 
     @Override
     public void addedToWorld(World world) {
-        updateImage();
+        updateImage(spaceX);
     }
 
     public void loseChip() {
         cur--;
-        updateImage();
+        updateImage(spaceX);
     }
 
     public void refill() {
         this.cur = this.max;
-        updateImage();
+        updateImage(spaceX);
     }
 
-    public void updateImage() {
-        GreenfootImage image = new GreenfootImage(110,600);
+    public void updateImage(int spaceX) {
+        GreenfootImage image = new GreenfootImage(175, 600);
         for(int i = 0; i < cur; i++) {
-            image.drawImage(chip, 55, 500-i*50);
+            image.drawImage(chip, 55, 500 - i * spaceX);
         }
         this.setImage(image);
     }

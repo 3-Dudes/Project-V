@@ -4,8 +4,6 @@ public class ElMacho extends Player {
     private AmmoGUI ammoGui;
     private int timeToReload;
     private boolean needToReload;
-    private boolean vPressed;
-    private boolean bPressed;
     private boolean rPressed;
     public boolean usedUlt;
     public int ultDur;
@@ -23,8 +21,6 @@ public class ElMacho extends Player {
         timeToReload = 0;
 
         needToReload = false;
-        vPressed = false;
-        bPressed = false;
         rPressed = false;
         usedUlt = false;
         isEduardo = false;
@@ -49,18 +45,18 @@ public class ElMacho extends Player {
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
-        ammoGui = new AmmoGUI(5, 5, 
-            new TortillaChip(facingRight(), this).getImage(), pastHalfway);
+        ammoGui = new AmmoGUI(5, 5, new TortillaChip(facingRight(), this).getImage(), 
+            pastHalfway, 50, 1, 1);
         changePersona();
         q = new WrestlingChamp(this);
         e = new GuacamoleTortillaChip(facingRight());
         if(pastHalfway) {
             this.setImage(getLeftImage());
-            getWorld().addObject(ammoGui, 1100, 400);
+            getWorld().addObject(ammoGui, 1150, 400);
         }
         else {
             this.setImage(getRightImage());
-            getWorld().addObject(ammoGui, 5, 400);
+            getWorld().addObject(ammoGui, 45, 400);
         }
         reload();
     }
@@ -126,6 +122,7 @@ public class ElMacho extends Player {
     public void act() {
         super.act();
         if(canCast) {
+            castMoves();    
             if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
                 if(Greenfoot.isKeyDown("R") && !rPressed) {
                     rPressed = true;
@@ -138,31 +135,37 @@ public class ElMacho extends Player {
             if(needToReload) {
                 timedReload();
             }
-
-            if(Greenfoot.isKeyDown("B") && !bPressed) {
-                bPressed = true;
-                if(needToReload) {
-                    needToReload = false;
-                }
-                burstFire();
-            }
-            if(!Greenfoot.isKeyDown("B") && bPressed) {
-                bPressed = false;
-            } 
-
-            if(Greenfoot.isKeyDown("V") && !vPressed) {
-                vPressed = true;
-                if(needToReload) {
-                    needToReload = false;
-                }
-                singleFire();
-            }
-            if(!Greenfoot.isKeyDown("V") && vPressed) {
-                vPressed = false;
-            }    
         }
         checkAbilities();
     }    
+    
+    @Override
+    protected void castB() {
+        if(Greenfoot.isKeyDown("B") && !bPressed) {
+            bPressed = true;
+            if(needToReload) {
+                needToReload = false;
+            }
+            burstFire();
+        }
+        if(!Greenfoot.isKeyDown("B") && bPressed) {
+            bPressed = false;
+        }
+    }
+    
+    @Override
+    protected void castV() {
+        if(Greenfoot.isKeyDown("V") && !vPressed) {
+            vPressed = true;
+            if(needToReload) {
+                needToReload = false;
+            }
+            singleFire();
+        }
+        if(!Greenfoot.isKeyDown("V") && vPressed) {
+            vPressed = false;
+        }
+    }
     
     @Override
     protected void checkAbilities() {

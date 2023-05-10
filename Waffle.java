@@ -3,10 +3,10 @@ public class Waffle extends Ability {
     private int duration;
     private boolean right;
     public Waffle(boolean right) {
-        super(1100, 10);
+        super(1100, 20);
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
-        duration = 0;
+        duration = 0;//
         this.right = right;
     }
     public void act() {
