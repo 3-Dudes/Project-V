@@ -22,8 +22,8 @@ public abstract class Player extends Actor {
     
     private HealthBar hp;
     
-    protected int health;
-    protected int hitpoints;
+    private int health;
+    private int hitpoints;
     
     protected boolean pastHalfway;
     
@@ -39,13 +39,15 @@ public abstract class Player extends Actor {
     
     private String name;    
     private String nickname;
-    public Player(String name, int factor) { 
+    public Player(String name, int factor, boolean isFacingRight, int health, int hitpoints) { 
         cPressed = false;
         qPressed = false;
         ePressed = false;
         xPressed = false;
-        isFacingRight = true;
+        this.isFacingRight = isFacingRight;
         pastHalfway = false;
+        this.health = health;
+        this.hitpoints = hitpoints;
         this.name = name;
         this.nickname = nickname;
         this.playerScore = 0;
@@ -65,8 +67,8 @@ public abstract class Player extends Actor {
             setImage(left);
         }
     }
-    public Player(String name, int factor, String nickname, int frameDelay) {
-        this(name, factor);
+    public Player(String name, int factor, boolean isFacingRight, int health, int hitpoints, String nickname, int frameDelay) {
+        this(name, factor, isFacingRight, health, hitpoints);
         this.rightFrames = new GreenfootImage[21];
         this.leftFrames = new GreenfootImage[21];
         for(int i = 0; i < rightFrames.length; i++) {
@@ -120,12 +122,9 @@ public abstract class Player extends Actor {
     }
     public final void decreaseHealth(int damage) {
         health -= damage;
-        
         GreenfootImage img = hp.getImage();
-        
         double percentage = (double) health / hitpoints;
         int width = (int) (percentage * img.getWidth());
-        
         img.setColor(Color.RED);
         img.fillRect(0, 0, img.getWidth(), img.getHeight());
         img.setColor(Color.GREEN);

@@ -9,10 +9,8 @@ public class Lucy extends Player {
     private int weaponIndex;
     private AmmoGUI ammoGui;
     public Lucy() {
-        super("Lucy", 2);
+        super("Lucy", 2, true, 400, 400);
         GreenfootImage img = this.getImage();
-        health = 400;
-        hitpoints = 400;
         weapon = new Flamethrower(this, spaceX, spaceY);
         weaponIndex = 0;
         b = new PlayingCard(facingRight());

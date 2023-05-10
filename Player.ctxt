@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Player
-comment1.params=name\ factor
-comment1.target=Player(java.lang.String,\ int)
+comment1.params=name\ factor\ isFacingRight\ health\ hitpoints
+comment1.target=Player(java.lang.String,\ int,\ boolean,\ int,\ int)
 comment10.params=damage
 comment10.target=void\ decreaseHealth(int)
 comment11.params=world
@@ -22,8 +22,8 @@ comment18.params=
 comment18.target=Ability\ getEAbility()
 comment19.params=
 comment19.target=Ability\ getUltimateAbility()
-comment2.params=name\ factor\ nickname\ frameDelay
-comment2.target=Player(java.lang.String,\ int,\ java.lang.String,\ int)
+comment2.params=name\ factor\ isFacingRight\ health\ hitpoints\ nickname\ frameDelay
+comment2.target=Player(java.lang.String,\ int,\ boolean,\ int,\ int,\ java.lang.String,\ int)
 comment20.params=
 comment20.target=void\ act()
 comment21.params=
