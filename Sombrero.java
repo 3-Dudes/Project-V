@@ -33,7 +33,7 @@ public class Sombrero extends Ability {
             health -= a.getDamage();
             getWorld().removeObject(a);
         }     
-        if(health <= 0 || time == 800) {
+        if(health <= 0 || time == 300) {
             getWorld().removeObject(this);
             isFinished = true;
             time = 0;
