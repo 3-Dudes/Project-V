@@ -19,7 +19,7 @@ public class Vector extends Player {
     }
     @Override
     public void x() {
-        
+        this.setImage((GreenfootImage) null);
     }
     @Override
     public void singleFire() {
