@@ -1,9 +1,7 @@
 import greenfoot.*;
 public class Vector extends Player {
-    private GreenfootImage vectorFly;
     public Vector() {
         super("Vector", 3, false, 300 ,300, "vector", 6);
-        vectorFly = new GreenfootImage("vector_fly.png");
     }
     @Override
     public void c() {
@@ -19,7 +17,9 @@ public class Vector extends Player {
     }
     @Override
     public void x() {
-        this.setImage((GreenfootImage) null);
+        getWorld().addObject(new FlyingV(this), 600, 100);
+        canCast = false;
+        canMove = false;
     }
     @Override
     public void singleFire() {
