@@ -14,10 +14,7 @@ public class ElMacho extends Player {
     private static GreenfootImage[] eduardoLeftFrames;
     private static GreenfootImage[] eduardoRightFrames;
     public ElMacho() {
-        super("El Macho", 2, "macho", 6);
-        health = 700;
-        hitpoints = 700;
-        //ammoCount = 5;
+        super("El Macho", 2, true, 700, 700, "macho", 6);
         timeToReload = 0;
 
         needToReload = false;
