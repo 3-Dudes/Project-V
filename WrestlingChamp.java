@@ -4,19 +4,18 @@ public class WrestlingChamp extends Ability  {
     private static GreenfootImage flyLeft;
     private ElMacho macho;
     
-    public WrestlingChamp(ElMacho macho) {
+    public WrestlingChamp() {
         super(1400, 40);
+        this.setRotation(90);
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
-        this.macho = macho;
-        makeSprites();
-    }
-
-    private void makeSprites() {
-        this.setRotation(90);
         flyRight = new GreenfootImage(getImage());
         flyLeft = new GreenfootImage(flyRight);
         flyLeft.mirrorVertically();
+    }
+    public WrestlingChamp(ElMacho macho) {
+        this();
+        this.macho = macho;
     }
     
     @Override

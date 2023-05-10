@@ -13,8 +13,8 @@ public class Lucy extends Player {
         GreenfootImage img = this.getImage();
         weapon = new Flamethrower(this, spaceX, spaceY);
         weaponIndex = 0;
-        b = new PlayingCard(facingRight());
-        e = new LipStick(this);
+        setBAbility(new PlayingCard(facingRight()));
+        setEAbility(new LipStick(this));
         weaponCycle = new ArrayList<Weapon>();
         weaponCycle.add(new Unicorn(facingRight()));
         weaponCycle.add(new LipGloss(facingRight()));
@@ -88,8 +88,8 @@ public class Lucy extends Player {
         }
     }
     public void burstFire() {
-        b = new PlayingCard(facingRight());
-        getWorld().addObject(b, getX(), getY());
+        setBAbility(new PlayingCard(facingRight()));
+        getWorld().addObject(getBAbility(), getX(), getY());
     }
     public void singleFire() {
         if(ammoGui.cur > 0) {
@@ -115,7 +115,8 @@ public class Lucy extends Player {
     public void e() {
         canCast = false;
         canMove = false;
-        e = new LipStick(this);
+        setEAbility(new LipStick(this));
+        Ability e = getEAbility();
         if(facingRight()) {
             getWorld().addObject(e, this.getX() + 70, this.getY() + 16);
         }

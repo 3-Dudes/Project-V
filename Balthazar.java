@@ -3,7 +3,6 @@ import java.util.*;
 public class Balthazar extends Player {
     public Balthazar() {
         super("Balthazar", 2, true, 300, 300);
-        q = new BubbleGum();
     }
     public void c() {
         

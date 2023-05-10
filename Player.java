@@ -14,11 +14,12 @@ public abstract class Player extends Actor {
     protected boolean canMove;
     protected boolean canCast;
     
-    protected Ability c;
-    protected Ability q;
-    protected Ability e;
-    protected Ability x;
-    protected Ability b;
+    private Ability c;
+    private Ability q;
+    private Ability e;
+    private UltimateAbility x;
+    private Ability b;
+    private Ability v;
     
     private HealthBar hp;
     
@@ -39,7 +40,8 @@ public abstract class Player extends Actor {
     
     private String name;    
     private String nickname;
-    public Player(String name, int factor, boolean isFacingRight, int health, int hitpoints) { 
+    public Player(String name, int factor, 
+        boolean isFacingRight, int health, int hitpoints) { 
         cPressed = false;
         qPressed = false;
         ePressed = false;
@@ -67,7 +69,8 @@ public abstract class Player extends Actor {
             setImage(left);
         }
     }
-    public Player(String name, int factor, boolean isFacingRight, int health, int hitpoints, String nickname, int frameDelay) {
+    public Player(String name, int factor, boolean isFacingRight, 
+        int health, int hitpoints, String nickname, int frameDelay) {
         this(name, factor, isFacingRight, health, hitpoints);
         this.rightFrames = new GreenfootImage[21];
         this.leftFrames = new GreenfootImage[21];
@@ -98,6 +101,18 @@ public abstract class Player extends Actor {
         else {
             setImage(left);
         }
+    }
+    public Player(String name, int factor, 
+        boolean isFacingRight, int health, int hitpoints, 
+        String nickname, int frameDelay, Ability c, Ability q, Ability e, 
+        UltimateAbility x, Ability b, Ability v) {
+        this(name, factor, isFacingRight, health, hitpoints, nickname, frameDelay);
+        this.c = c;
+        this.q = q;
+        this.e = e;
+        this.x = x;
+        this.b = b;
+        this.v = v;
     }
     public void setFrameDelay(int frameDelay) {
         this.frameDelay = frameDelay;
@@ -165,8 +180,33 @@ public abstract class Player extends Actor {
     public Ability getEAbility() {
         return e;
     }
-    public Ability getUltimateAbility() {
+    public UltimateAbility getUltimateAbility() {
         return x;
+    }
+    public Ability getBAbility() {
+        return b;
+    }
+    public Ability getVAbility() {
+        return v;
+    }
+    
+    public void setCAbility(Ability c) {
+        this.c = c;
+    }
+    public void setQAbility(Ability q) {
+        this.q = q;
+    }
+    public void setEAbility(Ability e) {
+        this.e = e;
+    }
+    public void setXAbility(UltimateAbility x) {
+        this.x = x;
+    }
+    public void setBAbility(Ability b) {
+        this.b = b;
+    }
+    public void setVAbility(Ability v) {
+        this.v = v;
     }
     
     public void act() {
@@ -255,7 +295,9 @@ public abstract class Player extends Actor {
     protected void castV() {
         if(Greenfoot.isKeyDown("V") && !vPressed) {
              vPressed = true;
-             singleFire();
+             if(v == null) {
+                 singleFire();    
+             }
         }
         if(!Greenfoot.isKeyDown("V") && vPressed) {
              vPressed = false;

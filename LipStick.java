@@ -2,12 +2,15 @@ import greenfoot.*;
 public class LipStick extends Ability {
     private Lighting charge;
     private Lucy l;
-    public LipStick(Lucy l) {
+    public LipStick() {
         super(900, 10);
-        this.l = l;
         charge = new Lighting();
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 2, img.getHeight() / 2);
+    }
+    public LipStick(Lucy l) {
+        this();
+        this.l = l;
     }
     @Override
     public void addedToWorld(World w) {

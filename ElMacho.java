@@ -8,15 +8,18 @@ public class ElMacho extends Player {
     public boolean usedUlt;
     public int ultDur;
     public boolean isEduardo;
-    private Random rand;
+    private Random rand; 
     private static GreenfootImage[] machoLeftFrames;
     private static GreenfootImage[] machoRightFrames;
     private static GreenfootImage[] eduardoLeftFrames;
     private static GreenfootImage[] eduardoRightFrames;
     public ElMacho() {
-        super("El Macho", 2, true, 700, 700, "macho", 6);
+        super("El Macho", 2, true, 700, 700, "macho", 6, null,
+            new WrestlingChamp(), new GuacamoleTortillaChip(), 
+            null, null, null);
         timeToReload = 0;
-
+        setQAbility(new WrestlingChamp(this));
+        setEAbility(new GuacamoleTortillaChip(facingRight()));
         needToReload = false;
         rPressed = false;
         usedUlt = false;
@@ -37,16 +40,14 @@ public class ElMacho extends Player {
             eduardoLeftFrames[i] = new GreenfootImage(eduardoRightFrames[i]);
             eduardoLeftFrames[i].mirrorHorizontally();
         }
+        ammoGui = new AmmoGUI(5, 5, new TortillaChip(facingRight(), this).getImage(), 
+            pastHalfway, 50, 1, 1);
+        changePersona();
     }
     
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
-        ammoGui = new AmmoGUI(5, 5, new TortillaChip(facingRight(), this).getImage(), 
-            pastHalfway, 50, 1, 1);
-        changePersona();
-        q = new WrestlingChamp(this);
-        e = new GuacamoleTortillaChip(facingRight());
         if(pastHalfway) {
             this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1150, 400);
@@ -166,12 +167,12 @@ public class ElMacho extends Player {
 
     public void q() {
         if(isEduardo) {
-            q = new Waffle(facingRight());
+            setQAbility(new Waffle(facingRight()));
         }
         else {
-            q = new WrestlingChamp(this);
+            setQAbility(new WrestlingChamp(this));
         }
-        getWorld().addObject(q, this.getX(), this.getY());
+        getWorld().addObject(getQAbility(), this.getX(), this.getY());
         if(!isEduardo) {
             this.setImage((GreenfootImage) null);
             this.canMove = false;
@@ -195,7 +196,7 @@ public class ElMacho extends Player {
         int x = this.getX();
         int y = this.getY();
         if(isEduardo) {
-            e = new Sombrero(this);
+            setEAbility(new Sombrero(this));
             if(!facingRight()) {
                 x -= 75;
                 y += 5;
@@ -206,9 +207,9 @@ public class ElMacho extends Player {
             }
         }
         else {
-            e = new GuacamoleTortillaChip(facingRight());
+            setEAbility(new GuacamoleTortillaChip(facingRight()));
         }
-        getWorld().addObject(e, x, y);
+        getWorld().addObject(getEAbility(), x, y);
     }
 
     public void x() {

@@ -7,12 +7,15 @@ public class PlayingCard extends Ability {
     private boolean isRight;
     private boolean recast;
     public PlayingCard(boolean isRight) {
-        super(1200, damage);
+        this();
         tracker = 0;
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 9, img.getHeight() / 9);
         this.isRight = isRight;
         recast = false;
+    }
+    public PlayingCard() {
+        super(1200, damage);
     }
     public void act() {
         move();

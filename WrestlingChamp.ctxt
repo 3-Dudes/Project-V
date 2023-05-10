@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=WrestlingChamp
-comment1.params=macho
-comment1.target=WrestlingChamp(ElMacho)
-comment2.params=
-comment2.target=void\ makeSprites()
+comment1.params=
+comment1.target=WrestlingChamp()
+comment2.params=macho
+comment2.target=WrestlingChamp(ElMacho)
 comment3.params=
 comment3.target=void\ act()
 comment4.params=name
