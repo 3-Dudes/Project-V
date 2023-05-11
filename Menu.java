@@ -10,11 +10,8 @@ public class Menu extends World {
         GreenfootImage bg = new GreenfootImage(this.getWidth(), this.getHeight());
         bg.setColor(Color.BLACK);
         bg.fill();
-        this.setBackground(bg);/*
-<<<<<<< Updated upstream
-        
-=======
->>>>>>> Stashed changes*/
+        this.setBackground(bg);
+        /*
         GreenfootImage header 
             = new GreenfootImage("Project-V", 100, Color.ORANGE, null);
         Font f = new Font("Cascadia Code", 100);
@@ -28,6 +25,6 @@ public class Menu extends World {
         
         vectorStart = new FlyingV_Start();
         vectorStart.setRotation(90);
-        this.addObject(vectorStart, 100, getHeight() / 2 - 20);
+        this.addObject(vectorStart, 100, getHeight() / 2 - 20); */
     }
 }
