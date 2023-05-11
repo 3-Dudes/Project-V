@@ -1,4 +1,4 @@
-public class Mode  
+public class Mode 
 {
     private int pscore;
     private int cpuscore;
