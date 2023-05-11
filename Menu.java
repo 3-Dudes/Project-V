@@ -24,9 +24,6 @@ public class Menu extends World {
         
         vectorStart = new FlyingV_Start();
         vectorStart.setRotation(90);
-        this.addObject(vectorStart, 100, getHeight() / 2);
-        if(vectorStart.isRemoved()) {
-            //spawn button
-        }
+        this.addObject(vectorStart, 100, getHeight() / 2 - 50);
     }
 }

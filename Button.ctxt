@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Button
+comment1.params=c\ width\ height
+comment1.target=Button(greenfoot.Color,\ int,\ int)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ whenClicked()
+numComments=4
