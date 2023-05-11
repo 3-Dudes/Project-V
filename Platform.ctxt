@@ -1,7 +1,13 @@
 #BlueJ class context
 comment0.target=Platform
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Platform\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Platform\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment1.params=shouldMove\ shouldBounce\ sequence
+comment1.target=Platform(boolean,\ boolean,\ java.util.List)
+comment2.params=
+comment2.target=Platform()
+comment3.params=
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ bounce()
+comment5.params=xBound\ yBound
+comment5.target=void\ changeDirection(int,\ int)
+numComments=6
