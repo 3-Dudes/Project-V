@@ -1,19 +1,43 @@
 import greenfoot.*;
 import java.util.*;
-public class Bomb extends Actor {
+public class Bomb extends Weapon {
     private GreenfootImage explosion;
-    private Vector v;
-    public Bomb(Vector v) {
-        GreenfootImage img = getImage();
-        this.v = v;
-        img.scale(img.getWidth() / 6, img.getHeight() / 6);
+    private int timer;
+    private boolean onHit;
+    public Bomb() {
+        super(6, 6);
+        timer = 0;
+        onHit = false;
         explosion = new GreenfootImage("bomb_explode.png");
         explosion.scale(explosion.getWidth() / 3, explosion.getHeight() / 3);
     }
     public void act() {
-        this.setLocation(v.getX(), v.getY());
-        if(this.isTouching(Player.class) || this.isAtEdge()) {
-            this.setImage(explosion);
+        if(onHit) {
+            timer++;
         }
-    }    
+        else {
+            this.setLocation(this.getX(), this.getY() + 10);
+        }
+        Player p = (Player) getOneIntersectingObject(Player.class);
+        if((p != null && this.getY() <= p.getImage().getHeight() / 2) || this.getY() + getImage().getHeight() / 2 >= getWorld().getHeight()) {
+            this.setImage(explosion);
+            onHit = true;
+        }
+        if(timer == 100) {
+            getWorld().removeObject(this);
+        }
+        detectCollision("Vector", 25);
+    }
+    @Override
+    public void detectCollision(String name, int damage) {
+        if(getWorld() != null) {
+            List<Player> players = getObjectsInRange(getImage().getWidth() / 2, Player.class);
+            for(Player player : players) {
+                if(!player.getClass().getName().equals(name) && !intersects) {
+                    player.decreaseHealth(damage);
+                    intersects = true;
+                }
+            }
+        }
+    }
 }

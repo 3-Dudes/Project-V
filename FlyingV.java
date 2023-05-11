@@ -4,53 +4,54 @@ public class FlyingV extends UltimateAbility {
     private static GreenfootImage right;
     private boolean hitEdge;
     private Vector v;
-    private int startX;
+    private int bombCount;
+    private int bombDelay;
+    private int yOffset;
     private int startY;
     public FlyingV(Vector v) {
-        GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 3, img.getHeight() / 3);
-        this.v = v;
         hitEdge = false;
-        v.setImage(img);
+        this.v = v;
+        bombCount = 0;
+        bombDelay = 10;
+        yOffset = 10;
     }
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        startX = v.getX();
-        startY = v.getY();
-        v.setRotation(135);
-        right = new GreenfootImage(v.getImage());
+        right = getImage();
+        right.scale(right.getWidth() / 3, right.getHeight() / 3);
         left = new GreenfootImage(right);
+        this.setRotation(135);
         left.mirrorHorizontally();
-        v.setImage(left);
-        v.setLocation(v.getX(), 100);
-        this.setImage((GreenfootImage) null);
+        this.setImage(left);
+        this.setLocation(this.getX(), 100);
+        startY = this.getY();
     }
     public void act() {
+        bombCount++;
+        if(bombCount == bombDelay) {
+            getWorld().addObject(new Bomb(), this.getX(), startY + yOffset);
+            bombCount = 0;
+        }
         if(hitEdge) {
-            v.setLocation(v.getX() + 5, v.getY() - 10);
+            this.setLocation(this.getX() + 5, this.getY() - 10);
+            yOffset -= 15;
         }
         else {
-            v.setLocation(v.getX() + 5, v.getY() + 10);
+            this.setLocation(this.getX() + 5, this.getY() + 10);
+            yOffset += 15;
         }
-        if(v.isAtEdge()) {
-            if(v.getY() == getWorld().getHeight() - 1) {
-                v.setRotation(50);
+        if(this.isAtEdge()) {
+            if(this.getY() == getWorld().getHeight() - 1) {
+                this.setRotation(50);
                 hitEdge = true;
             }
-            if(v.getY() == 0) {
-                isFinished = true;
-            }
+        }
+        if(this.getY() <= 100) {
+            isFinished = true;
         }
         if(isFinished()) {
-            v.setLocation(startX, startY);
-            v.setRotation(0);
-            if(v.facingRight()) {
-                v.setImage(v.getRightImage());
-            }
-            else {
-                v.setImage(v.getLeftImage());
-            }
+            getWorld().removeObject(this);
             setCharge(0);
             v.canMove = true;
             v.canCast = true;

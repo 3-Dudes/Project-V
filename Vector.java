@@ -1,7 +1,7 @@
 import greenfoot.*;
 public class Vector extends Player {
     public Vector() {
-        super("Vector", 3, false, 300 ,300, "vector", 6);
+        super("Vector", 3, false, 300 , 300, "vector", 6);
     }
     @Override
     public void c() {
@@ -17,7 +17,8 @@ public class Vector extends Player {
     }
     @Override
     public void x() {
-        getWorld().addObject(new FlyingV(this), 600, 100);
+        this.setImage((GreenfootImage) null);
+        getWorld().addObject(new FlyingV(this), 300, 100);
         canCast = false;
         canMove = false;
     }
@@ -27,6 +28,6 @@ public class Vector extends Player {
     }
     @Override
     public void burstFire() {
-        
+            
     }
 }
