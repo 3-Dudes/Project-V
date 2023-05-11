@@ -10,8 +10,11 @@ public class Menu extends World {
         GreenfootImage bg = new GreenfootImage(this.getWidth(), this.getHeight());
         bg.setColor(Color.BLACK);
         bg.fill();
-        this.setBackground(bg);
+        this.setBackground(bg);/*
+<<<<<<< Updated upstream
         
+=======
+>>>>>>> Stashed changes*/
         GreenfootImage header 
             = new GreenfootImage("Project-V", 100, Color.ORANGE, null);
         Font f = new Font("Cascadia Code", 100);
