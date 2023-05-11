@@ -19,7 +19,7 @@ public class Bomb extends Weapon {
             this.setLocation(this.getX(), this.getY() + 10);
         }
         Player p = (Player) getOneIntersectingObject(Player.class);
-        if((p != null && this.getY() <= p.getImage().getHeight() / 2) || this.getY() + getImage().getHeight() / 2 >= getWorld().getHeight()) {
+        if((p != null || this.getY() + getImage().getHeight() / 2 >= getWorld().getHeight()) && this.getImage() != explosion) {
             this.setImage(explosion);
             onHit = true;
         }
