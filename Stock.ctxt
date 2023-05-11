@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Stock
+comment1.params=p1\ p2
+comment1.target=Stock(Player,\ Player)
+comment2.params=
+comment2.target=void\ act()
+numComments=3
