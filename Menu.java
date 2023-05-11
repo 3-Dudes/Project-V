@@ -18,12 +18,13 @@ public class Menu extends World {
         header.setFont(f);
         bg.drawImage(header, 450, 50);
         
-        GreenfootImage authors = new GreenfootImage("Anirudh Konidala, Krishna Trivedi" 
-            + "\n" + "Noah Patterson, Alikhan Kanash", 40, Color.ORANGE, null);
+        GreenfootImage authors = new GreenfootImage("Anirudh Konidala, " 
+            + "Krishna Trivedi" + "\n" + "Noah Patterson, Alikhan Kanash", 
+                40, Color.ORANGE, null);
         bg.drawImage(authors, 375, 465);
         
         vectorStart = new FlyingV_Start();
         vectorStart.setRotation(90);
-        this.addObject(vectorStart, 100, getHeight() / 2 - 50);
+        this.addObject(vectorStart, 100, getHeight() / 2 - 20);
     }
 }
