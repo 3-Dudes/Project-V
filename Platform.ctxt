@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Platform
+comment1.params=shouldMove\ shouldBounce\ sequence
+comment1.target=Platform(boolean,\ boolean,\ java.util.List)
+comment2.params=xBound\ yBound\ shouldMove\ shouldBounce\ sequence
+comment2.target=Platform(int,\ int,\ boolean,\ boolean,\ java.util.List)
+comment3.params=
+comment3.target=Platform()
+comment4.params=
+comment4.target=void\ act()
+comment5.params=
+comment5.target=void\ bounce()
+comment6.params=xBound\ yBound
+comment6.target=void\ changeDirection(int,\ int)
+numComments=7

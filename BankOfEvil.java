@@ -8,11 +8,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BankOfEvil extends Stage
 {
-
-    /**
-     * Constructor for objects of class BankOfEvil.
-     * 
-     */
     public BankOfEvil()
     {
     }
