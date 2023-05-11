@@ -2,30 +2,59 @@ import greenfoot.*;
 public class FlyingV extends UltimateAbility {
     private static GreenfootImage left;
     private static GreenfootImage right;
-    public FlyingV() {
-        GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 3, img.getHeight() / 3);
-        right = new GreenfootImage(img);
-        left = new GreenfootImage(right);
-        left.mirrorVertically();
-        this.setImage(left);
+    private boolean hitEdge;
+    private Vector v;
+    private int bombCount;
+    private int bombDelay;
+    private int yOffset;
+    private int startY;
+    public FlyingV(Vector v) {
+        hitEdge = false;
+        this.v = v;
+        bombCount = 0;
+        bombDelay = 10;
+        yOffset = 10;
     }
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
+        right = getImage();
+        right.scale(right.getWidth() / 3, right.getHeight() / 3);
+        left = new GreenfootImage(right);
+        this.setRotation(135);
+        left.mirrorHorizontally();
+        this.setImage(left);
         this.setLocation(this.getX(), 100);
-        this.setRotation(-40);
+        startY = this.getY();
     }
     public void act() {
-        this.setLocation(this.getX() + 5, this.getY() + 20);
+        bombCount++;
+        if(bombCount == bombDelay) {
+            getWorld().addObject(new Bomb(), this.getX(), startY + yOffset);
+            bombCount = 0;
+        }
+        if(hitEdge) {
+            this.setLocation(this.getX() + 5, this.getY() - 10);
+            yOffset -= 15;
+        }
+        else {
+            this.setLocation(this.getX() + 5, this.getY() + 10);
+            yOffset += 15;
+        }
         if(this.isAtEdge()) {
             if(this.getY() == getWorld().getHeight() - 1) {
-                this.setImage(right);
-                this.setLocation(this.getX() + 5, this.getY() - 20);
+                this.setRotation(50);
+                hitEdge = true;
             }
-            if(this.getY() == 0) {
-                setCharge(0);
-            }
+        }
+        if(this.getY() <= 100) {
+            isFinished = true;
+        }
+        if(isFinished()) {
+            getWorld().removeObject(this);
+            setCharge(0);
+            v.canMove = true;
+            v.canCast = true;
         }
     }
 }

@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=FlyingV
-comment1.params=
-comment1.target=FlyingV()
+comment1.params=v
+comment1.target=FlyingV(Vector)
 comment2.params=w
 comment2.target=void\ addedToWorld(greenfoot.World)
 comment3.params=

@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=boolean\ isReady()
 comment3.params=charge
 comment3.target=void\ setCharge(int)
-numComments=4
+comment4.params=
+comment4.target=boolean\ isFinished()
+numComments=5

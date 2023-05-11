@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.util.*;
 public abstract class Weapon extends Actor {
-    private boolean intersects;
+    protected boolean intersects;
     protected Player p;
     private int spaceX;
     private int spaceY;
@@ -85,7 +85,7 @@ public abstract class Weapon extends Actor {
     public void detectCollision(String name, int damage) {
         if(getWorld() != null) {
             Player player = (Player) 
-                getOneIntersectingObject(Player.class);
+                getOneObjectAtOffset(0, 0, Player.class);
             if(player != null && !(player.getClass().getName().equals(name)) 
                 && !intersects) {
                 player.decreaseHealth(damage);
