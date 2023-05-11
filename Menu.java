@@ -25,6 +25,6 @@ public class Menu extends World {
         
         vectorStart = new FlyingV_Start();
         vectorStart.setRotation(90);
-        this.addObject(vectorStart, 100, getHeight() / 2 - 50);
+        this.addObject(vectorStart, 100, getHeight() / 2 - 20);
     }
 }
