@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=ModeButton
+comment1.params=text\ offsetX\ offsetY
+comment1.target=ModeButton(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=void\ whenClicked()
+numComments=3

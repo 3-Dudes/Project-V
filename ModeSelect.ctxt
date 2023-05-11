@@ -4,6 +4,4 @@ comment1.params=
 comment1.target=ModeSelect()
 comment2.params=
 comment2.target=void\ makeScreen()
-comment3.params=img\ text\ offsetX\ offsetY
-comment3.target=greenfoot.GreenfootImage\ label(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ int)
-numComments=4
+numComments=3
