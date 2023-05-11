@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Button
-comment1.params=c\ width\ height
-comment1.target=Button(greenfoot.Color,\ int,\ int)
+comment1.params=c\ width\ height\ text
+comment1.target=Button(greenfoot.Color,\ int,\ int,\ java.lang.String)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

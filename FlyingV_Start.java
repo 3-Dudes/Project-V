@@ -6,12 +6,11 @@ public class FlyingV_Start extends Actor {
         img.mirrorHorizontally();
     }
     public void act() {
-        this.setLocation(this.getX() + 10, this.getY());
+        this.setLocation(this.getX() + 15, this.getY());
         if(this.isAtEdge()) {
-            getWorld().removeObject(this);
             StartButton button = new StartButton();
-            System.out.println(getWorld());
-            getWorld().addObject(button, 380, 500);
+            getWorld().addObject(button, 610, 600);
+            getWorld().removeObject(this);
         }
     }
 }

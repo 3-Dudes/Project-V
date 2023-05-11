@@ -2,7 +2,7 @@ import greenfoot.*;
 public class StartButton extends Button
 {
     public StartButton() {
-        super(Color.ORANGE, 100, 50);
+        super(Color.ORANGE, 200, 50, "START");
     }
     public void whenClicked() {
         if(Greenfoot.mouseClicked(this)) {
