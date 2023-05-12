@@ -5,8 +5,10 @@ public abstract class Player extends Actor {
     private boolean qPressed;
     private boolean ePressed;
     private boolean xPressed;
+    private boolean spacePressed;
     
     private int playerScore;
+    private int jumpHeight = -10;
     
     private boolean isFacingRight;
     protected boolean canMove;
@@ -25,6 +27,7 @@ public abstract class Player extends Actor {
     protected int hitpoints;
     
     protected boolean pastHalfway;
+    private boolean onPlatform;
     
     private GreenfootImage right;
     private GreenfootImage left;
@@ -38,6 +41,8 @@ public abstract class Player extends Actor {
         qPressed = false;
         ePressed = false;
         xPressed = false;
+        spacePressed = false;
+        onPlatform = false;
         isFacingRight = true;
         pastHalfway = false;
         this.name = name;
@@ -125,6 +130,13 @@ public abstract class Player extends Actor {
             if(canMove) {
                 move();
                 checkEdges();    
+                if(Greenfoot.isKeyDown("SPACE") && !spacePressed) {
+                    jump();
+                    spacePressed = true;
+                }
+                if(!Greenfoot.isKeyDown("SPACE") && spacePressed) {
+                    spacePressed = false;
+                }
             }
             if(canCast) {
                 if(Greenfoot.isKeyDown("C") && !cPressed) {
@@ -175,6 +187,18 @@ public abstract class Player extends Actor {
         updateAbility(c);
         updateAbility(q);
         updateAbility(e);
+        checkPlatformDetection();
+    }
+    
+    public final void jump() {
+        
+    }
+    
+    public final void checkPlatformDetection() {
+        Platform p = (Platform) this.getOneObjectAtOffset(0, getImage().getHeight() / 2, Platform.class);
+        if(p != null) {
+            this.setLocation(p.getX(), p.getY());
+        }
     }
     
     public void scaleImage(GreenfootImage img) {
@@ -207,6 +231,9 @@ public abstract class Player extends Actor {
             this.setLocation(this.getX() + 5, this.getY());
             this.setImage(right);
             isFacingRight = true;
+        }
+        if(Greenfoot.isKeyDown("SPACE")){
+             this.setLocation(this.getX(), this.getY()-10);
         }
     }
     private void updateAbility(Ability ab) {
