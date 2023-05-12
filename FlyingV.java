@@ -12,7 +12,7 @@ public class FlyingV extends UltimateAbility {
         hitEdge = false;
         this.v = v;
         bombCount = 0;
-        bombDelay = 10;
+        bombDelay = 15;
         yOffset = 10;
     }
     @Override
@@ -42,7 +42,7 @@ public class FlyingV extends UltimateAbility {
             yOffset += 15;
         }
         if(getY() >= 450) {
-                this.setRotation(50);
+            this.setRotation(50);
                 hitEdge = true;
         }
         if(this.getY() <= 100) {
