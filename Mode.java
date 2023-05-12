@@ -1,19 +1,15 @@
-/**
- * Write a description of class Mode here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Mode  
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
-    /**
-     * Constructor for objects of class Mode
-     */
+    private int pscore;
+    private int cpuscore;
+    private boolean win;
+    private boolean playing;
     public Mode()
     {
+        pscore=0;
+        cpuscore=0;
+        win=false;
+        playing=true;
     }
 
     /**
@@ -24,7 +20,6 @@ public class Mode
      */
     public int sampleMethod(int y)
     {
-        // put your code here
-        return x + y;
+        return 0;
     }
 }
