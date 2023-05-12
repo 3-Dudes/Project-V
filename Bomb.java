@@ -22,7 +22,7 @@ public class Bomb extends Weapon {
             this.setImage(explosion);
             onHit = true;
         }
-        if(timer == 100) {
+        if(timer == 50) {
             getWorld().removeObject(this);
         }
         detectCollision("Vector", 25);
@@ -33,6 +33,7 @@ public class Bomb extends Weapon {
             List<Player> players = getObjectsInRange(getImage().getWidth() / 2, Player.class);
             for(Player player : players) {
                 if(!player.getClass().getName().equals(name) && !intersects) {
+                    onHit = true;
                     this.setImage(explosion);
                     player.decreaseHealth(damage);
                     intersects = true;
