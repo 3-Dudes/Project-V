@@ -10,7 +10,7 @@ public class Stage extends World {
         player = new Vector();
         cpu = new Balthazar();
         this.addObject(player, 200, this.getHeight() - 150);
-        this.addObject(cpu, 1000, this.getHeight() - 175);
+        this.addObject(cpu, 1000, this.getHeight() - 175); //Balthazar is causing crash
         this.setPaintOrder(Ability.class, Fire.class, Weapon.class, Player.class);
     }
 }

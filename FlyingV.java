@@ -34,18 +34,16 @@ public class FlyingV extends UltimateAbility {
             bombCount = 0;
         }
         if(hitEdge) {
-            this.setLocation(this.getX() + 5, this.getY() - 10);
+            this.setLocation(this.getX() + 7, this.getY() - 10);
             yOffset -= 15;
         }
         else {
-            this.setLocation(this.getX() + 5, this.getY() + 10);
+            this.setLocation(this.getX() + 7, this.getY() + 10);
             yOffset += 15;
         }
-        if(this.isAtEdge()) {
-            if(this.getY() == getWorld().getHeight() - 1) {
+        if(getY() >= 450) {
                 this.setRotation(50);
                 hitEdge = true;
-            }
         }
         if(this.getY() <= 100) {
             isFinished = true;
