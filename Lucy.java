@@ -20,6 +20,7 @@ public class Lucy extends Player {
         weaponCycle = new ArrayList<Weapon>();
         weaponCycle.add(new Unicorn(facingRight()));
         weaponCycle.add(new LipGloss(facingRight()));
+        weaponCycle.add(new Nunchunks(facingRight()));
         GreenfootImage defaultImg 
             = getCurrentWeapon().getRightUnscaledImage();
         ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
@@ -66,7 +67,7 @@ public class Lucy extends Player {
     }
     private void switchWeapon() {
         weaponIndex++;
-        if(weaponIndex == 2) {
+        if(weaponIndex == 3) {
             weaponIndex = 0;
         }
         getWorld().removeObject(ammoGui);
@@ -81,6 +82,9 @@ public class Lucy extends Player {
                 ammoGui = new AmmoGUI(4, 4, defaultImg, pastHalfway,
                 75, 4, 5);
                 break;
+            case 2:
+                ammoGui = new AmmoGUI(5, 5, defaultImg, pastHalfway, 
+                65, 6, 6);
         }
         if(pastHalfway) {
             getWorld().addObject(ammoGui, 1200, 425);
