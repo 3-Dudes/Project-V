@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.awt.*;
 public class ModeSelect extends World {
     public ModeSelect() {
         super(1200, 700, 1);
@@ -6,7 +7,7 @@ public class ModeSelect extends World {
     }
     private void makeScreen() {
         GreenfootImage bg = new GreenfootImage(getWidth(), getHeight());
-        bg.setColor(Color.BLACK);
+        bg.setColor(greenfoot.Color.BLACK);
         bg.fill();
         this.setBackground(bg);
         
