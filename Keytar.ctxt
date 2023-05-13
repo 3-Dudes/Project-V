@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Keytar
+comment1.params=
+comment1.target=Keytar()
+comment2.params=w
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=b
+comment3.target=Keytar(Balthazar)
+comment4.params=
+comment4.target=void\ act()
+comment5.params=name
+comment5.target=void\ detectCollision(java.lang.String)
+numComments=6
