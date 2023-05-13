@@ -9,7 +9,7 @@ public class FlyingV extends UltimateAbility {
     private int startY;
     private int bombDelay;
     private int bombCounter;
-    private BombPool bombPool;
+    
 
     public FlyingV(Vector v) {
         hitEdge = false;
@@ -17,29 +17,25 @@ public class FlyingV extends UltimateAbility {
         yOffset = 10;
         bombDelay = 10;
         bombCounter = bombDelay;
-        bombPool = new BombPool();
+        right = getImage();
+        right.scale(right.getWidth() / 3, right.getHeight() / 3);
+        left = new GreenfootImage(right);
+        left.mirrorHorizontally();
+        this.setImage(left);
     }
 
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        right = getImage();
-        right.scale(right.getWidth() / 3, right.getHeight() / 3);
-        left = new GreenfootImage(right);
         this.setRotation(135);
-        left.mirrorHorizontally();
-        this.setImage(left);
-        this.setLocation(this.getX(), 100);
         startY = this.getY();
+        this.setLocation(this.getX(), 100);
     }
 
     public void act() {
         if(bombCounter >= bombDelay) {
-            Bomb bomb = bombPool.getBomb();
-            if(bomb != null) {
-                bomb.reset(this.getX(), startY + yOffset);
-                getWorld().addObject(bomb, this.getX(), startY + yOffset);
-            }
+            bomb.reset(this.getX(), startY + yOffset);
+            getWorld().addObject(bomb, this.getX(), startY + yOffset);
             bombCounter = 0;
         } 
         else {
@@ -65,7 +61,6 @@ public class FlyingV extends UltimateAbility {
             setCharge(0);
             v.canMove = true;
             v.canCast = true;
-            bombPool.returnAllBombs();
         }
     }
 }
