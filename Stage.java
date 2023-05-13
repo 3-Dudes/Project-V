@@ -11,7 +11,7 @@ public abstract class Stage extends World {
         prepareLevel();
     }
     private void prepareLevel() {
-        player = new Lucy();
+        player = new ElMacho();
         cpu = new Balthazar();
         this.addObject(player, 200, this.getHeight() - 150);
         this.addObject(cpu, 1000, this.getHeight() - 175);
