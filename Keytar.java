@@ -4,12 +4,12 @@ public class Keytar extends Ability {
     private Balthazar b;
     private int startX;
     private int startY;
-    private int duration;
+    private boolean shouldRemove;
     public Keytar() {
         super(1500, 30);
-        duration = 0;
         GreenfootImage img = getImage();
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
+        shouldRemove = false;
     }
     @Override
     public void addedToWorld(World w) {
@@ -28,11 +28,9 @@ public class Keytar extends Ability {
             setDamage(getDamage() + 2);
         }
         detectCollision("Balthazar");
-        duration++;
-        if(duration == 15) {
+        if(shouldRemove || this.isAtEdge()) {
             isFinished = true;
             getWorld().removeObject(this);
-            duration = 0;
             b.setLocation(startX, startY);
         }
     }
@@ -45,6 +43,7 @@ public class Keytar extends Ability {
                     && !hitPlayer.getClass().getName().equals(name)) {
                     hitPlayer.decreaseHealth(getDamage());
                     intersects = true;
+                    shouldRemove = true;
                 }
             }
         }
