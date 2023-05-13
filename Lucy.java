@@ -49,7 +49,7 @@ public class Lucy extends Player {
         return f != null;
     }
     public void act() {
-        super.act();
+        //super.act();
         if(ammoGui.cur <= 0) {
             switchWeapon();
         }
