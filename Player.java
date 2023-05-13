@@ -95,8 +95,8 @@ public abstract class Player extends Actor {
         frameDelayCopy = frameDelay;
         currentFrame = 0;
         isMoving = false;
-        right = new GreenfootImage(rightFrames[1]);
-        left = new GreenfootImage(leftFrames[1]);
+        right = new GreenfootImage(rightFrames[0]);
+        left = new GreenfootImage(leftFrames[0]);
         if(facingRight()) {
             setImage(right);
         }
@@ -347,10 +347,10 @@ public abstract class Player extends Actor {
         }
         else {
             if(facingRight()) {
-                setImage(right);
+                this.setImage(right);
             }
             else {
-                setImage(left);
+                this.setImage(left);
             }
         }
     }
