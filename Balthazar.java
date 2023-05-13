@@ -7,15 +7,26 @@ public class Balthazar extends Player {
     }
     public void c() {
         setCAbility(new GumBomb());
-        getWorld().addObject(getCAbility(), this.getX() + 38, this.getY() - 40);
+        getWorld().addObject(getCAbility(), 
+            this.getX() + 38, this.getY() - 40);
+        canCast = false;
     }
     public void e() {
         Keytar k = new Keytar(this);
         setEAbility(k);
-        getWorld().addObject(getEAbility(), this.getX() + 30, this.getY());
+        if(facingRight()) {
+            getWorld().addObject(getEAbility(), 
+                this.getX() + 30, this.getY());    
+        }
+        else {
+            getWorld().addObject(getEAbility(), 
+                this.getX() - 30, this.getY());    
+        }
+        canMove = false;
+        canCast = false;
     }
     public void x() {
-        
+            
     }
     public void q() {
         setQAbility(new BubbleGum());

@@ -373,6 +373,7 @@ public abstract class Player extends Actor {
     private void updateAbility(Ability ab) {
         if(ab != null && ab.isFinished()) {
             canCast = true;
+            canMove = true;
         }
     }
     protected void checkAbilities() {
