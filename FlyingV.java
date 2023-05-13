@@ -1,5 +1,4 @@
 import greenfoot.*;
-
 public class FlyingV extends UltimateAbility {
     private static GreenfootImage left;
     private static GreenfootImage right;
@@ -9,7 +8,7 @@ public class FlyingV extends UltimateAbility {
     private int startY;
     private int bombDelay;
     private int bombCounter;
-    
+    private BombPool bombPool;
 
     public FlyingV(Vector v) {
         hitEdge = false;
@@ -22,6 +21,7 @@ public class FlyingV extends UltimateAbility {
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
         this.setImage(left);
+        bombPool = new BombPool();
     }
 
     @Override
@@ -34,9 +34,12 @@ public class FlyingV extends UltimateAbility {
 
     public void act() {
         if(bombCounter >= bombDelay) {
-            bomb.reset(this.getX(), startY + yOffset);
-            getWorld().addObject(bomb, this.getX(), startY + yOffset);
-            bombCounter = 0;
+            Bomb bomb = bombPool.getBomb();
+            if(bomb != null) {
+                //getWorld().addObject(bomb, this.getX(), startY + yOffset);
+                bombCounter = 0;
+                //bomb.reset(this.getX(), startY + yOffset);
+            }        
         } 
         else {
             bombCounter++;
@@ -44,7 +47,7 @@ public class FlyingV extends UltimateAbility {
         if(hitEdge) {
             this.setLocation(this.getX() + 7, this.getY() - 10);
             yOffset -= 15;
-        } 
+        }
         else {
             this.setLocation(this.getX() + 7, this.getY() + 10);
             yOffset += 15;
@@ -62,5 +65,8 @@ public class FlyingV extends UltimateAbility {
             v.canMove = true;
             v.canCast = true;
         }
+    }
+    public void removeBomb(Bomb bomb) {
+        getWorld().removeObject(bomb);
     }
 }
