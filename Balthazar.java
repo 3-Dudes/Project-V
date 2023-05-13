@@ -13,6 +13,8 @@ public class Balthazar extends Player {
         Keytar k = new Keytar(this);
         setEAbility(k);
         getWorld().addObject(getEAbility(), this.getX() + 30, this.getY());
+        canMove = false;
+        canCast = false;
     }
     public void x() {
         
