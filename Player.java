@@ -35,6 +35,7 @@ public abstract class Player extends Actor {
     private int factor;
     private int currentFrame;
     private int frameDelay;
+    private int frameDelayCopy;
     private boolean isMoving;
     private int timeDisabled;
     
@@ -91,6 +92,7 @@ public abstract class Player extends Actor {
             }
         }
         this.frameDelay = frameDelay;
+        frameDelayCopy = frameDelay;
         currentFrame = 0;
         isMoving = false;
         right = new GreenfootImage(rightFrames[1]);
@@ -360,8 +362,8 @@ public abstract class Player extends Actor {
             this.setImage(leftFrames[currentFrame]);
         }
         if(frameDelay == 0) {
-            currentFrame++;    
-            frameDelay = 6;
+            currentFrame++;
+            frameDelay = frameDelayCopy;
         }
         frameDelay--;
         if(currentFrame == 21) {

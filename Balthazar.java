@@ -2,7 +2,8 @@ import greenfoot.*;
 import java.util.*;
 public class Balthazar extends Player {
     public Balthazar() {
-        super("Balthazar", 2, true, 300, 300, "balthazar", 1);
+        super("Balthazar", 2, true, 300, 300, "balthazar", 2, null, new BubbleGum(),
+        null, null, null, null);
     }
     public void c() {
         
