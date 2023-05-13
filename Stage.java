@@ -11,8 +11,8 @@ public abstract class Stage extends World {
         prepareLevel();
     }
     private void prepareLevel() {
-        player = new Lucy();
-        cpu = new Balthazar();
+        player = new Balthazar();
+        cpu = new Lucy();
         this.addObject(player, 200, this.getHeight() - 150);
         this.addObject(cpu, 1000, this.getHeight() - 175);
         this.setPaintOrder(Actor.class, Weapon.class, Ability.class, Player.class);

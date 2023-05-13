@@ -227,12 +227,6 @@ public abstract class Player extends Actor {
         if(!canMove) {
             timeDisabled += 1;
         }
-        if(facingRight()) {
-            this.setImage(right);
-        }
-        else {
-            this.setImage(left);
-        }
         updateAbility(c);
         updateAbility(q);
         updateAbility(e);
@@ -347,7 +341,7 @@ public abstract class Player extends Actor {
             isMoving = false;
         }
         if(isMoving) {
-            //animate();
+            animate();
         }
         else {
             if(facingRight()) {
