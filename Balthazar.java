@@ -2,11 +2,12 @@ import greenfoot.*;
 import java.util.*;
 public class Balthazar extends Player {
     public Balthazar() {
-        super("Balthazar", 2, true, 300, 300, "balthazar", 2, null, new BubbleGum(),
+        super("Balthazar", 2, true, 300, 300, "balthazar", 2, new GumBomb(), new BubbleGum(),
         null, null, null, null);
     }
     public void c() {
-        
+        setCAbility(new GumBomb());
+        getWorld().addObject(getCAbility(), this.getX() + 38, this.getY() - 40);
     }
     public void e() {
         

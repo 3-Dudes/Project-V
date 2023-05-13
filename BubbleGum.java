@@ -5,7 +5,7 @@ public class BubbleGum extends Ability {
     private int bounces;
     
     public BubbleGum() {
-        super(1000, 20);
+        super(1400, 10);
         img = this.getImage();
         bounces = 0;
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
