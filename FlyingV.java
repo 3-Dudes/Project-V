@@ -1,20 +1,25 @@
 import greenfoot.*;
+
 public class FlyingV extends UltimateAbility {
     private static GreenfootImage left;
     private static GreenfootImage right;
     private boolean hitEdge;
     private Vector v;
-    private int bombCount;
-    private int bombDelay;
     private int yOffset;
     private int startY;
+    private int bombDelay;
+    private int bombCounter;
+    private BombPool bombPool;
+
     public FlyingV(Vector v) {
         hitEdge = false;
         this.v = v;
-        bombCount = 0;
-        bombDelay = 15;
         yOffset = 10;
+        bombDelay = 10;
+        bombCounter = bombDelay;
+        bombPool = new BombPool();
     }
+
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
@@ -27,23 +32,30 @@ public class FlyingV extends UltimateAbility {
         this.setLocation(this.getX(), 100);
         startY = this.getY();
     }
+
     public void act() {
-        bombCount++;
-        if(bombCount == bombDelay) {
-            getWorld().addObject(new Bomb(), this.getX(), startY + yOffset);
-            bombCount = 0;
+        if(bombCounter >= bombDelay) {
+            Bomb bomb = bombPool.getBomb();
+            if(bomb != null) {
+                bomb.reset(this.getX(), startY + yOffset);
+                getWorld().addObject(bomb, this.getX(), startY + yOffset);
+            }
+            bombCounter = 0;
+        } 
+        else {
+            bombCounter++;
         }
         if(hitEdge) {
             this.setLocation(this.getX() + 7, this.getY() - 10);
             yOffset -= 15;
-        }
+        } 
         else {
             this.setLocation(this.getX() + 7, this.getY() + 10);
             yOffset += 15;
         }
-        if(getY() >= 450) {
+        if(this.getY() >= 450) {
             this.setRotation(50);
-                hitEdge = true;
+            hitEdge = true;
         }
         if(this.getY() <= 100) {
             isFinished = true;
@@ -53,6 +65,7 @@ public class FlyingV extends UltimateAbility {
             setCharge(0);
             v.canMove = true;
             v.canCast = true;
+            bombPool.returnAllBombs();
         }
     }
 }
