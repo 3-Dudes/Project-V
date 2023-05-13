@@ -8,4 +8,5 @@ public class Domination extends Mode {
         b=new Zone();
         c=new Zone();
     }
+    
 }
