@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Machete
+comment1.params=
+comment1.target=Machete()
+comment2.params=bool
+comment2.target=Machete(boolean)
+comment3.params=
+comment3.target=void\ act()
+numComments=4

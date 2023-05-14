@@ -2,6 +2,8 @@
 comment0.target=Balthazar
 comment1.params=
 comment1.target=Balthazar()
+comment10.params=
+comment10.target=boolean\ hasMachete()
 comment2.params=
 comment2.target=void\ c()
 comment3.params=
@@ -18,4 +20,4 @@ comment8.params=
 comment8.target=void\ reload()
 comment9.params=
 comment9.target=void\ act()
-numComments=10
+numComments=11

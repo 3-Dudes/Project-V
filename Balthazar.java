@@ -30,13 +30,32 @@ public class Balthazar extends Player {
     }
     public void q() {
         setQAbility(new BubbleGum());
-        getWorld().addObject(getQAbility(), this.getX() + 38, this.getY() - 40);
+        getWorld().addObject(getQAbility(), 
+            this.getX() + 38, this.getY() - 40);
     }
-    public void singleFire() { }
-    public void burstFire() { }
-    public void reload() { }
+    public void singleFire() { 
+        if(hasMachete()) {
+            getWorld().addObject(new Machete(facingRight()), 
+                this.getX(), this.getY());    
+        }
+    }
+    public void burstFire() {
+        if(hasMachete()) {
+            getWorld().addObject(new BoomerangMachete(facingRight()), 
+                this.getX(), this.getY());
+        }
+    }
+    public void reload() { 
+            
+    }
     public void act() {
         super.act();
         checkAbilities();
+    }
+    private boolean hasMachete() {
+        List<Machete> machetes = getWorld().getObjects(Machete.class);
+        List<BoomerangMachete> boomerangMachetes = getWorld()
+            .getObjects(BoomerangMachete.class);
+        return machetes.size() == 0 && boomerangMachetes.size() == 0;
     }
 }
