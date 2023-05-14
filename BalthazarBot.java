@@ -24,7 +24,7 @@ public class BalthazarBot extends UltimateAbility {
                 getWorld().addObject(laser, this.getX() + 270, this.getY() - 95);
             }
         }
-        if(duration == 160) {
+        if(duration == 120) {
             removeIntersectingObjects(this);
             duration = 0;
             isFinished = true;

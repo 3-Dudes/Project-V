@@ -21,7 +21,7 @@ public class BrattBeam extends Weapon {
         this.setRotation(10);
     }
     public void act() {
-        detectCollision("Balthazar", 3);
+        detectCollision("Balthazar", 2);
         if(bb != null) {
             this.setLocation(bb.getX() + 270, bb.getY() - 95);    
         }
