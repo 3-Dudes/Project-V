@@ -8,6 +8,7 @@ comment3.params=b
 comment3.target=Keytar(Balthazar)
 comment4.params=
 comment4.target=void\ act()
+comment4.text=public\ Keytar(BalthazarCPU\ b)\ {\r\n\ \ \ \ \ \ \ \ this();\r\n\ \ \ \ \ \ \ \ //this.b\ \=\ b;\r\n}
 comment5.params=name
 comment5.target=void\ detectCollision(java.lang.String)
 numComments=6

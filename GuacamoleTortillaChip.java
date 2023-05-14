@@ -34,5 +34,7 @@ public class GuacamoleTortillaChip extends Ability {
             isFinished = true;
         }
         detectCollision("ElMacho");
+        detectCollision("ElMachoCPU");
+        
     }
 }

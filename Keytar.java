@@ -21,6 +21,10 @@ public class Keytar extends Ability {
         this();
         this.b = b;
     }
+    /*public Keytar(BalthazarCPU b) {
+        this();
+        //this.b = b;
+    }*/
     public void act() {
         if(!isFinished) {
             b.setLocation(b.getX() + 15, b.getY());
