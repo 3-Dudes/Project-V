@@ -9,10 +9,11 @@ public class Keytar extends Ability {
     private static GreenfootImage right;
     public Keytar() {
         super(1500, 30);
-        GreenfootImage right = getImage();
+        right = getImage();
         right.scale(right.getWidth() / 3, right.getHeight() / 3);
-        GreenfootImage left = new GreenfootImage(right);
+        left = new GreenfootImage(right);
         left.mirrorHorizontally();
+        this.setImage(right);
         shouldRemove = false;
         intersects = false;
     }   
@@ -29,10 +30,12 @@ public class Keytar extends Ability {
     public void act() {
         if(!isFinished) {
             if(b.facingRight()) {
+                this.setImage(right);
                 b.setLocation(b.getX() + 15, b.getY());    
                 this.setLocation(b.getX() + 30, b.getY());
             }
             else {
+                this.setImage(left);
                 b.setLocation(b.getX() - 15, b.getY());
                 this.setLocation(b.getX() - 30, b.getY());
             }
@@ -48,11 +51,16 @@ public class Keytar extends Ability {
     @Override
     public void detectCollision(String name) {
         if(getWorld() != null) {
-            if(hitPlayer != null && !intersects
-                    && !hitPlayer.getClass().getName().equals(name)) {
-                hitPlayer.decreaseHealth(getDamage());
-                intersects = true;
+            List<Player> intersectingObjs = 
+                this.getIntersectingObjects(Player.class);
+            for(int i = 0; i < intersectingObjs.size(); i++) {
+                if(intersectingObjs.get(i) instanceof Balthazar) {
+                    intersectingObjs.remove(i);
+                }
+            }
+            for(Player p : intersectingObjs) {
                 shouldRemove = true;
+                p.decreaseHealth(getDamage());
             }
         }
     }

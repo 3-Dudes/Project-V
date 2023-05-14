@@ -2,7 +2,8 @@ import greenfoot.*;
 import java.util.*;
 public class Balthazar extends Player {
     public Balthazar() {
-        super("Balthazar", 2, true, 300, 300, "balthazar", 2, new GumBomb(), new BubbleGum(),
+        super("Balthazar", 2, true, 300, 300, 
+            "balthazar", 2, new GumBomb(), new BubbleGum(),
         new Keytar(), null, null, null);
     }
     public void c() {
@@ -26,7 +27,7 @@ public class Balthazar extends Player {
         canCast = false;
     }
     public void x() {
-            
+        
     }
     public void q() {
         setQAbility(new BubbleGum());
@@ -44,9 +45,6 @@ public class Balthazar extends Player {
             getWorld().addObject(new BoomerangMachete(facingRight()), 
                 this.getX(), this.getY());
         }
-    }
-    public void reload() { 
-            
     }
     public void act() {
         super.act();
