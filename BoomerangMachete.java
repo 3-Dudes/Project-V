@@ -1,10 +1,10 @@
 import greenfoot.*;
 public class BoomerangMachete extends Weapon {
-    private boolean b;
     private GreenfootImage left;
     private GreenfootImage right;
     private boolean movingRight;
     private int bounces;
+    private Balthazar b;
     public BoomerangMachete() {
         super(4, 4);
         left = getImage();
@@ -13,18 +13,19 @@ public class BoomerangMachete extends Weapon {
         movingRight = true;
         bounces = 0;
     }
-    public BoomerangMachete(boolean movingRight) {
+    public BoomerangMachete(Balthazar b, boolean movingRight) {
         this();
+        this.b = b;
         this.movingRight = movingRight;
     }
     public void act() {
         if(movingRight) {
             this.setImage(right);
-            this.setLocation(this.getX() + 10, this.getY());
+            this.setLocation(this.getX() + 10, b.getY());
         }
         else {
             this.setImage(left);
-            this.setLocation(this.getX() - 10, this.getY());
+            this.setLocation(this.getX() - 10, b.getY());
         }
         if(this.isAtEdge()) {
             if(movingRight) {
@@ -36,10 +37,13 @@ public class BoomerangMachete extends Weapon {
                 this.setImage(right);
             }
             bounces++;
+            if(bounces == 1) {
+                b.setLocation(b.getX(), this.getY());
+            }
             intersects = false;
         }
-        if(bounces == 1 && this.isTouching(Balthazar.class)) {
-            getWorld().removeObject(this); 
+        if(bounces == 1 && (this.isTouching(Balthazar.class))) {
+            getWorld().removeObject(this);
         }
         detectCollision("Balthazar", 10);
     }

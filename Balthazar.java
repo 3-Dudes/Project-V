@@ -51,12 +51,6 @@ public class Balthazar extends Player {
     public void act() {
         super.act();
         checkAbilities();
-        if(Greenfoot.isKeyDown("S")) {
-            this.setLocation(this.getX(), this.getY() + 10);
-        }
-        if(Greenfoot.isKeyDown("W")) {
-            this.setLocation(this.getX() ,this.getY() - 10);
-        }
     }
     private boolean hasMachete() {
         List<Machete> machetes = getWorld().getObjects(Machete.class);

@@ -2,8 +2,8 @@
 comment0.target=BoomerangMachete
 comment1.params=
 comment1.target=BoomerangMachete()
-comment2.params=movingRight
-comment2.target=BoomerangMachete(boolean)
+comment2.params=b\ movingRight
+comment2.target=BoomerangMachete(Balthazar,\ boolean)
 comment3.params=
 comment3.target=void\ act()
 comment4.params=name\ damage
