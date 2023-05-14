@@ -4,7 +4,7 @@ public class Balthazar extends Player {
     public Balthazar() {
         super("Balthazar", 2, true, 300, 300, 
             "balthazar", 2, new GumBomb(), new BubbleGum(),
-        new Keytar(), null, null, null);
+        new Keytar(), new BalthazarBot(), null, null);
     }
     public void c() {
         setCAbility(new GumBomb());
@@ -27,7 +27,8 @@ public class Balthazar extends Player {
         canCast = false;
     }
     public void x() {
-        
+        setXAbility(new BalthazarBot());
+        getWorld().addObject(getUltimateAbility(), 300, 100);
     }
     public void q() {
         setQAbility(new BubbleGum());
