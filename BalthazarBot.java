@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.*;
 public class BalthazarBot extends UltimateAbility {
     private BrattBeam laser;
     private int duration;
@@ -14,17 +15,28 @@ public class BalthazarBot extends UltimateAbility {
         getWorld().addObject(laser, this.getX() + 270, this.getY() - 95);
     }
     public void act() {
-        if(duration == 5) {
-            getWorld().removeObject(this);
-            laser = new BrattBeam(this);
+        duration++;
+        if(duration % 20 == 0) {
+            if(duration % 40 == 0) {
+                getWorld().removeObject(laser);
+            }
+            else {
+                getWorld().addObject(laser, this.getX() + 270, this.getY() - 95);
+            }
+        }
+        if(duration == 160) {
+            removeIntersectingObjects(this);
             duration = 0;
-        }
-        else {
-            getWorld().addObject(laser, this.getX() + 270, this.getY() - 95);
-        }
-        if(times == 4) {
             isFinished = true;
         }
-        duration++;
+    }
+    private void removeIntersectingObjects(BalthazarBot bb) {
+        List<Actor> intersectingActors = bb.getIntersectingObjects(Actor.class);
+        for(Actor a : intersectingActors) {
+            if(!(a instanceof Player)) {
+                getWorld().removeObject(a);    
+            }
+        }
+        getWorld().removeObject(bb);
     }
 }

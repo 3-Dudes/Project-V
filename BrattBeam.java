@@ -22,7 +22,9 @@ public class BrattBeam extends Weapon {
     }
     public void act() {
         detectCollision("Balthazar", 3);
-        this.setLocation(bb.getX() + 270, bb.getY() - 95);
+        if(bb != null) {
+            this.setLocation(bb.getX() + 270, bb.getY() - 95);    
+        }
     }
     @Override
     public void detectCollision(String name, int damage) {
