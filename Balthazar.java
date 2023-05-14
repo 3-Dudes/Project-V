@@ -17,18 +17,19 @@ public class Balthazar extends Player {
         setEAbility(k);
         if(facingRight()) {
             getWorld().addObject(getEAbility(), 
-                this.getX() + 30, this.getY());    
+                this.getX() + 90, this.getY() - 10);    
         }
         else {
             getWorld().addObject(getEAbility(), 
-                this.getX() - 30, this.getY());    
+                this.getX() - 90, this.getY() - 10);    
         }
         canMove = false;
         canCast = false;
     }
     public void x() {
         setXAbility(new BalthazarBot());
-        getWorld().addObject(getUltimateAbility(), 300, 100);
+        getWorld().addObject(getUltimateAbility(), this.getX() + 300, 450);
+        canCast = false;
     }
     public void q() {
         setQAbility(new BubbleGum());
@@ -43,13 +44,19 @@ public class Balthazar extends Player {
     }
     public void burstFire() {
         if(hasMachete()) {
-            getWorld().addObject(new BoomerangMachete(facingRight()), 
+            getWorld().addObject(new BoomerangMachete(this, facingRight()), 
                 this.getX(), this.getY());
         }
     }
     public void act() {
         super.act();
         checkAbilities();
+        if(Greenfoot.isKeyDown("S")) {
+            this.setLocation(this.getX(), this.getY() + 10);
+        }
+        if(Greenfoot.isKeyDown("W")) {
+            this.setLocation(this.getX() ,this.getY() - 10);
+        }
     }
     private boolean hasMachete() {
         List<Machete> machetes = getWorld().getObjects(Machete.class);

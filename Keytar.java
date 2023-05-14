@@ -32,12 +32,12 @@ public class Keytar extends Ability {
             if(b.facingRight()) {
                 this.setImage(right);
                 b.setLocation(b.getX() + 15, b.getY());    
-                this.setLocation(b.getX() + 30, b.getY());
+                this.setLocation(b.getX() + 90, b.getY() - 10);
             }
             else {
                 this.setImage(left);
                 b.setLocation(b.getX() - 15, b.getY());
-                this.setLocation(b.getX() - 30, b.getY());
+                this.setLocation(b.getX() - 90, b.getY() - 10);
             }
             setDamage(getDamage() + 2);
         }
@@ -59,8 +59,11 @@ public class Keytar extends Ability {
                 }
             }
             for(Player p : intersectingObjs) {
-                shouldRemove = true;
-                p.decreaseHealth(getDamage());
+                if(b.isIntersecting(p) && !intersects) {
+                    shouldRemove = true;
+                    p.decreaseHealth(getDamage());
+                    intersects = true;
+                }
             }
         }
     }
