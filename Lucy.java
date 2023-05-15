@@ -18,9 +18,6 @@ public class Lucy extends Player {
         weaponCycle = new ArrayList<Weapon>();
         weaponCycle.add(new Unicorn(facingRight()));
         weaponCycle.add(new LipGloss(facingRight()));
-        GreenfootImage defaultImg 
-            = getCurrentWeapon().getRightUnscaledImage();
-        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
     }
         
     public Weapon getCurrentWeapon() {
@@ -29,6 +26,9 @@ public class Lucy extends Player {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
+        GreenfootImage defaultImg 
+            = getCurrentWeapon().getRightUnscaledImage();
+        ammoGui = new AmmoGUI(7, 7, defaultImg, pastHalfway, 45, 4, 4);
         if(pastHalfway) {
             this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1200, 425);
