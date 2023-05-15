@@ -44,19 +44,13 @@ public class Balthazar extends Player {
     }
     public void burstFire() {
         if(hasMachete()) {
-            getWorld().addObject(new BoomerangMachete(this, facingRight()), 
+            getWorld().addObject(new BoomerangMachete(facingRight()), 
                 this.getX(), this.getY());
         }
     }
     public void act() {
         super.act();
         checkAbilities();
-        if(Greenfoot.isKeyDown("S")) {
-            this.setLocation(this.getX(), this.getY() + 10);
-        }
-        if(Greenfoot.isKeyDown("W")) {
-            this.setLocation(this.getX() ,this.getY() - 10);
-        }
     }
     private boolean hasMachete() {
         List<Machete> machetes = getWorld().getObjects(Machete.class);
