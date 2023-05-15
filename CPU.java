@@ -33,15 +33,13 @@ public abstract class CPU extends Actor {
     private int frameDelayCopy;
     private boolean isMoving;
     private int timeDisabled;
-
+    private boolean cPressed=false;
+    private boolean bPressed=false;
+    
     private String name;    
     private String nickname;
     public CPU(String name, int factor, 
     boolean isFacingRight, int health, int hitpoints) { 
-        cPressed = false;
-        qPressed = false;
-        ePressed = false;
-        xPressed = false;
         this.isFacingRight = isFacingRight;
         pastHalfway = false;
         this.health = health;
@@ -67,7 +65,7 @@ public abstract class CPU extends Actor {
     }
 
     public CPU(String name, int factor, boolean isFacingRight, 
-    int health, int hitpoints, String nickname, int frameDelay, Player human) {
+    int health, int hitpoints, String nickname, int frameDelay) {
         this(name, factor, isFacingRight, health, hitpoints);
         this.human=human;
         this.rightFrames = new GreenfootImage[21];
@@ -106,8 +104,7 @@ public abstract class CPU extends Actor {
     boolean isFacingRight, int health, int hitpoints, 
     String nickname, int frameDelay, Ability c, Ability q, Ability e, 
     UltimateAbility x, Ability b, Ability v, Player human) {
-        this(name, factor, isFacingRight, health, hitpoints, nickname, frameDelay, human);
-        this.human=human;
+        this(name, factor, isFacingRight, health, hitpoints, nickname, frameDelay);
         this.c = c;
         this.q = q;
         this.e = e;
@@ -347,10 +344,6 @@ public abstract class CPU extends Actor {
             if(eCharge < e.getCooldown()) {
                 eCharge--;
                 e.setCharge(eCharge);
-            }
-            if(e.getCharge() == 0) {
-                ePressed = false;
-                e.setCharge(e.getCooldown());
             }
         }
         if(c != null) {

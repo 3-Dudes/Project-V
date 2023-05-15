@@ -13,10 +13,13 @@ public class ElMachoCPU extends CPU {
     private static GreenfootImage[] machoRightFrames;
     private static GreenfootImage[] eduardoLeftFrames;
     private static GreenfootImage[] eduardoRightFrames;
+    
+    private Player p;
     public ElMachoCPU() {
         super("El Macho", 2, true, 700, 700, "macho", 6, null,
             new WrestlingChamp(), new GuacamoleTortillaChip(), 
-            null, null, null, super.getPlayerReference());
+            null, null, null);
+        
         timeToReload = 0;
         setQAbility(new WrestlingChamp(this));
         setEAbility(new GuacamoleTortillaChip(facingRight()));
@@ -44,10 +47,12 @@ public class ElMachoCPU extends CPU {
             pastHalfway, 50, 1, 1);
         changePersona();
     }
+    
+    
 
     public Player getPlayerReference() {
         List<Player> players = getObjectsInRange(getWorld().getWidth(), Player.class);
-        if(players.size == 1) {
+        if(players.size() == 1) {
             return players.get(0);
         }
         return null;
@@ -63,6 +68,9 @@ public class ElMachoCPU extends CPU {
         else {
             this.setImage(getRightImage());
             getWorld().addObject(ammoGui, 45, 400);
+        }
+        if(getWorld().getObjects(Player.class).size() > 0) {
+            p=getWorld().getObjects(Player.class).get(0);
         }
         reload();
     }
@@ -135,7 +143,7 @@ public class ElMachoCPU extends CPU {
             super.isFacingRight=false;
         }
 
-        if(math.abs(Player.getX()-this.getX())>400&&Player.getX()-this.getX())<600){ // moves towards human if far
+        if( Math.abs(p.getX()-this.getX()) > 400 && (p.getX()-this.getX())<600){ // moves towards human if far
             rand=Greenfoot.getRandomNumber(3);
             switch (move) {
                 case 0:
@@ -153,7 +161,7 @@ public class ElMachoCPU extends CPU {
             if(super.isFacingRight){this.setLocation(this.getX() - 5, this.getY());} else{this.setLocation(this.getX() - 5, this.getY());}
         }
         else if(math.abs(Player.getX()-this.getX())>600){ // moves towards human if far
-            WrestlingChamp();
+            WrestlingcahmpChamp();
         }
         else{
             burstFire();
@@ -162,7 +170,13 @@ public class ElMachoCPU extends CPU {
         if(Player.getY()!=pheight()){
             burstFire();
         }
-
+        
+        //1 in 600,000 cahnce to jump every act method
+        rand=Greenfoot.getRandomNumber(600001);
+        if(rand==69){
+            jump();
+        }
+        
     }
 
     public void q() {
