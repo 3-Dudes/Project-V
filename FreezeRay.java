@@ -52,6 +52,7 @@ public class FreezeRay extends Ability {
                 p.decreaseHealth(getDamage());
                 FreezeBlock freezedP = new FreezeBlock(p);
                 getWorld().addObject(freezedP, p.getX(), p.getY());
+                getWorld().setPaintOrder(FreezeBlock.class, Player.class);
                 intersects = true;
                 p.canMove = false;
                 p.canCast = false;

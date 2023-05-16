@@ -8,9 +8,4 @@ public class FreezeBlock extends Actor {
         block.fill();
         this.setImage(block);
     }
-    @Override
-    public void addedToWorld(World w) {
-        super.addedToWorld(w);
-        getWorld().setPaintOrder(FreezeBlock.class, Player.class);
-    }
 }
