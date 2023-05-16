@@ -100,8 +100,7 @@ public abstract class CPU extends Actor {
         }
     }
 
-    public CPU(String name, int factor, 
-    boolean isFacingRight, int health, int hitpoints, 
+    public CPU(String name, int factor, boolean isFacingRight, int health, int hitpoints, 
     String nickname, int frameDelay, Ability c, Ability q, Ability e, 
     UltimateAbility x, Ability b, Ability v, Player human) {
         this(name, factor, isFacingRight, health, hitpoints, nickname, frameDelay);

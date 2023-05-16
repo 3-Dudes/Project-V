@@ -13,7 +13,6 @@ public class ElMachoCPU extends CPU {
     private static GreenfootImage[] machoRightFrames;
     private static GreenfootImage[] eduardoLeftFrames;
     private static GreenfootImage[] eduardoRightFrames;
-    
     private Player p;
     public ElMachoCPU() {
         super("El Macho", 2, true, 700, 700, "macho", 6, null,
@@ -47,8 +46,7 @@ public class ElMachoCPU extends CPU {
             pastHalfway, 50, 1, 1);
         changePersona();
     }
-    
-    
+
 
     public Player getPlayerReference() {
         List<Player> players = getObjectsInRange(getWorld().getWidth(), Player.class);
@@ -133,6 +131,7 @@ public class ElMachoCPU extends CPU {
     }
     int pheight=Player.getY();
     int move=0;
+    boolean ultavailable=true;
     @Override
     public void act() {
         super.act();
@@ -169,12 +168,25 @@ public class ElMachoCPU extends CPU {
         //detect if human jumps (WILL NEED FIX)
         if(Player.getY()!=pheight()){
             burstFire();
-        }
-        
+        }        
         //1 in 600,000 chance to jump every act method
         rand=Greenfoot.getRandomNumber(600001);
         if(rand==69){
             jump();
+            for(int i=0; i<10; i++){
+                if(super.isFacingRight){this.setLocation(this.getX() + 5, this.getY());} 
+                else{this.setLocation(this.getX() - 5, this.getY());}
+            }
+        }
+        //use ult when half-health
+        if(this.getHealth()<=350&&this.getHealth()>=175){
+            makeItRain();
+            ultavailable= false;
+        }
+        if(ultavailable==false&&this.getHealth()<=175){
+            makeItRain();
+            ultavailable=true;
+            this.changePersona();
         }
         
     }
