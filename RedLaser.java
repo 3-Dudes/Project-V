@@ -9,5 +9,9 @@ public class RedLaser extends Actor {
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
         }
-    }    
+    }
+    @Override
+    public Actor getOneIntersectingObject(Class<?> cls) {
+        return super.getOneIntersectingObject(cls);
+    }
 }

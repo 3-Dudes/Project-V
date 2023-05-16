@@ -4,13 +4,19 @@ public class Gru extends Player {
     private Weapon mainWeapon;
     public Gru() {
         super("Gru", 2, false, 500, 500);
-        mainWeapon = new LaserRifle(this, 100, 0);
+        mainWeapon = new LaserRifle(this, 100, -50);
     }
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        getWorld().addObject(mainWeapon, this.getX() + 100, 
-        this.getY() + 50);
+        if(mainWeapon.facingRight()) {
+            getWorld().addObject(mainWeapon, this.getX() + 100, 
+                this.getY() + 50);
+        }
+        else {
+            getWorld().addObject(mainWeapon, this.getX() - 100, 
+                this.getY() + 50);
+        }
     }
     public void c() {
             

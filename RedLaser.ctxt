@@ -4,4 +4,6 @@ comment1.params=
 comment1.target=RedLaser()
 comment2.params=
 comment2.target=void\ act()
-numComments=3
+comment3.params=cls
+comment3.target=greenfoot.Actor\ getOneIntersectingObject(java.lang.Class)
+numComments=4

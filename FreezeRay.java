@@ -14,6 +14,7 @@ public class FreezeRay extends Ability {
         left.scale(left.getWidth() / 2, left.getHeight() / 2);
         right = new GreenfootImage(getImage());
         right.mirrorHorizontally();
+        ammo = new FreezeRayBlast(this);
     }
     public FreezeRay(Gru g) {
         this();
@@ -22,7 +23,6 @@ public class FreezeRay extends Ability {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        ammo = new FreezeRayBlast(this);
         getWorld().addObject(ammo, this.getX() + 185, this.getY() - 20);
     }
     @Override

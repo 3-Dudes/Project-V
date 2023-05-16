@@ -6,30 +6,43 @@ public abstract class Weapon extends Actor {
     private int spaceX;
     private int spaceY;
     private int damage;
+    private boolean isFacingRight;
     private GreenfootImage left;
     private GreenfootImage right;
     private GreenfootImage leftUnscaled;
     private GreenfootImage rightUnscaled;
-    public Weapon(Player p, int spaceX, int spaceY, 
+    public Weapon(Player p, int spaceX, int spaceY, boolean isFacingRight, 
         Integer widthFactor, Integer lengthFactor) {
         this(widthFactor, lengthFactor);
         this.intersects = false;
         this.p = p;
         this.spaceX = spaceX;
         this.spaceY = spaceY;
+        this.isFacingRight = isFacingRight;
     }
     public Weapon(Integer widthFactor, Integer lengthFactor) {
         this.intersects = false;
-        right = getImage();
+        if(isFacingRight) {
+            right = getImage();
+            if(widthFactor != null && lengthFactor != null) {
+                right.scale(right.getWidth() / widthFactor, 
+                    right.getWidth() / lengthFactor);    
+            }
+            left = new GreenfootImage(right);
+            left.mirrorHorizontally();
+        }
+        else {
+            left = getImage();
+            if(widthFactor != null && lengthFactor != null) {
+                left.scale(left.getWidth() / widthFactor, 
+                    left.getWidth() / lengthFactor);    
+            }
+            right = new GreenfootImage(left);
+            right.mirrorHorizontally();
+        }
         rightUnscaled = new GreenfootImage(right);
         leftUnscaled = new GreenfootImage(rightUnscaled);
         leftUnscaled.mirrorHorizontally();
-        if(widthFactor != null && lengthFactor != null) {
-            right.scale(right.getWidth() / widthFactor, 
-                right.getWidth() / lengthFactor);    
-        }
-        left = new GreenfootImage(right);
-        left.mirrorHorizontally();
     }
     public int getDamage() {
         return damage;
@@ -68,6 +81,9 @@ public abstract class Weapon extends Actor {
     }
     public GreenfootImage getRightImage() {
         return right;
+    }
+    public boolean facingRight() {
+        return isFacingRight;
     }
     public void detectCollision(String name, int damage) {
         if(getWorld() != null) {

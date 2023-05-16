@@ -4,29 +4,29 @@ public class LaserRifle extends Weapon {
     private Gru g;
     private int spaceX;
     private int spaceY;
-    private static GreenfootImage left;
-    private static GreenfootImage right;
+    private RedLaser laser;
     public LaserRifle(Gru g, int spaceX, int spaceY) {
-        super(g, spaceX, spaceY, 10, 10);
+        super(g, spaceX, spaceY, false, 10, 10);
         this.g = g;
         this.spaceX = spaceX;
         this.spaceY = spaceY;
-        left = getImage();
-        right = new GreenfootImage(left);
-        right.mirrorHorizontally();
-    }
-    public void act() {
-        if(g.facingRight()) {
-            this.setImage(right);
-        }
-        else {
-            this.setImage(left);
-        }
-        this.setLocation(g.getX() + 100, g.getY() + 50);
+        laser = new RedLaser();
     }
     public boolean exists() {
         List<LaserRifle> laserRifles = 
             getWorld().getObjects(LaserRifle.class);
         return laserRifles.size() != 0;
+    }
+    @Override
+    public void detectCollision(String name, int damage) {
+        if(getWorld() != null) {
+            Player player = (Player) 
+                laser.getOneIntersectingObject(Player.class);
+            if(player != null && !(player.getClass().getName().equals(name)) 
+                && !intersects) {
+                player.decreaseHealth(damage);
+                intersects = true;
+            }
+        }
     }
 }
