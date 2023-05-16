@@ -258,6 +258,9 @@ public abstract class Player extends Actor {
     }
     protected void castQ() {
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
+            if(q == null) {
+                q();
+            }
             qPressed = true;
         }
         if(!Greenfoot.isKeyDown("Q") && qPressed) {
@@ -266,6 +269,9 @@ public abstract class Player extends Actor {
     }
     protected void castE() {
         if(Greenfoot.isKeyDown("E") && !ePressed) {        
+            if(e == null) {
+                e();
+            }
             ePressed = true;
         }
         if(!Greenfoot.isKeyDown("E") && ePressed) {
@@ -332,18 +338,20 @@ public abstract class Player extends Actor {
             this.setLocation(this.getX() - 5, this.getY());
             isFacingRight = false;
             isMoving = true;
+            this.setImage(right);
         }
         if(Greenfoot.isKeyDown("D")) {
             this.setLocation(this.getX() + 5, this.getY());
             isFacingRight = true;
             isMoving = true;
+            this.setImage(left);
         }
         if(!Greenfoot.isKeyDown("A") && !Greenfoot.isKeyDown("D") ||
             Greenfoot.isKeyDown("A") && Greenfoot.isKeyDown("D")) {
             isMoving = false;
         }
         if(isMoving) {
-            animate();
+            //animate();
         }
         else {
             if(facingRight()) {
@@ -472,7 +480,7 @@ public abstract class Player extends Actor {
         return left;
     }
     public void reload() {
-        //empty method body, but not every class needs to override it
+        //empty method body; not every class needs to override it
     }
     public abstract void singleFire();
     public abstract void burstFire();
