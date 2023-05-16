@@ -129,6 +129,7 @@ public abstract class Player extends Actor {
             }
             if(canMove) {
                 move();
+                fall();
                 checkEdges();    
                 if(Greenfoot.isKeyDown("SPACE") && !spacePressed) {
                     jump();
@@ -193,7 +194,11 @@ public abstract class Player extends Actor {
     public final void jump() {
         
     }
-    
+    public void fall(){
+           
+                setLocation(getX(),getY() + 3);
+            
+    }
     public final void checkPlatformDetection() {
         Platform p = (Platform) this.getOneObjectAtOffset(0, getImage().getHeight() / 2, Platform.class);
         if(p != null) {
@@ -219,6 +224,7 @@ public abstract class Player extends Actor {
             else if(this.getX() == getWorld().getWidth() - 1) {
                 this.setLocation(0, getY());
             }
+            
         }
     }
     public final void move() {
