@@ -52,7 +52,7 @@ public class FreezeRay extends Ability {
                 p.decreaseHealth(getDamage());
                 FreezeBlock freezedP = new FreezeBlock(p);
                 getWorld().addObject(freezedP, p.getX(), p.getY());
-                getWorld().setPaintOrder(FreezeBlock.class, Player.class);
+                getWorld().setPaintOrder(FreezeBlock.class, Player.class, Actor.class);
                 intersects = true;
                 p.canMove = false;
                 p.canCast = false;
@@ -60,7 +60,8 @@ public class FreezeRay extends Ability {
         }
     }
     private void removeFreezeBlocks() {
-        List<FreezeBlock> freezeBlocks = getWorld().getObjects(FreezeBlock.class);
+        List<FreezeBlock> freezeBlocks = 
+            getWorld().getObjects(FreezeBlock.class);
         for(FreezeBlock fb : freezeBlocks) {
             getWorld().removeObject(fb);
         }

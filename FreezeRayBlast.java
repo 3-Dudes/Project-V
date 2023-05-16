@@ -11,7 +11,6 @@ public class FreezeRayBlast extends Actor {
     }
     @Override
     public void addedToWorld(World w) {
-        super.addedToWorld(w);
         this.setRotation(15);
     }
     @Override

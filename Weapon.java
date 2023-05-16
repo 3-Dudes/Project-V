@@ -12,27 +12,14 @@ public abstract class Weapon extends Actor {
     private GreenfootImage rightUnscaled;
     public Weapon(Player p, int spaceX, int spaceY, 
         Integer widthFactor, Integer lengthFactor) {
+        this(widthFactor, lengthFactor);
         this.intersects = false;
         this.p = p;
         this.spaceX = spaceX;
         this.spaceY = spaceY;
-        this.damage = 0;
-        right = getImage();
-        rightUnscaled = new GreenfootImage(right);
-        leftUnscaled = new GreenfootImage(rightUnscaled);
-        leftUnscaled.mirrorHorizontally();
-        if(widthFactor != null && lengthFactor != null) {
-            right.scale(right.getWidth() / widthFactor, 
-                right.getWidth() / lengthFactor);    
-        }
-        left = new GreenfootImage(right);
-        left.mirrorHorizontally();
     }
     public Weapon(Integer widthFactor, Integer lengthFactor) {
         this.intersects = false;
-        this.spaceX = spaceX;
-        this.spaceY = spaceY;
-        this.damage = 0;
         right = getImage();
         rightUnscaled = new GreenfootImage(right);
         leftUnscaled = new GreenfootImage(rightUnscaled);

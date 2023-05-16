@@ -16,4 +16,6 @@ comment7.params=
 comment7.target=void\ singleFire()
 comment8.params=
 comment8.target=void\ burstFire()
-numComments=9
+comment9.params=
+comment9.target=void\ act()
+numComments=10

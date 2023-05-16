@@ -40,7 +40,6 @@ public abstract class Ability extends Actor {
     public boolean isFinished() {
         return isFinished;
     }
-    
     public void detectCollision(String name) {
         if(getWorld() != null) {
             hitPlayer = (Player) this.getOneIntersectingObject(Player.class);   
