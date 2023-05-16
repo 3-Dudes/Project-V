@@ -3,6 +3,7 @@ public class WrestlingChamp extends Ability  {
     private static GreenfootImage flyRight;
     private static GreenfootImage flyLeft;
     private ElMacho macho;
+    private ElMachoCPU machoc;
     
     public WrestlingChamp() {
         super(1400, 40);
@@ -14,6 +15,10 @@ public class WrestlingChamp extends Ability  {
         flyLeft.mirrorVertically();
     }
     public WrestlingChamp(ElMacho macho) {
+        this();
+        this.macho = macho;
+    }
+    public WrestlingChamp(ElMachoCPU machoc) {
         this();
         this.macho = macho;
     }

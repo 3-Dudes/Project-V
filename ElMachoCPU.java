@@ -161,7 +161,7 @@ public class ElMachoCPU extends CPU {
             if(super.isFacingRight){this.setLocation(this.getX() - 5, this.getY());} else{this.setLocation(this.getX() - 5, this.getY());}
         }
         else if(math.abs(Player.getX()-this.getX())>600){ // moves towards human if far
-            WrestlingcahmpChamp();
+            WrestlingChamp();
         }
         else{
             burstFire();
@@ -171,7 +171,7 @@ public class ElMachoCPU extends CPU {
             burstFire();
         }
         
-        //1 in 600,000 cahnce to jump every act method
+        //1 in 600,000 chance to jump every act method
         rand=Greenfoot.getRandomNumber(600001);
         if(rand==69){
             jump();
