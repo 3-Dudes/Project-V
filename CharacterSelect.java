@@ -10,5 +10,6 @@ public class CharacterSelect extends World {
         players.add(new Balthazar());
         players.add(new ElMacho());
         players.add(new Lucy());
+        players.add(new Gru());
     }
 }
