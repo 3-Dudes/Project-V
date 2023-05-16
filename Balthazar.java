@@ -44,7 +44,7 @@ public class Balthazar extends Player {
     }
     public void burstFire() {
         if(hasMachete()) {
-            getWorld().addObject(new BoomerangMachete(this, facingRight()), 
+            getWorld().addObject(new BoomerangMachete(facingRight()), 
                 this.getX(), this.getY());
         }
     }

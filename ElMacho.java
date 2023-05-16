@@ -40,14 +40,14 @@ public class ElMacho extends Player {
             eduardoLeftFrames[i] = new GreenfootImage(eduardoRightFrames[i]);
             eduardoLeftFrames[i].mirrorHorizontally();
         }
-        ammoGui = new AmmoGUI(5, 5, new TortillaChip(facingRight(), this).getImage(), 
-            pastHalfway, 50, 1, 1);
         changePersona();
     }
     
     @Override
     public void addedToWorld(World world) {
         super.addedToWorld(world);
+        ammoGui = new AmmoGUI(5, 5, new TortillaChip(facingRight(), this).getImage(), 
+            pastHalfway, 50, 1, 1);
         if(pastHalfway) {
             this.setImage(getLeftImage());
             getWorld().addObject(ammoGui, 1150, 400);

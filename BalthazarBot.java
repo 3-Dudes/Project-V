@@ -25,18 +25,9 @@ public class BalthazarBot extends UltimateAbility {
             }
         }
         if(duration == 120) {
-            removeIntersectingObjects(this);
+            getWorld().removeObject(this);
             duration = 0;
             isFinished = true;
         }
-    }
-    private void removeIntersectingObjects(BalthazarBot bb) {
-        List<Actor> intersectingActors = bb.getIntersectingObjects(Actor.class);
-        for(Actor a : intersectingActors) {
-            if(!(a instanceof Player)) {
-                getWorld().removeObject(a);    
-            }
-        }
-        getWorld().removeObject(bb);
     }
 }
