@@ -27,7 +27,6 @@ public class ElMachoCPU extends CPU {
         usedUlt = false;
         isEduardo = false;
         ultDur = 0;
-        rand = new Random();
         machoLeftFrames = getLeftFrames();
         machoRightFrames = getRightFrames();
         eduardoLeftFrames = new GreenfootImage[21];
@@ -143,13 +142,13 @@ public class ElMachoCPU extends CPU {
         }
 
         if( Math.abs(p.getX()-this.getX()) > 400 && (p.getX()-this.getX())<600){ // moves towards human if far
-            rand=Greenfoot.getRandomNumber(3);
+            int rand=Greenfoot.getRandomNumber(3);
             switch (move) {
                 case 0:
                     singleFire();
                     break;
                 case 1:
-                    WrestlingChamp();
+                    q();
                     break;
                 case 2:
                     e();
@@ -159,19 +158,19 @@ public class ElMachoCPU extends CPU {
             }
             if(super.isFacingRight){this.setLocation(this.getX() - 5, this.getY());} else{this.setLocation(this.getX() - 5, this.getY());}
         }
-        else if(math.abs(Player.getX()-this.getX())>600){ // moves towards human if far
-            WrestlingChamp();
+        else if(Math.abs(Player.getX()-this.getX())>600){ // moves towards human if far
+            q();
         }
         else{
             burstFire();
         }
         //detect if human jumps (WILL NEED FIX)
-        if(Player.getY()!=pheight()){
+        if(Player.getY()!=pHeight()){
             burstFire();
         }        
         //1 in 600,000 chance to jump every act method
-        rand=Greenfoot.getRandomNumber(600001);
-        if(rand==69){
+        int rand1=Greenfoot.getRandomNumber(600001);
+        if(rand1==69){
             jump();
             for(int i=0; i<10; i++){
                 if(super.isFacingRight){this.setLocation(this.getX() + 5, this.getY());} 
@@ -180,11 +179,11 @@ public class ElMachoCPU extends CPU {
         }
         //use ult when half-health
         if(this.getHealth()<=350&&this.getHealth()>=175){
-            makeItRain();
+            x();
             ultavailable= false;
         }
         if(ultavailable==false&&this.getHealth()<=175){
-            makeItRain();
+            x();
             ultavailable=true;
             this.changePersona();
         }
