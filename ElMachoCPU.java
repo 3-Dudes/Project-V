@@ -128,14 +128,14 @@ public class ElMachoCPU extends CPU {
             this.setImage(getLeftImage());
         }
     }
-    int pheight=Player.getY();
+    int pheight=p.getY();
     int move=0;
     boolean ultavailable=true;
     @Override
     public void act() {
         super.act();
         checkAbilities();
-        if(Player.getX()>this.getX()){ //if enemy is to right of T-9000
+        if(p.getX()>this.getX()){ //if enemy is to right of T-9000
             super.isFacingRight=true;
         } else{ //player is to left of T-9000
             super.isFacingRight=false;
@@ -158,14 +158,14 @@ public class ElMachoCPU extends CPU {
             }
             if(super.isFacingRight){this.setLocation(this.getX() - 5, this.getY());} else{this.setLocation(this.getX() - 5, this.getY());}
         }
-        else if(Math.abs(Player.getX()-this.getX())>600){ // moves towards human if far
+        else if(Math.abs(p.getX()-this.getX())>600){ // moves towards human if far
             q();
         }
         else{
             burstFire();
         }
         //detect if human jumps (WILL NEED FIX)
-        if(Player.getY()!=pHeight()){
+        if(p.getY()!=pheight){
             burstFire();
         }        
         //1 in 600,000 chance to jump every act method
