@@ -2,6 +2,4 @@
 comment0.target=LaserRifle
 comment1.params=g\ spaceX\ spaceY
 comment1.target=LaserRifle(Gru,\ int,\ int)
-comment2.params=
-comment2.target=boolean\ exists()
-numComments=3
+numComments=2

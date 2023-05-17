@@ -10,9 +10,4 @@ public class LaserRifle extends Weapon {
         this.spaceX = spaceX;
         this.spaceY = spaceY;
     }
-    public boolean exists() {
-        List<LaserRifle> laserRifles = 
-            getWorld().getObjects(LaserRifle.class);
-        return laserRifles.size() != 0;
-    }
 }
