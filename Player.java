@@ -14,6 +14,9 @@ public abstract class Player extends Actor {
     protected boolean canMove;
     protected boolean canCast;
     
+    private int vSpeed = 0;
+    private int acceleration = 1;
+    
     private Shield shield;
     
     protected Ability c;
@@ -192,12 +195,13 @@ public abstract class Player extends Actor {
     }
     
     public final void jump() {
+             this.setLocation(this.getX(), this.getY()- 150);
         
     }
     public void fall(){
            
-                setLocation(getX(),getY() + 3);
-            
+                setLocation(getX(),getY() + vSpeed);
+            vSpeed = vSpeed + acceleration;
     }
     public final void checkPlatformDetection() {
         Platform p = (Platform) this.getOneObjectAtOffset(0, getImage().getHeight() / 2, Platform.class);
@@ -238,9 +242,7 @@ public abstract class Player extends Actor {
             this.setImage(right);
             isFacingRight = true;
         }
-        if(Greenfoot.isKeyDown("SPACE")){
-             this.setLocation(this.getX(), this.getY()-10);
-        }
+        
     }
     private void updateAbility(Ability ab) {
         if(ab != null && ab.isFinished()) {
