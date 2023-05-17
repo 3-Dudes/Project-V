@@ -1,9 +1,11 @@
 #BlueJ class context
 comment0.target=RedLaser
-comment1.params=
-comment1.target=RedLaser()
+comment1.params=g
+comment1.target=RedLaser(Gru)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=cls
 comment3.target=greenfoot.Actor\ getOneIntersectingObject(java.lang.Class)
-numComments=4
+comment4.params=a
+comment4.target=boolean\ removedFromWorld(greenfoot.Actor)
+numComments=5

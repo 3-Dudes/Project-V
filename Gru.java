@@ -1,31 +1,45 @@
 import greenfoot.*;
 import java.util.*;
 public class Gru extends Player {
-    private Weapon mainWeapon;
+    private LaserRifle mainWeapon;
+    private FreezeRay freezeRayGun;
+    private boolean burstFireActivated;
     public Gru() {
-        super("Gru", 2, false, 500, 500);
-        mainWeapon = new LaserRifle(this, 100, -50);
+        super("Gru", 2, false, 500, 500, "gru", 5);
+        mainWeapon = new LaserRifle(this, 110, 30);
+        FreezeRay fr = new FreezeRay(this);
+        setQAbility(fr);
+        burstFireActivated = false;
     }
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        if(mainWeapon.facingRight()) {
-            getWorld().addObject(mainWeapon, this.getX() + 100, 
-                this.getY() + 50);
+        if(facingRight()) {
+            getWorld().addObject(mainWeapon, this.getX() + 110, 
+                this.getY() - 30);
+            mainWeapon.setImage(mainWeapon.getRightImage());
         }
         else {
-            getWorld().addObject(mainWeapon, this.getX() - 100, 
-                this.getY() + 50);
+            getWorld().addObject(mainWeapon, this.getX() - 110, 
+                this.getY() - 30);
+            mainWeapon.setImage(mainWeapon.getLeftImage());
         }
     }
     public void c() {
             
     }
     public void q() {
-        FreezeRay fr = new FreezeRay(this);
-        setQAbility(fr);
-        getWorld().addObject(getQAbility(), 
-            this.getX() + 100, this.getY());
+        if(this.isTouching(LaserRifle.class)) {
+            getWorld().removeObject(mainWeapon);
+        }
+        if(facingRight()) {
+            getWorld().addObject(getQAbility(), 
+            this.getX() + 100, this.getY() - 30);    
+        }
+        else {
+            getWorld().addObject(getQAbility(), this.getX() - 100,
+                this.getY() - 30);
+        }
     }
     public void e() {
         
@@ -34,19 +48,34 @@ public class Gru extends Player {
         
     }
     public void singleFire() {
-        getWorld().addObject(new RedLaser(), mainWeapon.getX() + 100, mainWeapon.getY() - 20);
+        if(this.isTouching(LaserRifle.class)) {
+            if(facingRight()) {
+                getWorld().addObject(new RedLaser(this), 
+                mainWeapon.getX() + 100, mainWeapon.getY() - 20);    
+            }
+            else {
+                getWorld().addObject(new RedLaser(this), 
+                mainWeapon.getX() - 100, mainWeapon.getY() - 20);
+            }    
+        }
     }
     public void burstFire() {
         
     }   
     public void act() {
         super.act();
-    }
-    /* private boolean hasMainWeapon() {
-        List<Weapon> weapons = getWorld().getObjects(Weapon.class);
-        for(Weapon w : weapons) {
-            return w.isTouching(Gru.class);
+        if(!this.isTouching(Weapon.class) && !this.isTouching(Ability.class)) {
+            mainWeapon = new LaserRifle(this, 110, 30);
+            if(facingRight()) {
+                getWorld().addObject(mainWeapon, this.getX() + 110, 
+                    this.getY() - 30);
+                mainWeapon.setImage(mainWeapon.getRightImage());
+            }
+            else {
+                getWorld().addObject(mainWeapon, this.getX() - 110, 
+                    this.getY() - 30);
+                mainWeapon.setImage(mainWeapon.getLeftImage());
+            }
         }
-        return false;
-    } */
+    }
 }

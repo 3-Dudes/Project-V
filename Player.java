@@ -64,10 +64,10 @@ public abstract class Player extends Actor {
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
         if(facingRight()) {
-            setImage(right);
+            this.setImage(right);
         }
         else {
-            setImage(left);
+            this.setImage(left);
         }
     }
     public Player(String name, int factor, boolean isFacingRight, 
@@ -211,6 +211,11 @@ public abstract class Player extends Actor {
         this.v = v;
     }
     
+    @Override
+    public boolean intersects(Actor a) {
+        return super.intersects(a);
+    }
+    
     public void act() {
         if(!this.isDead()) {
             if(getTimeDisabled() == 100 && !canMove && this.getRotation() == 90) {
@@ -351,7 +356,7 @@ public abstract class Player extends Actor {
             isMoving = false;
         }
         if(isMoving) {
-            //animate();
+            animate();
         }
         else {
             if(facingRight()) {
