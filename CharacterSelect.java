@@ -1,16 +1,17 @@
 import greenfoot.*;
 import java.util.*;
 public class CharacterSelect extends World {
-    public static List<Player> players;
     public CharacterSelect() {    
-        super(1200, 700, 1);
-        players = new ArrayList<Player>();  
+        super(1200, 700, 1);  
+        makeScreen();
     }
-    public static void addPlayers() {
-        players.add(new Balthazar());
-        players.add(new ElMacho());
-        players.add(new Gru());
-        players.add(new Lucy());
-        players.add(new Vector());
+    private void makeScreen() {
+        GreenfootImage img = getBackground();
+        img.setColor(Color.BLACK);
+        img.fill();
+        this.setBackground(img);
+        
+        GreenfootImage text = new GreenfootImage("Select Your Character", 60, Color.ORANGE, null);
+        getBackground().drawImage(text, 350, 50);
     }
 }
