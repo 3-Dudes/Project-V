@@ -2,6 +2,8 @@
 comment0.target=Gru
 comment1.params=
 comment1.target=Gru()
+comment10.params=
+comment10.target=void\ makeAutomatic()
 comment2.params=w
 comment2.target=void\ addedToWorld(greenfoot.World)
 comment3.params=
@@ -18,4 +20,4 @@ comment8.params=
 comment8.target=void\ burstFire()
 comment9.params=
 comment9.target=void\ act()
-numComments=10
+numComments=11

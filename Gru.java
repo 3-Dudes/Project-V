@@ -3,13 +3,15 @@ import java.util.*;
 public class Gru extends Player {
     private LaserRifle mainWeapon;
     private FreezeRay freezeRayGun;
-    private boolean burstFireActivated;
+    private boolean automate;
+    private int automationDuration;
     public Gru() {
         super("Gru", 2, false, 500, 500, "gru", 5);
         mainWeapon = new LaserRifle(this, 100, 40);
         FreezeRay fr = new FreezeRay(this);
         setQAbility(fr);
-        burstFireActivated = false;
+        automate = false;
+        automationDuration = 0;
     }
     @Override
     public void addedToWorld(World w) {
@@ -62,7 +64,7 @@ public class Gru extends Player {
         }
     }
     public void burstFire() {
-        
+        automate = true;
     }   
     public void act() {
         super.act();
@@ -76,6 +78,18 @@ public class Gru extends Player {
             else {
                 getWorld().addObject(mainWeapon, this.getX() - 100, 
                     this.getY() - 30);
+            }
+        }
+        makeAutomatic();
+        if(automationDuration == 500) {
+            automate = false;
+        }
+    }
+    private void makeAutomatic() {
+        if(automate) {
+            automationDuration++;
+            if(Greenfoot.isKeyDown("V")) {
+                singleFire();
             }
         }
     }
