@@ -2,16 +2,18 @@ import greenfoot.*;
 import java.util.*;
 public class Gru extends Player {
     private LaserRifle mainWeapon;
-    private FreezeRay freezeRayGun;
+    private FreezeRay freezeRay;
     private boolean automate;
     private int automationDuration;
+    private int fireDelay;
     public Gru() {
         super("Gru", 2, false, 500, 500, "gru", 5);
         mainWeapon = new LaserRifle(this, 100, 40);
-        FreezeRay fr = new FreezeRay(this);
-        setQAbility(fr);
+        freezeRay = new FreezeRay(this);
+        setQAbility(freezeRay);
         automate = false;
         automationDuration = 0;
+        fireDelay = 0;
     }
     @Override
     public void addedToWorld(World w) {
@@ -38,11 +40,11 @@ public class Gru extends Player {
         }
         if(facingRight()) {
             getWorld().addObject(getQAbility(), this.getX() + 100, 
-                this.getY() - 30);    
+                this.getY() - 60);    
         }
         else {
             getWorld().addObject(getQAbility(), this.getX() - 100,
-                this.getY() - 30);
+                this.getY() - 60);
         }
     }
     public void e() {
@@ -53,14 +55,26 @@ public class Gru extends Player {
     }
     public void singleFire() {
         if(this.isTouching(LaserRifle.class)) {
-            if(facingRight()) {
-                getWorld().addObject(new RedLaser(this), 
-                mainWeapon.getX() + 110, mainWeapon.getY() - 15);    
+            if(automate) {
+                if(fireDelay == 20 || fireDelay == 0) {
+                    addLaser();
+                    fireDelay = 0;
+                }
+                fireDelay++;    
             }
             else {
-                getWorld().addObject(new RedLaser(this), 
-                mainWeapon.getX() - 110, mainWeapon.getY() - 15);
-            }    
+                addLaser();
+            }
+        }
+    }
+    private void addLaser() {
+        if(facingRight()) {
+            getWorld().addObject(new RedLaser(this), 
+            mainWeapon.getX() + 110, mainWeapon.getY() - 15);    
+        }
+        else {
+            getWorld().addObject(new RedLaser(this), 
+            mainWeapon.getX() - 110, mainWeapon.getY() - 15);
         }
     }
     public void burstFire() {
@@ -80,12 +94,13 @@ public class Gru extends Player {
                     this.getY() - 30);
             }
         }
-        makeAutomatic();
-        if(automationDuration == 500) {
+        automatic();
+        if(automationDuration == 200) {
             automate = false;
+            automationDuration = 0;
         }
     }
-    private void makeAutomatic() {
+    private void automatic() {
         if(automate) {
             automationDuration++;
             if(Greenfoot.isKeyDown("V")) {
