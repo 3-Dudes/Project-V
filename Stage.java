@@ -2,7 +2,7 @@ import greenfoot.*;
 import java.util.*;
 public abstract class Stage extends World {
     private Player player;
-    private Player cpu;
+    private CPU cpu;
     private Platform topPlatform;
     private Platform leftPlatform;
     private Platform rightPlatform;
@@ -12,7 +12,7 @@ public abstract class Stage extends World {
     }
     private void prepareLevel() {
         player = new Balthazar();
-        cpu = new Lucy();
+        cpu = new BalthazarCPU();
         this.addObject(player, 200, this.getHeight() - 150);
         this.addObject(cpu, 1000, this.getHeight() - 175);
         this.setPaintOrder(Actor.class, Weapon.class, Ability.class, Player.class);
