@@ -15,9 +15,9 @@ public abstract class Stage extends World {
         cpu = new Lucy();
         this.addObject(player, 200, this.getHeight() - 150);
         this.addObject(cpu, 1000, this.getHeight() - 175);
-        this.setPaintOrder(Actor.class, Weapon.class, Ability.class, Player.class);
+        this.setPaintOrder(Weapon.class, Ability.class);
         //addPlatforms();
-    }
+    }   
     private void addPlatforms() {
         List<Integer> sequence = new ArrayList<Integer>();
         sequence.add(4);
