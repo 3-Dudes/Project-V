@@ -8,6 +8,7 @@ public abstract class Ability extends Actor {
     protected boolean intersects;
     protected Player hitPlayer;
     protected boolean isFinished;
+    private boolean isFacingRight;
     
     public Ability(int cooldown, int damage) {
         this.charge = cooldown;
