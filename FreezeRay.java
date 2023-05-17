@@ -4,11 +4,12 @@ public class FreezeRay extends Ability {
     private int duration;
     private static GreenfootImage left;
     private static GreenfootImage right;
-    private boolean movingRight;
     private Gru g;
     private FreezeRayBlast ammo;
+    private boolean isFacingRight;
     public FreezeRay() {
         super(1000, 10);
+        isFacingRight = false;
         duration = 0;
         left = getImage();
         left.scale(left.getWidth() / 2, left.getHeight() / 2);
@@ -23,17 +24,30 @@ public class FreezeRay extends Ability {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        getWorld().addObject(ammo, this.getX() + 185, this.getY() - 20); 
+        if(g.facingRight()) {
+            getWorld().addObject(ammo, g.getX() + 100, g.getY() - 60);
+        } 
+        else {
+            getWorld().addObject(ammo, g.getX() - 100, g.getY() - 60);
+        }
+    }
+    private void removeFreezeBlocks() {
+        List<FreezeBlock> freezeBlocks = getWorld().getObjects(FreezeBlock.class);
+        for (FreezeBlock fb : freezeBlocks) {
+            getWorld().removeObject(fb);
+        }
     }
     @Override
     public void act() {
         if(g.facingRight()) {
             this.setImage(right);
-            this.setLocation(g.getX() + 100, g.getY() - 30);
-        }
+            isFacingRight = true;
+            this.setLocation(g.getX() + 100, g.getY() - 60);
+        } 
         else {
             this.setImage(left);
-            this.setLocation(g.getX() - 100, g.getY() - 30);
+            isFacingRight = false;
+            this.setLocation(g.getX() - 100, g.getY() - 60);
         }
         if(duration == 500) {
             removeFreezeBlocks();
@@ -41,10 +55,6 @@ public class FreezeRay extends Ability {
             getWorld().removeObject(ammo);
             getWorld().removeObject(this);
             duration = 0;
-        }
-        if(ammo == null) {
-            ammo = new FreezeRayBlast(this);
-            getWorld().addObject(ammo, this.getX() + 185, this.getY() - 20);
         }
         detectCollision("Gru");
         duration++;
@@ -57,20 +67,14 @@ public class FreezeRay extends Ability {
                 p.decreaseHealth(getDamage());
                 FreezeBlock freezedP = new FreezeBlock(p);
                 getWorld().addObject(freezedP, p.getX(), p.getY());
-                getWorld().setPaintOrder(Player.class, 
-                    FreezeBlock.class);
+                getWorld().setPaintOrder(Weapon.class, Actor.class, Player.class, FreezeBlock.class);
                 intersects = true;
                 p.canMove = false;
                 p.canCast = false;
-                System.out.println(p.canMove);
             }
         }
     }
-    private void removeFreezeBlocks() {
-        List<FreezeBlock> freezeBlocks = 
-            getWorld().getObjects(FreezeBlock.class);
-        for(FreezeBlock fb : freezeBlocks) {
-            getWorld().removeObject(fb);
-        }
+    public boolean facingRight() {
+        return isFacingRight;
     }
 }

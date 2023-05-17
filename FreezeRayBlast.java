@@ -1,17 +1,25 @@
 import greenfoot.*;
 public class FreezeRayBlast extends Actor {
     private FreezeRay fr;
+    private static GreenfootImage right;
+    private static GreenfootImage left;
     public FreezeRayBlast(FreezeRay fr) {
         this.fr = fr;
-        GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 3, img.getHeight() / 3);
+        right = getImage();
+        right.rotate(15);
+        right.scale(right.getWidth() / 3, right.getHeight() / 3);
+        left = new GreenfootImage(right);
+        left.mirrorHorizontally();
     }
     public void act() {
-        this.setLocation(fr.getX() + 185, fr.getY() - 20);
-    }
-    @Override
-    public void addedToWorld(World w) {
-        this.setRotation(15);
+        if(fr.facingRight()) {
+            this.setLocation(fr.getX() + 185, fr.getY() - 20);
+            this.setImage(right);
+        }
+        else {
+            this.setLocation(fr.getX() - 185, fr.getY() - 20);
+            this.setImage(left);
+        }
     }
     @Override
     public Actor getOneIntersectingObject(Class<?> cls) {
