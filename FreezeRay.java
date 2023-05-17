@@ -23,16 +23,17 @@ public class FreezeRay extends Ability {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        getWorld().addObject(ammo, this.getX() + 185, this.getY() - 20);
+        getWorld().addObject(ammo, this.getX() + 185, this.getY() - 20); 
     }
     @Override
     public void act() {
-        this.setLocation(g.getX() + 100, g.getY());
         if(g.facingRight()) {
             this.setImage(right);
+            this.setLocation(g.getX() + 100, g.getY() - 30);
         }
         else {
             this.setImage(left);
+            this.setLocation(g.getX() - 100, g.getY() - 30);
         }
         if(duration == 500) {
             removeFreezeBlocks();
@@ -41,6 +42,10 @@ public class FreezeRay extends Ability {
             getWorld().removeObject(this);
             duration = 0;
         }
+        if(ammo == null) {
+            ammo = new FreezeRayBlast(this);
+            getWorld().addObject(ammo, this.getX() + 185, this.getY() - 20);
+        }
         detectCollision("Gru");
         duration++;
     }
@@ -48,14 +53,16 @@ public class FreezeRay extends Ability {
     public void detectCollision(String name) {
         if(getWorld() != null) {
             Player p = (Player) ammo.getOneIntersectingObject(Player.class);
-            if(p != null && !intersects) {
+            if(p != null && !intersects && !(p instanceof Gru)) {
                 p.decreaseHealth(getDamage());
                 FreezeBlock freezedP = new FreezeBlock(p);
                 getWorld().addObject(freezedP, p.getX(), p.getY());
-                getWorld().setPaintOrder(FreezeBlock.class, Player.class, Actor.class);
+                getWorld().setPaintOrder(Player.class, 
+                    FreezeBlock.class);
                 intersects = true;
                 p.canMove = false;
                 p.canCast = false;
+                System.out.println(p.canMove);
             }
         }
     }
