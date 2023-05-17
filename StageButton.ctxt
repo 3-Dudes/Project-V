@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=StageButton
+comment1.params=text\ xOffset\ yOffset
+comment1.target=StageButton(java.lang.String,\ int,\ int)
+comment2.params=
+comment2.target=void\ whenClicked()
+numComments=3
