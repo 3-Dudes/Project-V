@@ -8,6 +8,7 @@ public class Gru extends Player {
     private int fireDelay;
     private Rocket r;
     private GruTeleportationEntrance entrance;
+    private int x;
     public Gru() {
         super("Gru", 2, false, 500, 500, "gru", 5);
         mainWeapon = new LaserRifle(this, 100, 40);
@@ -16,6 +17,7 @@ public class Gru extends Player {
         automate = false;
         automationDuration = 0;
         fireDelay = 0;
+        x = 0;
         entrance = new GruTeleportationEntrance();
     }
 
@@ -68,8 +70,11 @@ public class Gru extends Player {
             r = new Rocket(true);
             this.setImage(getRightImage());
         }
+        if(!entrance.isInWorld()) {
+            getWorld().addObject(entrance, getWorld().getWidth() 
+            - this.getX(), this.getY() + getImage().getHeight() / 2);
+        }        
         this.setLocation(getWorld().getWidth() - this.getX(), this.getY());
-        getWorld().addObject(r, this.getX(), this.getY());
     }
 
     public void singleFire() {
@@ -121,9 +126,30 @@ public class Gru extends Player {
             automate = false;
             automationDuration = 0;
         }
+        if(entrance.isInWorld()) {
+            fade();
+        }
     }
-    public void fade() {
-    
+    private void fade() {
+        GreenfootImage img = null;
+        if(facingRight()) {
+            img = getRightImage();
+            img.setTransparency(0);
+        }
+        else {
+            img = getLeftImage();
+            img.setTransparency(0);
+        }
+        if(img.getTransparency() < 250) {
+            x += 5;
+            img.setTransparency(x);
+            this.setImage(img);
+        }
+        if(x >= 250) {
+            x = 0;
+            getWorld().removeObject(entrance);
+            getWorld().addObject(r, this.getX(), this.getY());
+        }
     }
     private void automatic() {
         if(automate) {
