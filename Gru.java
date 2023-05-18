@@ -7,6 +7,7 @@ public class Gru extends Player {
     private int automationDuration;
     private int fireDelay;
     private Rocket r;
+    private GruTeleportationEntrance entrance;
     public Gru() {
         super("Gru", 2, false, 500, 500, "gru", 5);
         mainWeapon = new LaserRifle(this, 100, 40);
@@ -15,6 +16,7 @@ public class Gru extends Player {
         automate = false;
         automationDuration = 0;
         fireDelay = 0;
+        entrance = new GruTeleportationEntrance();
     }
 
     @Override
@@ -120,7 +122,9 @@ public class Gru extends Player {
             automationDuration = 0;
         }
     }
-
+    public void fade() {
+    
+    }
     private void automatic() {
         if(automate) {
             automationDuration++;
