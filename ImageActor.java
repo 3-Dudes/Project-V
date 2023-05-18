@@ -2,37 +2,53 @@ import greenfoot.*;
 public class ImageActor extends Actor {
     private GreenfootImage img;
     private StageButton button;
-    private boolean buttonExists;
-    public ImageActor(GreenfootImage img) {
+    private boolean mouseHovered;
+    private String text;
+    private int xOffset;
+    private int yOffset;
+    private Stage st;
+    private Player p;
+    public ImageActor(GreenfootImage img, String text, int xOffset, int yOffset) {
         this.img = img;
+        this.text = text;
+        this.xOffset = xOffset;
+        this.yOffset = yOffset;
+        this.st = st;
         this.setImage(img);
-        buttonExists = false;
-    }    
-
-    public void act() {
-        if(isMouseOver() == false && buttonExists == true) {
-            getWorld().removeObjects(getWorld().getObjects(Button.class));
-            buttonExists = false;
-        }
-        if(isMouseOver() && buttonExists == false) {
-            System.out.println("OVER");
-            button = new StageButton("Gru's House", -60, -30); 
-            getWorld().addObject(button, this.getX(), this.getY() + 100);
-            buttonExists = true;
-        }
-        
+        mouseHovered = false;
     }
-
+    public ImageActor(GreenfootImage img, String text, int xOffset, int yOffset,
+        Stage st) {
+        this(img, text, xOffset, yOffset);
+        this.st = st;
+    }
+    public ImageActor(GreenfootImage img, String text, int xOffset, 
+        int yOffset, Player p) {
+        this(img, text, xOffset, yOffset);
+        this.p = p;
+    }
+    public void act() {
+        if(isMouseOver() && !mouseHovered) {
+            button = new StageButton(text, xOffset, yOffset);
+            getWorld().addObject(button, this.getX(), this.getY() + 100);
+            mouseHovered = true;
+        }
+        if(!isMouseOver() && mouseHovered) {
+            getWorld().removeObject(button);
+            mouseHovered = false;
+        }
+        if(Greenfoot.mouseClicked(this)) {
+            Greenfoot.setWorld(st);        
+        }
+    }
     public boolean isMouseOver() {
         MouseInfo m = Greenfoot.getMouseInfo();
         if(m != null) {
             int mx = m.getX();
             int my = m.getY();
-            //System.out.println(mx+" "+my);
-            if(getX() - getImage().getWidth()/2 < mx && getX() + getImage().getWidth()/2 > mx && 
-            getY() - getImage().getHeight()/2 < my && getY() + getImage().getHeight()/2 > my) {
-                return true;  
-            }
+            return getX() - getImage().getWidth()/2 < mx && getX() 
+                + getImage().getWidth()/2 > mx && getY() - getImage().getHeight()/2 
+            < my && getY() + getImage().getHeight()/2 > my;
         }
         return false;
     }

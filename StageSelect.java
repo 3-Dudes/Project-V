@@ -24,10 +24,14 @@ public class StageSelect extends World {
         }
     }
     public static void addStages() {
-        stages.add(new ImageActor(new BankOfEvil().getBackground()));
-        stages.add(new ImageActor(new ElMachoLair().getBackground()));
-        stages.add(new ImageActor(new GruHouse().getBackground()));
-        stages.add(new ImageActor(new GruLair().getBackground()));
+        stages.add(new ImageActor(new BankOfEvil().getBackground(), 
+            "Bank Of Evil", -70, -30, new BankOfEvil()));
+        stages.add(new ImageActor(new ElMachoLair().getBackground(), 
+            "El Macho's Lair", -80, -30, new ElMachoLair()));
+        stages.add(new ImageActor(new GruHouse().getBackground(), "Gru's House",
+            -70, -30, new GruHouse()));
+        stages.add(new ImageActor(new GruLair().getBackground(), "Gru's Lair",
+            -55, -30, new GruLair()));
         for(ImageActor ia : stages) {
             scale(ia.getImage());
         }
