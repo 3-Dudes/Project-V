@@ -1,6 +1,6 @@
 import greenfoot.*;
 import java.util.*;
-public class LucyCPU  
+public class LucyCPU extends CPU
 {
     private Player p;
     public LucyCPU() {
