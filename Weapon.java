@@ -82,6 +82,12 @@ public abstract class Weapon extends Actor {
     public GreenfootImage getRightImage() {
         return right;
     }
+    public void setRightImage(GreenfootImage right) {
+        this.right = right;
+    }
+    public void setLeftImage(GreenfootImage left) {
+        this.left = left;
+    }
     public boolean facingRight() {
         return isFacingRight;
     }

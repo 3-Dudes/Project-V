@@ -1,7 +1,11 @@
 #BlueJ class context
 comment0.target=Rocket
-comment1.params=g\ spaceX\ spaceY\ right
-comment1.target=Rocket(Gru,\ int,\ int,\ boolean)
-comment2.params=
-comment2.target=void\ act()
-numComments=3
+comment1.params=movingRight
+comment1.target=Rocket(boolean)
+comment2.params=w
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=name\ damage
+comment4.target=void\ detectCollision(java.lang.String,\ int)
+numComments=5

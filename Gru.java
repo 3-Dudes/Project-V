@@ -6,6 +6,7 @@ public class Gru extends Player {
     private boolean automate;
     private int automationDuration;
     private int fireDelay;
+    private Rocket r;
     public Gru() {
         super("Gru", 2, false, 500, 500, "gru", 5);
         mainWeapon = new LaserRifle(this, 100, 40);
@@ -32,12 +33,11 @@ public class Gru extends Player {
     }
 
     public void c() {
-        if(this.isTouching(LaserRifle.class)) {
-            getWorld().removeObject(mainWeapon);
-        }    
+            
     }
 
     public void q() {
+        canCast = false;
         if(this.isTouching(LaserRifle.class)) {
             getWorld().removeObject(mainWeapon);
         }
@@ -54,18 +54,19 @@ public class Gru extends Player {
     public void e() {
 
     }
-private Rocket r;
+    
     public void x() { //teleport to opposite x coord and fire rocket back at other side
-        if(this.getX()>=600){
-            this.setLocation(this.getX()-600,this.getY());
-            SetRight(true);
-            r=new Rocket(this, 10, 10, true);
+        if(facingRight()) {
+            setFacingRight(false);
+            r = new Rocket(false);
+            this.setImage(getLeftImage());
         }
-        else{
-            SetRight(false);
-            this.setLocation(this.getX()+600,this.getY());
-            r=new Rocket(this, 10, 10, false);
+        else {
+            setFacingRight(true);
+            r = new Rocket(true);
+            this.setImage(getRightImage());
         }
+        this.setLocation(getWorld().getWidth() - this.getX(), this.getY());
         getWorld().addObject(r, this.getX(), this.getY());
     }
 

@@ -149,8 +149,8 @@ public abstract class Player extends Actor {
         hp.drawHeader();
         hp.setImage(img);
     }
-    public void SetRight(boolean right){
-        isFacingRight=right;
+    public void setFacingRight(boolean isFacingRight){
+        this.isFacingRight = isFacingRight;
     }
     @Override
     public void addedToWorld(World world) {
