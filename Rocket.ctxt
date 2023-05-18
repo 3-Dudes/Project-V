@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Rocket
+comment1.params=g\ spaceX\ spaceY\ right
+comment1.target=Rocket(Gru,\ int,\ int,\ boolean)
+comment2.params=
+comment2.target=void\ act()
+numComments=3

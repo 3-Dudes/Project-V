@@ -15,6 +15,7 @@ public class Gru extends Player {
         automationDuration = 0;
         fireDelay = 0;
     }
+
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
@@ -29,11 +30,13 @@ public class Gru extends Player {
             mainWeapon.setImage(mainWeapon.getLeftImage());
         }
     }
+
     public void c() {
         if(this.isTouching(LaserRifle.class)) {
             getWorld().removeObject(mainWeapon);
         }    
     }
+
     public void q() {
         if(this.isTouching(LaserRifle.class)) {
             getWorld().removeObject(mainWeapon);
@@ -47,12 +50,25 @@ public class Gru extends Player {
                 this.getY() - 60);
         }
     }
+
     public void e() {
-        
+
     }
-    public void x() {
-        
+private Rocket r;
+    public void x() { //teleport to opposite x coord and fire rocket back at other side
+        if(this.getX()>=600){
+            this.setLocation(this.getX()-600,this.getY());
+            SetRight(true);
+            r=new Rocket(this, 10, 10, true);
+        }
+        else{
+            SetRight(false);
+            this.setLocation(this.getX()+600,this.getY());
+            r=new Rocket(this, 10, 10, false);
+        }
+        getWorld().addObject(r, this.getX(), this.getY());
     }
+
     public void singleFire() {
         if(this.isTouching(LaserRifle.class)) {
             if(automate) {
@@ -67,23 +83,26 @@ public class Gru extends Player {
             }
         }
     }
+
     private void addLaser() {
         if(facingRight()) {
             getWorld().addObject(new RedLaser(this), 
-            mainWeapon.getX() + 110, mainWeapon.getY() - 15);    
+                mainWeapon.getX() + 110, mainWeapon.getY() - 15);    
         }
         else {
             getWorld().addObject(new RedLaser(this), 
-            mainWeapon.getX() - 110, mainWeapon.getY() - 15);
+                mainWeapon.getX() - 110, mainWeapon.getY() - 15);
         }
     }
+
     public void burstFire() {
         automate = true;
     }   
+
     public void act() {
         super.act();
         if(!this.isTouching(Weapon.class) 
-            && !this.isTouching(Ability.class)) {
+        && !this.isTouching(Ability.class)) {
             mainWeapon = new LaserRifle(this, 100, 40);
             if(facingRight()) {
                 getWorld().addObject(mainWeapon, this.getX() + 100, 
@@ -100,6 +119,7 @@ public class Gru extends Player {
             automationDuration = 0;
         }
     }
+
     private void automatic() {
         if(automate) {
             automationDuration++;
