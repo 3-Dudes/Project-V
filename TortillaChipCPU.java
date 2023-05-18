@@ -1,20 +1,19 @@
 import greenfoot.*;
 import java.util.*;
-public class TortillaChip extends Weapon {
+public class TortillaChipCPU extends WeaponCPU {
     private static int damage = 4;
     public static GreenfootImage rightImg;
     public static GreenfootImage leftImg;
     private boolean right;
-    private ElMacho macho;
     private ElMachoCPU machocpu;
     private int bounces;
     private boolean shouldRemove;
     
-    public TortillaChip(ElMacho macho) {
+    public TortillaChipCPU(ElMachoCPU macho) {
         this(false, macho);
     }
     
-    public TortillaChip(boolean right, ElMacho macho) {
+    public TortillaChipCPU(boolean right, ElMachoCPU macho) {
         super(macho, 0, 0, null, null);
         this.macho = macho;
         this.right = right;

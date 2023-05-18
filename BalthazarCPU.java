@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.util.*;
 public class BalthazarCPU extends CPU {
-    private Player p;
+    private Player p=getPlayerReference();
     public BalthazarCPU() {
         super("BalthazarCPU", 2, true, 300, 300, "balthazar", 2, new GumBomb(), new BubbleGum(),
             new Keytar(), null, null, null);//, super.getPlayerReference());
