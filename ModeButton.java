@@ -1,7 +1,9 @@
 import greenfoot.*;
 public class ModeButton extends Button {
-    public ModeButton(String text, int offsetX, int offsetY) {
-        super(Color.ORANGE, 200, 50, text, offsetX, offsetY);
+    public ModeButton(int width, int height, 
+        String text, int offsetX, int offsetY) {
+            //200, 50
+        super(Color.ORANGE, width, height, text, offsetX, offsetY);
     }
     @Override
     public void whenClicked() {

@@ -5,6 +5,7 @@ public class CharacterSelect extends World {
     private int x;
     public CharacterSelect() {    
         super(1200, 700, 1);  
+        players = new ArrayList<ImageActor>();
         addPlayers();
         makeScreen();
     }
@@ -25,11 +26,8 @@ public class CharacterSelect extends World {
             this.addObject(ia, x, 300);
         }
     }
-    Stage st;
     public static void addPlayers() {
-        ElMacho macho=new ElMacho();
         players.add(new ImageActor(new ElMacho().getImage(), "El Macho", -30, -30, 
-                macho));
-
+                new ElMacho()));
     }
 }
