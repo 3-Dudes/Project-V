@@ -22,6 +22,9 @@ public class ImageActor extends Actor {
         this(img, text, xOffset, yOffset);
         this.st = st;
     }
+    public Stage getStage(){
+        return this.st;
+    }
     public ImageActor(GreenfootImage img, String text, int xOffset, 
         int yOffset, Player p) {
         this(img, text, xOffset, yOffset);
