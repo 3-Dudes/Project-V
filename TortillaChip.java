@@ -6,7 +6,6 @@ public class TortillaChip extends Weapon {
     public static GreenfootImage leftImg;
     private boolean right;
     private ElMacho macho;
-    private ElMachoCPU machocpu;
     private int bounces;
     private boolean shouldRemove;
     
