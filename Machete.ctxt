@@ -6,4 +6,6 @@ comment2.params=bool
 comment2.target=Machete(boolean)
 comment3.params=
 comment3.target=void\ act()
-numComments=4
+comment4.params=
+comment4.target=boolean\ exists()
+numComments=5
