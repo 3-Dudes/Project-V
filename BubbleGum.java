@@ -3,6 +3,8 @@ public class BubbleGum extends Ability {
     private static GreenfootImage img;
     private boolean movingRight;
     private int bounces;
+    private boolean spawnedIn;
+    private GreenfootSound pop = new GreenfootSound("gum.mp3");
     public BubbleGum() {
         super(1400, 10);
         img = this.getImage();
@@ -19,6 +21,12 @@ public class BubbleGum extends Ability {
     @Override
     public void act() {
         super.act();
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            pop.play();
+        }
         if(movingRight) {
             this.setLocation(this.getX() + 15, this.getY());
         }
@@ -44,5 +52,9 @@ public class BubbleGum extends Ability {
     }
     public void pop() {
         getWorld().removeObject(this);
+        pop.stop();
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

@@ -5,6 +5,8 @@ public class Sombrero extends Ability {
     private ElMacho macho;
     private static GreenfootImage right;
     private static GreenfootImage left;
+    private boolean spawnedIn;
+    private GreenfootSound whoosh = new GreenfootSound("cartoony-whooshes-7114.mp3");
     public Sombrero(ElMacho macho) {
         super(800, 20);
         this.macho = macho;
@@ -20,6 +22,12 @@ public class Sombrero extends Ability {
         return health;
     }
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            whoosh.play();
+        }
         if(macho.facingRight()) {
             this.setLocation(macho.getX() + 75, macho.getY() + 5); 
             this.setImage(right);
@@ -39,5 +47,8 @@ public class Sombrero extends Ability {
             time = 0;
         }
         time++;
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

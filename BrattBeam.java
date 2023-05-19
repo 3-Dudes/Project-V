@@ -5,6 +5,8 @@ public class BrattBeam extends Weapon {
     private static GreenfootImage right;
     private Color hotPink;
     private BalthazarBot bb;
+    private boolean spawnedIn;
+    private GreenfootSound bean = new GreenfootSound("blaster-2-81267.mp3");
     public BrattBeam() {
         super(1, 1);
         beam = new GreenfootImage(600, 25);
@@ -35,6 +37,12 @@ public class BrattBeam extends Weapon {
         }
     }
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            bean.play();
+        }
         detectCollision("Balthazar", 2);
         if(bb != null) {
             if(bb.facingRight()) {
@@ -55,5 +63,8 @@ public class BrattBeam extends Weapon {
                 p.decreaseHealth(damage);
             }
         }
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

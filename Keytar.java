@@ -4,9 +4,11 @@ public class Keytar extends Ability {
     private Balthazar b;
     private int startX;
     private int startY;
+    private boolean spawnedIn;
     private boolean shouldRemove;
     private static GreenfootImage left;
     private static GreenfootImage right;
+    private GreenfootSound charge = new GreenfootSound("hitcharge-94996.mp3");
     public Keytar() {
         super(1500, 30);
         right = getImage();
@@ -28,6 +30,12 @@ public class Keytar extends Ability {
         startY = this.getY();
     }
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            charge.play();
+        }
         if(!isFinished) {
             if(b.facingRight()) {
                 this.setImage(right);
@@ -46,6 +54,7 @@ public class Keytar extends Ability {
             isFinished = true;
             getWorld().removeObject(this);
             b.setLocation(startX, startY);
+            charge.stop();
         }
     }
     @Override
@@ -66,5 +75,8 @@ public class Keytar extends Ability {
                 }
             }
         }
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

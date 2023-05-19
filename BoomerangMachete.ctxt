@@ -8,4 +8,6 @@ comment3.params=
 comment3.target=void\ act()
 comment4.params=name\ damage
 comment4.target=void\ detectCollision(java.lang.String,\ int)
-numComments=5
+comment5.params=
+comment5.target=boolean\ exists()
+numComments=6
