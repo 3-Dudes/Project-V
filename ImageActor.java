@@ -40,8 +40,15 @@ public class ImageActor extends Actor {
             getWorld().removeObject(button);
             mouseHovered = false;
         }
-        if(Greenfoot.mouseClicked(this)) {
-            Greenfoot.setWorld(st);        
+        if(st != null) {
+            if(Greenfoot.mouseClicked(this)) {
+                Greenfoot.setWorld(st);        
+            }    
+        }
+        if(p != null) {
+            if(Greenfoot.mouseClicked(this)) {
+                //Greenfoot.setWorld(st);        
+            }
         }
     }
     public boolean isMouseOver() {
