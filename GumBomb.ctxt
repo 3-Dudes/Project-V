@@ -2,10 +2,12 @@
 comment0.target=GumBomb
 comment1.params=
 comment1.target=GumBomb()
-comment2.params=
-comment2.target=void\ act()
+comment2.params=movingRight
+comment2.target=GumBomb(boolean)
 comment3.params=
-comment3.target=void\ moveGumBomb()
+comment3.target=void\ act()
 comment4.params=
-comment4.target=void\ pop()
-numComments=5
+comment4.target=void\ moveGumBomb()
+comment5.params=
+comment5.target=void\ pop()
+numComments=6

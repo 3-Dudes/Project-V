@@ -2,8 +2,10 @@
 comment0.target=BubbleGum
 comment1.params=
 comment1.target=BubbleGum()
-comment2.params=
-comment2.target=void\ act()
+comment2.params=movingRight
+comment2.target=BubbleGum(boolean)
 comment3.params=
-comment3.target=void\ pop()
-numComments=4
+comment3.target=void\ act()
+comment4.params=
+comment4.target=void\ pop()
+numComments=5

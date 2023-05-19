@@ -4,18 +4,23 @@ public class AmmoGUI extends Actor {
     public int cur, max;
     private GreenfootImage chip;
     private int spaceX;
+    private boolean pastHalfway;
     public AmmoGUI(int cur, int max, GreenfootImage chip, 
         boolean pastHalfway, int spaceX, int widthFactor, int heightFactor) {
         this.max = max;
         this.cur = cur;
         this.chip = chip;
         this.spaceX = spaceX;
+        this.pastHalfway = pastHalfway;
         chip.scale(chip.getWidth() / widthFactor, 
             chip.getHeight() / heightFactor);
     }
 
     @Override
     public void addedToWorld(World world) {
+        if(pastHalfway) {
+            chip.mirrorHorizontally();
+        }
         updateImage(spaceX);
     }
 

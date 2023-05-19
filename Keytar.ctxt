@@ -2,10 +2,10 @@
 comment0.target=Keytar
 comment1.params=
 comment1.target=Keytar()
-comment2.params=w
-comment2.target=void\ addedToWorld(greenfoot.World)
-comment3.params=b
-comment3.target=Keytar(Balthazar)
+comment2.params=b
+comment2.target=Keytar(Balthazar)
+comment3.params=w
+comment3.target=void\ addedToWorld(greenfoot.World)
 comment4.params=
 comment4.target=void\ act()
 comment5.params=name

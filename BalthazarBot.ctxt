@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=BalthazarBot
+comment1.params=
+comment1.target=BalthazarBot()
+comment2.params=isFacingRight
+comment2.target=BalthazarBot(boolean)
+comment3.params=w
+comment3.target=void\ addedToWorld(greenfoot.World)
+comment4.params=
+comment4.target=void\ act()
+numComments=5

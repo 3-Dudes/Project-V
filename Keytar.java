@@ -5,11 +5,21 @@ public class Keytar extends Ability {
     private int startX;
     private int startY;
     private boolean shouldRemove;
+    private static GreenfootImage left;
+    private static GreenfootImage right;
     public Keytar() {
         super(1500, 30);
-        GreenfootImage img = getImage();
-        img.scale(img.getWidth() / 3, img.getHeight() / 3);
+        right = getImage();
+        right.scale(right.getWidth() / 3, right.getHeight() / 3);
+        left = new GreenfootImage(right);
+        left.mirrorHorizontally();
+        this.setImage(right);
         shouldRemove = false;
+        intersects = false;
+    }   
+    public Keytar(Balthazar b) {
+        this();
+        this.b = b;
     }
     @Override
     public void addedToWorld(World w) {
@@ -17,14 +27,18 @@ public class Keytar extends Ability {
         startX = this.getX();
         startY = this.getY();
     }
-    public Keytar(Balthazar b) {
-        this();
-        this.b = b;
-    }
     public void act() {
         if(!isFinished) {
-            b.setLocation(b.getX() + 15, b.getY());
-            this.setLocation(b.getX() + 30, b.getY()); 
+            if(b.facingRight()) {
+                this.setImage(right);
+                b.setLocation(b.getX() + 15, b.getY());    
+                this.setLocation(b.getX() + 90, b.getY() - 10);
+            }
+            else {
+                this.setImage(left);
+                b.setLocation(b.getX() - 15, b.getY());
+                this.setLocation(b.getX() - 90, b.getY() - 10);
+            }
             setDamage(getDamage() + 2);
         }
         detectCollision("Balthazar");
@@ -37,13 +51,18 @@ public class Keytar extends Ability {
     @Override
     public void detectCollision(String name) {
         if(getWorld() != null) {
-            List<Player> players = getObjectsInRange(getImage().getWidth() / 2, Player.class);
-            for(Player hitPlayer : players) {
-                if(hitPlayer != null && !intersects 
-                    && !hitPlayer.getClass().getName().equals(name)) {
-                    hitPlayer.decreaseHealth(getDamage());
-                    intersects = true;
+            List<Player> intersectingObjs = 
+                this.getIntersectingObjects(Player.class);
+            for(int i = 0; i < intersectingObjs.size(); i++) {
+                if(intersectingObjs.get(i) instanceof Balthazar) {
+                    intersectingObjs.remove(i);
+                }
+            }
+            for(Player p : intersectingObjs) {
+                if(b.isIntersecting(p) && !intersects) {
                     shouldRemove = true;
+                    p.decreaseHealth(getDamage());
+                    intersects = true;
                 }
             }
         }
