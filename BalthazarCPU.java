@@ -1,20 +1,26 @@
 import greenfoot.*;
 import java.util.*;
 public class BalthazarCPU extends CPU {
-
     public BalthazarCPU() {
         super("BalthazarCPU", 2, true, 300, 300, "balthazar", 2, new GumBomb(), new BubbleGum(),
             new Keytar(), null, null, null);//, super.getPlayerReference());
     }
 
     private Player getPlayerReference() {
-        List<Player> playerz = getObjectsInRange(getWorld().getWidth(), Player.class);
+        List<Player> playerz 
+            = getWorld().getObjectsAt(200, 700 - 175, Player.class);
         if(playerz.size() == 1) {
             return playerz.get(0);
         }
-        return playerz.get(-1);
+        return null;
     }
-    private Player p=getPlayerReference();
+    private Player p;
+    @Override
+    public void addedToWorld(World w) {
+        super.addedToWorld(w);
+        p = getPlayerReference();
+        pheight = p.getY();
+    }
 
     public void c() {
         setCAbility(new GumBomb());
@@ -41,9 +47,9 @@ public class BalthazarCPU extends CPU {
     public void burstFire() { }
 
     public void reload() { }
-    boolean ultavailable=true;
-    int move=0;
-    int pheight=p.getY();
+        boolean ultavailable=true;
+        int move=0;
+        int pheight;
     public void act() {
         super.act();
         checkAbilities();
@@ -101,7 +107,5 @@ public class BalthazarCPU extends CPU {
             x();
             ultavailable=true;
         }
-
     }
-
 }
