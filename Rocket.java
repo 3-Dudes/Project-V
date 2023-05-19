@@ -50,20 +50,22 @@ public class Rocket extends Weapon {
             }
         }
     }
+    public boolean exists() {
+        return getWorld() != null;
+    }
+    public boolean hasExploded() {
+        return hasExploded;
+    }
     @Override
     public void detectCollision(String name, int damage) {
         if(getWorld() != null) {
-            Player player = (Player) this.getOneIntersectingObject(Player.class);
-            if(player != null && !(player instanceof Gru) 
-                && !intersects) {
-                if((movingRight && player.getX() < this.getX() 
-                    && startX < player.getX()) || (!movingRight 
-                    && player.getX() > this.getX() 
-                    && startX > player.getX())) {
-                    player.decreaseHealth(100);
-                    this.setImage(explosion);
-                    hasExploded = true;
+            Player p = (Player) this.getOneIntersectingObject(Player.class);
+            if(p != null && !intersects && !(p instanceof Gru)) {
+                if(this.getX() <= p.getX() + 10 && this.getX() >= p.getX() - 10) {   
+                    p.decreaseHealth(100);
                     intersects = true;
+                    hasExploded = true;
+                    this.setImage(explosion);    
                 }
             }
         }

@@ -19,6 +19,7 @@ public class Gru extends Player {
         fireDelay = 0;
         x = 0;
         entrance = new GruTeleportationEntrance();
+        r = new Rocket(!facingRight());
     }
 
     @Override
@@ -70,9 +71,11 @@ public class Gru extends Player {
             r = new Rocket(true);
             this.setImage(getRightImage());
         }
+        canMove = false;
+        canCast = false;
         if(!entrance.isInWorld()) {
             getWorld().addObject(entrance, getWorld().getWidth() 
-            - this.getX(), this.getY() + getImage().getHeight() / 2);
+            - this.getX(), this.getY() + getImage().getHeight() / 3 + 15);
         }        
         this.setLocation(getWorld().getWidth() - this.getX(), this.getY());
     }
@@ -129,6 +132,12 @@ public class Gru extends Player {
         if(entrance.isInWorld()) {
             fade();
         }
+        if(r.exists()) {
+            canMove = true;
+        }
+        if(r.hasExploded()) {
+            canCast = true;
+        }
     }
     private void fade() {
         GreenfootImage img = null;
@@ -145,7 +154,7 @@ public class Gru extends Player {
             img.setTransparency(x);
             this.setImage(img);
         }
-        if(x >= 250) {
+        if(x == 250) {
             x = 0;
             getWorld().removeObject(entrance);
             getWorld().addObject(r, this.getX(), this.getY());
