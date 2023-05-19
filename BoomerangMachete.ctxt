@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=BoomerangMachete
+comment1.params=
+comment1.target=BoomerangMachete()
+comment2.params=b\ movingRight
+comment2.target=BoomerangMachete(Balthazar,\ boolean)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=name\ damage
+comment4.target=void\ detectCollision(java.lang.String,\ int)
+numComments=5

@@ -233,6 +233,7 @@ public abstract class Player extends Actor {
         updateAbility(q);
         updateAbility(e);
         updateAbility(b);
+        updateUltimateAbility(x);
         checkAbilities();
     }
     
@@ -275,9 +276,7 @@ public abstract class Player extends Actor {
     protected void castX() {
         if(Greenfoot.isKeyDown("X") && !xPressed) {
             xPressed = true;
-            if(x == null) {
-                x();    
-            }
+            x();
         }
         if(!Greenfoot.isKeyDown("X") && xPressed) {
             xPressed = false;
@@ -373,6 +372,13 @@ public abstract class Player extends Actor {
     private void updateAbility(Ability ab) {
         if(ab != null && ab.isFinished()) {
             canCast = true;
+            canMove = true;
+        }
+    }
+    private void updateUltimateAbility(UltimateAbility ult) {
+        if(ult != null && ult.isFinished()) {
+            canCast = true;
+            canMove = true;
         }
     }
     protected void checkAbilities() {
@@ -479,4 +485,7 @@ public abstract class Player extends Actor {
     public abstract void q();
     public abstract void e();
     public abstract void x();
+    public boolean isIntersecting(Actor a) {
+        return this.intersects(a);
+    }
 }

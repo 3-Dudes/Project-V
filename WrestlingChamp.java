@@ -33,7 +33,7 @@ public class WrestlingChamp extends Ability  {
     @Override
     public void detectCollision(String name) {
         if(getWorld() != null) {
-            hitPlayer = (Player) this.getOneIntersectingObject(Player.class);
+            Player hitPlayer = (Player) this.getOneIntersectingObject(Player.class);
             if(hitPlayer != null && !hitPlayer.getClass().getName().equals(name)
                 && !intersects) {
                 hitPlayer.decreaseHealth(this.getDamage());
