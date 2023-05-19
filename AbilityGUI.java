@@ -1,19 +1,16 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-/**
- * Write a description of class AbilityGUI here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class AbilityGUI extends Actor
-{
-    /**
-     * Act - do whatever the AbilityGUI wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+import greenfoot.*;
+public class AbilityGUI extends Actor {
+    public AbilityGUI(ImageActor c, ImageActor q, ImageActor e, 
+        ImageActor x, Ability b, Ability v) {
+        
+    }
     public void act()
     {
-        // Add your action code here.
+        
+    }
+    private void addAbilityToGUI(Ability ab, int x, int y) {
+        if(ab != null && ab.isReady()) {
+            getWorld().addObject(new ImageActor(ab), x, y);
+        }
     }
 }

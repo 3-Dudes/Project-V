@@ -1,6 +1,6 @@
 import greenfoot.*;
 import java.util.*;
-public class BalthazarBot extends UltimateAbility {
+public class BalthazarBot extends Ability {
     private BrattBeam laser;
     private int duration;
     private int times;
@@ -8,6 +8,7 @@ public class BalthazarBot extends UltimateAbility {
     private static GreenfootImage left;
     private static GreenfootImage right;
     public BalthazarBot() {
+        super(60000, 10);
         laser = new BrattBeam(this);
         right = getImage();
         left = new GreenfootImage(right);

@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=AbilityGUI
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ AbilityGUI\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ act()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ AbilityGUI\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
-numComments=2
+comment1.params=c\ q\ e\ x\ b\ v
+comment1.target=AbilityGUI(ImageActor,\ ImageActor,\ ImageActor,\ ImageActor,\ Ability,\ Ability)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=ab\ x\ y
+comment3.target=void\ addAbilityToGUI(Ability,\ int,\ int)
+numComments=4

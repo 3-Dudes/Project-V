@@ -28,7 +28,7 @@ public abstract class Player extends Actor {
     private Ability c;
     private Ability q;
     private Ability e;
-    private UltimateAbility x;
+    private Ability x;
     private Ability b;
     private Ability v;
 
@@ -126,7 +126,7 @@ public abstract class Player extends Actor {
     public Player(String name, int factor, 
     boolean isFacingRight, int health, int hitpoints, 
     String nickname, int frameDelay, Ability c, Ability q, Ability e, 
-    UltimateAbility x, Ability b, Ability v) {
+    Ability x, Ability b, Ability v) {
         this(name, factor, isFacingRight, health, hitpoints, nickname, frameDelay);
         this.c = c;
         this.q = q;
@@ -220,7 +220,7 @@ public abstract class Player extends Actor {
         return e;
     }
 
-    public UltimateAbility getUltimateAbility() {
+    public Ability getUltimateAbility() {
         return x;
     }
 
@@ -244,7 +244,7 @@ public abstract class Player extends Actor {
         this.e = e;
     }
 
-    public void setXAbility(UltimateAbility x) {
+    public void setXAbility(Ability x) {
         this.x = x;
     }
 
@@ -591,7 +591,7 @@ public abstract class Player extends Actor {
         }
     }
 
-    private void updateUltimateAbility(UltimateAbility ult) {
+    private void updateUltimateAbility(Ability ult) {
         if(ult != null && ult.isFinished()) {
             canCast = true;
             canMove = true;

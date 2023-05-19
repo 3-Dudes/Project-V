@@ -16,6 +16,9 @@ public class ImageActor extends Actor {
     private int yOffset;
     private Stage st;
     private Player p;
+    public ImageActor(Ability ab) {
+        this.setImage(ab.getImage());
+    }
     public ImageActor(GreenfootImage img, String text, int xOffset, int yOffset) {
         this.img = img;
         this.text = text;
