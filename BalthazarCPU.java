@@ -1,7 +1,7 @@
 import greenfoot.*;
 import java.util.*;
 public class BalthazarCPU extends CPU {
-    private Player p=getPlayerReference();
+
     public BalthazarCPU() {
         super("BalthazarCPU", 2, true, 300, 300, "balthazar", 2, new GumBomb(), new BubbleGum(),
             new Keytar(), null, null, null);//, super.getPlayerReference());
@@ -12,8 +12,9 @@ public class BalthazarCPU extends CPU {
         if(playerz.size() == 1) {
             return playerz.get(0);
         }
-        return null;
+        return playerz.get(-1);
     }
+    private Player p=getPlayerReference();
 
     public void c() {
         setCAbility(new GumBomb());
@@ -54,7 +55,7 @@ public class BalthazarCPU extends CPU {
         if(Math.abs(p.getX()-this.getX())>400){ // moves towards human if far
             if(super.isFacingRight){this.setLocation(this.getX() - 5, this.getY());} else{this.setLocation(this.getX() - 5, this.getY());}
         }
-        
+
         if( Math.abs(p.getX()-this.getX()) > 400 && (p.getX()-this.getX())<600){ // moves towards human if far
             int rand=Greenfoot.getRandomNumber(3);
             switch (move) {
@@ -85,7 +86,7 @@ public class BalthazarCPU extends CPU {
         //1 in 400,000 chance to jump every act method
         int rand1=Greenfoot.getRandomNumber(400001);
         if(rand1==69){
-//            jump();
+            //            jump();
             for(int i=0; i<10; i++){
                 if(super.isFacingRight){this.setLocation(this.getX() + 5, this.getY());} 
                 else{this.setLocation(this.getX() - 5, this.getY());}
