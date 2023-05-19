@@ -1,11 +1,13 @@
 import greenfoot.*;
 import java.util.*;
 public abstract class Player extends Actor {
-    private boolean cPressed;
-    private boolean qPressed;
-    private boolean ePressed;
-    private boolean xPressed;
-    private boolean spacePressed;
+    protected boolean cPressed;
+    protected boolean qPressed;
+    protected boolean ePressed;
+    protected boolean xPressed;
+    protected boolean bPressed;
+    protected boolean vPressed;
+    protected boolean spacePressed;
 
     private int playerScore;
     private int jumpHeight = -10;
@@ -25,6 +27,8 @@ public abstract class Player extends Actor {
     
     private int health;
     private int hitpoints;
+    private int vSpeed;
+    private int acceleration;
     
     protected boolean pastHalfway;
     
@@ -47,6 +51,8 @@ public abstract class Player extends Actor {
         qPressed = false;
         ePressed = false;
         xPressed = false;
+        bPressed = false;
+        vPressed = false;
         this.isFacingRight = isFacingRight;
         pastHalfway = false;
         this.health = health;
@@ -59,10 +65,12 @@ public abstract class Player extends Actor {
         this.canMove = true;
         this.canCast = true;
         timeDisabled = 0;
+        acceleration = 1;
         right = getImage();
         right.scale(right.getWidth() / factor, right.getHeight() / factor);
         left = new GreenfootImage(right);
         left.mirrorHorizontally();
+        vSpeed = 0;
         if(facingRight()) {
             this.setImage(right);
         }
@@ -233,7 +241,7 @@ public abstract class Player extends Actor {
                 move();
                 fall();
                 checkEdges();    
-                if(Greenfoot.isKeyDown("SPACE") && !spacePressed && getY() == 600) {
+                if(Greenfoot.isKeyDown("SPACE") && !spacePressed && getY() == 550) {
                     jump();
                     spacePressed = true;
                 }
@@ -331,22 +339,20 @@ public abstract class Player extends Actor {
     }
 
     public final void jump() {
-        vSpeed = -20;
+        vSpeed = -15;
         //this.setLocation(this.getX(), this.getY()- 150);
 
     }
 
-    public void fall(){
-        setLocation(getX(),getY() + vSpeed);
-        if(getY() >= 600) {
+    public void fall() {
+        setLocation(getX(), getY() + vSpeed);
+        if(getY() >= 550) {
             vSpeed = 0;
-            setLocation(getX(),600);
-        }
+            setLocation(getX(), 550);
+        }   
         else {
             vSpeed = vSpeed + acceleration;
         }
-        System.out.println("VSPEED: " + vSpeed+" --- Aceeleration: "+acceleration);
-
     }
     public final void checkPlatformDetection() {
         Platform p = (Platform) this.getOneObjectAtOffset(0, getImage().getHeight() / 2, Platform.class);
@@ -375,7 +381,6 @@ public abstract class Player extends Actor {
             else if(this.getX() == getWorld().getWidth() - 1) {
                 this.setLocation(0, getY());
             }
-
         }
     }
     public final void move() {

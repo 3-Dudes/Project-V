@@ -5,6 +5,9 @@ public class FreezeRay extends Ability {
     private static GreenfootImage left;
     private static GreenfootImage right;
     private Gru g;
+    private boolean spawnedIn;
+    private GreenfootSound sleigh = new GreenfootSound("sleigh_bells-7-22-12-edit-99843.mp3");
+    private GreenfootSound laser = new GreenfootSound("blaster-2-81267.mp3");
     private FreezeRayBlast ammo;
     private boolean isFacingRight;
     public FreezeRay() {
@@ -39,6 +42,13 @@ public class FreezeRay extends Ability {
     }
     @Override
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            sleigh.play();
+            laser.play();
+        }
         if(g.facingRight()) {
             this.setImage(right);
             isFacingRight = true;
@@ -76,5 +86,8 @@ public class FreezeRay extends Ability {
     }
     public boolean facingRight() {
         return isFacingRight;
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

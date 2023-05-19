@@ -8,4 +8,6 @@ comment3.params=
 comment3.target=void\ act()
 comment4.params=
 comment4.target=void\ move()
-numComments=5
+comment5.params=
+comment5.target=boolean\ exists()
+numComments=6

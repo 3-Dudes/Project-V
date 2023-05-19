@@ -1,5 +1,7 @@
 import greenfoot.*;
 public class GuacamoleTortillaChip extends Ability {
+    private boolean spawnedIn;
+    private GreenfootSound crunch = new GreenfootSound("eat_crunchy-40919.mp3");
     private GreenfootImage rightImg;
     private GreenfootImage leftImg;
     private boolean right;
@@ -21,6 +23,12 @@ public class GuacamoleTortillaChip extends Ability {
     @Override
     public void act() {
         super.act();
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            crunch.play();
+        }
         if(right) {
             this.setImage(rightImg);
             this.setLocation(this.getX() + 8, this.getY());
@@ -34,5 +42,8 @@ public class GuacamoleTortillaChip extends Ability {
             isFinished = true;
         }
         detectCollision("ElMacho");
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

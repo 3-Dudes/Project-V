@@ -9,6 +9,7 @@ public class ElMacho extends Player {
     public int ultDur;
     public boolean isEduardo;
     private Random rand; 
+    private GreenfootSound rain = new GreenfootSound("strongraincarroof-44050.mp3");
     private static GreenfootImage[] machoLeftFrames;
     private static GreenfootImage[] machoRightFrames;
     private static GreenfootImage[] eduardoLeftFrames;
@@ -217,6 +218,7 @@ public class ElMacho extends Player {
         usedUlt = true;
         canCast = false;
         List<TortillaChip> chips = new ArrayList<TortillaChip>();
+        rain.play();
         for(int k = 1; k <= 50; k++) {
             TortillaChip tc = new TortillaChip(this);
             int randX = rand.nextInt(curWorld.getWidth());

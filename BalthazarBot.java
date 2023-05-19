@@ -17,7 +17,7 @@ public class BalthazarBot extends UltimateAbility {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        getWorld().addObject(laser, this.getX() + 270, this.getY() - 95);
+        getWorld().addObject(laser, this.getX() + 270, this.getY() - 25);
     }
     public void act() {
         duration++;
@@ -26,7 +26,7 @@ public class BalthazarBot extends UltimateAbility {
                 getWorld().removeObject(laser);
             }
             else {
-                getWorld().addObject(laser, this.getX() + 270, this.getY() - 95);
+                getWorld().addObject(laser, this.getX() + 270, this.getY() - 25);
             }
         }
         if(duration == 120) {

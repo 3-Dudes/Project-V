@@ -3,6 +3,8 @@ public class Machete extends Weapon {
     private static GreenfootImage left;
     private static GreenfootImage right;
     private boolean bool;
+    private boolean spawnedIn;
+    private GreenfootSound whoosh = new GreenfootSound("cartoony-whooshes-7114.mp3");
     public Machete() {
         super(4, 4);
         left = getImage();
@@ -14,6 +16,12 @@ public class Machete extends Weapon {
         this.bool = bool;
     }
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            whoosh.play();
+        }
         if(bool) {
             this.setImage(right);
             this.setLocation(this.getX() + 10, this.getY());    
@@ -26,5 +34,8 @@ public class Machete extends Weapon {
             getWorld().removeObject(this);
         }
         detectCollision("Balthazar", 10);
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

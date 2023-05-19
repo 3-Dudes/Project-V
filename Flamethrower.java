@@ -3,6 +3,8 @@ import java.util.*;
 public class Flamethrower extends Weapon {
     private Lucy l;
     private Fire ammo;
+    private boolean spawnedIn;
+    private GreenfootSound flames = new GreenfootSound("blast-flamethrower-cooldown-7142.mp3");
     public Flamethrower(Lucy l, int spaceX, int spaceY) {
         super(l, spaceX, spaceY, true, 3, 3);
         this.l = l;
@@ -14,6 +16,12 @@ public class Flamethrower extends Weapon {
     }
     public void act() {
         super.act();
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            flames.play();
+        }
         setDamage(1);
         detectCollision("Lucy", getDamage());
     }
@@ -53,5 +61,8 @@ public class Flamethrower extends Weapon {
                 getWorld().addObject(ammo, this.getX() - 85, this.getY());
             }
         }
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

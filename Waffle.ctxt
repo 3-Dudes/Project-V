@@ -4,4 +4,6 @@ comment1.params=right
 comment1.target=Waffle(boolean)
 comment2.params=
 comment2.target=void\ act()
-numComments=3
+comment3.params=
+comment3.target=boolean\ exists()
+numComments=4
