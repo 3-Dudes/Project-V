@@ -2,20 +2,23 @@ import greenfoot.*;
 public class WinScreen  extends World
 {
     private Ability a;
-    public WinScreen(Player p, Ability a)
+    private Player p;
+    public WinScreen(Player p)
     {
         super(1200, 700, 1);
         this.a = a;
-    }
-
-    private void playAnimation(Ability a) {
-        this.addObject(a, 100, this.getHeight() / 2);
+        this.p = p;
+        makeScreen();
+        Greenfoot.stop();
     }
     
-    public void act() {
-        playAnimation(a);
-        if(a.isAtEdge()) {
-            this.removeObject(a);
-        }
+    private void makeScreen() {
+        GreenfootImage bg = getBackground();
+        bg.setColor(Color.BLACK);
+        bg.fill();
+        GreenfootImage text = new GreenfootImage(p.getClass().getName() + " wins!", 
+            60, Color.ORANGE, null);
+        bg.drawImage(text, 500, 100);
+        bg.drawImage(p.getImage(), 600, 350);
     }
 }

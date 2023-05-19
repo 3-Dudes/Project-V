@@ -28,7 +28,7 @@ public class Balthazar extends Player {
     }
     public void x() {
         setXAbility(new BalthazarBot(facingRight()));
-        if(facingRight() && !getUltimateAbility().isAtEdge()) {
+        if(facingRight()) {
             getWorld().addObject(getUltimateAbility(), this.getX() + 300, 450);
         }
         else {
@@ -41,7 +41,7 @@ public class Balthazar extends Player {
         getWorld().addObject(getQAbility(), 
             this.getX() + 38, this.getY() - 40);
     }
-    public void singleFire() { 
+    public void singleFire() {
         if(hasMachete()) {
             getWorld().addObject(new Machete(facingRight()), 
                 this.getX(), this.getY());    
@@ -56,9 +56,6 @@ public class Balthazar extends Player {
     public void act() {
         super.act();
         checkAbilities();
-        if(p.){
-            getEAbility.isFinished=true;
-        }
     }
     private boolean hasMachete() {
         List<Machete> machetes = getWorld().getObjects(Machete.class);

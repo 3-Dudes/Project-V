@@ -10,8 +10,14 @@ public abstract class Stage extends World {
         super(1200, 700, 1);
         this.player = player;
         this.cpu = cpu;
-        this.player = new ElMacho();
-        this.cpu = new Balthazar();
+        if(player.getClass().getName().equals("ElMacho")) {
+            this.cpu = new Balthazar();
+            this.player = new ElMacho();
+        }
+        else {
+            this.cpu = new ElMacho();
+            this.player = new Balthazar();
+        }
         prepareLevel();
     }
     private void prepareLevel() {
@@ -23,10 +29,10 @@ public abstract class Stage extends World {
     }   
     public void act() {
         if(player.isDead()) {
-            Greenfoot.setWorld(new WinScreen(cpu, cpu.getEAbility()));
+            Greenfoot.setWorld(new WinScreen(cpu));
         }
         else if(cpu.isDead()) {
-            Greenfoot.setWorld(new WinScreen(player, player.getQAbility()));
+            Greenfoot.setWorld(new WinScreen(player));
         }
     }
     
