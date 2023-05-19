@@ -2,10 +2,8 @@
 comment0.target=Sombrero
 comment1.params=
 comment1.target=Sombrero()
-comment2.params=macho
-comment2.target=Sombrero(ElMacho)
+comment2.params=
+comment2.target=int\ getHealth()
 comment3.params=
-comment3.target=int\ getHealth()
-comment4.params=
-comment4.target=void\ act()
-numComments=5
+comment3.target=void\ act()
+numComments=4
