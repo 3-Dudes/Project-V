@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=ImageActor
+comment1.params=img\ text\ xOffset\ yOffset
+comment1.target=ImageActor(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ int)
+comment2.params=img\ text\ xOffset\ yOffset\ st
+comment2.target=ImageActor(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ int,\ Stage)
+comment3.params=
+comment3.target=Stage\ getStage()
+comment4.params=img\ text\ xOffset\ yOffset\ p
+comment4.target=ImageActor(greenfoot.GreenfootImage,\ java.lang.String,\ int,\ int,\ Player)
+comment5.params=
+comment5.target=void\ act()
+comment6.params=
+comment6.target=boolean\ isMouseOver()
+numComments=7
