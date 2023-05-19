@@ -6,6 +6,7 @@ public abstract class Stage extends World {
     private Platform topPlatform;
     private Platform leftPlatform;
     private Platform rightPlatform;
+    private GreenfootSound theme = new GreenfootSound("theme.wav");
     public Stage(Player player, Player cpu) {
         super(1200, 700, 1);
         this.player = player;
@@ -34,6 +35,7 @@ public abstract class Stage extends World {
         else if(cpu.isDead()) {
             Greenfoot.setWorld(new WinScreen(player));
         }
+        theme.playLoop();
     }
     
     /* private void addPlatforms() {
