@@ -1,15 +1,15 @@
 import greenfoot.*;
 import java.util.*;
 public abstract class Player extends Actor {
-    protected boolean cPressed;
-    protected boolean qPressed;
-    protected boolean ePressed;
-    protected boolean xPressed;
-    protected boolean vPressed;
-    protected boolean bPressed;
-    
+    private boolean cPressed;
+    private boolean qPressed;
+    private boolean ePressed;
+    private boolean xPressed;
+    private boolean spacePressed;
+
     private int playerScore;
-    
+    private int jumpHeight = -10;
+
     private boolean isFacingRight;
     protected boolean canMove;
     protected boolean canCast;
@@ -38,7 +38,7 @@ public abstract class Player extends Actor {
     private int frameDelayCopy;
     private boolean isMoving;
     private int timeDisabled;
-    
+
     private String name;    
     private String nickname;
     public Player(String name, int factor, 
@@ -122,6 +122,7 @@ public abstract class Player extends Actor {
     public boolean facingRight() {
         return isFacingRight;
     }
+
     public int getHealth() {
         return health;
     }
@@ -160,13 +161,14 @@ public abstract class Player extends Actor {
     public HealthBar getHealthBar() {
         return hp;
     }
+    
     public void setRightImage(GreenfootImage right) {
         this.right = right;
     }
     public void setLeftImage(GreenfootImage left) {
         this.left = left;
     }
-    
+
     public boolean isDead() {
         if(health <= 0) {
             canMove = false;
@@ -174,13 +176,15 @@ public abstract class Player extends Actor {
         }
         return false;
     }
-    
+
     public Ability getCAbility() {
         return c;
     }
+
     public Ability getQAbility() {
         return q;
     }
+
     public Ability getEAbility() {
         return e;
     }
@@ -227,7 +231,15 @@ public abstract class Player extends Actor {
             }
             if(canMove) {
                 move();
+                fall();
                 checkEdges();    
+                if(Greenfoot.isKeyDown("SPACE") && !spacePressed && getY() == 600) {
+                    jump();
+                    spacePressed = true;
+                }
+                if(!Greenfoot.isKeyDown("SPACE") && spacePressed) {
+                    spacePressed = false;
+                }
             }
             if(canCast) {
                 castMoves();
@@ -317,17 +329,44 @@ public abstract class Player extends Actor {
              vPressed = false;
         } 
     }
-    
+
+    public final void jump() {
+        vSpeed = -20;
+        //this.setLocation(this.getX(), this.getY()- 150);
+
+    }
+
+    public void fall(){
+        setLocation(getX(),getY() + vSpeed);
+        if(getY() >= 600) {
+            vSpeed = 0;
+            setLocation(getX(),600);
+        }
+        else {
+            vSpeed = vSpeed + acceleration;
+        }
+        System.out.println("VSPEED: " + vSpeed+" --- Aceeleration: "+acceleration);
+
+    }
+    public final void checkPlatformDetection() {
+        Platform p = (Platform) this.getOneObjectAtOffset(0, getImage().getHeight() / 2, Platform.class);
+        if(p != null) {
+            this.setLocation(p.getX(), p.getY());
+        }
+    }
+
     public void scaleImage(GreenfootImage img) {
         img.scale(img.getWidth() / factor, img.getHeight() / factor);
     }
+
     public int getTimeDisabled() {
         return timeDisabled;
     }
+
     public void setTimeDisabled(int timeDisabled) {
         this.timeDisabled = timeDisabled;
     }
-    
+
     public final void checkEdges() {
         if(this.isAtEdge()) {
             if(this.getX() == 0) {
@@ -336,9 +375,9 @@ public abstract class Player extends Actor {
             else if(this.getX() == getWorld().getWidth() - 1) {
                 this.setLocation(0, getY());
             }
+
         }
     }
-    
     public final void move() {
         if(Greenfoot.isKeyDown("A")) {
             this.setLocation(this.getX() - 5, this.getY());
@@ -383,7 +422,9 @@ public abstract class Player extends Actor {
         if(currentFrame == 21) {
             currentFrame = 0;
         }
+
     }
+
     private void updateAbility(Ability ab) {
         if(ab != null && ab.isFinished()) {
             canCast = true;
@@ -396,6 +437,7 @@ public abstract class Player extends Actor {
             canMove = true;
         }
     }
+
     protected void checkAbilities() {
         if(q != null) {
             if(q.isReady()) {
@@ -466,6 +508,7 @@ public abstract class Player extends Actor {
             }
         }
     }
+
     private void updatePosition() {
         if(this.getX() >= 600) {
             pastHalfway = true;
@@ -482,12 +525,15 @@ public abstract class Player extends Actor {
             isFacingRight = true;
         }
     }
+
     public int getPlayerScore() {
         return playerScore;
     }
+
     public GreenfootImage getRightImage() {
         return right;
     }
+
     public GreenfootImage getLeftImage() {
         return left;
     }
@@ -495,10 +541,15 @@ public abstract class Player extends Actor {
         //empty method body; not every class needs to override it
     }
     public abstract void singleFire();
+
     public abstract void burstFire();
+
     public abstract void c();
+
     public abstract void q();
+
     public abstract void e();
+
     public abstract void x();
     public boolean isIntersecting(Actor a) {
         return this.intersects(a);
