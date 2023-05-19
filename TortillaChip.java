@@ -8,7 +8,8 @@ public class TortillaChip extends Weapon {
     private ElMacho macho;
     private int bounces;
     private boolean shouldRemove;
-    
+    private boolean spawnedIn;
+    private GreenfootSound crunch = new GreenfootSound("eat_crunchy-40919.mp3");
     public TortillaChip(ElMacho macho) {
         this(false, macho);
     }
@@ -31,6 +32,12 @@ public class TortillaChip extends Weapon {
 
     public void act() {
         moveChip();
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            crunch.play();
+        }
         if(shouldRemove) {
             getWorld().removeObject(this);   
         }
@@ -78,5 +85,8 @@ public class TortillaChip extends Weapon {
                 shouldRemove = true;
             }
         }
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

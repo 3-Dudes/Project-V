@@ -4,6 +4,8 @@ public class RedLaser extends Actor {
     private boolean intersects;
     private boolean movingRight;
     private Gru g;
+    private boolean spawnedIn;
+    private GreenfootSound bap = new GreenfootSound("blaster-2-81267.mp3");
     public RedLaser(Gru g) {
         GreenfootImage img = getImage();
         this.weapon = weapon;
@@ -18,6 +20,12 @@ public class RedLaser extends Actor {
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
     }
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            bap.play();
+        }
         if(movingRight) {
             this.setLocation(this.getX() + 10, this.getY());
         }
@@ -41,5 +49,8 @@ public class RedLaser extends Actor {
     }
     public boolean removedFromWorld(Actor a) {
         return getWorld() == null;
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

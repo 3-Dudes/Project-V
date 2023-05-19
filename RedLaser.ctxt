@@ -8,4 +8,6 @@ comment3.params=cls
 comment3.target=greenfoot.Actor\ getOneIntersectingObject(java.lang.Class)
 comment4.params=a
 comment4.target=boolean\ removedFromWorld(greenfoot.Actor)
-numComments=5
+comment5.params=
+comment5.target=boolean\ exists()
+numComments=6

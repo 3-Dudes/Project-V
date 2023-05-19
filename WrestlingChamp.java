@@ -3,7 +3,8 @@ public class WrestlingChamp extends Ability  {
     private static GreenfootImage flyRight;
     private static GreenfootImage flyLeft;
     private ElMacho macho;
-    
+    private GreenfootSound charge = new GreenfootSound("hitcharge-94996.mp3");
+    private boolean spawnedIn;
     public WrestlingChamp() {
         super(1400, 40);
         this.setRotation(90);
@@ -20,6 +21,12 @@ public class WrestlingChamp extends Ability  {
     
     @Override
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            charge.play();
+        }
         if(macho.facingRight()) {
             this.setImage(flyRight);
             this.setLocation(this.getX() + 30, this.getY());
@@ -48,5 +55,8 @@ public class WrestlingChamp extends Ability  {
             macho.canMove = true;
             isFinished = true;
         }
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }
