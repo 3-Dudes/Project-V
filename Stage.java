@@ -11,13 +11,14 @@ public abstract class Stage extends World {
         prepareLevel();
     }
     private void prepareLevel() {
-        player = new Balthazar();
+        player = new Gru();
         cpu = new Lucy();
         this.addObject(player, 200, this.getHeight() - 150);
         this.addObject(cpu, 1000, this.getHeight() - 175);
-        this.setPaintOrder(BrattBeam.class, UltimateAbility.class, Ability.class, Weapon.class, Player.class);
+        this.setPaintOrder(Player.class, Weapon.class, 
+            Ability.class, Actor.class);
         //addPlatforms();
-    }
+    }   
     private void addPlatforms() {
         List<Integer> sequence = new ArrayList<Integer>();
         sequence.add(4);

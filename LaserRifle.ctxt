@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=LaserRifle
+comment1.params=g\ spaceX\ spaceY
+comment1.target=LaserRifle(Gru,\ int,\ int)
+numComments=2

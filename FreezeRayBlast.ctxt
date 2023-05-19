@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=FreezeRayBlast
+comment1.params=fr
+comment1.target=FreezeRayBlast(FreezeRay)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=cls
+comment3.target=greenfoot.Actor\ getOneIntersectingObject(java.lang.Class)
+numComments=4
