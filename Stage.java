@@ -23,7 +23,7 @@ public abstract class Stage extends World {
     }   
     public void act() {
         if(player.isDead()) {
-            
+            Greenfoot.setWorld(new WinScreen(cpu, cpu.getEAbility()));
         }
         else if(cpu.isDead()) {
             

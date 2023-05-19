@@ -56,6 +56,9 @@ public class Balthazar extends Player {
     public void act() {
         super.act();
         checkAbilities();
+        if(p.){
+            getEAbility.isFinished=true;
+        }
     }
     private boolean hasMachete() {
         List<Machete> machetes = getWorld().getObjects(Machete.class);

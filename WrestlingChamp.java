@@ -39,6 +39,7 @@ public class WrestlingChamp extends Ability  {
                 hitPlayer.decreaseHealth(this.getDamage());
                 intersects = true;
                 hitPlayer.canMove = false;
+                hitPlayer.canCast = false;
                 hitPlayer.setRotation(90);
             } 
         }
@@ -46,6 +47,7 @@ public class WrestlingChamp extends Ability  {
             getWorld().removeObject(this);
             macho.setRotation(0);
             macho.canMove = true;
+            macho.canCast = true;
             isFinished = true;
         }
     }
