@@ -1,9 +1,7 @@
 #BlueJ class context
 comment0.target=AbilityGUI
 comment1.params=c\ q\ e\ x\ b\ v
-comment1.target=AbilityGUI(ImageActor,\ ImageActor,\ ImageActor,\ ImageActor,\ Ability,\ Ability)
-comment2.params=
-comment2.target=void\ act()
-comment3.params=ab\ x\ y
-comment3.target=void\ addAbilityToGUI(Ability,\ int,\ int)
-numComments=4
+comment1.target=AbilityGUI(Ability,\ Ability,\ Ability,\ Ability,\ Ability,\ Ability)
+comment2.params=ab\ x\ y
+comment2.target=void\ addAbilityToGUI(Ability,\ int,\ int)
+numComments=3

@@ -11,7 +11,7 @@ public class StartButton extends Button
     }
     public void whenClicked() {
         if(Greenfoot.mouseClicked(this)) {
-            Greenfoot.setWorld(new CharacterSelect());
+            Greenfoot.setWorld(new Controls());
         }
     }
     public void act() {

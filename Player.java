@@ -24,6 +24,7 @@ public abstract class Player extends Actor {
     protected boolean canMove;
     protected boolean canCast;
     private int startX;
+    private AbilityGUI abilityGUI;
 
     private Ability c;
     private Ability q;
@@ -665,6 +666,23 @@ public abstract class Player extends Actor {
             if(b.getCharge() == 0) {
                 bPressed = false;
                 b.setCharge(b.getCooldown());
+            }
+        }
+        if(x != null) {
+            if(x.isReady()) {
+                if(xPressed) {
+                    x();
+                    x.setCharge(x.getCooldown() - 1);    
+                }
+            }
+            int xCharge = x.getCharge();
+            if(xCharge < x.getCooldown()) {
+                xCharge--;
+                x.setCharge(xCharge);
+            }
+            if(x.getCharge() == 0) {
+                xPressed = false;
+                x.setCharge(x.getCooldown());
             }
         }
     }
