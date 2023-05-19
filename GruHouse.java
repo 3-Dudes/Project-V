@@ -1,6 +1,6 @@
 import greenfoot.*;
 public class GruHouse extends Stage {
-    public GruHouse() {
-
+    public GruHouse(Player player, Player cpu) {
+        super(player, cpu);
     }
 }

@@ -1,7 +1,5 @@
 #BlueJ class context
 comment0.target=GruLair
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ GruLair\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=GruLair()
-comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ GruLair.\r\n\ \r\n
+comment1.params=player\ cpu
+comment1.target=GruLair(Player,\ Player)
 numComments=2

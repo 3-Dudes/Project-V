@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=BankOfEvil
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ BankOfEvil\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=player\ cpu
 comment1.target=BankOfEvil(Player,\ Player)
 numComments=2

@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=StageSelect
-comment1.params=
-comment1.target=StageSelect()
+comment1.params=player\ cpu
+comment1.target=StageSelect(Player,\ Player)
 comment2.params=
 comment2.target=void\ makeScreen()
 comment3.params=

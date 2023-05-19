@@ -1,20 +1,7 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-/**
- * Write a description of class GruLair here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class GruLair extends Stage
-{
-
-    /**
-     * Constructor for objects of class GruLair.
-     * 
-     */
-    public GruLair()
+import greenfoot.*;
+public class GruLair extends Stage {
+    public GruLair(Player player, Player cpu)
     {
-        //test for .gitignore
+        super(player, cpu);
     }
 }

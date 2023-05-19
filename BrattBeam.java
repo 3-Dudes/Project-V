@@ -1,6 +1,8 @@
 import greenfoot.*;
 public class BrattBeam extends Weapon {
     private GreenfootImage beam;
+    private static GreenfootImage left;
+    private static GreenfootImage right;
     private Color hotPink;
     private BalthazarBot bb;
     public BrattBeam() {
@@ -10,6 +12,9 @@ public class BrattBeam extends Weapon {
         beam.setColor(hotPink);
         beam.fill();
         this.setImage(beam);
+        right = new GreenfootImage(beam);
+        left = new GreenfootImage(right);
+        left.mirrorHorizontally();
     }
     public BrattBeam(BalthazarBot bb) {
         this();
@@ -18,12 +23,28 @@ public class BrattBeam extends Weapon {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        this.setRotation(25);
+        if(bb != null) {
+            if(bb.facingRight()) {
+                this.setRotation(25);
+                this.setLocation(bb.getX() + 270, bb.getY() - 25);
+            }
+            else {
+                this.setRotation(-25);
+                this.setLocation(bb.getX() - 270, bb.getY() - 25);
+            }
+        }
     }
     public void act() {
         detectCollision("Balthazar", 2);
         if(bb != null) {
-            this.setLocation(bb.getX() + 270, bb.getY() - 25);    
+            if(bb.facingRight()) {
+                this.setRotation(25);
+                this.setLocation(bb.getX() + 270, bb.getY() - 25);
+            }
+            else {
+                this.setRotation(-25);
+                this.setLocation(bb.getX() - 270, bb.getY() - 25);
+            }
         }
     }
     @Override

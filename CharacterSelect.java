@@ -2,10 +2,12 @@ import greenfoot.*;
 import java.util.*;
 public class CharacterSelect extends World {
     private static List<ImageActor> players;
+    private static List<Player> avaPlayers;
     private int x;
     public CharacterSelect() {    
-        super(1200, 700, 1);  
+        super(1200, 700, 1);
         players = new ArrayList<ImageActor>();
+        avaPlayers = new ArrayList<Player>();
         makeScreen();
     }
     private void makeScreen() {
@@ -18,18 +20,24 @@ public class CharacterSelect extends World {
         getBackground().drawImage(text, 350, 50);
         addPlayers();
         for(ImageActor ia : players) {
-            x += 200;
+            x += 400;
             this.addObject(ia, x, 300);
         }
     }
     public static void addPlayers() {
         players.add(new ImageActor(new ElMacho().getImage(), "El Macho", -60, -30, 
                 new ElMacho()));
-        players.add(new ImageActor(new Gru().getImage(), "Gru", -30, -30, 
-                new ElMacho()));
         players.add(new ImageActor(new Balthazar().getImage(), "Balthazar", -60, -30, 
-                new ElMacho()));
-        players.add(new ImageActor(new Lucy().getImage(), "Lucy", -30, -30, 
-                new ElMacho()));
+                new Balthazar()));
+                
+        avaPlayers.add(new ElMacho());
+        avaPlayers.add(new Balthazar());
+        avaPlayers.add(new Gru());
+        avaPlayers.add(new Lucy());
+        avaPlayers.add(new Vector());
+    }
+    
+    public static List<Player> getAvaPlayers() {
+        return avaPlayers;
     }
 }

@@ -27,9 +27,9 @@ public class Balthazar extends Player {
         canCast = false;
     }
     public void x() {
-        setXAbility(new BalthazarBot());
-        if(facingRight()) {
-            getWorld().addObject(getUltimateAbility(), this.getX() + 300, 450);    
+        setXAbility(new BalthazarBot(facingRight()));
+        if(facingRight() && !getUltimateAbility().isAtEdge()) {
+            getWorld().addObject(getUltimateAbility(), this.getX() + 300, 450);
         }
         else {
             getWorld().addObject(getUltimateAbility(), this.getX() - 300, 450);

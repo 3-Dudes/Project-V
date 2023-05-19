@@ -7,7 +7,15 @@ public abstract class Player extends Actor {
     protected boolean xPressed;
     protected boolean bPressed;
     protected boolean vPressed;
-    protected boolean spacePressed;
+    protected boolean wPressed;
+    protected boolean mPressed;
+    protected boolean nPressed;
+    protected boolean lPressed;
+    protected boolean kPressed;
+    protected boolean pPressed;
+    protected boolean oPressed;
+    protected boolean iPressed;
+    protected boolean upPressed;
 
     private int playerScore;
     private int jumpHeight = -10;
@@ -15,6 +23,7 @@ public abstract class Player extends Actor {
     private boolean isFacingRight;
     protected boolean canMove;
     protected boolean canCast;
+    private int startX;
     
     private Ability c;
     private Ability q;
@@ -164,6 +173,7 @@ public abstract class Player extends Actor {
     @Override
     public void addedToWorld(World world) {
         updatePosition();
+        startX = this.getX();
         world.addObject(this.getHealthBar(), this.getX(), 50);
     }
     public HealthBar getHealthBar() {
@@ -241,12 +251,23 @@ public abstract class Player extends Actor {
                 move();
                 fall();
                 checkEdges();    
-                if(Greenfoot.isKeyDown("SPACE") && !spacePressed && getY() == 550) {
-                    jump();
-                    spacePressed = true;
+                if(startX == 200) {
+                    if(Greenfoot.isKeyDown("W") && !wPressed && getY() == 550) {
+                        jump();
+                        wPressed = true;
+                    }
+                    if(!Greenfoot.isKeyDown("W") && wPressed) {
+                        wPressed = false;
+                    }    
                 }
-                if(!Greenfoot.isKeyDown("SPACE") && spacePressed) {
-                    spacePressed = false;
+                if(startX == 1000) {
+                    if(Greenfoot.isKeyDown("UP") && !upPressed && getY() == 550) {
+                        jump();
+                        upPressed = true;
+                    }
+                    if(!Greenfoot.isKeyDown("UP") && upPressed) {
+                        upPressed = false;
+                    }    
                 }
             }
             if(canCast) {
@@ -283,6 +304,15 @@ public abstract class Player extends Actor {
         if(!Greenfoot.isKeyDown("C") && cPressed) {
             cPressed = false;
         }
+        if(Greenfoot.isKeyDown("L") && !lPressed) {
+            lPressed = true;
+            if(c == null) {
+                c();
+            }
+        }
+        if(!Greenfoot.isKeyDown("L") && lPressed) {
+            lPressed = false;
+        }
     }
     protected void castQ() {
         if(Greenfoot.isKeyDown("Q") && !qPressed) {
@@ -305,37 +335,83 @@ public abstract class Player extends Actor {
         if(!Greenfoot.isKeyDown("E") && ePressed) {
             ePressed = false;
         }
+        if(Greenfoot.isKeyDown("P") && !pPressed) {        
+            if(e == null) {
+                e();
+            }
+            pPressed = true;
+        }
+        if(!Greenfoot.isKeyDown("E") && ePressed) {
+            pPressed = false;
+        }
     }
     protected void castX() {
-        if(Greenfoot.isKeyDown("X") && !xPressed) {
-            xPressed = true;
-            x();
+        if(startX == 200) {
+            if(Greenfoot.isKeyDown("X") && !xPressed) {
+                xPressed = true;
+                x();
+            }
+            if(!Greenfoot.isKeyDown("X") && xPressed) {
+                xPressed = false;
+            }    
         }
-        if(!Greenfoot.isKeyDown("X") && xPressed) {
-            xPressed = false;
+        if(startX == 1000) {
+            if(Greenfoot.isKeyDown("K") && !kPressed) {        
+                kPressed = true;
+                x();
+            }
+            if(!Greenfoot.isKeyDown("K") && kPressed) {
+                kPressed = false;
+            }    
         }
     }
     protected void castB() {
-        if(Greenfoot.isKeyDown("B") && !bPressed) {
-            bPressed = true;
-            if(b == null) {
-                burstFire();    
+        if(startX == 200) {
+            if(Greenfoot.isKeyDown("B") && !bPressed) {
+                bPressed = true;
+                if(b == null) {
+                    burstFire();    
+                }
             }
+            if(!Greenfoot.isKeyDown("B") && bPressed) {
+                bPressed = false;
+            }    
         }
-        if(!Greenfoot.isKeyDown("B") && bPressed) {
-            bPressed = false;
+        if(startX == 1000) {
+            if(Greenfoot.isKeyDown("M") && !mPressed) {
+                mPressed = true;
+                if(b == null) {
+                    burstFire();    
+                }
+            }
+            if(!Greenfoot.isKeyDown("M") && mPressed) {
+                mPressed = false;
+            }    
         }
     }
     protected void castV() {
-        if(Greenfoot.isKeyDown("V") && !vPressed) {
-             vPressed = true;
-             if(v == null) {
-                 singleFire();    
-             }
+        if(startX == 200) {
+            if(Greenfoot.isKeyDown("V") && !vPressed) {
+                 vPressed = true;
+                 if(v == null) {
+                     singleFire();    
+                 }
+            }
+            if(!Greenfoot.isKeyDown("V") && vPressed) {
+                 vPressed = false;
+            }
         }
-        if(!Greenfoot.isKeyDown("V") && vPressed) {
-             vPressed = false;
-        } 
+        if(startX == 1000) {
+            if(Greenfoot.isKeyDown("N") && !nPressed) {
+                 nPressed = true;
+                 if(v == null) {
+                     singleFire();    
+                 }
+            }
+            if(!Greenfoot.isKeyDown("N") && nPressed) {
+                 vPressed = false;
+            }    
+        }
     }
 
     public final void jump() {
@@ -384,20 +460,36 @@ public abstract class Player extends Actor {
         }
     }
     public final void move() {
-        if(Greenfoot.isKeyDown("A")) {
+        if(Greenfoot.isKeyDown("A") && startX == 200) {
             this.setLocation(this.getX() - 5, this.getY());
             isFacingRight = false;
             isMoving = true;
             this.setImage(right);
         }
-        if(Greenfoot.isKeyDown("D")) {
+        if(Greenfoot.isKeyDown("D") && startX == 200) {
             this.setLocation(this.getX() + 5, this.getY());
             isFacingRight = true;
             isMoving = true;
             this.setImage(left);
         }
-        if(!Greenfoot.isKeyDown("A") && !Greenfoot.isKeyDown("D") ||
-            Greenfoot.isKeyDown("A") && Greenfoot.isKeyDown("D")) {
+        if(Greenfoot.isKeyDown("LEFT") && startX == 1000) {
+            this.setLocation(this.getX() - 5, this.getY());
+            isFacingRight = false;
+            isMoving = true;
+            this.setImage(right);
+        }
+        if(Greenfoot.isKeyDown("RIGHT") && startX == 1000) {
+            this.setLocation(this.getX() + 5, this.getY());
+            isFacingRight = true;
+            isMoving = true;
+            this.setImage(left);
+        }
+        if((!Greenfoot.isKeyDown("A") && !Greenfoot.isKeyDown("D") ||
+            Greenfoot.isKeyDown("A") && Greenfoot.isKeyDown("D")) && startX == 200) {
+            isMoving = false;
+        }
+        if((!Greenfoot.isKeyDown("LEFT") && !Greenfoot.isKeyDown("RIGHT") ||
+            Greenfoot.isKeyDown("LEFT") && Greenfoot.isKeyDown("RIGHT")) && startX == 1000) {
             isMoving = false;
         }
         if(isMoving) {

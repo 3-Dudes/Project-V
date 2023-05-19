@@ -10,6 +10,8 @@ public abstract class Stage extends World {
         super(1200, 700, 1);
         this.player = player;
         this.cpu = cpu;
+        this.player = new ElMacho();
+        this.cpu = new Balthazar();
         prepareLevel();
     }
     private void prepareLevel() {
@@ -19,7 +21,15 @@ public abstract class Stage extends World {
             Ability.class, Actor.class, Player.class);
         //addPlatforms();
     }   
-    private void addPlatforms() {
+    public void act() {
+        if(player.isDead()) {
+            
+        }
+        else if(cpu.isDead()) {
+            
+        }
+    }
+    /* private void addPlatforms() {
         List<Integer> sequence = new ArrayList<Integer>();
         sequence.add(4);
         sequence.add(3);
@@ -34,5 +44,5 @@ public abstract class Stage extends World {
         this.addObject(topPlatform, 600, 200);
         this.addObject(leftPlatform, 300, 500);
         this.addObject(rightPlatform, 900, 500);
-    }
+    } */
 }

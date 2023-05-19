@@ -5,5 +5,5 @@ comment1.target=Stage(Player,\ Player)
 comment2.params=
 comment2.target=void\ prepareLevel()
 comment3.params=
-comment3.target=void\ addPlatforms()
+comment3.target=void\ act()
 numComments=4

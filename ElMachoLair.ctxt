@@ -1,5 +1,5 @@
 #BlueJ class context
 comment0.target=ElMachoLair
-comment1.params=
-comment1.target=ElMachoLair()
+comment1.params=player\ cpu
+comment1.target=ElMachoLair(Player,\ Player)
 numComments=2
