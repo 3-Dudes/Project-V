@@ -295,54 +295,75 @@ public abstract class Player extends Actor {
     }
     
     protected void castC() {
-        if(Greenfoot.isKeyDown("C") && !cPressed) {
-            cPressed = true;
-            if(c == null) {
-                c();
+        if(startX == 200) {
+            if(Greenfoot.isKeyDown("C") && !cPressed) {
+                cPressed = true;
+                if(c == null) {
+                    c();
+                }
+            }
+            if(!Greenfoot.isKeyDown("C") && cPressed) {
+                cPressed = false;
             }
         }
-        if(!Greenfoot.isKeyDown("C") && cPressed) {
-            cPressed = false;
-        }
-        if(Greenfoot.isKeyDown("L") && !lPressed) {
-            lPressed = true;
-            if(c == null) {
-                c();
+        if(startX == 1000) {
+            if(Greenfoot.isKeyDown("L") && !lPressed) {
+                lPressed = true;
+                if(c == null) {
+                    c();
+                }
             }
-        }
-        if(!Greenfoot.isKeyDown("L") && lPressed) {
-            lPressed = false;
+            if(!Greenfoot.isKeyDown("L") && lPressed) {
+                lPressed = false;
+            }
         }
     }
     protected void castQ() {
-        if(Greenfoot.isKeyDown("Q") && !qPressed) {
-            if(q == null) {
-                q();
+        if(startX == 200) {
+            if(Greenfoot.isKeyDown("Q") && !qPressed) {
+                if(q == null) {
+                    q();
+                }
+                qPressed = true;
             }
-            qPressed = true;
+            if(!Greenfoot.isKeyDown("Q") && qPressed) {
+                qPressed = false;
+            }
         }
-        if(!Greenfoot.isKeyDown("Q") && qPressed) {
-            qPressed = false;
+        if(startX == 1000) {
+            if(Greenfoot.isKeyDown("O") && !oPressed) {
+                if(q == null) {
+                    q();
+                }
+                qPressed = true;
+            }
+            if(!Greenfoot.isKeyDown("O") && oPressed) {
+                qPressed = false;
+            }
         }
     }
     protected void castE() {
-        if(Greenfoot.isKeyDown("E") && !ePressed) {        
-            if(e == null) {
-                e();
+        if(startX == 200) {
+            if(Greenfoot.isKeyDown("E") && !ePressed) {        
+                if(e == null) {
+                    e();
+                }
+                ePressed = true;
             }
-            ePressed = true;
-        }
-        if(!Greenfoot.isKeyDown("E") && ePressed) {
-            ePressed = false;
-        }
-        if(Greenfoot.isKeyDown("P") && !pPressed) {        
-            if(e == null) {
-                e();
+            if(!Greenfoot.isKeyDown("E") && ePressed) {
+                ePressed = false;
             }
-            pPressed = true;
         }
-        if(!Greenfoot.isKeyDown("E") && ePressed) {
-            pPressed = false;
+        if(startX == 1000) {
+            if(Greenfoot.isKeyDown("P") && !pPressed) {        
+                if(e == null) {
+                    e();
+                }
+                pPressed = true;
+            }
+            if(!Greenfoot.isKeyDown("P") && pPressed) {
+                pPressed = false;
+            }
         }
     }
     protected void castX() {
