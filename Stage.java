@@ -6,13 +6,13 @@ public abstract class Stage extends World {
     private Platform topPlatform;
     private Platform leftPlatform;
     private Platform rightPlatform;
-    public Stage() {
+    public Stage(Player player, Player cpu) {
         super(1200, 700, 1);
+        this.player = player;
+        this.cpu = cpu;
         prepareLevel();
     }
     private void prepareLevel() {
-        player = new Balthazar();
-        cpu = new Lucy();
         this.addObject(player, 200, 550);
         this.addObject(cpu, 1000, 550);
         this.setPaintOrder(Weapon.class, 

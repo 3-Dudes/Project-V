@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BankOfEvil extends Stage
 {
-    public BankOfEvil()
+    public BankOfEvil(Player player, Player cpu)
     {
+        super(player, cpu);
     }
 }

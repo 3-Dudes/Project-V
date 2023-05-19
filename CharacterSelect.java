@@ -23,11 +23,11 @@ public class CharacterSelect extends World {
         }
     }
     public static void addPlayers() {
-        players.add(new ImageActor(new ElMacho().getImage(), "El Macho", -30, -30, 
+        players.add(new ImageActor(new ElMacho().getImage(), "El Macho", -60, -30, 
                 new ElMacho()));
         players.add(new ImageActor(new Gru().getImage(), "Gru", -30, -30, 
                 new ElMacho()));
-        players.add(new ImageActor(new Balthazar().getImage(), "Balthazar", -30, -30, 
+        players.add(new ImageActor(new Balthazar().getImage(), "Balthazar", -60, -30, 
                 new ElMacho()));
         players.add(new ImageActor(new Lucy().getImage(), "Lucy", -30, -30, 
                 new ElMacho()));
