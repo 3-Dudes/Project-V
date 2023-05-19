@@ -7,7 +7,7 @@ public class Balthazar extends Player {
         new Keytar(), new BalthazarBot(), null, null);
     }
     public void c() {
-        setCAbility(new GumBomb());
+        setCAbility(new GumBomb(facingRight()));
         getWorld().addObject(getCAbility(), 
             this.getX() + 38, this.getY() - 40);
         canCast = false;
@@ -28,11 +28,16 @@ public class Balthazar extends Player {
     }
     public void x() {
         setXAbility(new BalthazarBot());
-        getWorld().addObject(getUltimateAbility(), this.getX() + 300, 450);
+        if(facingRight()) {
+            getWorld().addObject(getUltimateAbility(), this.getX() + 300, 450);    
+        }
+        else {
+            getWorld().addObject(getUltimateAbility(), this.getX() - 300, 450);
+        }
         canCast = false;
     }
     public void q() {
-        setQAbility(new BubbleGum());
+        setQAbility(new BubbleGum(facingRight()));
         getWorld().addObject(getQAbility(), 
             this.getX() + 38, this.getY() - 40);
     }
@@ -44,7 +49,7 @@ public class Balthazar extends Player {
     }
     public void burstFire() {
         if(hasMachete()) {
-            getWorld().addObject(new BoomerangMachete(facingRight()), 
+            getWorld().addObject(new BoomerangMachete(this, facingRight()), 
                 this.getX(), this.getY());
         }
     }

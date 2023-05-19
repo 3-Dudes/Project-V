@@ -4,10 +4,15 @@ public class BalthazarBot extends UltimateAbility {
     private BrattBeam laser;
     private int duration;
     private int times;
+    private boolean isFacingRight;
     public BalthazarBot() {
         laser = new BrattBeam(this);
         times = 0;
         duration = 0;
+    }
+    public BalthazarBot(boolean isFacingRight) {
+        this();
+        this.isFacingRight = isFacingRight;
     }
     @Override
     public void addedToWorld(World w) {

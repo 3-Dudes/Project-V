@@ -9,7 +9,6 @@ public class BubbleGum extends Ability {
         bounces = 0;
         img.scale(img.getWidth() / 3, img.getHeight() / 3);
         this.setImage(img);
-        this.movingRight = true;
         this.intersects = false;
     }
     public BubbleGum(boolean movingRight) {
