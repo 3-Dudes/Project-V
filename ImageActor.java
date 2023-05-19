@@ -1,8 +1,16 @@
 import greenfoot.*;
+import java.util.*;
 public class ImageActor extends Actor {
     private GreenfootImage img;
     private StageButton button;
     private boolean mouseHovered;
+    private boolean playerPick;
+    private boolean cpuPick;
+    private boolean playerHasPicked;
+    private boolean cpuHasPicked;
+    private boolean mouseClicked;
+    private Player playerSelected;
+    private Player cpuSelected;
     private String text;
     private int xOffset;
     private int yOffset;
@@ -16,6 +24,9 @@ public class ImageActor extends Actor {
         this.st = st;
         this.setImage(img);
         mouseHovered = false;
+        playerPick = true;
+        mouseClicked = false;
+        cpuPick = false;
     }
     public ImageActor(GreenfootImage img, String text, int xOffset, int yOffset,
         Stage st) {
@@ -40,15 +51,54 @@ public class ImageActor extends Actor {
             getWorld().removeObject(button);
             mouseHovered = false;
         }
-        if(st != null) {
-            if(Greenfoot.mouseClicked(this)) {
-                Greenfoot.setWorld(st);        
+        if(Greenfoot.mouseClicked(this) && !mouseClicked) {
+            mouseClicked = true;
+            if(st != null) {
+                Greenfoot.setWorld(st); 
+                mouseClicked = false;
+            }
+            if(p != null) {
+                if(playerPick) {
+                    String pText = p.getClass().getName();
+                        switch(pText) {
+                            case "ElMacho":
+                                playerSelected = new ElMacho();
+                                mouseClicked = false;
+                                break;
+                            case "Balthazar":
+                                playerSelected = new Balthazar();
+                                mouseClicked = false;
+                                break;
+                        }
+                    playerPick = false;
+                    playerHasPicked = true;
+                    cpuPick = true;
+                }
+                if(cpuPick) {
+                    String text = "";
+                    if(playerSelected.getClass().getName().equals("ElMacho")) {
+                        text = "Balthazar";
+                    }
+                    else {
+                        text = "ElMacho";
+                    }
+                    switch(text) {
+                            case "ElMacho":
+                                cpuSelected = new ElMacho();
+                                mouseClicked = false;
+                                break;
+                            case "Balthazar":
+                                cpuSelected = new Balthazar();
+                                mouseClicked = false;
+                                break;
+                    }
+                        cpuPick = false;
+                        cpuHasPicked = true;
+                }
             }    
         }
-        if(p != null) {
-            if(Greenfoot.mouseClicked(this)) {
-                //Greenfoot.setWorld(st);        
-            }
+        if(playerHasPicked && cpuHasPicked) {
+            Greenfoot.setWorld(new StageSelect(playerSelected, cpuSelected));
         }
     }
     public boolean isMouseOver() {
@@ -61,5 +111,12 @@ public class ImageActor extends Actor {
             < my && getY() + getImage().getHeight()/2 > my;
         }
         return false;
+    }
+    public ImageActor getPlayerSelected() {
+        MouseInfo m = Greenfoot.getMouseInfo();
+        if(m != null) {
+            return (ImageActor) m.getActor();
+        }
+        return null;
     }
 }

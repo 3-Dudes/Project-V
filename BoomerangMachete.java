@@ -5,6 +5,8 @@ public class BoomerangMachete extends Weapon {
     private boolean movingRight;
     private int bounces;
     private Balthazar b;
+    private boolean spawnedIn;
+    private GreenfootSound whoosh = new GreenfootSound("cartoony-whooshes-7114.mp3");
     public BoomerangMachete() {
         super(4, 4);
         left = getImage();
@@ -19,6 +21,12 @@ public class BoomerangMachete extends Weapon {
         this.movingRight = movingRight;
     }
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            whoosh.play();
+        }
         if(movingRight) {
             this.setImage(right);
             this.setLocation(this.getX() + 10, b.getY());
@@ -44,6 +52,7 @@ public class BoomerangMachete extends Weapon {
         }
         if(bounces == 1 && (this.isTouching(Balthazar.class))) {
             getWorld().removeObject(this);
+            whoosh.stop();
         }
         detectCollision("Balthazar", 10);
     }
@@ -58,5 +67,8 @@ public class BoomerangMachete extends Weapon {
                 intersects = true;
             }
         }
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

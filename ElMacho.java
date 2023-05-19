@@ -5,10 +5,12 @@ public class ElMacho extends Player {
     private int timeToReload;
     private boolean needToReload;
     private boolean rPressed;
+    private boolean iPressed;
     public boolean usedUlt;
     public int ultDur;
     public boolean isEduardo;
     private Random rand; 
+    private GreenfootSound rain = new GreenfootSound("strongraincarroof-44050.mp3");
     private static GreenfootImage[] machoLeftFrames;
     private static GreenfootImage[] machoRightFrames;
     private static GreenfootImage[] eduardoLeftFrames;
@@ -121,7 +123,8 @@ public class ElMacho extends Player {
         super.act();
         if(canCast) {
             castMoves();    
-            if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") && !rPressed) {
+            if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") 
+            && !rPressed && getStartX() == 200) {
                 if(Greenfoot.isKeyDown("R") && !rPressed) {
                     rPressed = true;
                 }
@@ -129,6 +132,15 @@ public class ElMacho extends Player {
             }
             if(!Greenfoot.isKeyDown("R") && rPressed) {
                 rPressed = false;
+            }
+            if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("I") && !iPressed && getStartX() == 1000) {
+                if(Greenfoot.isKeyDown("I") && !iPressed) {
+                    iPressed = true;
+                }
+                needToReload = true;
+            }
+            if(!Greenfoot.isKeyDown("I") && iPressed) {
+                iPressed = false;
             }
             if(needToReload) {
                 timedReload();
@@ -217,6 +229,7 @@ public class ElMacho extends Player {
         usedUlt = true;
         canCast = false;
         List<TortillaChip> chips = new ArrayList<TortillaChip>();
+        rain.play();
         for(int k = 1; k <= 50; k++) {
             TortillaChip tc = new TortillaChip(this);
             int randX = rand.nextInt(curWorld.getWidth());

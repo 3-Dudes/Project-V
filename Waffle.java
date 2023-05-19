@@ -2,6 +2,8 @@ import greenfoot.*;
 public class Waffle extends Ability {
     private int duration;
     private boolean right;
+    private boolean spawnedIn;
+    private GreenfootSound whoosh = new GreenfootSound("cartoony-whooshes-7114.mp3");
     public Waffle(boolean right) {
         super(1100, 20);
         GreenfootImage img = getImage();
@@ -10,6 +12,12 @@ public class Waffle extends Ability {
         this.right = right;
     }
     public void act() {
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            whoosh.play();
+        }
         if(right) {
             this.setLocation(this.getX() + 15, this.getY());    
         }
@@ -40,5 +48,8 @@ public class Waffle extends Ability {
             isFinished = true;
         }
         detectCollision("ElMacho");
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

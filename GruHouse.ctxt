@@ -1,5 +1,5 @@
 #BlueJ class context
 comment0.target=GruHouse
-comment1.params=
-comment1.target=GruHouse()
+comment1.params=player\ cpu
+comment1.target=GruHouse(Player,\ Player)
 numComments=2

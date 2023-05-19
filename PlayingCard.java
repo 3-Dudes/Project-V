@@ -6,6 +6,8 @@ public class PlayingCard extends Ability {
     private static int damage = 10;
     private boolean isRight;
     private boolean recast;
+    private boolean spawnedIn;
+    private GreenfootSound whoosh = new GreenfootSound("cartoony-whooshes-7114.mp3");
     public PlayingCard(boolean isRight) {
         this();
         tracker = 0;
@@ -19,6 +21,12 @@ public class PlayingCard extends Ability {
     }
     public void act() {
         move();
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            whoosh.play();
+        }
         if(this.isAtEdge()) {
             getWorld().removeObject(this);
         }
@@ -50,5 +58,8 @@ public class PlayingCard extends Ability {
         else {
             this.setLocation(this.getX() - 10, this.getY());
         }
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }

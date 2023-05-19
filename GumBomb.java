@@ -1,6 +1,8 @@
 import greenfoot.*;
 public class GumBomb extends Ability {
     private boolean movingRight;
+    private boolean spawnedIn;
+    private GreenfootSound pop = new GreenfootSound("gum.mp3");
     public GumBomb() {
         super(500, 10);
         GreenfootImage img = this.getImage();
@@ -13,6 +15,12 @@ public class GumBomb extends Ability {
     }
     public void act() {
         moveGumBomb();
+        if(this.exists()) {
+            spawnedIn = true;
+        }
+        if(spawnedIn) {
+            pop.play();
+        }
         detectCollision("Balthazar");
         if(this.isTouching(Player.class) && !this.isTouching(Balthazar.class) 
             || this.isAtEdge()) {
@@ -30,5 +38,9 @@ public class GumBomb extends Ability {
     }
     public void pop() {
         getWorld().removeObject(this);
+        pop.stop();
+    }
+    public boolean exists() {
+        return getWorld() != null;
     }
 }
