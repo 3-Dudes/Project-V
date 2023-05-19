@@ -17,6 +17,7 @@ public class GumBomb extends Ability {
         if(this.isTouching(Player.class) && !this.isTouching(Balthazar.class) 
             || this.isAtEdge()) {
             pop();
+            isFinished = true;
         }
     }
     private void moveGumBomb() {

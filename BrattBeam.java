@@ -18,12 +18,12 @@ public class BrattBeam extends Weapon {
     @Override
     public void addedToWorld(World w) {
         super.addedToWorld(w);
-        this.setRotation(10);
+        this.setRotation(25);
     }
     public void act() {
         detectCollision("Balthazar", 2);
         if(bb != null) {
-            this.setLocation(bb.getX() + 270, bb.getY() - 95);    
+            this.setLocation(bb.getX() + 270, bb.getY() - 25);    
         }
     }
     @Override
