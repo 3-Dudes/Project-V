@@ -269,6 +269,9 @@ public abstract class Player extends Actor {
                 canMove = true;
                 setTimeDisabled(0);
             }
+            if(this.getRotation() != 0 && canMove) {
+                this.setRotation(0);
+            }
             if(canMove) {
                 move();
                 fall();
