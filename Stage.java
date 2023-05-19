@@ -26,9 +26,10 @@ public abstract class Stage extends World {
             Greenfoot.setWorld(new WinScreen(cpu, cpu.getEAbility()));
         }
         else if(cpu.isDead()) {
-            
+            Greenfoot.setWorld(new WinScreen(player, player.getQAbility()));
         }
     }
+    
     /* private void addPlatforms() {
         List<Integer> sequence = new ArrayList<Integer>();
         sequence.add(4);
