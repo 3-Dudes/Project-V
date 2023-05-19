@@ -8,6 +8,7 @@ class.Gru.image=gru1.png
 class.GruHouse.image=gruhouse.png
 class.GruLair.image=grulair.jpg
 class.GuacamoleTortillaChip.image=guacamole_tortilla_chip.png
+class.LaserRifle.image=laser_gun.png
 class.Lucy.image=lucy1.png
 class.Minion.image=minion.png
 class.Rocket.image=rocket.png

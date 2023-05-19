@@ -40,7 +40,7 @@ public class Gru extends Player {
     }
 
     public void c() {
-            
+        
     }
 
     public void q() {
@@ -148,7 +148,6 @@ public class Gru extends Player {
             }
             getImage().setTransparency(0);
             r.updateMoveStatus(false);
-            canCast = true;
         }
     }
     private void fade() {
@@ -173,6 +172,7 @@ public class Gru extends Player {
             }
             if(exit.isInWorld()) {
                 getWorld().removeObject(exit);
+                canCast = true;
             }
         }
     }
