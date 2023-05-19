@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=GruTeleportationEntrance
+comment0.target=GruTeleporter
 comment1.params=
-comment1.target=GruTeleportationEntrance()
+comment1.target=GruTeleporter()
 comment2.params=
 comment2.target=boolean\ isInWorld()
 numComments=3

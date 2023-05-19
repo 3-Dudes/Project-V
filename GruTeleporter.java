@@ -1,7 +1,7 @@
 import greenfoot.*;
-public class GruTeleportationEntrance extends Actor {
+public class GruTeleporter extends Actor {
     private GreenfootImage ovalShadow;
-    public GruTeleportationEntrance() {
+    public GruTeleporter() {
         ovalShadow = new GreenfootImage(200, 10);
         ovalShadow.setColor(Color.BLACK);
         ovalShadow.drawOval(0, 0, 200, 10);

@@ -7,7 +7,8 @@ public class Gru extends Player {
     private int automationDuration;
     private int fireDelay;
     private Rocket r;
-    private GruTeleportationEntrance entrance;
+    private GruTeleporter entrance;
+    private GruTeleporter exit;
     private int x;
     public Gru() {
         super("Gru", 2, false, 500, 500, "gru", 5);
@@ -18,8 +19,8 @@ public class Gru extends Player {
         automationDuration = 0;
         fireDelay = 0;
         x = 0;
-        entrance = new GruTeleportationEntrance();
-        r = new Rocket(!facingRight());
+        entrance = new GruTeleporter();
+        exit = new GruTeleporter();
     }
 
     @Override
@@ -35,6 +36,7 @@ public class Gru extends Player {
                 this.getY() - 40);
             mainWeapon.setImage(mainWeapon.getLeftImage());
         }
+        r = new Rocket(facingRight());
     }
 
     public void c() {
@@ -60,26 +62,26 @@ public class Gru extends Player {
 
     }
     
-    public void x() { //teleport to opposite x coord and fire rocket back at other side
+    public void x() {
         if(facingRight()) {
-            setFacingRight(false);
-            r = new Rocket(false);
             this.setImage(getLeftImage());
+            r = new Rocket(facingRight());
+            if(!entrance.isInWorld()) {
+                getWorld().addObject(entrance, this.getX() + 200, this.getY() + getImage().getHeight() / 3 + 15);
+            }
+            this.setLocation(this.getX() + 200, this.getY());
         }
         else {
-            setFacingRight(true);
-            r = new Rocket(true);
             this.setImage(getRightImage());
+            r = new Rocket(facingRight());
+            if(!entrance.isInWorld()) {
+                getWorld().addObject(entrance, this.getX() - 200, this.getY() + getImage().getHeight() / 3 + 15);
+            }
+            this.setLocation(this.getX() - 200, this.getY());
         }
         canMove = false;
         canCast = false;
-        if(!entrance.isInWorld()) {
-            getWorld().addObject(entrance, getWorld().getWidth() 
-            - this.getX(), this.getY() + getImage().getHeight() / 3 + 15);
-        }        
-        this.setLocation(getWorld().getWidth() - this.getX(), this.getY());
     }
-
     public void singleFire() {
         if(this.isTouching(LaserRifle.class)) {
             if(automate) {
@@ -94,7 +96,6 @@ public class Gru extends Player {
             }
         }
     }
-
     private void addLaser() {
         if(facingRight()) {
             getWorld().addObject(new RedLaser(this), 
@@ -129,13 +130,24 @@ public class Gru extends Player {
             automate = false;
             automationDuration = 0;
         }
-        if(entrance.isInWorld()) {
+        if(entrance.isInWorld() || exit.isInWorld()) {
             fade();
         }
         if(r.exists()) {
             canMove = true;
         }
-        if(r.hasExploded()) {
+        if(!r.exists() && r.isFinished()) {
+            exit = new GruTeleporter();
+            if(facingRight()) {
+                getWorld().addObject(exit, this.getX() - 200, this.getY() + getImage().getHeight() / 3 + 15);
+                this.setLocation(this.getX() - 200, this.getY());
+            }
+            else {
+                getWorld().addObject(exit, this.getX() + 200, this.getY() + getImage().getHeight() / 3 + 15);
+                this.setLocation(this.getX() + 200, this.getY());
+            }
+            getImage().setTransparency(0);
+            r.updateMoveStatus(false);
             canCast = true;
         }
     }
@@ -143,12 +155,11 @@ public class Gru extends Player {
         GreenfootImage img = null;
         if(facingRight()) {
             img = getRightImage();
-            img.setTransparency(0);
         }
         else {
             img = getLeftImage();
-            img.setTransparency(0);
         }
+        img.setTransparency(0);
         if(img.getTransparency() < 250) {
             x += 5;
             img.setTransparency(x);
@@ -156,8 +167,13 @@ public class Gru extends Player {
         }
         if(x == 250) {
             x = 0;
-            getWorld().removeObject(entrance);
-            getWorld().addObject(r, this.getX(), this.getY());
+            if(entrance.isInWorld()) {
+                getWorld().removeObject(entrance);
+                getWorld().addObject(r, this.getX(), this.getY());    
+            }
+            if(exit.isInWorld()) {
+                getWorld().removeObject(exit);
+            }
         }
     }
     private void automatic() {
