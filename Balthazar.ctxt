@@ -2,6 +2,8 @@
 comment0.target=Balthazar
 comment1.params=
 comment1.target=Balthazar()
+comment10.params=a
+comment10.target=boolean\ intersects(greenfoot.Actor)
 comment2.params=
 comment2.target=void\ c()
 comment3.params=
@@ -18,4 +20,4 @@ comment8.params=
 comment8.target=void\ act()
 comment9.params=
 comment9.target=boolean\ hasMachete()
-numComments=10
+numComments=11

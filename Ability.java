@@ -7,6 +7,7 @@ public abstract class Ability extends Actor {
     protected boolean right;
     protected boolean intersects;
     protected boolean isFinished;
+    private boolean isFacingRight;
     
     public Ability(int cooldown, int damage) {
         this.charge = cooldown;
@@ -39,7 +40,6 @@ public abstract class Ability extends Actor {
     public boolean isFinished() {
         return isFinished;
     }
-    
     public void detectCollision(String name) {
         if(getWorld() != null) {
             Player hitPlayer = (Player) this.getOneIntersectingObject(Player.class);   

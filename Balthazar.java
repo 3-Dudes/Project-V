@@ -59,8 +59,12 @@ public class Balthazar extends Player {
     }
     private boolean hasMachete() {
         List<Machete> machetes = getWorld().getObjects(Machete.class);
-        List<BoomerangMachete> boomerangMachetes = getWorld()
-            .getObjects(BoomerangMachete.class);
+        List<BoomerangMachete> boomerangMachetes 
+            = getWorld().getObjects(BoomerangMachete.class);
         return machetes.size() == 0 && boomerangMachetes.size() == 0;
+    }
+    @Override
+    public boolean intersects(Actor a) {
+        return super.intersects(a);
     }
 }

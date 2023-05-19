@@ -9,7 +9,7 @@ public class Lucy extends Player {
     private int weaponIndex;
     private AmmoGUI ammoGui;
     public Lucy() {
-        super("Lucy", 2, true, 400, 400);
+        super("Lucy", 2, true, 400, 400, "lucy", 5);
         GreenfootImage img = this.getImage();
         weapon = new Flamethrower(this, spaceX, spaceY);
         weaponIndex = 0;

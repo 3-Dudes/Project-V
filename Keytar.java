@@ -59,7 +59,7 @@ public class Keytar extends Ability {
                 }
             }
             for(Player p : intersectingObjs) {
-                if(b.isIntersecting(p) && !intersects) {
+                if(b.intersects(p) && !intersects) {
                     shouldRemove = true;
                     p.decreaseHealth(getDamage());
                     intersects = true;

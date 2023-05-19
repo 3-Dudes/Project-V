@@ -4,7 +4,7 @@ public class Flamethrower extends Weapon {
     private Lucy l;
     private Fire ammo;
     public Flamethrower(Lucy l, int spaceX, int spaceY) {
-        super(l, spaceX, spaceY, 3, 3);
+        super(l, spaceX, spaceY, true, 3, 3);
         this.l = l;
         ammo = new Fire(this, l);
         GreenfootImage img = getImage();

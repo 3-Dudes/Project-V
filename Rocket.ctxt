@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Rocket
+comment1.params=movingRight
+comment1.target=Rocket(boolean)
+comment2.params=w
+comment2.target=void\ addedToWorld(greenfoot.World)
+comment3.params=
+comment3.target=void\ act()
+comment4.params=isFinished
+comment4.target=void\ updateMoveStatus(boolean)
+comment5.params=
+comment5.target=boolean\ isFinished()
+comment6.params=
+comment6.target=boolean\ exists()
+comment7.params=
+comment7.target=boolean\ hasExploded()
+comment8.params=hasExploded
+comment8.target=void\ setHasExploded(boolean)
+comment9.params=name\ damage
+comment9.target=void\ detectCollision(java.lang.String,\ int)
+numComments=10

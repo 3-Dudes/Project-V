@@ -14,7 +14,7 @@ public class TortillaChip extends Weapon {
     }
     
     public TortillaChip(boolean right, ElMacho macho) {
-        super(macho, 0, 0, null, null);
+        super(macho, 0, 0, false, null, null);
         this.macho = macho;
         this.right = right;
         this.shouldRemove = false;
