@@ -37,15 +37,17 @@ public class Keytar extends Ability {
             charge.play();
         }
         if(!isFinished) {
-            if(b.facingRight()) {
-                this.setImage(right);
-                b.setLocation(b.getX() + 15, b.getY());    
-                this.setLocation(b.getX() + 90, b.getY() - 10);
-            }
-            else {
-                this.setImage(left);
-                b.setLocation(b.getX() - 15, b.getY());
-                this.setLocation(b.getX() - 90, b.getY() - 10);
+            if(b != null) {
+                if(b.facingRight()) {
+                    this.setImage(right);
+                    b.setLocation(b.getX() + 15, b.getY());    
+                    this.setLocation(b.getX() + 90, b.getY() - 10);
+                }
+                else {
+                    this.setImage(left);
+                    b.setLocation(b.getX() - 15, b.getY());
+                    this.setLocation(b.getX() - 90, b.getY() - 10);
+                }    
             }
             setDamage(getDamage() + 2);
         }

@@ -6,20 +6,37 @@ public abstract class Stage extends World {
     private Platform topPlatform;
     private Platform leftPlatform;
     private Platform rightPlatform;
-    public Stage() {
+    public Stage(Player player, Player cpu) {
         super(1200, 700, 1);
+        this.player = player;
+        this.cpu = cpu;
+        if(player.getClass().getName().equals("ElMacho")) {
+            this.cpu = new Balthazar();
+            this.player = new ElMacho();
+        }
+        else {
+            this.cpu = new ElMacho();
+            this.player = new Balthazar();
+        }
         prepareLevel();
     }
     private void prepareLevel() {
-        player = new ElMacho();
-        cpu = new Lucy();
         this.addObject(player, 200, 550);
         this.addObject(cpu, 1000, 550);
         this.setPaintOrder(Weapon.class, 
             Ability.class, Actor.class, Player.class);
         //addPlatforms();
     }   
-    private void addPlatforms() {
+    public void act() {
+        if(player.isDead()) {
+            Greenfoot.setWorld(new WinScreen(cpu));
+        }
+        else if(cpu.isDead()) {
+            Greenfoot.setWorld(new WinScreen(player));
+        }
+    }
+    
+    /* private void addPlatforms() {
         List<Integer> sequence = new ArrayList<Integer>();
         sequence.add(4);
         sequence.add(3);
@@ -34,5 +51,5 @@ public abstract class Stage extends World {
         this.addObject(topPlatform, 600, 200);
         this.addObject(leftPlatform, 300, 500);
         this.addObject(rightPlatform, 900, 500);
-    }
+    } */
 }

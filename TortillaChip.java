@@ -66,6 +66,7 @@ public class TortillaChip extends Weapon {
                 }
                 macho.usedUlt = false;
                 macho.ultDur = 0;
+                macho.canCast = true;
             }
         }
         else {

@@ -65,10 +65,6 @@ public class ImageActor extends Actor {
                                 playerSelected = new ElMacho();
                                 mouseClicked = false;
                                 break;
-                            case "Gru":
-                                playerSelected = new Gru();
-                                mouseClicked = false;
-                                break;
                             case "Balthazar":
                                 playerSelected = new Balthazar();
                                 mouseClicked = false;
@@ -79,14 +75,16 @@ public class ImageActor extends Actor {
                     cpuPick = true;
                 }
                 if(cpuPick) {
-                    String text = "Balthazar";
+                    String text = "";
+                    if(playerSelected.getClass().getName().equals("ElMacho")) {
+                        text = "Balthazar";
+                    }
+                    else {
+                        text = "ElMacho";
+                    }
                     switch(text) {
                             case "ElMacho":
                                 cpuSelected = new ElMacho();
-                                mouseClicked = false;
-                                break;
-                            case "Gru":
-                                cpuSelected = new Gru();
                                 mouseClicked = false;
                                 break;
                             case "Balthazar":

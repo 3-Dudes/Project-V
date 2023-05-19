@@ -1,9 +1,6 @@
 import greenfoot.*;
 import java.util.*;
 public class Balthazar extends Player {
-
-    
-    
     public Balthazar() {
         super("Balthazar", 2, true, 300, 300, 
             "balthazar", 2, new GumBomb(), new BubbleGum(),
@@ -20,17 +17,17 @@ public class Balthazar extends Player {
         setEAbility(k);
         if(facingRight()) {
             getWorld().addObject(getEAbility(), 
-                this.getX() + 90, this.getY() - 10);
+                this.getX() + 90, this.getY() - 10);    
         }
         else {
             getWorld().addObject(getEAbility(), 
-                this.getX() - 90, this.getY() - 10);
+                this.getX() - 90, this.getY() - 10);    
         }
         canMove = false;
         canCast = false;
     }
     public void x() {
-        setXAbility(new BalthazarBot());
+        setXAbility(new BalthazarBot(facingRight()));
         if(facingRight()) {
             getWorld().addObject(getUltimateAbility(), this.getX() + 300, 450);
         }
@@ -44,7 +41,7 @@ public class Balthazar extends Player {
         getWorld().addObject(getQAbility(), 
             this.getX() + 38, this.getY() - 40);
     }
-    public void singleFire() { 
+    public void singleFire() {
         if(hasMachete()) {
             getWorld().addObject(new Machete(facingRight()), 
                 this.getX(), this.getY());    
