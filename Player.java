@@ -312,6 +312,11 @@ public abstract class Player extends Actor {
                 if(c == null) {
                     c();
                 }
+                else {
+                    if(c.isReady()) {
+                        c();
+                    }
+                }
             }
             if(!Greenfoot.isKeyDown("L") && lPressed) {
                 lPressed = false;
@@ -358,6 +363,11 @@ public abstract class Player extends Actor {
             if(Greenfoot.isKeyDown("P") && !pPressed) {        
                 if(e == null) {
                     e();
+                }
+                else {
+                    if(e.isReady()) {
+                        e();
+                    }
                 }
                 pPressed = true;
             }
