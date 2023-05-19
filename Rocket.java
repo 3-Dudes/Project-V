@@ -61,7 +61,7 @@ public class Rocket extends Weapon {
         if(getWorld() != null) {
             Player p = (Player) this.getOneIntersectingObject(Player.class);
             if(p != null && !intersects && !(p instanceof Gru)) {
-                if(this.getX() <= p.getX() + 10 && this.getX() >= p.getX() - 10) {   
+                if(this.getX() <= p.getX() + 20 && this.getX() >= p.getX() - 20) {   
                     p.decreaseHealth(100);
                     intersects = true;
                     hasExploded = true;
