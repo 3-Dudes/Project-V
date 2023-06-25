@@ -61,27 +61,6 @@ public class ElMacho extends Player {
         reload();
     }
 
-    public void singleFire() {
-        if(ammoGui.cur > 0) {
-            getWorld().addObject(
-                new TortillaChip(facingRight(), this), getX(), getY());
-            ammoGui.loseChip();
-        }
-    }
-
-    public void burstFire() {
-        if(ammoGui.cur >= 3) {
-            int a = 0;
-            for(int k = 1; k <= 3; k++) {
-                getWorld().addObject(new TortillaChip(facingRight(), this), getX() + a, getY());
-                a += 60;
-            }
-            for(int k = 1; k <= 3; k++) {
-                ammoGui.loseChip();
-            }   
-        }
-    }
-
     public void reload() {
         ammoGui.refill();
         needToReload = false;
@@ -124,7 +103,7 @@ public class ElMacho extends Player {
         if(canCast) {
             castMoves();    
             if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("R") 
-            && !rPressed && getStartX() == 200) {
+                && !rPressed) {
                 if(Greenfoot.isKeyDown("R") && !rPressed) {
                     rPressed = true;
                 }
@@ -132,15 +111,6 @@ public class ElMacho extends Player {
             }
             if(!Greenfoot.isKeyDown("R") && rPressed) {
                 rPressed = false;
-            }
-            if(ammoGui.cur <= 0 || Greenfoot.isKeyDown("I") && !iPressed && getStartX() == 1000) {
-                if(Greenfoot.isKeyDown("I") && !iPressed) {
-                    iPressed = true;
-                }
-                needToReload = true;
-            }
-            if(!Greenfoot.isKeyDown("I") && iPressed) {
-                iPressed = false;
             }
             if(needToReload) {
                 timedReload();
@@ -162,7 +132,6 @@ public class ElMacho extends Player {
             bPressed = false;
         }
     }
-    
     @Override
     protected void castV() {
         if(Greenfoot.isKeyDown("V") && !vPressed) {
@@ -176,7 +145,18 @@ public class ElMacho extends Player {
             vPressed = false;
         }
     }
-
+    
+    public void c() {
+        if(isEduardo) {
+            isEduardo = false;
+        }
+        else {
+            isEduardo = true;
+        }
+        canCast = false;
+        changePersona();
+        canCast = true;
+    } 
     public void q() {
         if(isEduardo) {
             setQAbility(new Waffle(facingRight()));
@@ -190,20 +170,7 @@ public class ElMacho extends Player {
             this.canMove = false;
             this.canCast = false;    
         }
-    }
-
-    public void c() {
-        if(isEduardo) {
-            isEduardo = false;
-        }
-        else {
-            isEduardo = true;
-        }
-        canCast = false;
-        changePersona();
-        canCast = true;
-    }   
-
+    }  
     public void e() {
         int x = this.getX();
         int y = this.getY();
@@ -223,7 +190,6 @@ public class ElMacho extends Player {
         }
         getWorld().addObject(getEAbility(), x, y);
     }
-
     public void x() {
         World curWorld = getWorld();
         usedUlt = true;
@@ -235,6 +201,25 @@ public class ElMacho extends Player {
             int randX = rand.nextInt(curWorld.getWidth());
             int randY = rand.nextInt(curWorld.getHeight());
             getWorld().addObject(tc, randX, randY);
+        }
+    }
+    public void singleFire() {
+        if(ammoGui.cur > 0) {
+            getWorld().addObject(
+                new TortillaChip(facingRight(), this), getX(), getY());
+            ammoGui.loseChip();
+        }
+    }
+    public void burstFire() {
+        if(ammoGui.cur >= 3) {
+            int a = 0;
+            for(int k = 1; k <= 3; k++) {
+                getWorld().addObject(new TortillaChip(facingRight(), this), getX() + a, getY());
+                a += 60;
+            }
+            for(int k = 1; k <= 3; k++) {
+                ammoGui.loseChip();
+            }   
         }
     }
 }

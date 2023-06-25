@@ -10,7 +10,7 @@ public class HealthBar extends Actor {
 
         header = new GreenfootImage(name, 25, null, null);
         drawHeader();
-        setImage(bar);
+        this.setImage(bar);
     }
     public void drawHeader() {
         bar.drawImage(header, bar.getWidth() / 2 - 45, 2);
